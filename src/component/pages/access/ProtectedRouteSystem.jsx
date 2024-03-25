@@ -13,10 +13,6 @@ const ProtectedRouteSystem = ({ children }) => {
   const [loading, setLoading] = React.useState(true);
   const [isAuth, setIsAuth] = React.useState("");
   const glatoken = JSON.parse(localStorage.getItem("glatoken"));
-  const currentPath =
-    location.pathname.split("/")[1] === "dev-app"
-      ? location.pathname.split("/")[2]
-      : location.pathname.split("/")[1];
   const [pageStatus, setPageStatus] = React.useState(false);
 
   React.useEffect(() => {
@@ -42,7 +38,7 @@ const ProtectedRouteSystem = ({ children }) => {
 
       if (
         !login.success ||
-        login.data.role_name.toLowerCase() !== currentPath
+        login.data.role.toLowerCase() !== login.data.role_name.toLowerCase()
       ) {
         setPageStatus(true);
       }
