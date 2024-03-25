@@ -1,0 +1,47 @@
+RewriteEngine On
+# use for authentication
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+Header set Access-Control-Allow-Origin *
+
+######################################### FOR DEVELOPER #####################################
+
+# ROLES # 
+RewriteRule ^roles$ controllers/developer/settings/user/role/role.php [L]
+RewriteRule ^roles/([0-9]+)$ controllers/developer/settings/user/role/role.php?roleid=$1 [L]
+RewriteRule ^roles/active/([0-9]+)$ controllers/developer/settings/user/role/active.php?roleid=$1 [L]
+
+### SYSTEM USER ###
+RewriteRule ^user-system$ controllers/developer/settings/user/system/system.php [L]
+RewriteRule ^user-system/([0-9]+)$ controllers/developer/settings/user/system/system.php?usersystemid=$1 [L]
+RewriteRule ^user-system/active/([0-9]+)$ controllers/developer/settings/user/system/active.php?usersystemid=$1 [L]
+RewriteRule ^user-system/search$ controllers/developer/settings/user/system/search.php [L]
+RewriteRule ^user-system/key/([A-Za-z0-9-]+)$ controllers/developer/settings/user/system/key.php?usersystemkey=$1 [L]
+RewriteRule ^user-system/page/([0-9]+)$ controllers/developer/settings/user/system/page.php?start=$1 [L]
+RewriteRule ^user-system/password$ controllers/developer/settings/user/system/set-password.php [L]
+RewriteRule ^user-system/login$ controllers/developer/settings/user/system/login.php [L]
+RewriteRule ^user-system/token$ controllers/developer/settings/user/system/token.php [L]
+RewriteRule ^user-system/reset$ controllers/developer/settings/user/system/reset-password.php [L]
+RewriteRule ^user-system/verify-email/([A-Za-z0-9-]+)$ controllers/developer/settings/user/system/update-email.php?usersystemkey=$1 [L]
+
+### USER OTHER GENERIC
+RewriteRule ^user-other/login$ controllers/developer/settings/user/other/generic/login.php [L]
+RewriteRule ^user-other/token$ controllers/developer/settings/user/other/generic/token.php [L]
+RewriteRule ^user-other/key/([A-Za-z0-9-]+)$ controllers/developer/settings/user/other/generic/key.php?userotherkey=$1 [L]
+RewriteRule ^user-other/password$ controllers/developer/settings/user/other/generic/set-password.php [L]
+RewriteRule ^user-other/reset$ controllers/developer/settings/user/other/generic/reset-password.php [L]
+RewriteRule ^user-other/verify-email/([A-Za-z0-9-]+)$ controllers/developer/settings/user/other/generic/update-email.php?userotherkey=$1 [L]
+
+### OTHER USER MAIN ###
+RewriteRule ^user-main$ controllers/developer/settings/user/other/main/user-main.php [L]
+RewriteRule ^user-main/([0-9]+)$ controllers/developer/settings/user/other/main/user-main.php?userotherid=$1 [L]
+RewriteRule ^user-main/active/([0-9]+)$ controllers/developer/settings/user/other/main/active.php?userotherid=$1 [L]
+RewriteRule ^user-main/page/([0-9]+)$ controllers/developer/settings/user/other/main/page.php?start=$1 [L]
+RewriteRule ^user-main/search$ controllers/developer/settings/user/other/main/search.php [L]
+
+### ACCOUNT CHANGE PASS ### 
+RewriteRule ^account/developer/update-password$ controllers/developer/account/system/account-change-password.php [L] 
+RewriteRule ^account/admin/update-password$ controllers/admin/account/other/account-change-password.php [L] 

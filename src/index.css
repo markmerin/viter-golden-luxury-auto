@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "poppins";
+  /* src: url(font/Poppins-Regular.ttf) format("truetype"); */
+  src: url(/font/Poppins-Regular.ttf) format("truetype");
+  font-display: fallback;
+}
+
+body {
+  @apply leading-relaxed font-[poppins] text-xs min-h-full text-dark;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+  nav {
+    @apply fixed h-full overflow-y-auto pb-14;
+  }
+  p {
+    @apply mb-2;
+  }
+  body {
+    @apply leading-relaxed font-[poppinsRegular] text-xs min-h-full text-dark;
+  }
+  table {
+    @apply border-collapse border-spacing-2 text-left w-full p-1 truncate table-auto;
+  }
+  table tr:hover {
+    @apply bg-gray-100;
+  }
+  table tr {
+    @apply border-b border-solid border-gray-300 hover:bg-gray-50 relative;
+  }
+  table td {
+    @apply py-1.5 truncate pr-3 whitespace-pre-wrap;
+  }
+  table td:last-child {
+    @apply overflow-visible;
+  }
+  table th {
+    @apply font-bold bg-gray-200 py-2 pr-3;
+  }
+
+  input,
+  select {
+    @apply border border-solid border-gray-300 p-2 rounded-lg w-full h-[40px] truncate;
+  }
+  textarea {
+    @apply block border border-solid border-gray-300 p-2 rounded-lg w-full h-28 resize-none;
+  }
+  input:disabled,
+  select:disabled,
+  textarea:disabled,
+  :disabled {
+    @apply bg-gray-100 border-gray-200 cursor-not-allowed hover:bg-gray-100 hover:text-inherit hover:border-gray-200;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply border border-solid border-primary outline-0;
+  }
+  input.account_password {
+    @apply !border-0 !border-b !rounded-none focus:!border-t-0 focus:!border-r-0 focus:!border-l-0;
+  }
+
+  label {
+    @apply absolute text-xs text-dark transform -translate-y-6 translate-x-3 top-4 z-10 bg-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply flex items-center justify-center text-white gap-2 px-3 py-1 bg-primary rounded-lg border-primary border  hover:bg-white hover:text-primary hover:border-gray-300 duration-300 ease-in;
+  }
+  .btn-primary:disabled {
+    @apply opacity-50 hover:bg-white hover:text-primary hover:border-gray-300;
+  }
+  .btn-action-table {
+    @apply cursor-pointer text-gray-500 text-base align-middle !py-1.5 !px-2 rounded-md hover:bg-gray-300 duration-200 ease-in;
+  }
+  .btn-action-table svg {
+    @apply h-3 w-3;
+  }
+  .btn-navigation {
+    @apply cursor-pointer text-gray-500 text-base align-middle !py-2 !pr-[.2rem] !pl-4 hover:bg-secondary hover:text-white duration-200 ease-in;
+  }
+  .btn-modal-submit {
+    @apply flex items-center justify-center text-primary gap-2 px-3 py-1.5 bg-dark rounded-md border-dark border hover:bg-dark hover:text-primary hover:border-dark duration-300 ease-in w-full;
+  }
+  .btn-modal-submit:disabled {
+    @apply opacity-50;
+  }
+  .btn-modal-cancel {
+    @apply flex items-center justify-center text-dark gap-2 px-3 py-1.5 bg-white rounded-md border-gray-300 border w-full;
+  }
+  .btn-modal-cancel:disabled {
+    @apply opacity-50 hover:bg-white hover:text-dark hover:border-gray-300;
+  }
+  .modal {
+    @apply bg-dark/0 transition-all opacity-0;
+  }
+  .modal > .animate-slideUp {
+    @apply translate-y-3 transition-all;
+  }
+  .modal.show {
+    @apply bg-dark/50 opacity-100;
+  }
+  .modal.show > .animate-slideUp {
+    @apply translate-y-0;
+  }
+}
+
+@layer utilities {
+  li.active {
+    @apply text-white mb-1 rounded-lg;
+  }
+  li.active svg {
+    @apply fill-primary;
+  }
+  .active__submenu {
+    @apply !border-primary !rounded-tl-none !rounded-bl-none text-primary;
+  }
+  span.error-show {
+    @apply text-[11px] absolute right-1 -bottom-5 text-red-500 italic z-50;
+  }
+  input.error-show,
+  select.error-show,
+  textarea.error-show {
+    @apply border border-red-500 animate-shake;
+  }
+  label.error-show {
+    @apply text-red-500;
+  }
+  .tooltip-action-table {
+    @apply relative p-1 bg-transparent leading-none;
+  }
+  .tooltip-action-table::after {
+    @apply content-[attr(data-tooltip)] absolute left-2/4 -translate-x-2/4 bottom-full -top-[22px] bg-dark/80 text-white p-1 rounded-sm h-fit leading-none z-50 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none scale-0 transition duration-75 ease-in-out;
+  }
+  .tooltip-action-table:hover::after {
+    @apply opacity-100 scale-100;
+  }
+}

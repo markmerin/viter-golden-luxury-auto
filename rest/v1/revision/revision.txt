@@ -1,0 +1,10 @@
+models
+1. rest/v1/models/developer/settings/acknowledgement-template 
+
+controllers
+1. rest/v1/controllers/developer/settings/acknowledgement-template
+
+db-backup
+1. lcssv2_acknowledgement_template.sql
+
+rest/v1/.htaccess 
