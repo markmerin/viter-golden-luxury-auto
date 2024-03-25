@@ -25,40 +25,30 @@ const Header = () => {
   let menuRef = React.useRef();
   const link = getUserType();
 
-  const name = "";
+  const name =
+    store.credentials.data.role_is_developer === 1
+      ? store.credentials.data.user_system_fname
+      : store.credentials.data.user_other_name.split(" ")[0];
 
-  const userEmail = "";
+  const userEmail =
+    store.credentials.data.role_is_developer === 1
+      ? store.credentials.data.user_system_email
+      : store.credentials.data.user_other_email;
 
-  const roleName = "";
+  const roleName =
+    store.credentials.data.role_is_developer === 1
+      ? store.credentials.data.role_name
+      : store.credentials.data.role_name;
 
-  const lastname = "";
+  const lastname =
+    store.credentials.data.role_is_developer === 1
+      ? store.credentials.data.user_system_lname
+      : store.credentials.data.user_other_name.split(" ")[1];
 
-  const fullname = "";
-
-  // const name =
-  //   store.credentials.data.role_is_developer === 1
-  //     ? store.credentials.data.user_system_fname
-  //     : store.credentials.data.user_other_name.split(" ")[0];
-
-  // const userEmail =
-  //   store.credentials.data.role_is_developer === 1
-  //     ? store.credentials.data.user_system_email
-  //     : store.credentials.data.user_other_email;
-
-  // const roleName =
-  //   store.credentials.data.role_is_developer === 1
-  //     ? store.credentials.data.role_name
-  //     : store.credentials.data.role_name;
-
-  // const lastname =
-  //   store.credentials.data.role_is_developer === 1
-  //     ? store.credentials.data.user_system_lname
-  //     : store.credentials.data.user_other_name.split(" ")[1];
-
-  // const fullname =
-  //   store.credentials.data.role_is_developer === 1
-  //     ? `${store.credentials.data.user_system_fname} ${store.credentials.data.user_system_lname} `
-  //     : store.credentials.data.user_other_name;
+  const fullname =
+    store.credentials.data.role_is_developer === 1
+      ? `${store.credentials.data.user_system_fname} ${store.credentials.data.user_system_lname} `
+      : store.credentials.data.user_other_name;
 
   const handleLogout = () => {
     setLoading(true);
