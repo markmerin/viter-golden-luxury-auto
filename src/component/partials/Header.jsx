@@ -108,7 +108,7 @@ const Header = () => {
                 show ? "!border-primary" : "border-opacity-50"
               }`}
             >
-              <div className="flex bg-primary rounded-full justify-center items-center h-8 w-8 ">
+              <div className="flex bg-dark rounded-full justify-center items-center h-8 w-8 ">
                 <span className="text-[0] first-letter:text-xs first-letter:font-bold text-white">
                   {name}
                 </span>
