@@ -85,7 +85,7 @@ const Header = () => {
     <>
       {loading && <FetchingSpinner />}
       <header
-        className={`pr-5 lg:pr-10 md:pr-10 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-primary `}
+        className={`pr-5 lg:pr-10 md:pr-10 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-dark `}
       >
         <button
           onClick={handleShowMenu}

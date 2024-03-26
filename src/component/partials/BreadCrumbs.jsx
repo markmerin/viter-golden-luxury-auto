@@ -29,7 +29,7 @@ const BreadCrumbs = ({ param = "" }) => {
       currentLink += `/${crumb}`;
       return (
         <li
-          className={`text-secondary after:mr-2 after:content-['>'] last:after:hidden last:text-dark last:pointer-events-none ${
+          className={`text-accent after:mr-2 after:content-['>'] last:after:hidden last:text-dark last:pointer-events-none ${
             crumb === "settings" && "pointer-events-none"
           } `}
           key={key}
@@ -41,7 +41,7 @@ const BreadCrumbs = ({ param = "" }) => {
                 ? ""
                 : `${devNavUrl}/${link}${currentLink}${param}`
             }
-            className="mr-2 font-medium hover:text-secondary capitalize text-[10px]"
+            className="mr-2 font-medium hover:text-accent capitalize text-[10px]"
           >
             {crumb.replace("-", " ")}
           </Link>

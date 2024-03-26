@@ -1,4 +1,5 @@
 import React from "react";
+import { SlArrowRight } from "react-icons/sl";
 import { Link, useLocation } from "react-router-dom";
 import {
   setIsAdd,
@@ -108,25 +109,21 @@ export const getUserType = () => {
   return link;
 };
 
-export const getPageLink = (link = "", path = "", title = "", arrow = "") => {
+export const getPageLink = (link = "", path = "", title = "") => {
   return (
     <>
-      <Link to={`${devNavUrl}/${link}/${path}`} className="w-full">
+      <Link
+        to={`${devNavUrl}/${link}/${path}`}
+        className="flex items-center justify-between w-full py-2 hover:bg-primary/10"
+      >
         <div className="flex">
           <div>
             <span className="font-semibold">{title}</span>
           </div>
         </div>
-      </Link>
 
-      {arrow !== "" && (
-        <Link
-          to={`${devNavUrl}/${link}/${path}`}
-          className="btn-action-table group-hover:bg-primary group-hover:text-white"
-        >
-          {arrow}
-        </Link>
-      )}
+        <SlArrowRight className="inline" />
+      </Link>
     </>
   );
 };

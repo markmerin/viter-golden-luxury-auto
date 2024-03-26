@@ -39,33 +39,18 @@ const Users = () => {
         <hr />
         <ul className="pb-40 relative">
           <li>
-            <div className="py-1 group flex items-center justify-between border-b border-solid border-gray-300">
-              {getPageLink(
-                link,
-                "settings/user/system",
-                "System user",
-                <SlArrowRight className="inline" />
-              )}
+            <div className="group flex items-center justify-between border-b border-solid border-gray-300">
+              {getPageLink(link, "settings/user/system", "System user")}
             </div>
           </li>
           <li>
-            <div className="py-1 group flex items-center justify-between border-b border-solid border-gray-300">
-              {getPageLink(
-                link,
-                "settings/user/other",
-                "Other user",
-                <SlArrowRight className="inline" />
-              )}
+            <div className="group flex items-center justify-between border-b border-solid border-gray-300">
+              {getPageLink(link, "settings/user/other", "Other user")}
             </div>
           </li>
           <li>
-            <div className="py-1 group flex items-center justify-between border-b border-solid border-gray-300">
-              {getPageLink(
-                link,
-                "settings/user/role",
-                "Roles",
-                <SlArrowRight className="inline" />
-              )}
+            <div className="group flex items-center justify-between border-b border-solid border-gray-300">
+              {getPageLink(link, "settings/user/role", "Roles")}
             </div>
           </li>
         </ul>
