@@ -3,8 +3,8 @@ class Generic
 {
     public $user_other_aid;
     public $user_other_is_active;
-    public $user_other_id;
-    public $user_other_name;
+    public $user_other_fname;
+    public $user_other_lname;
     public $user_other_email;
     public $user_other_new_email;
     public $user_other_role_id;
@@ -21,12 +21,14 @@ class Generic
 
     public $tblUserOther;
     public $tblRole;
+    public $tblMaintenance;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblUserOther = "glav1_user_other";
         $this->tblRole = "glav1_roles";
+        $this->tblMaintenance = "glav1_maintenance";
     }
 
 
@@ -36,8 +38,8 @@ class Generic
         try {
             $sql = "select user.user_other_aid, ";
             $sql .= "user.user_other_is_active, ";
-            $sql .= "user.user_other_id, ";
-            $sql .= "user.user_other_name, ";
+            $sql .= "user.user_other_fname, ";
+            $sql .= "user.user_other_lname, ";
             $sql .= "user.user_other_email, ";
             $sql .= "user.user_other_password, ";
             $sql .= "role.* ";
@@ -78,7 +80,7 @@ class Generic
         try {
             $sql = "select ";
             $sql .= "user_other.user_other_key, ";
-            $sql .= "user_other.user_other_id, ";
+            $sql .= "user_other.user_other_fname, ";
             $sql .= "user_other.user_other_new_email, ";
             $sql .= "role.* ";
             $sql .= "from ";
@@ -90,6 +92,22 @@ class Generic
             $query->execute([
                 "user_other_key" => $this->user_other_key,
             ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    // read maintenance
+    public function readMaintenance()
+    {
+        try {
+            $sql = "select maintenance_aid, ";
+            $sql .= "maintenance_is_for_client, ";
+            $sql .= "maintenance_is_for_admin ";
+            $sql .= "from {$this->tblMaintenance} ";
+            $sql .= "limit 1 ";
+            $query = $this->connection->query($sql);
         } catch (PDOException $ex) {
             $query = false;
         }

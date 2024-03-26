@@ -6,10 +6,13 @@ import {
 } from "../../../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../../../store/StoreContext";
 import useQueryData from "../../../../../../custom-hooks/useQueryData";
+import {
+  apiVersion,
+  isDemoMode,
+} from "../../../../../../helpers/functions-general";
 import BreadCrumbs from "../../../../../../partials/BreadCrumbs";
 import Footer from "../../../../../../partials/Footer";
 import Header from "../../../../../../partials/Header";
-import PageNotFound from "../../../../../../partials/PageNotFound";
 import ModalError from "../../../../../../partials/modals/ModalError";
 import ModalSuccess from "../../../../../../partials/modals/ModalSuccess";
 import Navigation from "../../../../Navigation";
@@ -21,15 +24,9 @@ const UserMain = () => {
   const [itemEdit, setItemEdit] = React.useState(null);
 
   const { data: roles } = useQueryData(
-    "/v1/roles", // endpoint
+    `${apiVersion}/roles`, // endpoint
     "get", // method
-    "other-role" // key
-  );
-
-  const { data: trainer } = useQueryData(
-    "/v1/trainer", // endpoint
-    "get", // method
-    "other-user-trainer" // key
+    "system-role" // key
   );
 
   const handleAdd = () => {
@@ -46,14 +43,16 @@ const UserMain = () => {
       <Header />
       <Navigation menu="settings" submenu="users" />
       <div
-        className={`relative min-h-screen print:!p-4 pt-[4.2rem] ml-0 px-5 lg:px-10 md:px-10 transition-all ease-in duration-200 ${
-          store.isShow && "ml-48"
+        className={`wrapper ${store.isShow && "ml-48"} ${
+          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
         }`}
       >
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
           <div className="flex flex-col justify-center">
-            <h4 className="text-xl flex">Settings</h4>
             <BreadCrumbs param={location.search} />
+            <h4 className="text-base my-3 capitalize">
+              {location.pathname.split("/").pop()}
+            </h4>
           </div>
           <div className="flex items-center gap-1 print:invisible">
             <button type="button" className="btn-primary" onClick={handleAdd}>
@@ -64,15 +63,13 @@ const UserMain = () => {
         </div>
         <hr />
 
-        <div className="w-full pt-5 pb-4 relative">
+        <div className="w-full pt-5 pb-4 ">
           <UserMainList setItemEdit={setItemEdit} />
         </div>
         <Footer />
       </div>
 
-      {store.isAdd && (
-        <ModalAddUserMain itemEdit={itemEdit} roles={roles} trainer={trainer} />
-      )}
+      {store.isAdd && <ModalAddUserMain itemEdit={itemEdit} roles={roles} />}
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}
     </>

@@ -45,3 +45,7 @@ RewriteRule ^user-main/search$ controllers/developer/settings/user/other/main/se
 ### ACCOUNT CHANGE PASS ### 
 RewriteRule ^account/developer/update-password$ controllers/developer/account/system/account-change-password.php [L] 
 RewriteRule ^account/admin/update-password$ controllers/admin/account/other/account-change-password.php [L] 
+
+# MAINTENANCE # 
+RewriteRule ^maintenance$ controllers/developer/maintenance/maintenance.php [L]
+RewriteRule ^maintenance/([0-9]+)$ controllers/developer/maintenance/maintenance.php?maintenanceid=$1 [L]

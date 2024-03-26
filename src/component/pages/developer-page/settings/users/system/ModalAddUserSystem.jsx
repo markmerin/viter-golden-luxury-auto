@@ -13,6 +13,7 @@ import {
 import { StoreContext } from "../../../../../../store/StoreContext";
 import { InputText } from "../../../../../helpers/FormInputs";
 import {
+  apiVersion,
   closeModal,
   handleEscape,
 } from "../../../../../helpers/functions-general";
@@ -36,8 +37,8 @@ const ModalAddUserSystem = ({ itemEdit, roles }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/user-system/${itemEdit.user_system_aid}`
-          : "/v1/user-system",
+          ? `${apiVersion}/user-system/${itemEdit.user_system_aid}`
+          : `${apiVersion}/user-system`,
         itemEdit ? "put" : "post",
         values
       ),

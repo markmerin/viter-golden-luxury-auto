@@ -11,15 +11,20 @@ import {
   setMessage,
 } from "../../../../store/StoreAction";
 import { StoreContext } from "../../../../store/StoreContext";
-import useOtherLogin from "../../../custom-hooks/useOtherLogin.jsx";
+import useOtherLogin from "../../../custom-hooks/useOtherLogin";
 import { InputText } from "../../../helpers/FormInputs";
-import { devNavUrl, setStorageRoute } from "../../../helpers/functions-general";
+import {
+  apiVersion,
+  devNavUrl,
+  developerPath,
+  setStorageRoute,
+} from "../../../helpers/functions-general";
 import { checkRoleToRedirect } from "../../../helpers/login-functions";
 import { queryData } from "../../../helpers/queryData";
 import ModalError from "../../../partials/modals/ModalError";
 import ButtonSpinner from "../../../partials/spinners/ButtonSpinner";
 import TableSpinner from "../../../partials/spinners/TableSpinner";
-import LcssLogo from "../../../svg/LcssLogo";
+import GlaLogo from "../../../svg/GlaLogo";
 
 const OtherLogin = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -30,13 +35,11 @@ const OtherLogin = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (values) => queryData(`/v1/user-other/login`, "post", values),
+    mutationFn: (values) =>
+      queryData(`/${apiVersion}/user-other/login`, "post", values),
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["other"] });
-
-      console.log(data);
-
       // show error box
       if (!data.success) {
         dispatch(setError(true));
@@ -71,8 +74,6 @@ const OtherLogin = () => {
     password: Yup.string().required("Required"),
   });
 
-  console.log(store.error);
-
   return (
     <>
       {loginLoading ? (
@@ -84,7 +85,7 @@ const OtherLogin = () => {
         >
           <div className="w-96 p-6">
             <div className="flex justify-center items-center flex-col">
-              <LcssLogo />
+              <GlaLogo />
             </div>
 
             <p className="mt-8 mb-5 text-lg font-bold">LOGIN</p>
@@ -127,7 +128,6 @@ const OtherLogin = () => {
                         </span>
                       )}
                     </div>
-
                     <div className="flex items-center gap-1 pt-3">
                       <button
                         type="submit"

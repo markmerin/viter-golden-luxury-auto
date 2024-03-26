@@ -117,6 +117,9 @@ body {
   .modal.show > .animate-slideUp {
     @apply translate-y-0;
   }
+  .wrapper {
+    @apply relative min-h-screen print:!p-4 pt-[4.2rem] ml-0 px-5 lg:px-10 md:px-10 transition-all ease-in duration-200;
+  }
 }
 
 @layer utilities {

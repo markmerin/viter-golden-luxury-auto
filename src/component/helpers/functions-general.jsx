@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { SlArrowRight } from "react-icons/sl";
+import { Link } from "react-router-dom";
 import {
   setIsAdd,
   setIsArchive,
@@ -36,6 +37,7 @@ export const devKey =
 
 export const apiVersion = "/v1";
 export const developerPath = "developer";
+export const adminPath = "admin";
 export const isDemoMode = 1;
 export const pesoSign = <span>&#8369;</span>;
 
@@ -102,31 +104,25 @@ export const consoleLog = (values, param2 = null) => {
 export const getUserType = () => {
   const { store } = React.useContext(StoreContext);
 
-  let link = "developer";
-  // let link = store.credentials.data.role_name.toLowerCase();
+  let link = store.credentials.data.role_name.toLowerCase();
 
   return link;
 };
 
-export const getPageLink = (link = "", path = "", title = "", arrow = "") => {
+export const getPageLink = (link = "", path = "", title = "") => {
   return (
     <>
-      <Link to={`${devNavUrl}/${link}/${path}`} className="w-full">
-        <div className="flex">
+      <Link
+        to={`${devNavUrl}/${link}/${path}`}
+        className="w-full py-3 hover:bg-primary/10 text-xs"
+      >
+        <div className="flex items-center justify-between pr-5">
           <div>
             <span className="font-semibold">{title}</span>
           </div>
+          <SlArrowRight className="inline h-3 w-3" />
         </div>
       </Link>
-
-      {arrow !== "" && (
-        <Link
-          to={`${devNavUrl}/${link}/${path}`}
-          className="btn-action-table group-hover:bg-primary group-hover:text-white"
-        >
-          {arrow}
-        </Link>
-      )}
     </>
   );
 };

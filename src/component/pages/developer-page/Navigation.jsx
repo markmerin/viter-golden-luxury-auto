@@ -97,9 +97,11 @@ const Navigation = ({ menu, submenu = null }) => {
                 <li>
                   <Link
                     onClick={() => handleShow()}
-                    to={`${devNavUrl}/${developerPath}/settings/users`}
+                    to={`${devNavUrl}/${developerPath}/settings/user`}
                     className={`text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block py-1 ${
-                      submenu === "users" ? "active__submenu" : ""
+                      submenu === "users"
+                        ? "active__submenu"
+                        : "text-white py-1 block  hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                     }`}
                   >
                     Users

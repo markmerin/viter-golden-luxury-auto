@@ -6,6 +6,7 @@ import { StoreContext } from "../../../../../../store/StoreContext";
 import {
   getPageLink,
   getUserType,
+  isDemoMode,
 } from "../../../../../helpers/functions-general";
 import BreadCrumbs from "../../../../../partials/BreadCrumbs";
 import Footer from "../../../../../partials/Footer";
@@ -26,41 +27,45 @@ const Other = () => {
       <Header />
       <Navigation menu="settings" submenu="users" />
       <div
-        className={`relative min-h-screen print:!p-4 pt-[4.2rem] ml-0 px-5 lg:px-10 md:px-10 transition-all ease-in duration-200 ${
-          store.isShow && "ml-48"
+        className={`wrapper ${store.isShow && "ml-48"} ${
+          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
         }`}
       >
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
           <div className="flex flex-col justify-center">
-            <h4 className="text-xl flex">Settings</h4>
             <BreadCrumbs param={location.search} />
+            <h4 className="text-base my-3 capitalize">
+              {location.pathname.split("/").pop()}
+            </h4>
             <div className="flex items-center gap-1 print:invisible"></div>
           </div>
         </div>
 
         <hr />
-        <ul className="pt-5">
-          <li className="py-2">
+        <ul className="pb-40 relative">
+          <li>
             <div className="group flex items-center justify-between border-b border-solid border-gray-300">
               {getPageLink(
                 link,
-                "settings/users/other/main",
-                "Main User",
-                "Manage what actions and capabilities every account are can perform in the system.",
-                <FaUsers className="w-4 h-4" />,
-                <SlArrowRight className="inline" />
+                `${
+                  store.credentials.data.role_is_developer === 1
+                    ? "settings/user/other/staff"
+                    : "settings/user/staff"
+                }`,
+                "GLA Staff"
               )}
             </div>
           </li>
-          <li className="py-2">
+          <li>
             <div className="group flex items-center justify-between border-b border-solid border-gray-300">
               {getPageLink(
                 link,
-                "settings/users/other/trainee",
-                "Trainee User",
-                "Manage what actions and capabilities every account are can perform in the system.",
-                <FaUserGraduate className="w-4 h-4" />,
-                <SlArrowRight className="inline" />
+                `${
+                  store.credentials.data.role_is_developer === 1
+                    ? "settings/user/other/client"
+                    : "settings/user/client"
+                }`,
+                "Client User"
               )}
             </div>
           </li>

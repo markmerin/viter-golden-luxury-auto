@@ -8,6 +8,7 @@ import {
 } from "../../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import useQueryData from "../../../../../custom-hooks/useQueryData";
+import { apiVersion } from "../../../../../helpers/functions-general";
 import NoData from "../../../../../partials/NoData";
 import ServerError from "../../../../../partials/ServerError";
 import Status from "../../../../../partials/Status";
@@ -33,7 +34,7 @@ const RoleList = ({ setItemEdit }) => {
     error,
     data: roles,
   } = useQueryData(
-    "/v1/roles", // endpoint
+    `${apiVersion}/roles`, // endpoint
     "get", // method
     "roles" // key
   );
@@ -183,8 +184,8 @@ const RoleList = ({ setItemEdit }) => {
 
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`/v1/roles/active/${id}`}
-          msg={"Are you sure you want to archive this role"}
+          mysqlApiArchive={`${apiVersion}/roles/active/${id}`}
+          msg={"Are you sure you want to archive this role?"}
           item={dataItem.role_name}
           queryKey={"roles"}
           successMsg={"Successfully archived"}
@@ -193,8 +194,8 @@ const RoleList = ({ setItemEdit }) => {
 
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/roles/active/${id}`}
-          msg={"Are you sure you want to restore this role"}
+          mysqlApiRestore={`${apiVersion}/roles/active/${id}`}
+          msg={"Are you sure you want to restore this role?"}
           item={dataItem.role_name}
           queryKey={"roles"}
           successMsg={"Successfully restored"}
@@ -203,8 +204,8 @@ const RoleList = ({ setItemEdit }) => {
 
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/roles/${id}`}
-          msg={"Are you sure you want to delete this role"}
+          mysqlApiDelete={`${apiVersion}/roles/${id}`}
+          msg={"Are you sure you want to delete this role?"}
           item={dataItem.role_name}
           queryKey={"roles"}
           successMsg={"Successfully deleted"}
