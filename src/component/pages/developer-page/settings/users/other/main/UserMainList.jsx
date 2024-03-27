@@ -137,7 +137,7 @@ const UserMainList = ({ setItemEdit }) => {
         onSearch={onSearch}
       />
       <div className="relative rounded-md text-center overflow-auto z-0">
-        {isFetching && !isFetchingNextPage && status !== "loading" && (
+        {isFetching && !isFetchingNextPage && status !== "pending" && (
           <FetchingSpinner />
         )}
         <div
@@ -157,10 +157,10 @@ const UserMainList = ({ setItemEdit }) => {
               </tr>
             </thead>
             <tbody>
-              {(status === "loading" || result?.pages[0].data.length === 0) && (
+              {(status === "pending" || result?.pages[0].data.length === 0) && (
                 <tr className="text-center hover:bg-transparent ">
                   <td colSpan="100%" className="p-10">
-                    {status === "loading" ? (
+                    {status === "pending" ? (
                       <TableLoading count={20} cols={3} />
                     ) : (
                       <NoData />
