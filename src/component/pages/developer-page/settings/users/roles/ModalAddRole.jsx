@@ -12,6 +12,7 @@ import {
 import { StoreContext } from "../../../../../../store/StoreContext";
 import { InputText, InputTextArea } from "../../../../../helpers/FormInputs";
 import {
+  apiVersion,
   closeModal,
   handleEscape,
 } from "../../../../../helpers/functions-general";
@@ -41,7 +42,9 @@ const ModalAddRole = ({ itemEdit }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        itemEdit ? `/v1/roles/${itemEdit.role_aid}` : "/v1/roles",
+        itemEdit
+          ? `${apiVersion}/roles/${itemEdit.role_aid}`
+          : `${apiVersion}/roles`,
         itemEdit ? "put" : "post",
         values
       ),

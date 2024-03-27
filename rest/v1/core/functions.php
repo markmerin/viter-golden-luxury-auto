@@ -276,6 +276,8 @@ function tokenOther(
     $error = [];
     $returnData = [];
 
+    $maintenaceData = getResultData($object->readMaintenance());
+
     if (!empty($token)) {
         try {
             $decoded = JWT::decode($token, $key, array('HS256'));
@@ -285,6 +287,7 @@ function tokenOther(
 
             http_response_code(200);
             $returnData["data"] = array_merge((array)$row, array('role' => $decoded->data->data->role_name));
+            $returnData["maintenance"] = $maintenaceData;
             $returnData["count"] = $result->rowCount();
             $returnData["success"] = true;
             $returnData["message"] = "Access granted.";

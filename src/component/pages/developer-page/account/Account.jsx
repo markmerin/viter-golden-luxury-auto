@@ -93,8 +93,8 @@ const Account = () => {
       <Header />
       <Navigation menu={``} />
       <div
-        className={`relative min-h-screen print:!p-4 pt-[4.2rem] ml-0 px-5 lg:px-10 md:px-10 transition-all ease-in duration-200 ${
-          store.isShow && "ml-48"
+        className={`wrapper ${store.isShow && "ml-48"} ${
+          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
         }`}
       >
         <h1 className="mb-0 text-lg py-4">Account</h1>

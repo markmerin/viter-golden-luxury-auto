@@ -1,35 +1,51 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { FaQuestion, FaTimesCircle } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
 import {
   setError,
+  setIsArchive,
   setMessage,
   setSuccess,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { GetFocus, handleEscape } from "../../../../helpers/functions-general";
-import { queryData } from "../../../../helpers/queryData";
-import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
+} from "../../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../../store/StoreContext";
+import {
+  devNavUrl,
+  handleEscape,
+} from "../../../../../../helpers/functions-general";
+import { queryData } from "../../../../../../helpers/queryData";
+import ButtonSpinner from "../../../../../../partials/spinners/ButtonSpinner";
 
-const ModalReset = ({ setReset, mysqlApiReset, msg, item, queryKey }) => {
+const ModalSuspend = ({ mysqlApiArchive, msg, item, queryKey }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (values) => queryData(mysqlApiReset, "put", values),
+    mutationFn: (values) => queryData(mysqlApiArchive, "put", values),
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: [queryKey] });
-      setReset(false);
 
+      if (data.success) {
+        dispatch(setIsArchive(false));
+        dispatch(setSuccess(true));
+        dispatch(setMessage(`Record successfully suspend.`));
+
+        setTimeout(() => {
+          if (
+            item === store.credentials.data.user_other_email &&
+            store.credentials.data.role_is_admin === 1
+          ) {
+            localStorage.removeItem("fcatoken");
+            window.location.replace(`${devNavUrl}/login`);
+            return;
+          }
+        }, 1000);
+        localStorage.removeItem("ftctoken");
+      }
       if (!data.success) {
         dispatch(setError(true));
         dispatch(setMessage(data.error));
-      } else {
-        dispatch(setSuccess(true));
-        dispatch(
-          setMessage("Please check your email to continue resetting password.")
-        );
+        return;
       }
     },
   });
@@ -37,12 +53,12 @@ const ModalReset = ({ setReset, mysqlApiReset, msg, item, queryKey }) => {
   const handleYes = async () => {
     // mutate data
     mutation.mutate({
-      item: item,
+      isActive: 0,
     });
   };
 
   const handleClose = () => {
-    setReset(false);
+    dispatch(setIsArchive(false));
   };
 
   handleEscape(() => handleClose());
@@ -53,7 +69,12 @@ const ModalReset = ({ setReset, mysqlApiReset, msg, item, queryKey }) => {
         <div className="p-1 w-[350px] animate-slideUp">
           <div className="bg-white p-6 pt-10 text-center rounded-lg">
             <FaQuestion className="my-2 mx-auto animate-bounce h-11 w-11 text-red-700" />
-            <p className="text-sm">{msg}</p>
+            <p className="text-sm">
+              {item === store.credentials.data.user_other_email &&
+              store.credentials.data.role_is_admin === 1
+                ? "Suspending your own account will make you unable to login and use the system. You will also be automatically logged out. Do you still want to proceed?"
+                : msg}
+            </p>
             <div className="flex items-center gap-1 pt-8">
               <button
                 type="submit"
@@ -80,4 +101,4 @@ const ModalReset = ({ setReset, mysqlApiReset, msg, item, queryKey }) => {
   );
 };
 
-export default ModalReset;
+export default ModalSuspend;

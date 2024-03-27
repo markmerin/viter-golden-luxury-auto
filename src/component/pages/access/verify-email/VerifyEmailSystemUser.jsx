@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 import useQueryData from "../../../custom-hooks/useQueryData";
 import {
+  apiVersion,
   devNavUrl,
   developerPath,
   getUrlParam,
@@ -14,7 +15,7 @@ const VerifyEmailSystemUser = () => {
   const key = getUrlParam().get("key");
 
   const { data: changeEmail, isLoading } = useQueryData(
-    `/v1/user-system/verify-email/${key}`,
+    `${apiVersion}/user-system/verify-email/${key}`,
     "get", // method
     "change-email" // key
   );

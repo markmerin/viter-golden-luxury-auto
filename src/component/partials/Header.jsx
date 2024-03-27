@@ -5,6 +5,7 @@ import {
   MdOutlineLogout,
   MdOutlineMailOutline,
 } from "react-icons/md";
+import { RiToolsLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { setIsShow } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
@@ -13,8 +14,9 @@ import {
   devNavUrl,
   developerPath,
   getUserType,
+  isDemoMode,
 } from "../helpers/functions-general";
-import GlaLogo from "../svg/GlaLogo";
+import DemoMode from "./DemoMode";
 import FetchingSpinner from "./spinners/FetchingSpinner";
 
 const Header = () => {
@@ -28,27 +30,22 @@ const Header = () => {
   const name =
     store.credentials.data.role_is_developer === 1
       ? store.credentials.data.user_system_fname
-      : store.credentials.data.user_other_name.split(" ")[0];
-
-  const userEmail =
-    store.credentials.data.role_is_developer === 1
-      ? store.credentials.data.user_system_email
-      : store.credentials.data.user_other_email;
-
-  const roleName =
-    store.credentials.data.role_is_developer === 1
-      ? store.credentials.data.role_name
-      : store.credentials.data.role_name;
+      : store.credentials.data.user_other_fname;
 
   const lastname =
     store.credentials.data.role_is_developer === 1
       ? store.credentials.data.user_system_lname
-      : store.credentials.data.user_other_name.split(" ")[1];
+      : store.credentials.data.user_other_lname;
 
-  const fullname =
+  const role =
     store.credentials.data.role_is_developer === 1
-      ? `${store.credentials.data.user_system_fname} ${store.credentials.data.user_system_lname} `
-      : store.credentials.data.user_other_name;
+      ? store.credentials.data.role_name
+      : store.credentials.data.role_name;
+
+  const email =
+    store.credentials.data.role_is_developer === 1
+      ? store.credentials.data.user_system_email
+      : store.credentials.data.user_other_email;
 
   const handleLogout = () => {
     setLoading(true);
@@ -83,6 +80,7 @@ const Header = () => {
 
   return (
     <>
+      {isDemoMode === 1 && <DemoMode />}
       {loading && <FetchingSpinner />}
       <header
         className={`pr-5 lg:pr-10 md:pr-10 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-dark `}
@@ -128,11 +126,11 @@ const Header = () => {
               <div className="flex flex-col items-center py-3">
                 <FaUserCircle className="w-12 h-12 text-gray-400 mb-2 z-50 bg-white rounded-full" />
                 <p className="mb-1  flex items-center gap-2 font-bold">
-                  {fullname} - {roleName}
+                  {name} - {role}
                 </p>
                 <p className="mb-0 pb-2 flex items-center gap-2 text-xs">
                   <MdOutlineMailOutline />
-                  {userEmail}
+                  {email}
                 </p>
               </div>
 
@@ -141,6 +139,18 @@ const Header = () => {
                   <MdOutlineAccountCircle />
                   <Link to={`${devNavUrl}/${link}/account`} className=" w-full">
                     Account
+                  </Link>
+                </li>
+              </ul>
+
+              <ul className="border-t border-b border-gray-100 py-2 ">
+                <li className="flex items-center gap-2 hover:text-primary">
+                  <RiToolsLine />
+                  <Link
+                    to={`${devNavUrl}/${link}/maintenance`}
+                    className=" w-full"
+                  >
+                    Maintenance
                   </Link>
                 </li>
               </ul>

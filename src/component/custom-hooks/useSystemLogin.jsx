@@ -2,6 +2,7 @@ import React from "react";
 import { setIsLogin } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 import { checkLocalStorage } from "../helpers/CheckLocalStorage";
+import { apiVersion } from "../helpers/functions-general";
 import { checkRoleToRedirect } from "../helpers/login-functions";
 import { queryData } from "../helpers/queryData";
 
@@ -12,7 +13,7 @@ const useSystemLogin = (navigate) => {
   React.useEffect(() => {
     setLoading(true);
     const fetchLogin = async () => {
-      const login = await queryData(`/v1/user-system/token`, "post", {
+      const login = await queryData(`${apiVersion}/user-system/token`, "post", {
         token: checkLocalStorage().token,
       });
 

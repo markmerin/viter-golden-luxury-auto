@@ -1,6 +1,6 @@
 import React from "react";
 import { SlArrowRight } from "react-icons/sl";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   setIsAdd,
   setIsArchive,
@@ -37,6 +37,7 @@ export const devKey =
 
 export const apiVersion = "/v1";
 export const developerPath = "developer";
+export const adminPath = "admin";
 export const isDemoMode = 1;
 export const pesoSign = <span>&#8369;</span>;
 
@@ -103,8 +104,7 @@ export const consoleLog = (values, param2 = null) => {
 export const getUserType = () => {
   const { store } = React.useContext(StoreContext);
 
-  let link = "developer";
-  // let link = store.credentials.data.role_name.toLowerCase();
+  let link = store.credentials.data.role_name.toLowerCase();
 
   return link;
 };
@@ -114,15 +114,14 @@ export const getPageLink = (link = "", path = "", title = "") => {
     <>
       <Link
         to={`${devNavUrl}/${link}/${path}`}
-        className="flex items-center justify-between w-full py-2 hover:bg-primary/10"
+        className="w-full py-3 hover:bg-primary/10 text-xs"
       >
-        <div className="flex">
+        <div className="flex items-center justify-between pr-5">
           <div>
             <span className="font-semibold">{title}</span>
           </div>
+          <SlArrowRight className="inline h-3 w-3" />
         </div>
-
-        <SlArrowRight className="inline" />
       </Link>
     </>
   );

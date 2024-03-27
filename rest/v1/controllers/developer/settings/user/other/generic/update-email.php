@@ -35,8 +35,10 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
             extract($row);
             $user_other->user_other_email = $user_other_new_email;
             $user_other->user_other_id = $user_other_id;
+
             // update
             $query = checkUpdateEmailForUser($user_other);
+
 
             // check if trainee or trainer
             $role_is_trainee == 1

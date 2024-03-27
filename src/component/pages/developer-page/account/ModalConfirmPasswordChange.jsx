@@ -8,6 +8,7 @@ import {
   setSuccess,
 } from "../../../../store/StoreAction";
 import { StoreContext } from "../../../../store/StoreContext";
+import { apiVersion } from "../../../helpers/functions-general";
 import { queryData } from "../../../helpers/queryData";
 import ButtonSpinner from "../../../partials/spinners/ButtonSpinner";
 
@@ -21,7 +22,11 @@ const ModalConfirmPasswordChange = ({
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (values) =>
-      queryData(`/v1/account/developer/update-password`, "put", values),
+      queryData(
+        `${apiVersion}/account/developer/update-password`,
+        "put",
+        values
+      ),
     onSuccess: (data, values) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["account-password"] });

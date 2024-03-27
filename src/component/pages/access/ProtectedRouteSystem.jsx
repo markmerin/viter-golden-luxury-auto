@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { setCredentials } from "../../../store/StoreAction";
 import { StoreContext } from "../../../store/StoreContext";
-import { devNavUrl } from "../../helpers/functions-general";
+import { apiVersion, devNavUrl } from "../../helpers/functions-general";
 import { queryData } from "../../helpers/queryData.jsx";
 import PageNotFound from "../../partials/PageNotFound";
 import FetchingSpinner from "../../partials/spinners/FetchingSpinner";
@@ -17,7 +17,7 @@ const ProtectedRouteSystem = ({ children }) => {
 
   React.useEffect(() => {
     const fetchLogin = async () => {
-      const login = await queryData(`/v1/user-system/token`, "post", {
+      const login = await queryData(`${apiVersion}/user-system/token`, "post", {
         token: glatoken.token,
       });
 

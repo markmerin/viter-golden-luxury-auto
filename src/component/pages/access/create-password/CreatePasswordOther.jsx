@@ -2,8 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router";
+import { FaCheck, FaEye, FaEyeSlash } from "react-icons/fa";
 import * as Yup from "yup";
 import {
   setCreatePassSuccess,
@@ -13,18 +12,22 @@ import {
 import { StoreContext } from "../../../../store/StoreContext";
 import useQueryData from "../../../custom-hooks/useQueryData";
 import { InputText } from "../../../helpers/FormInputs";
-import { devNavUrl, getUrlParam } from "../../../helpers/functions-general";
+import {
+  apiVersion,
+  devNavUrl,
+  getUrlParam,
+} from "../../../helpers/functions-general";
 import { queryData } from "../../../helpers/queryData";
 import PageNotFound from "../../../partials/PageNotFound";
 import ButtonSpinner from "../../../partials/spinners/ButtonSpinner";
 import FetchingSpinner from "../../../partials/spinners/FetchingSpinner";
-import LcssLogo from "../../../svg/LcssLogo";
+import GlaLogo from "../../../svg/GlaLogo";
 
 const CreatePasswordOther = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
+  const { dispatch } = React.useContext(StoreContext);
+  const [isSuccess, setIsSuccess] = React.useState(false);
   const [newPasswordShown, setNewPasswordShown] = React.useState(false);
   const [confirmPasswordShown, setConfirmPasswordShown] = React.useState(false);
-  const navigate = useNavigate();
   const paramKey = getUrlParam().get("key");
   const queryClient = useQueryClient();
   const [lowerValidated, setLowerValidated] = React.useState(false);
@@ -34,27 +37,26 @@ const CreatePasswordOther = () => {
   const [lengthValidated, setLengthValidated] = React.useState(false);
 
   const { isLoading, data: key } = useQueryData(
-    `/v1/user-other/key/${paramKey}`, // endpoint
+    `${apiVersion}/user-other/key/${paramKey}`, // endpoint
     "get", // method
-    "other-user-password" // key
+    "other" // key
   );
+
+  console.log(key);
 
   const mutation = useMutation({
     mutationFn: (values) =>
-      queryData("/v1/user-other/password", "post", values),
+      queryData(`${apiVersion}/user-other/password`, "post", values),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["other-user-password"] });
+      queryClient.invalidateQueries({ queryKey: ["other"] });
 
       // show error box
       if (!data.success) {
         dispatch(setError(true));
         dispatch(setMessage(data.error));
       } else {
-        if (store.isCreatePassSuccess) {
-          dispatch(setCreatePassSuccess(false));
-          navigate(`${devNavUrl}/create-password-success?redirect=/login`);
-        }
+        setIsSuccess(true);
       }
     },
   });
@@ -79,12 +81,13 @@ const CreatePasswordOther = () => {
       .min(8, "Password must be at least 8 characters.")
       .matches(/[a-z]/, "At least one lowercase letter.")
       .matches(/[A-Z]/, "At least one uppercase letter.")
-      .matches("(?=.*[@$!%*#?&])", "Atleast 1 special character.")
+      .matches("(?=.*[!@#$%^&*`{;:',<.>/?}_-])", "Atleast 1 special character.")
       .matches("(?=.*[0-9])", "Atleast 1 number."),
     confirm_password: Yup.string()
       .required("Required")
       .oneOf([Yup.ref("new_password"), null], "Passwords does not match."),
   });
+
   const handleChange = (value) => {
     const lower = new RegExp("(?=.*[a-z])");
     const upper = new RegExp("(?=.*[A-Z])");
@@ -125,30 +128,43 @@ const CreatePasswordOther = () => {
 
   return (
     <>
-      {key?.data.length === 0 || paramKey === null || paramKey === "" ? (
-        <>
-          {isLoading && (
-            <div className="absolute top-0 right-0 bottom-0 left-0 bg-white z-50">
-              <FetchingSpinner />
+      {isSuccess ? (
+        <div
+          className="relative flex justify-center items-center "
+          style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
+        >
+          <div className="w-96 p-6">
+            <div className="flex justify-center items-center flex-col">
+              <GlaLogo />
             </div>
-          )}
-          <PageNotFound />
-        </>
+            <FaCheck className="h-16 w-16 fill-green-700 mx-auto mt-8" />
+            <h2 className="mb-4 mt-2 text-lg text-center">Success!</h2>
+            <p className="text-sm text-justify mb-6">
+              Your password is set and ready to use. Click the button below to
+              continue login
+            </p>
+
+            <p className="mt-2">
+              Go back to{" "}
+              <a href={`${devNavUrl}/login`} className="w-full text-primary">
+                <u> login</u>
+              </a>
+            </p>
+          </div>
+        </div>
+      ) : key?.count === 0 || paramKey === null || paramKey === "" ? (
+        <PageNotFound />
+      ) : isLoading ? (
+        <FetchingSpinner />
       ) : (
         <div
           className="relative flex justify-center items-center "
           style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
         >
-          {isLoading && (
-            <div className="absolute top-0 right-0 bottom-0 left-0 bg-white z-50">
-              <FetchingSpinner />
-            </div>
-          )}
           <div className="w-96 p-6">
             <div className="flex justify-center items-center flex-col">
-              <LcssLogo />
+              <GlaLogo />
             </div>
-
             <p className="mt-8 mb-5 text-lg font-bold">CREATE PASSWORD</p>
             <Formik
               initialValues={initVal}
@@ -174,11 +190,7 @@ const CreatePasswordOther = () => {
                           className="text-base absolute bottom-1/2 right-2 translate-y-1/2 cursor-pointer"
                           onClick={toggleNewPassword}
                         >
-                          {newPasswordShown ? (
-                            <FaEyeSlash className="fill-gray-400" />
-                          ) : (
-                            <FaEye className="fill-gray-400" />
-                          )}
+                          {newPasswordShown ? <FaEyeSlash /> : <FaEye />}
                         </span>
                       )}
                     </div>
@@ -197,11 +209,7 @@ const CreatePasswordOther = () => {
                     "
                           onClick={toggleConfirmPassword}
                         >
-                          {confirmPasswordShown ? (
-                            <FaEyeSlash className="fill-gray-400" />
-                          ) : (
-                            <FaEye className="fill-gray-400" />
-                          )}
+                          {confirmPasswordShown ? <FaEyeSlash /> : <FaEye />}
                         </span>
                       )}
                     </div>
@@ -222,59 +230,98 @@ const CreatePasswordOther = () => {
                 );
               }}
             </Formik>
-            {/* <h3 className="mt-5">Password must contain:</h3>
-            <ul className="list-disc ml-5">
-              <li className="text-xs italic">At least 8 characters</li>
-              <li className="text-xs italic">At least one lowercase letter</li>
-              <li className="text-xs italic">At least one uppercase letter</li>
-              <li className="text-xs italic">At least one special character</li>
-              <li className="text-xs italic">At least one number</li>
-            </ul> */}
-            <div className="p-3 mt-5 rounded-sm mb-6">
-              <h5 className="text-xs text-body mb-2">Password Requirement</h5>
-              <ul className="text-sm">
-                <li className="text-body italic text-xs flex gap-2 items-center mb-2">
-                  <BsCheckCircleFill
-                    className={`duration-200 ${
-                      lengthValidated ? "fill-green-600" : "opacity-50"
-                    }`}
-                  />
-                  Must have 8 characters
-                </li>
-                <li className="text-body italic text-xs flex gap-2 items-center mb-2">
-                  <BsCheckCircleFill
-                    className={`duration-200 ${
-                      upperValidated ? "fill-green-600" : "opacity-50"
-                    }`}
-                  />
-                  At least 1 uppercase
-                </li>
-                <li className="text-body italic text-xs flex gap-2 items-center mb-2">
-                  <BsCheckCircleFill
-                    className={`duration-200 ${
-                      lowerValidated ? "fill-green-600" : "opacity-50"
-                    }`}
-                  />
-                  At least 1 lowercase
-                </li>
-                <li className="text-body italic text-xs flex gap-2 items-center mb-2">
-                  <BsCheckCircleFill
-                    className={`duration-200 ${
-                      numberValidated ? "fill-green-600" : "opacity-50"
-                    }`}
-                  />
-                  At least 1 number
-                </li>
-                <li className="text-body italic text-xs flex gap-2 items-center mb-1">
-                  <BsCheckCircleFill
-                    className={`duration-200 ${
-                      specialValidated ? "fill-green-600" : "opacity-50"
-                    }`}
-                  />
-                  At least 1 symbol
-                </li>
-              </ul>
+            <div className="py-3 rounded-sm">
+              <span className="block text-[10px] mb-1 italic">
+                Password Strength
+              </span>
+
+              <div className="w-full flex items-center gap-x-1">
+                {lengthValidated ? (
+                  <>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/60 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/60 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                  </>
+                )}
+
+                {upperValidated && lowerValidated ? (
+                  <>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/75 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/75 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/75 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                  </>
+                )}
+
+                {numberValidated && specialValidated ? (
+                  <>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/90 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/90 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/90 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/90 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                    <div className="w-full h-1 flex flex-col justify-center overflow-hidden bg-green-700/10 text-xs text-white text-center whitespace-nowrap transition duration-500"></div>
+                  </>
+                )}
+              </div>
             </div>
+
+            <ul className="text-sm">
+              <li className="text-body italic text-xs flex gap-2 items-center mb-2">
+                <BsCheckCircleFill
+                  className={`duration-200 ${
+                    lengthValidated ? "fill-green-700" : "opacity-50"
+                  }`}
+                />
+                Must have 8 characters
+              </li>
+              <li className="text-body italic text-xs flex gap-2 items-center mb-2">
+                <BsCheckCircleFill
+                  className={`duration-200 ${
+                    upperValidated ? "fill-green-700" : "opacity-50"
+                  }`}
+                />
+                At least 1 uppercase
+              </li>
+              <li className="text-body italic text-xs flex gap-2 items-center mb-2">
+                <BsCheckCircleFill
+                  className={`duration-200 ${
+                    lowerValidated ? "fill-green-700" : "opacity-50"
+                  }`}
+                />
+                At least 1 lowercase
+              </li>
+              <li className="text-body italic text-xs flex gap-2 items-center mb-2">
+                <BsCheckCircleFill
+                  className={`duration-200 ${
+                    numberValidated ? "fill-green-700" : "opacity-50"
+                  }`}
+                />
+                At least 1 number
+              </li>
+              <li className="text-body italic text-xs flex gap-2 items-center mb-1">
+                <BsCheckCircleFill
+                  className={`duration-200 ${
+                    specialValidated ? "fill-green-700" : "opacity-50"
+                  }`}
+                />
+                At least 1 symbol
+              </li>
+            </ul>
           </div>
         </div>
       )}

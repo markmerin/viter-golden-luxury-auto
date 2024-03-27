@@ -17,6 +17,7 @@ import {
   setMessage,
 } from "../../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../../store/StoreContext";
+import { apiVersion } from "../../../../../helpers/functions-general";
 import { queryDataInfinite } from "../../../../../helpers/queryDataInfinite";
 import Loadmore from "../../../../../partials/Loadmore";
 import NoData from "../../../../../partials/NoData";
@@ -30,6 +31,7 @@ import ModalRestore from "../../../../../partials/modals/ModalRestore";
 import FetchingSpinner from "../../../../../partials/spinners/FetchingSpinner";
 import TableSpinner from "../../../../../partials/spinners/TableSpinner";
 import ModalReset from "../ModalReset";
+import ModalSuspend from "./ModalSuspend";
 
 const UserSystemList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -57,8 +59,8 @@ const UserSystemList = ({ setItemEdit }) => {
     queryKey: ["system", onSearch, store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/user-system/search`, // search endpoint
-        `/v1/user-system/page/${pageParam}`, // list endpoint
+        `${apiVersion}/user-system/search`, // search endpoint
+        `${apiVersion}/user-system/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         { searchValue: search.current.value, id: "" } // search value
       ),
@@ -281,20 +283,19 @@ const UserSystemList = ({ setItemEdit }) => {
       </div>
 
       {store.isArchive && (
-        <ModalArchive
-          mysqlApiArchive={`/v1/user-system/active/${id}`}
-          msg={"Are you sure you want to suspend this user"}
+        <ModalSuspend
+          mysqlApiArchive={`${apiVersion}/user-system/active/${id}`}
+          msg={"Are you sure you want to suspend this user?"}
           item={dataItem.user_system_email}
           queryKey={"system"}
-          successMsg={"Successfully archived"}
         />
       )}
 
       {isReset && (
         <ModalReset
           setReset={setReset}
-          mysqlApiReset={`/v1/user-system/reset`}
-          msg={"Are you sure you want to reset the password of this user"}
+          mysqlApiReset={`${apiVersion}/user-system/reset`}
+          msg={"Are you sure you want to reset the password of this user?"}
           item={dataItem.user_system_email}
           queryKey={"system"}
         />
@@ -302,8 +303,8 @@ const UserSystemList = ({ setItemEdit }) => {
 
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/user-system/active/${id}`}
-          msg={"Are you sure you want to restore this user"}
+          mysqlApiRestore={`${apiVersion}/user-system/active/${id}`}
+          msg={"Are you sure you want to restore this user?"}
           item={dataItem.user_system_email}
           queryKey={"system"}
           successMsg={"Successfully restored"}
@@ -312,7 +313,7 @@ const UserSystemList = ({ setItemEdit }) => {
 
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/user-system/${id}`}
+          mysqlApiDelete={`${apiVersion}/user-system/${id}`}
           msg={"Are you sure you want to delete this user?"}
           item={dataItem.user_system_email}
           queryKey={"system"}
