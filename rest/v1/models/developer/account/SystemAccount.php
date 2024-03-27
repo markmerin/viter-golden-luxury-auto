@@ -26,7 +26,6 @@ class SystemAccount
     {
         $this->connection = $db;
         $this->tblUserSystem = "glav1_user_system";
-        $this->tblRole = "glav1_roles";
     }
 
     // read account

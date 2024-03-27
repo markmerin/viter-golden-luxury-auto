@@ -3,6 +3,7 @@ import {
   developerPath,
 } from "../component/helpers/functions-general";
 import ProtectedRouteSystem from "../component/pages/access/ProtectedRouteSystem";
+import Account from "../component/pages/developer-page/account/Account";
 import Car from "../component/pages/developer-page/car/Car";
 import Client from "../component/pages/developer-page/client/Client";
 import Earning from "../component/pages/developer-page/earning/Earning";
@@ -20,6 +21,14 @@ import Roles from "../component/pages/developer-page/settings/users/roles/Roles"
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
 
 export const routesDeveloper = [
+  {
+    path: `${devNavUrl}/${developerPath}/account`,
+    element: (
+      <ProtectedRouteSystem>
+        <Account />
+      </ProtectedRouteSystem>
+    ),
+  },
   {
     path: `${devNavUrl}/${developerPath}/settings/user`,
     element: (

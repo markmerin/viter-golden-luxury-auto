@@ -1,5 +1,6 @@
 import { adminPath, devNavUrl } from "../component/helpers/functions-general";
 import ProtectedRouteOther from "../component/pages/access/ProtectedRouteOther";
+import Account from "../component/pages/developer-page/account/Account";
 import Car from "../component/pages/developer-page/car/Car";
 import Client from "../component/pages/developer-page/client/Client";
 import Earning from "../component/pages/developer-page/earning/Earning";
@@ -14,6 +15,14 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 
 export const routesAdmin = [
+  {
+    path: `${devNavUrl}/${adminPath}/account`,
+    element: (
+      <ProtectedRouteOther>
+        <Account />
+      </ProtectedRouteOther>
+    ),
+  },
   {
     path: `${devNavUrl}/${adminPath}/settings/user`,
     element: (

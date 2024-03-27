@@ -41,7 +41,7 @@ function getHtmlVerifyAccount(
 >
   <div style="width: 100%; max-width: 500px; margin: 10px auto">
     <div style="padding: 10px 10px 0px">
-    <div style="text-align: left">
+    <div style="text-align: left; background-color: #1b1b1b; width: fit-content; padding: 4px 0 ">
     <img
      src="' . $IMAGES_URL . '/gla-logo-for-email.png"
      alt="gla"

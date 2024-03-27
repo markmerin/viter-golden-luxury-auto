@@ -1,19 +1,19 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import { FaEye, FaEyeSlash, FaSave } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { SlArrowDown } from "react-icons/sl";
 import * as Yup from "yup";
 import { setError, setMessage } from "../../../../store/StoreAction";
 import { StoreContext } from "../../../../store/StoreContext";
 import { InputText } from "../../../helpers/FormInputs";
+import { isDemoMode } from "../../../helpers/functions-general";
+import BreadCrumbs from "../../../partials/BreadCrumbs";
 import Footer from "../../../partials/Footer";
 import Header from "../../../partials/Header";
 import ModalError from "../../../partials/modals/ModalError";
 import ModalSuccess from "../../../partials/modals/ModalSuccess";
-import FetchingSpinner from "../../../partials/spinners/FetchingSpinner";
-import TableSpinner from "../../../partials/spinners/TableSpinner";
 import Navigation from "../Navigation";
 import ModalConfirmPasswordChange from "./ModalConfirmPasswordChange";
-import ModalSuccessPasswordChange from "./ModalSuccessPasswordChange";
 
 const Account = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -22,14 +22,21 @@ const Account = () => {
   const [showNewPassword, setShowNewPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
   const [changePassword, setChangePassword] = React.useState(false);
-  const [changePasswordSuccess, setChangePasswordSuccess] =
-    React.useState(false);
+  const [showInformation, setIsShowInformation] = React.useState(false);
+  const [showPassword, setIsShowPassword] = React.useState(false);
+
+  const showInformationTab = () => {
+    setIsShowInformation(!showInformation);
+  };
+
+  const showPasswordTab = () => {
+    setIsShowPassword(!showPassword);
+  };
 
   const userName =
     store.credentials.data.role_is_developer === 1
       ? `${store.credentials.data.user_system_fname} ${store.credentials.data.user_system_lname}`
-      : `${store.credentials.data.user_other_name}`;
-  // : `${store.credentials.data.user_other_fname} ${store.credentials.data.user_other_lname}`;
+      : `${store.credentials.data.user_other_fname} ${store.credentials.data.user_other_lname}`;
 
   const userEmail =
     store.credentials.data.role_is_developer === 1
@@ -93,121 +100,159 @@ const Account = () => {
       <Header />
       <Navigation menu={``} />
       <div
-        className={`wrapper ${store.isShow && "ml-48"} ${
-          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
-        }`}
+        className={`wrapper ${store.isShow ? "ml-48" : "ml-0"} 
+        ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
+        transition-all ease-in duration-200 `}
       >
-        <h1 className="mb-0 text-lg py-4">Account</h1>
+        <div className="flex items-start justify-between mt-1 ml-0">
+          <div className="flex flex-col justify-center">
+            <BreadCrumbs param={location.search} />
+            <h4 className="text-base mt-3 mb-2">Account</h4>
+          </div>
+        </div>
+
+        <hr />
 
         <div className="relative pt-2 pb-40 max-w-[650px]">
-          <div className="page__wrap w-full">
-            <div className="flex justify-between items-center border-b border-gray-200">
-              <div className="flex w-full items-center justify-between pb-2 pt-5">
-                <h4 className="mb-0">Information</h4>
-              </div>
+          <div
+            className="group flex items-center justify-between border-b border-solid border-gray-300 cursor-pointer relative"
+            onClick={showInformationTab}
+          >
+            <span className="font-bold py-2">Information</span>
+            <div
+              className="print:hidden tooltip-action-table"
+              data-tooltip={!showInformation ? "Close" : `Open`}
+            >
+              <SlArrowDown
+                className={`${
+                  !showInformation ? "rotate-180" : "rotate-0"
+                } duration-300`}
+              />
             </div>
-
-            <div className="my-6 rounded-md">
-              <div className="flex items-center gap-3 px-4 py-3 ">
-                <p className="font-bold self-center m-0 w-[20rem]">Name:</p>
-                <p className="m-0 w-full">{userName}</p>
-              </div>
-              <div className="flex items-center gap-3 px-4 py-3 ">
-                <p className="font-bold self-center m-0 w-[20rem]">Email:</p>
-                <p className="m-0 w-full">{userEmail}</p>
-              </div>
+            {/* </div> */}
+          </div>
+          <div
+            className={`print:block ${
+              showInformation ? "max-h-0" : "max-h-[100rem]"
+            } overflow-hidden transition-all duration-300 relative`}
+          >
+            <div className="flex sm:gap-3 flex-col md:flex-row mt-5">
+              <p className="font-bold w-[20rem] my-1">Name:</p>
+              <p className="my-1 w-full">{userName}</p>
+            </div>
+            <div className="flex sm:gap-3 flex-col md:flex-row mb-5">
+              <p className="font-bold w-[20rem] my-1">Email:</p>
+              <p className="my-1 w-full">{userEmail}</p>
             </div>
           </div>
-          <div className="page__wrap w-full">
-            <div className="flex justify-between items-center border-b border-gray-200">
-              <div className="flex w-full items-center justify-between pb-2 pt-5">
-                <h4 className="mb-0">Password</h4>
-              </div>
+
+          <div
+            className="group flex items-center justify-between border-b border-solid border-gray-300 cursor-pointer relative"
+            onClick={showPasswordTab}
+          >
+            <span className="font-bold py-2">Password</span>
+
+            <div
+              className="print:hidden tooltip-action-table"
+              data-tooltip={!showPassword ? "Close" : `Open`}
+            >
+              <SlArrowDown
+                className={`${
+                  !showPassword ? "rotate-180" : "rotate-0"
+                } duration-300`}
+              />
             </div>
+          </div>
+          <div
+            className={`print:block ${
+              showPassword ? "max-h-0" : "max-h-[100rem]"
+            } overflow-hidden transition-all duration-300 relative`}
+          >
+            <Formik
+              initialValues={initVal}
+              validationSchema={yupSchema}
+              onSubmit={async (values, { setSubmitting, resetForm }) => {}}
+            >
+              {(props) => {
+                return (
+                  <Form>
+                    <div className="flex items-center sm:gap-3 flex-col md:flex-row mt-5">
+                      <p className="font-bold w-[20rem] my-3">
+                        Current Password:
+                      </p>
+                      <p className="my-3 w-full relative">
+                        <InputText
+                          type={showCurrentPassword ? "text" : "password"}
+                          name="current_password"
+                          className="account__password"
+                          placeholder="Current password"
+                          required={false}
+                        />
+                        {props.values.current_password && (
+                          <button
+                            type="button"
+                            className="absolute top-1/2 -translate-y-1/2 text-sm text-gray-400 right-3"
+                            onClick={handleShowCurrentPassword}
+                          >
+                            {showCurrentPassword ? <FaEyeSlash /> : <FaEye />}
+                          </button>
+                        )}
+                      </p>
+                    </div>
 
-            <div className="my-6 rounded-md">
-              <Formik
-                initialValues={initVal}
-                validationSchema={yupSchema}
-                onSubmit={async (values, { setSubmitting, resetForm }) => {}}
-              >
-                {(props) => {
-                  return (
-                    <Form>
-                      <div className="flex items-center gap-3 px-4 py-3">
-                        <p className="font-bold self-center m-0 w-[20rem]">
-                          Current Password:
-                        </p>
-                        <div className="relative w-full">
-                          <InputText
-                            type={showCurrentPassword ? "text" : "password"}
-                            name="current_password"
-                            className="account_password"
-                            placeholder="Current password"
-                          />
-                          {props.values.current_password && (
-                            <button
-                              type="button"
-                              className="absolute top-3 text-base text-gray-400 right-3"
-                              onClick={handleShowCurrentPassword}
-                            >
-                              {showCurrentPassword ? <FaEyeSlash /> : <FaEye />}
-                            </button>
-                          )}
-                        </div>
-                      </div>
+                    <div className="flex items-center sm:gap-3 flex-col md:flex-row">
+                      <p className="font-bold w-[20rem] my-3">New Password:</p>
+                      <p className="my-3 w-full relative">
+                        <InputText
+                          type={showNewPassword ? "text" : "password"}
+                          name="new_password"
+                          className="account__password"
+                          placeholder="New password"
+                          required={false}
+                        />
 
-                      <div className="flex items-center gap-3 px-4 py-3">
-                        <p className="font-bold self-center m-0 w-[20rem]">
-                          New Password:
-                        </p>
-                        <div className="relative w-full">
-                          <InputText
-                            type={showNewPassword ? "text" : "password"}
-                            name="new_password"
-                            className="account_password"
-                            placeholder="New password"
-                          />
+                        {props.values.new_password && (
+                          <button
+                            type="button"
+                            className="absolute top-1/2 -translate-y-1/2 text-sm text-gray-400 right-3"
+                            onClick={handleShowNewPassword}
+                          >
+                            {showNewPassword ? <FaEyeSlash /> : <FaEye />}
+                          </button>
+                        )}
+                      </p>
+                    </div>
 
-                          {props.values.new_password && (
-                            <button
-                              type="button"
-                              className="absolute top-3 text-base text-gray-400 right-3"
-                              onClick={handleShowNewPassword}
-                            >
-                              {showNewPassword ? <FaEyeSlash /> : <FaEye />}
-                            </button>
-                          )}
-                        </div>
-                      </div>
+                    <div className="flex items-center sm:gap-3 flex-col md:flex-row">
+                      <p className="font-bold w-[20rem] my-3">
+                        Confirm New Password:
+                      </p>
+                      <p className="my-3 w-full relative">
+                        <InputText
+                          type={showConfirmPassword ? "text" : "password"}
+                          name="confirm_password"
+                          className="account__password"
+                          placeholder="Confirm New password"
+                          required={false}
+                        />
+                        {props.values.confirm_password && (
+                          <button
+                            type="button"
+                            className="absolute top-1/2 -translate-y-1/2 text-sm text-gray-400 right-3"
+                            onClick={handleShowConfirmPassword}
+                          >
+                            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                          </button>
+                        )}
+                      </p>
+                    </div>
 
-                      <div className="flex items-center gap-3 px-4 py-3">
-                        <p className="font-bold self-center m-0 w-[20rem]">
-                          Confirm New Password:
-                        </p>
-                        <div className="relative w-full">
-                          <InputText
-                            type={showConfirmPassword ? "text" : "password"}
-                            name="confirm_password"
-                            className="account_password"
-                            placeholder="Confirm New password"
-                          />
-                          {props.values.confirm_password && (
-                            <button
-                              type="button"
-                              className="absolute top-3 text-base text-gray-400 right-3"
-                              onClick={handleShowConfirmPassword}
-                            >
-                              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-                            </button>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="modal__action flex justify-end mt-6 gap-2 pr-4">
+                    <div className="flex sm:gap-3 flex-col md:flex-row">
+                      <p className="font-bold w-[20rem]"></p>
+                      <p className="m-0 w-full">
                         <button
-                          className="btn-primary"
-                          type="button"
+                          className="btn-modal-submit w-fit"
+                          type="submit"
                           onClick={() => handleChangePassword(props)}
                           disabled={
                             props.values.current_password === "" ||
@@ -217,33 +262,27 @@ const Account = () => {
                               props.values.confirm_password
                           }
                         >
-                          <FaSave />
-                          <span>Save</span>
+                          Save
                         </button>
-                      </div>
-                    </Form>
-                  );
-                }}
-              </Formik>
-            </div>
+                      </p>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
           </div>
         </div>
         <Footer />
       </div>
+
       {changePassword && (
         <ModalConfirmPasswordChange
           initVal={initialValues}
           setChangePassword={setChangePassword}
-          setChangePasswordSuccess={setChangePasswordSuccess}
         />
       )}
-      {changePasswordSuccess && (
-        <ModalSuccessPasswordChange
-          setChangePasswordSuccess={setChangePasswordSuccess}
-        />
-      )}
+
       {store.success && <ModalSuccess />}
-      {store.success && <FetchingSpinner />}
       {store.error && <ModalError />}
     </>
   );

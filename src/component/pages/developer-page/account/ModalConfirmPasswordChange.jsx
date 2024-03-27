@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { FaQuestion, FaTimesCircle } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
 import {
   setError,
   setIsAccountUpdated,
@@ -12,18 +12,16 @@ import { apiVersion } from "../../../helpers/functions-general";
 import { queryData } from "../../../helpers/queryData";
 import ButtonSpinner from "../../../partials/spinners/ButtonSpinner";
 
-const ModalConfirmPasswordChange = ({
-  initVal,
-  setChangePassword,
-  setChangePasswordSuccess,
-}) => {
+const ModalConfirmPasswordChange = ({ initVal, setChangePassword }) => {
   const { store, dispatch } = React.useContext(StoreContext);
-  const [show, setShow] = React.useState("show");
   const queryClient = useQueryClient();
+  const [show, setShow] = React.useState("show");
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `${apiVersion}/account/developer/update-password`,
+        store.credentials.data.role_is_developer === 1
+          ? `${apiVersion}/account/system/update-password`
+          : `${apiVersion}/account/other/update-password`,
         "put",
         values
       ),
@@ -39,15 +37,17 @@ const ModalConfirmPasswordChange = ({
         dispatch(setSuccess(true));
         dispatch(
           setMessage(
-            "You password has been successfully changed, you will automatically be logged out."
+            "You password has been successfuly changed, you will be automatically logout."
           )
         );
         dispatch(setIsAccountUpdated(true));
-        localStorage.removeItem("ushristoken");
+        localStorage.removeItem("fbastoken");
+
         return;
       }
       // show error box
       if (!data.success) {
+        setChangePassword(false);
         dispatch(setError(true));
         dispatch(setMessage(data.error));
         return;
@@ -59,53 +59,37 @@ const ModalConfirmPasswordChange = ({
     setShow("");
     setTimeout(() => {
       setChangePassword(false);
-    }, 200);
+    }, 300);
   };
-
   const handleYes = () => {
     mutation.mutate({ ...initVal });
   };
 
   return (
-    <div
-      className={`modal fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center bg-dark z-50 animate-fadeIn ${show}`}
-    >
-      <div className="p-1 w-[350px] rounded-b-2xl animate-slideUp ">
-        <div className="flex justify-end items-center bg-white p-3 pb-0 rounded-t-2xl">
-          <button
-            type="button"
-            className="text-primary text-base"
-            onClick={handleClose}
-          >
-            <FaTimesCircle className={"fill-primary"} />
-          </button>
-        </div>
-        <div className="bg-white p-4 rounded-b-2xl text-center ">
-          <span className="text-5xl text-red-700">
-            <FaQuestion className="my-0 mx-auto animate-shake" />
-          </span>
-          <span className="text-sm font-bold">
-            {" "}
+    <div className="bg-dark/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 bottom-0 left-0 z-[99] flex justify-center items-center w-full md:inset-0 max-h-full animate-fadeIn">
+      <div className="p-1 w-[350px] animate-slideUp">
+        <div className="bg-white p-6 pt-10 text-center rounded-lg">
+          <FaQuestion className="my-2 mx-auto animate-bounce h-11 w-11 text-red-700" />
+          <p className="text-sm">
             Are you sure you want to change your password?
-          </span>
-          <br />
+          </p>
           <div className="flex items-center gap-1 pt-8">
             <button
               type="submit"
-              className="btn-modal-cancel"
-              disabled={mutation.isPending}
+              className="btn-modal-submit"
+              disabled={mutation.isLoading}
               onClick={handleYes}
+              autoFocus
             >
-              {mutation.isPending ? <ButtonSpinner /> : "Confirm"}
+              {mutation.isLoading ? <ButtonSpinner /> : "Yes, Confirm"}
             </button>
             <button
               type="reset"
-              className="btn-modal-submit"
-              disabled={mutation.isPending}
+              className="btn-modal-cancel"
+              disabled={mutation.isLoading}
               onClick={handleClose}
-              id="btnClose"
             >
-              Cancel
+              No, Cancel
             </button>
           </div>
         </div>

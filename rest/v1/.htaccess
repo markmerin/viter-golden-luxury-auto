@@ -9,6 +9,10 @@ Header set Access-Control-Allow-Origin *
 
 ######################################### FOR DEVELOPER #####################################
 
+### ACCOUNT CHANGE PASS ### 
+RewriteRule ^account/system/update-password$ controllers/developer/account/system/account-change-password.php [L] 
+RewriteRule ^account/other/update-password$ controllers/developer/account/other/account-change-password.php [L] 
+
 # ROLES # 
 RewriteRule ^roles$ controllers/developer/settings/user/role/role.php [L]
 RewriteRule ^roles/([0-9]+)$ controllers/developer/settings/user/role/role.php?roleid=$1 [L]
