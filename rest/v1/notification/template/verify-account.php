@@ -82,7 +82,7 @@ function getHtmlVerifyAccount(
           href="' . $ROOT_DOMAIN . '' . $password_link . '?key=' . $key . '"
           style="
             padding: 4px 25px;
-            background-color: #fdc973;
+            background-color: #c6a057;
             color: #fff;
             display: inline-block;
             text-decoration: none;
