@@ -9,33 +9,34 @@ import {
 } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 
-// // Mac // Mon
-const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
-const imgUrlPath =
-  "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
+// // // Mac // Mon
+// const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
+// const imgUrlPath =
+//   "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
 
-// // Patrick
-// const urlPathLcss = `https://lcss.frontlinebusiness.com.ph/dev-app`;
-// const imgUrlPath = `https://lcss.frontlinebusiness.com.ph/dev-app/img`;
+// // // Patrick
+// const urlPathLcss = `https://devapp.fbasapp.com`;
+// const imgUrlPath = `https://devapp.fbasapp.com/img`;
 
-// // Local Dev and Online Dev URL
-export const devApiUrl = `${urlPathLcss}/rest`;
-export const devBaseUrl = `${urlPathLcss}`;
-export const devBaseImgUrl = `${imgUrlPath}`;
-export const devNavUrl = "";
+// // // Local Dev and Online Dev URL
+// export const devApiUrl = `${urlPathLcss}/rest`;
+// export const devBaseUrl = `${urlPathLcss}`;
+// export const devBaseImgUrl = `${imgUrlPath}`;
+// export const devNavUrl = "";
+// export const apiVersion = "/v1";
 
 // ONLINE PRODUCTION START HERE //
 
-// // Online URL prod hris
-// export const devApiUrl = "https://lcss.frontlinebusiness.com.ph/rest";
-// export const devBaseUrl = "https://lcss.frontlinebusiness.com.ph/v2";
-// export const devBaseImgUrl = "https://lcss.frontlinebusiness.com.ph/v2/img";
-// export const devNavUrl = "/v2";
+// Online URL prod hris
+export const devApiUrl = "https://devapp.fbasapp.com/rest";
+export const devBaseUrl = "https://devapp.fbasapp.com/gla";
+export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";
+export const devNavUrl = "";
+export const apiVersion = "/gla";
 
 export const devKey =
   "$2a$12$5obsBD1n0We9BIAM01RJy.4F0t4W2KmMPJppAur2eY1tmpG4y87vO";
 
-export const apiVersion = "/v1";
 export const developerPath = "developer";
 export const adminPath = "admin";
 export const isDemoMode = 1;
