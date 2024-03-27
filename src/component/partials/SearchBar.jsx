@@ -40,17 +40,17 @@ const SearchBar = ({
       }}
       className="search-box"
     >
-      <div className="pb-2 flex items-center">
+      <div className="pb-2 flex items-center relative">
         <input
           type="search"
           placeholder="Search here..."
-          className="rounded-tr-none rounded-br-none border-r-0 text-xs py-[0px] h-[35px]"
+          className="text-xs py-[0px] h-[35px] pl-7 !border-gray-300"
           ref={search}
           onChange={(e) => handleChange(e)}
         />
         <button
           type="submit"
-          className="btn-action-table text-[16px] h-[35px] py-[5px] rounded-tl-none rounded-bl-none border-l-0 bg-primary text-white border-primary hover:bg-primary"
+          className="absolute pointer-events-none cursor-default left-0 btn-action-table border-0 text-[16px] h-[35px] py-[5px] border-l-0 text-gray-300 border-gray-300 hover:bg-[unset]"
         >
           <FaSearch />
         </button>

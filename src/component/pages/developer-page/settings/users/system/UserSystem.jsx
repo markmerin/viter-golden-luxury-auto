@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPlusCircle } from "react-icons/fa";
+import { FaPlus, FaPlusCircle } from "react-icons/fa";
 import {
   setIsAdd,
   setIsSettingsOpen,
@@ -51,7 +51,7 @@ const UserSystem = () => {
           </div>
           <div className="flex items-center gap-1 print:invisible">
             <button type="button" className="btn-primary" onClick={handleAdd}>
-              <FaPlusCircle />
+              <FaPlus />
               <span>Add</span>
             </button>
           </div>
