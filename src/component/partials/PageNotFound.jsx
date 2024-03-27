@@ -22,7 +22,7 @@ const PageNotFound = () => {
         <p className="text-white z-10">Plase check your URL</p>
         <button
           type="button"
-          className="group flex items-center gap-1 bg-dark z-10 py-2 px-6 rounded-md text-primary font-bold"
+          className="group flex items-center gap-1 bg-dark z-10 py-2 px-6 rounded-md text-white font-bold"
           onClick={() => handleBack()}
         >
           <FaLongArrowAltLeft className="group-hover:mr-4 duration-100 ease-in-out" />
