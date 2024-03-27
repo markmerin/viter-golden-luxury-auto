@@ -31,7 +31,7 @@ import { StoreContext } from "../../store/StoreContext";
 export const devApiUrl = "https://devapp.fbasapp.com/rest";
 export const devBaseUrl = "https://devapp.fbasapp.com/gla";
 export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";
-export const devNavUrl = "";
+export const devNavUrl = "/gla";
 export const apiVersion = "/gla";
 
 export const devKey =
