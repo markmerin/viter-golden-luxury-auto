@@ -52,7 +52,7 @@ const ForgotPasswordSystem = () => {
         style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
       >
         <div className="w-96 p-6">
-          <div className="flex justify-center items-center flex-col">
+          <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
             <GlaLogo />
           </div>
           {isSuccess ? (
@@ -69,7 +69,7 @@ const ForgotPasswordSystem = () => {
                 Go back to{" "}
                 <a
                   href={`${devNavUrl}/${developerPath}/login`}
-                  className="w-full text-primary"
+                  className="w-full text-accent"
                 >
                   <u> login</u>
                 </a>
@@ -114,7 +114,7 @@ const ForgotPasswordSystem = () => {
                 Go back to{" "}
                 <a
                   href={`${devNavUrl}/${developerPath}/login`}
-                  className="w-full text-primary"
+                  className="w-full text-accent"
                 >
                   <u> login</u>
                 </a>

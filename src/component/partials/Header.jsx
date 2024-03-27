@@ -83,7 +83,7 @@ const Header = () => {
       {isDemoMode === 1 && <DemoMode />}
       {loading && <FetchingSpinner />}
       <header
-        className={`pr-5 lg:pr-10 md:pr-10 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-dark `}
+        className={`pr-5 lg:pr-5 md:pr-5 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-dark `}
       >
         <button
           onClick={handleShowMenu}
@@ -120,9 +120,9 @@ const Header = () => {
           {show && (
             <div
               ref={menuRef}
-              className="p-3 min-w-[250px] overflow-hidden rounded-md absolute top-[77%] lg:right-14 right-10 drop-shadow-sm border border-gray-200 text-xs bg-white z-[99]"
+              className="p-3 min-w-[250px] overflow-hidden rounded-md absolute top-[77%] lg:right-7 right-10 drop-shadow-sm border border-gray-200 text-xs bg-white z-[99]"
             >
-              <span className="bg-primary/50 absolute w-full h-[3.5rem] left-0 top-0"></span>
+              <span className="bg-dark/50 absolute w-full h-[3.5rem] left-0 top-0"></span>
               <div className="flex flex-col items-center py-3">
                 <FaUserCircle className="w-12 h-12 text-gray-400 mb-2 z-50 bg-white rounded-full" />
                 <p className="mb-1  flex items-center gap-2 font-bold">
@@ -135,7 +135,7 @@ const Header = () => {
               </div>
 
               <ul className="border-t border-b border-gray-100 py-2 ">
-                <li className="flex items-center gap-2 hover:text-primary">
+                <li className="flex items-center gap-2 hover:text-accent">
                   <MdOutlineAccountCircle />
                   <Link to={`${devNavUrl}/${link}/account`} className=" w-full">
                     Account
@@ -143,20 +143,22 @@ const Header = () => {
                 </li>
               </ul>
 
-              <ul className="border-t border-b border-gray-100 py-2 ">
-                <li className="flex items-center gap-2 hover:text-primary">
-                  <RiToolsLine />
-                  <Link
-                    to={`${devNavUrl}/${link}/maintenance`}
-                    className=" w-full"
-                  >
-                    Maintenance
-                  </Link>
-                </li>
-              </ul>
+              {store.credentials.data.role_is_client !== 1 && (
+                <ul className="border-t border-b border-gray-100 py-2 ">
+                  <li className="flex items-center gap-2 hover:text-accent">
+                    <RiToolsLine />
+                    <Link
+                      to={`${devNavUrl}/${link}/maintenance`}
+                      className=" w-full"
+                    >
+                      Maintenance
+                    </Link>
+                  </li>
+                </ul>
+              )}
               <button
                 onClick={handleLogout}
-                className="hover:text-primary flex items-center gap-2 pt-2 w-full"
+                className="hover:text-accent flex items-center gap-2 pt-2 w-full"
               >
                 <MdOutlineLogout />
                 Logout

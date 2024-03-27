@@ -118,7 +118,7 @@ const Maintenance = () => {
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
           <div className="flex flex-col justify-center">
             <h4 className="text-base my-3 capitalize">
-              {location.pathname.split("/").pop()}
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
         </div>
@@ -146,14 +146,16 @@ const Maintenance = () => {
                       />
                     </div>
 
-                    <div className="relative mt-5 mb-6">
-                      <InputCheckbox
-                        label="Mark check to set maintenace for all user"
-                        name="maintenance_is_for_admin"
-                        id="maintenance_is_for_admin"
-                        onClick={(e) => handleCheckAll(e)}
-                      />
-                    </div>
+                    {store.credentials.data.role_is_developer === 1 && (
+                      <div className="relative mt-5 mb-6">
+                        <InputCheckbox
+                          label="Mark check to set maintenace for all user"
+                          name="maintenance_is_for_admin"
+                          id="maintenance_is_for_admin"
+                          onClick={(e) => handleCheckAll(e)}
+                        />
+                      </div>
+                    )}
                   </Form>
                 );
               }}

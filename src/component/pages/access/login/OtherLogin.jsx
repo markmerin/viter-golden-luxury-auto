@@ -84,7 +84,7 @@ const OtherLogin = () => {
           style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
         >
           <div className="w-96 p-6">
-            <div className="flex justify-center items-center flex-col">
+            <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
               <GlaLogo />
             </div>
 
@@ -145,7 +145,7 @@ const OtherLogin = () => {
               Did you forget your password?{" "}
               <a
                 href={`${devNavUrl}/forgot-password`}
-                className="w-full text-primary"
+                className="w-full text-accent"
               >
                 <u> Forgot password</u>
               </a>

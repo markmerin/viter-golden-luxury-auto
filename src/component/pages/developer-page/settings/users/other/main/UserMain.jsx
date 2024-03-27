@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPlusCircle } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import {
   setIsAdd,
   setIsSettingsOpen,
@@ -51,12 +51,12 @@ const UserMain = () => {
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
             <h4 className="text-base my-3 capitalize">
-              {location.pathname.split("/").pop()}
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
           <div className="flex items-center gap-1 print:invisible">
             <button type="button" className="btn-primary" onClick={handleAdd}>
-              <FaPlusCircle />
+              <FaPlus />
               <span>Add</span>
             </button>
           </div>

@@ -66,7 +66,7 @@ body {
   input:focus,
   select:focus,
   textarea:focus {
-    @apply border border-solid border-primary outline-0;
+    @apply border border-solid border-accent outline-0;
   }
   input.account_password {
     @apply !border-0 !border-b !rounded-none focus:!border-t-0 focus:!border-r-0 focus:!border-l-0;
@@ -94,7 +94,7 @@ body {
     @apply cursor-pointer text-gray-500 text-base align-middle !py-2 !pr-[.2rem] !pl-4 hover:bg-secondary hover:text-white duration-200 ease-in;
   }
   .btn-modal-submit {
-    @apply flex items-center justify-center text-primary gap-2 px-3 py-1.5 bg-dark rounded-md border-dark border hover:bg-dark hover:text-primary hover:border-dark duration-300 ease-in w-full;
+    @apply flex items-center justify-center text-white gap-2 px-3 py-1.5 bg-dark rounded-md border-dark border hover:bg-dark hover:text-primary hover:border-dark duration-300 ease-in w-full;
   }
   .btn-modal-submit:disabled {
     @apply opacity-50;
@@ -118,13 +118,13 @@ body {
     @apply translate-y-0;
   }
   .wrapper {
-    @apply relative min-h-screen print:!p-4 pt-[4.2rem] ml-0 px-5 lg:px-10 md:px-10 transition-all ease-in duration-200;
+    @apply relative min-h-screen print:!p-4 pt-[4.2rem] ml-0 px-5 lg:px-5 md:px-5 transition-all ease-in duration-200;
   }
 }
 
 @layer utilities {
   li.active {
-    @apply text-white mb-1 rounded-lg;
+    @apply text-primary mb-1 rounded-lg;
   }
   li.active svg {
     @apply fill-primary;

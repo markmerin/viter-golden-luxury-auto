@@ -3,21 +3,31 @@ import { FaPlus } from "react-icons/fa";
 import {
   setIsAdd,
   setIsSettingsOpen,
-} from "../../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../../store/StoreContext";
-import { isDemoMode } from "../../../../../helpers/functions-general";
-import BreadCrumbs from "../../../../../partials/BreadCrumbs";
-import Footer from "../../../../../partials/Footer";
-import Header from "../../../../../partials/Header";
-import ModalError from "../../../../../partials/modals/ModalError";
-import ModalSuccess from "../../../../../partials/modals/ModalSuccess";
-import Navigation from "../../../Navigation";
-import ModalAddRole from "./ModalAddRole";
-import RoleList from "./RoleList";
+} from "../../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../../store/StoreContext";
+import useQueryData from "../../../../../../custom-hooks/useQueryData";
+import {
+  apiVersion,
+  isDemoMode,
+} from "../../../../../../helpers/functions-general";
+import BreadCrumbs from "../../../../../../partials/BreadCrumbs";
+import Footer from "../../../../../../partials/Footer";
+import Header from "../../../../../../partials/Header";
+import ModalError from "../../../../../../partials/modals/ModalError";
+import ModalSuccess from "../../../../../../partials/modals/ModalSuccess";
+import Navigation from "../../../../Navigation";
+import ModalAddUserMain from "./ModalAddUserMain";
+import UserMainList from "./UserMainList";
 
-const Roles = () => {
+const UserClient = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
+
+  const { data: roles } = useQueryData(
+    `${apiVersion}/roles`, // endpoint
+    "get", // method
+    "system-role" // key
+  );
 
   const handleAdd = () => {
     dispatch(setIsAdd(true));
@@ -44,25 +54,27 @@ const Roles = () => {
               {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
-          <div className="flex items-center gap-1 print:invisible">
+          {/* <div className="flex items-center gap-1 print:invisible">
             <button type="button" className="btn-primary" onClick={handleAdd}>
               <FaPlus />
               <span>Add</span>
             </button>
-          </div>
+          </div> */}
         </div>
         <hr />
+
         <div className="w-full pt-5 pb-4 ">
-          <RoleList setItemEdit={setItemEdit} />
+          <p className="text-left">We'll be right back.</p>
+          {/* <UserMainList setItemEdit={setItemEdit} /> */}
         </div>
         <Footer />
       </div>
 
-      {store.isAdd && <ModalAddRole itemEdit={itemEdit} />}
+      {store.isAdd && <ModalAddUserMain itemEdit={itemEdit} roles={roles} />}
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}
     </>
   );
 };
 
-export default Roles;
+export default UserClient;

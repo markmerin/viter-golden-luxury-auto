@@ -134,7 +134,7 @@ const CreatePasswordOther = () => {
           style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
         >
           <div className="w-96 p-6">
-            <div className="flex justify-center items-center flex-col">
+            <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
               <GlaLogo />
             </div>
             <FaCheck className="h-16 w-16 fill-green-700 mx-auto mt-8" />
@@ -146,7 +146,7 @@ const CreatePasswordOther = () => {
 
             <p className="mt-2">
               Go back to{" "}
-              <a href={`${devNavUrl}/login`} className="w-full text-primary">
+              <a href={`${devNavUrl}/login`} className="w-full text-accent">
                 <u> login</u>
               </a>
             </p>
@@ -162,7 +162,7 @@ const CreatePasswordOther = () => {
           style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
         >
           <div className="w-96 p-6">
-            <div className="flex justify-center items-center flex-col">
+            <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
               <GlaLogo />
             </div>
             <p className="mt-8 mb-5 text-lg font-bold">CREATE PASSWORD</p>

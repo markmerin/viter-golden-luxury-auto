@@ -3,9 +3,18 @@ import {
   developerPath,
 } from "../component/helpers/functions-general";
 import ProtectedRouteSystem from "../component/pages/access/ProtectedRouteSystem";
+import Car from "../component/pages/developer-page/car/Car";
+import Client from "../component/pages/developer-page/client/Client";
+import Earning from "../component/pages/developer-page/earning/Earning";
 import Maintenance from "../component/pages/developer-page/maintenance/Maintenance";
+import CarMake from "../component/pages/developer-page/settings/car-make/CarMake";
+import Expenses from "../component/pages/developer-page/settings/expenses/Expenses";
+import IncomeCategory from "../component/pages/developer-page/settings/income-category/IncomeCategory";
+import IncomeItem from "../component/pages/developer-page/settings/income-item/IncomeItem";
+import Representative from "../component/pages/developer-page/settings/representatives/Representative";
 import Users from "../component/pages/developer-page/settings/users/Users";
 import Other from "../component/pages/developer-page/settings/users/other/Other";
+import UserClient from "../component/pages/developer-page/settings/users/other/client/UserClient";
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
@@ -48,6 +57,78 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <UserMain />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/user/other/client`,
+    element: (
+      <ProtectedRouteSystem>
+        <UserClient />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/car-make`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarMake />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/representatives`,
+    element: (
+      <ProtectedRouteSystem>
+        <Representative />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/expenses`,
+    element: (
+      <ProtectedRouteSystem>
+        <Expenses />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/income-category`,
+    element: (
+      <ProtectedRouteSystem>
+        <IncomeCategory />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/income-item`,
+    element: (
+      <ProtectedRouteSystem>
+        <IncomeItem />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/client`,
+    element: (
+      <ProtectedRouteSystem>
+        <Client />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car`,
+    element: (
+      <ProtectedRouteSystem>
+        <Car />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/earnings`,
+    element: (
+      <ProtectedRouteSystem>
+        <Earning />
       </ProtectedRouteSystem>
     ),
   },

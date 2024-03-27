@@ -35,7 +35,7 @@ const Other = () => {
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
             <h4 className="text-base my-3 capitalize">
-              {location.pathname.split("/").pop()}
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
             <div className="flex items-center gap-1 print:invisible"></div>
           </div>
@@ -52,7 +52,7 @@ const Other = () => {
                     ? "settings/user/other/staff"
                     : "settings/user/staff"
                 }`,
-                "GLA Staff"
+                "GLA Admin"
               )}
             </div>
           </li>
