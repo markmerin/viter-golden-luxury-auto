@@ -68,3 +68,10 @@ RewriteRule ^expenses/([0-9]+)$ controllers/developer/settings/expenses/expenses
 RewriteRule ^expenses/active/([0-9]+)$ controllers/developer/settings/expenses/active.php?expensesid=$1 [L]
 RewriteRule ^expenses/page/([0-9]+)$ controllers/developer/settings/expenses/page.php?start=$1 [L]
 RewriteRule ^expenses/search$ controllers/developer/settings/expenses/search.php [L]
+
+### REPRESENTATIVE ###
+RewriteRule ^representatives$ controllers/developer/settings/representatives/representatives.php [L]
+RewriteRule ^representatives/([0-9]+)$ controllers/developer/settings/representatives/representatives.php?representativesid=$1 [L]
+RewriteRule ^representatives/active/([0-9]+)$ controllers/developer/settings/representatives/active.php?representativesid=$1 [L]
+RewriteRule ^representatives/page/([0-9]+)$ controllers/developer/settings/representatives/page.php?start=$1 [L]
+RewriteRule ^representatives/search$ controllers/developer/settings/representatives/search.php [L]
