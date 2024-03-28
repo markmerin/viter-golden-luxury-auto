@@ -80,11 +80,11 @@ const SystemLogin = () => {
         <TableSpinner />
       ) : (
         <div
-          className="flex justify-center items-center "
+          className="flex items-center justify-center "
           style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
         >
-          <div className="w-96 p-6">
-            <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
+          <div className="p-6 w-96">
+            <div className="flex flex-col items-center justify-center py-1 mx-auto bg-dark w-fit">
               <GlaLogo />
             </div>
 
@@ -117,7 +117,7 @@ const SystemLogin = () => {
                       />
                       {props.values.password && (
                         <span
-                          className="text-base absolute bottom-1/2 right-2 translate-y-1/2 cursor-pointer"
+                          className="absolute text-base translate-y-1/2 cursor-pointer bottom-1/2 right-2"
                           onClick={togglePassword}
                         >
                           {passwordShown ? (
@@ -132,7 +132,7 @@ const SystemLogin = () => {
                       <button
                         type="submit"
                         disabled={mutation.isPending || !props.dirty}
-                        className="btn-modal-submit relative"
+                        className="relative btn-modal-submit"
                       >
                         {mutation.isPending ? <ButtonSpinner /> : "Login"}
                       </button>

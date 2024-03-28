@@ -53,3 +53,18 @@ RewriteRule ^account/admin/update-password$ controllers/admin/account/other/acco
 # MAINTENANCE # 
 RewriteRule ^maintenance$ controllers/developer/maintenance/maintenance.php [L]
 RewriteRule ^maintenance/([0-9]+)$ controllers/developer/maintenance/maintenance.php?maintenanceid=$1 [L]
+
+
+### CAR MAKE ###
+RewriteRule ^car-make$ controllers/developer/settings/car-make/car-make.php [L]
+RewriteRule ^car-make/([0-9]+)$ controllers/developer/settings/car-make/car-make.php?carmakeid=$1 [L]
+RewriteRule ^car-make/active/([0-9]+)$ controllers/developer/settings/car-make/active.php?carmakeid=$1 [L]
+RewriteRule ^car-make/page/([0-9]+)$ controllers/developer/settings/car-make/page.php?start=$1 [L]
+RewriteRule ^car-make/search$ controllers/developer/settings/car-make/search.php [L]
+
+### EXPENSE ###
+RewriteRule ^expenses$ controllers/developer/settings/expenses/expenses.php [L]
+RewriteRule ^expenses/([0-9]+)$ controllers/developer/settings/expenses/expenses.php?expensesid=$1 [L]
+RewriteRule ^expenses/active/([0-9]+)$ controllers/developer/settings/expenses/active.php?expensesid=$1 [L]
+RewriteRule ^expenses/page/([0-9]+)$ controllers/developer/settings/expenses/page.php?start=$1 [L]
+RewriteRule ^expenses/search$ controllers/developer/settings/expenses/search.php [L]

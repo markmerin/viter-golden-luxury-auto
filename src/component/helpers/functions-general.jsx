@@ -10,29 +10,29 @@ import {
 import { StoreContext } from "../../store/StoreContext";
 
 // // // Mac // Mon
-// const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
-// const imgUrlPath =
-//   "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
+const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
+const imgUrlPath =
+  "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
 
 // // // Patrick
 // const urlPathLcss = `https://devapp.fbasapp.com`;
 // const imgUrlPath = `https://devapp.fbasapp.com/img`;
 
 // // // Local Dev and Online Dev URL
-// export const devApiUrl = `${urlPathLcss}/rest`;
-// export const devBaseUrl = `${urlPathLcss}`;
-// export const devBaseImgUrl = `${imgUrlPath}`;
-// export const devNavUrl = "";
-// export const apiVersion = "/v1";
+export const devApiUrl = `${urlPathLcss}/rest`;
+export const devBaseUrl = `${urlPathLcss}`;
+export const devBaseImgUrl = `${imgUrlPath}`;
+export const devNavUrl = "/v1";
+export const apiVersion = "/v1";
 
 // ONLINE PRODUCTION START HERE //
 
 // Online URL prod hris
-export const devApiUrl = "https://devapp.fbasapp.com/rest";
-export const devBaseUrl = "https://devapp.fbasapp.com/gla";
-export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";
-export const devNavUrl = "/gla";
-export const apiVersion = "/gla";
+// export const devApiUrl = "https://devapp.fbasapp.com/rest";
+// export const devBaseUrl = "https://devapp.fbasapp.com/gla";
+// export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";
+// export const devNavUrl = "/gla";
+// export const apiVersion = "/gla";
 
 export const devKey =
   "$2a$12$5obsBD1n0We9BIAM01RJy.4F0t4W2KmMPJppAur2eY1tmpG4y87vO";
@@ -115,13 +115,13 @@ export const getPageLink = (link = "", path = "", title = "") => {
     <>
       <Link
         to={`${devNavUrl}/${link}/${path}`}
-        className="w-full py-3 hover:bg-primary/10 text-xs"
+        className="w-full py-3 text-xs hover:bg-primary/10"
       >
         <div className="flex items-center justify-between pr-5">
           <div>
             <span className="font-semibold">{title}</span>
           </div>
-          <SlArrowRight className="inline h-3 w-3" />
+          <SlArrowRight className="inline w-3 h-3" />
         </div>
       </Link>
     </>
