@@ -75,3 +75,18 @@ RewriteRule ^representatives/([0-9]+)$ controllers/developer/settings/representa
 RewriteRule ^representatives/active/([0-9]+)$ controllers/developer/settings/representatives/active.php?representativesid=$1 [L]
 RewriteRule ^representatives/page/([0-9]+)$ controllers/developer/settings/representatives/page.php?start=$1 [L]
 RewriteRule ^representatives/search$ controllers/developer/settings/representatives/search.php [L]
+
+### INCOME CATEGORY ###
+RewriteRule ^income-category$ controllers/developer/settings/income-category/income-category.php [L]
+RewriteRule ^income-category/([0-9]+)$ controllers/developer/settings/income-category/income-category.php?incomecategoryid=$1 [L]
+RewriteRule ^income-category/active/([0-9]+)$ controllers/developer/settings/income-category/active.php?incomecategoryid=$1 [L]
+RewriteRule ^income-category/page/([0-9]+)$ controllers/developer/settings/income-category/page.php?start=$1 [L]
+RewriteRule ^income-category/search$ controllers/developer/settings/income-category/search.php [L]
+
+
+### INCOME ITEM ###
+RewriteRule ^income-item$ controllers/developer/settings/income-item/income-item.php [L]
+RewriteRule ^income-item/([0-9]+)$ controllers/developer/settings/income-item/income-item.php?incomeitemid=$1 [L]
+RewriteRule ^income-item/active/([0-9]+)$ controllers/developer/settings/income-item/active.php?incomeitemid=$1 [L]
+RewriteRule ^income-item/page/([0-9]+)$ controllers/developer/settings/income-item/page.php?start=$1 [L]
+RewriteRule ^income-item/search$ controllers/developer/settings/income-item/search.php [L]
