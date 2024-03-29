@@ -124,7 +124,7 @@ const ExpensesList = ({ setItemEdit }) => {
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
-              <label>Status</label>
+              <label>Filter</label>
               <select
                 name="status"
                 value={expensesStatus}
