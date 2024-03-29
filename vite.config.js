@@ -6,6 +6,7 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   base: "/gla",
+  // base: "/", //for development env.
   build: {
     chunkSizeWarningLimit: 4000,
   },
