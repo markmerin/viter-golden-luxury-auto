@@ -137,7 +137,7 @@ const CarMakeList = ({ setItemEdit }) => {
           <div className="relative flex items-center gap-1 ml-2 text-sm text-gray-600">
             <MdOutlineFormatListNumbered />
             <span>
-              {isFetching || status === "loading"
+              {isFetching || status === "pending"
                 ? "loading"
                 : store.isSearch || isFilter
                 ? result?.pages[0].count
@@ -160,7 +160,7 @@ const CarMakeList = ({ setItemEdit }) => {
         </div>
       </div>
       <div className="relative min-h-[20vh] overflow-hidden">
-        {status !== "loading" && isFetching && <FetchingSpinner />}
+        {status !== "pending" && isFetching && <FetchingSpinner />}
         <table>
           <thead>
             <tr>
@@ -171,10 +171,10 @@ const CarMakeList = ({ setItemEdit }) => {
             </tr>
           </thead>
           <tbody>
-            {(status === "loading" || result?.pages[0].data.length === 0) && (
+            {(status === "pending" || result?.pages[0].data.length === 0) && (
               <tr>
                 <td colSpan="100%" className="p-10">
-                  {status === "loading" ? (
+                  {status === "pending" ? (
                     <TableLoading count={20} cols={3} />
                   ) : (
                     <NoData />
