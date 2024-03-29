@@ -133,13 +133,11 @@ class IncomeItem
             $sql .= " {$this->tblIncomeCategory} as category ";
             $sql .= "where item.income_item_category_id = category.income_category_aid ";
             $sql .= "and item.income_item_name like :income_item_name ";
-            $sql .= "category.income_category_name like :income_category_name ";
             $sql .= "order by income_item_is_active desc, ";
             $sql .= "income_item_name asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "income_item_name" => "%{$this->income_item_search}%",
-                "income_category_name" => "%{$this->income_item_search}%",
+                "income_item_name" => "%{$this->income_item_search}%"
             ]);
         } catch (PDOException $ex) {
             $query = false;

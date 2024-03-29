@@ -171,6 +171,7 @@ const IncomeItemList = ({ setItemEdit }) => {
               <th className="w-[2rem] text-center">#</th>
               <th className="w-[4.5rem] md:w-[6rem]">Status</th>
               <th>Name</th>
+              <th>Category</th>
               <th colSpan={"100%"}></th>
             </tr>
           </thead>
@@ -215,6 +216,7 @@ const IncomeItemList = ({ setItemEdit }) => {
                         )}
                       </td>
                       <td>{item.income_item_name}</td>
+                      <td>{item.income_category_name}</td>
 
                       <td
                         colSpan={"100%"}

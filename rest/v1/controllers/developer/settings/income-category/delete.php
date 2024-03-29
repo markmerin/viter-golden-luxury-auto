@@ -11,7 +11,7 @@ if (array_key_exists("incomecategoryid", $_GET)) {
 
     // validations
     checkId($income_category->income_category_aid);
-
+    isCategoryAssociated($income_category);
     $query = checkDelete($income_category);
     returnSuccess($income_category, "Income Category Delete", $query);
 }

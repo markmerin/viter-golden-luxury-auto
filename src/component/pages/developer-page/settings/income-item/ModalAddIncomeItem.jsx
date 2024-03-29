@@ -114,7 +114,6 @@ const ModalAddIncomeItem = ({ itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-
               mutation.mutate(values);
             }}
           >
@@ -124,7 +123,7 @@ const ModalAddIncomeItem = ({ itemEdit }) => {
                   <div className="modal-overflow">
                     <div className="relative mt-5 mb-6">
                       <InputText
-                        label="name"
+                        label="Name"
                         type="text"
                         name="income_item_name"
                         disabled={mutation.isPending}
@@ -134,8 +133,8 @@ const ModalAddIncomeItem = ({ itemEdit }) => {
                     <div className="relative mb-6">
                       <InputSelect
                         label="Category"
-                        name="income_category_item_id"
-                        disabled={mutation.isPending}
+                        name="income_item_category_id"
+                        disabled={mutation.isLoading}
                       >
                         {isLoading ? (
                           <option value="" disabled>

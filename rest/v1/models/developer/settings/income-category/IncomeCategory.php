@@ -16,11 +16,13 @@ class IncomeCategory
 
 
     public $tblIncomeCategory;
+    public $tblIncomeItem;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblIncomeCategory = "glav1_income_category";
+        $this->tblIncomeItem = "glav1_income_item";
     }
 
     // create
@@ -203,7 +205,6 @@ class IncomeCategory
         try {
             $sql = "select ";
             $sql .= "* ";
-
             $sql .= "from {$this->tblIncomeCategory} ";
             $sql .= "where income_category_is_active = :income_category_is_active ";
             $sql .= "and income_category_name like :income_category_name ";
@@ -242,19 +243,19 @@ class IncomeCategory
 
 
 
-    // association
-    // public function checkDesignationAssociation()
-    // {
-    //     try {
-    //         $sql = "select designation_income_category_id from {$this->tblDesignation} ";
-    //         $sql .= "where designation_income_category_id = :income_category_aid ";
-    //         $query = $this->connection->prepare($sql);
-    //         $query->execute([
-    //             "income_category_aid" => "{$this->income_category_aid}",
-    //         ]);
-    //     } catch (PDOException $ex) {
-    //         $query = false;
-    //     }
-    //     return $query;
-    // }
+
+    public function checkCategoryAssociation()
+    {
+        try {
+            $sql = "select income_item_category_id from {$this->tblIncomeItem} ";
+            $sql .= "where income_item_category_id = :income_category_aid ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "income_category_aid" => "{$this->income_category_aid}",
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
 }
