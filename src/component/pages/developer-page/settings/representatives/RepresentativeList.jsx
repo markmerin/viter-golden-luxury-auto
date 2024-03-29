@@ -125,7 +125,7 @@ const RepresentativeList = ({ setItemEdit }) => {
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
-              <label>Status</label>
+              <label>Filter</label>
               <select
                 name="status"
                 value={representativesStatus}
@@ -292,7 +292,7 @@ const RepresentativeList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`/v1/representatives/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/representatives/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
           queryKey={"representatives"}
@@ -300,7 +300,7 @@ const RepresentativeList = ({ setItemEdit }) => {
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/representatives/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/representatives/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
           queryKey={"representatives"}
@@ -308,7 +308,7 @@ const RepresentativeList = ({ setItemEdit }) => {
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/representatives/${id}`}
+          mysqlApiDelete={`${apiVersion}/representatives/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.representatives_name}

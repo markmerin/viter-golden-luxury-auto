@@ -30,7 +30,7 @@ const ModalAddIncomeItem = ({ itemEdit }) => {
     error,
     data: category,
   } = useQueryData(
-    "/v1/income-category", // endpoint
+    `/${apiVersion}/income-category`, // endpoint
     "get", // method
     "category" // key
   );

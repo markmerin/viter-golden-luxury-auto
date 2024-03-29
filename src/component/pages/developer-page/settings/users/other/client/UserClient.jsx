@@ -61,7 +61,6 @@ const UserClient = () => {
             </button>
           </div> */}
         </div>
-        <hr />
 
         <div className="w-full pt-5 pb-4 ">
           <p className="text-left">We'll be right back.</p>

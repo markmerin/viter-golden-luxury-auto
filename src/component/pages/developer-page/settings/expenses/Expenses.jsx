@@ -49,7 +49,6 @@ const Expenses = () => {
             </button>
           </div>
         </div>
-        <hr />
         <div className="w-full pt-5 pb-4 ">
           <ExpensesList setItemEdit={setItemEdit} />
         </div>

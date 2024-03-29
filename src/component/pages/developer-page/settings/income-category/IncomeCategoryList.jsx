@@ -59,8 +59,8 @@ const IncomeCategoryList = ({ setItemEdit }) => {
     ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `${apiVersion}/income-category/search`, // search endpoint
-        `${apiVersion}/income-category/page/${pageParam}`, // list endpoint
+        `/${apiVersion}/income-category/search`, // search endpoint
+        `/${apiVersion}/income-category/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -124,7 +124,7 @@ const IncomeCategoryList = ({ setItemEdit }) => {
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
-              <label>Status</label>
+              <label>Filter</label>
               <select
                 name="status"
                 value={incomeCategoryStatus}
@@ -286,7 +286,7 @@ const IncomeCategoryList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`/v1/income-category/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/income-category/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
           queryKey={"incomecategory"}
@@ -294,7 +294,7 @@ const IncomeCategoryList = ({ setItemEdit }) => {
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/income-category/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/income-category/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
           queryKey={"incomecategory"}
@@ -302,7 +302,7 @@ const IncomeCategoryList = ({ setItemEdit }) => {
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/income-category/${id}`}
+          mysqlApiDelete={`${apiVersion}/income-category/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.income_category_name}
