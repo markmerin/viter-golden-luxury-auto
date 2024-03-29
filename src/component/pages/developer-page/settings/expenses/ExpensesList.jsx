@@ -210,9 +210,9 @@ const ExpensesList = ({ setItemEdit }) => {
                       </td>
                       <td className="hidden sm:table-cell">
                         {item.expenses_is_active === 1 ? (
-                          <Status text="active" />
+                          <Status text="Active" />
                         ) : (
-                          <Status text="inactive" />
+                          <Status text="Inactive" />
                         )}
                       </td>
                       <td>{item.expenses_name}</td>

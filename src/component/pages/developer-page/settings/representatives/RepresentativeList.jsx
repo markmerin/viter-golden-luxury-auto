@@ -212,9 +212,9 @@ const RepresentativeList = ({ setItemEdit }) => {
                       </td>
                       <td className="hidden sm:table-cell">
                         {item.representatives_is_active === 1 ? (
-                          <Status text="active" />
+                          <Status text="Active" />
                         ) : (
-                          <Status text="inactive" />
+                          <Status text="Inactive" />
                         )}
                       </td>
                       <td>

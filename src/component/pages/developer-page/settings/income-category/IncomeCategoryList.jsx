@@ -210,9 +210,9 @@ const IncomeCategoryList = ({ setItemEdit }) => {
                       </td>
                       <td className="hidden sm:table-cell">
                         {item.income_category_is_active === 1 ? (
-                          <Status text="active" />
+                          <Status text="Active" />
                         ) : (
-                          <Status text="inactive" />
+                          <Status text="Inactive" />
                         )}
                       </td>
                       <td>{item.income_category_name}</td>
