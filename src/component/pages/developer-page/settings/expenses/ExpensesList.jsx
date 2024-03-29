@@ -1,4 +1,4 @@
-import { getUserType } from "@/component/helpers/functions-general";
+import { apiVersion, getUserType } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -58,8 +58,8 @@ const ExpensesList = ({ setItemEdit }) => {
     ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/expenses/search`, // search endpoint
-        `/v1/expenses/page/${pageParam}`, // list endpoint
+        `/${apiVersion}/expenses/search`, // search endpoint
+        `/${apiVersion}/expenses/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -285,7 +285,7 @@ const ExpensesList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`/v1/expenses/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/expenses/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
           queryKey={"expenses"}
@@ -293,7 +293,7 @@ const ExpensesList = ({ setItemEdit }) => {
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/expenses/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/expenses/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
           queryKey={"expenses"}
@@ -301,7 +301,7 @@ const ExpensesList = ({ setItemEdit }) => {
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/expenses/${id}`}
+          mysqlApiDelete={`${apiVersion}/expenses/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.expenses_name}

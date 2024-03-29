@@ -61,7 +61,6 @@ const UserMain = () => {
             </button>
           </div>
         </div>
-        <hr />
 
         <div className="w-full pt-5 pb-4 ">
           <UserMainList setItemEdit={setItemEdit} />

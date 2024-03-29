@@ -49,7 +49,6 @@ const Representative = () => {
             </button>
           </div>
         </div>
-        <hr />
         <div className="w-full pt-5 pb-4 ">
           <RepresentativeList setItemEdit={setItemEdit} />
         </div>

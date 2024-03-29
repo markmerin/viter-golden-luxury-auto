@@ -1,4 +1,4 @@
-import { getUserType } from "@/component/helpers/functions-general";
+import { apiVersion, getUserType } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -58,8 +58,8 @@ const IncomeItemList = ({ setItemEdit }) => {
     ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/income-item/search`, // search endpoint
-        `/v1/income-item/page/${pageParam}`, // list endpoint
+        `/${apiVersion}/income-item/search`, // search endpoint
+        `/${apiVersion}/income-item/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -123,7 +123,7 @@ const IncomeItemList = ({ setItemEdit }) => {
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
-              <label>Status</label>
+              <label>Filter</label>
               <select
                 name="status"
                 value={incomeItemStatus}
@@ -287,7 +287,7 @@ const IncomeItemList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`/v1/income-item/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/income-item/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
           queryKey={"incomeitem"}
@@ -295,7 +295,7 @@ const IncomeItemList = ({ setItemEdit }) => {
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/income-item/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/income-item/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
           queryKey={"incomeitem"}
@@ -303,7 +303,7 @@ const IncomeItemList = ({ setItemEdit }) => {
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/income-item/${id}`}
+          mysqlApiDelete={`${apiVersion}/income-item/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.income_item_name}

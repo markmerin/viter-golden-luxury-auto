@@ -1,4 +1,4 @@
-import { getUserType } from "@/component/helpers/functions-general";
+import { apiVersion, getUserType } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -53,8 +53,8 @@ const CarMakeList = ({ setItemEdit }) => {
     queryKey: ["carmake", search.current.value, store.isSearch, carMakeStatus],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/car-make/search`, // search endpoint
-        `/v1/car-make/page/${pageParam}`, // list endpoint
+        `/${apiVersion}/car-make/search`, // search endpoint
+        `/${apiVersion}/car-make/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -118,7 +118,7 @@ const CarMakeList = ({ setItemEdit }) => {
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
-              <label>Status</label>
+              <label>Filter</label>
               <select
                 name="status"
                 value={carMakeStatus}
@@ -280,7 +280,7 @@ const CarMakeList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`/v1/car-make/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/car-make/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
           queryKey={"carmake"}
@@ -288,7 +288,7 @@ const CarMakeList = ({ setItemEdit }) => {
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`/v1/car-make/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/car-make/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
           queryKey={"carmake"}
@@ -296,7 +296,7 @@ const CarMakeList = ({ setItemEdit }) => {
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`/v1/car-make/${id}`}
+          mysqlApiDelete={`${apiVersion}/car-make/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.car_make_name}
