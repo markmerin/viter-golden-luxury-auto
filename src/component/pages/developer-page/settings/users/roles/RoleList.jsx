@@ -76,8 +76,8 @@ const RoleList = ({ setItemEdit }) => {
 
   return (
     <>
-      <div className="relative rounded-md text-center overflow-auto z-0">
-        {isFetching && !isLoading && <FetchingSpinner />}
+      <div className="relative z-0 overflow-auto text-center rounded-md">
+        {!isFetching && !isLoading && <FetchingSpinner />}
 
         <div
           className="overflow-auto max-h-[70vh] "
@@ -116,7 +116,7 @@ const RoleList = ({ setItemEdit }) => {
               )}
 
               {roles?.data.map((item, key) => (
-                <tr key={key} className="group relative">
+                <tr key={key} className="relative group">
                   <td className="text-center">{counter++}.</td>
                   <td>{item.role_name}</td>
                   <td title={item.role_description}>{item.role_description}</td>
@@ -129,7 +129,7 @@ const RoleList = ({ setItemEdit }) => {
                   </td>
                   <td
                     colSpan={"100%"}
-                    className="opacity-100 group-hover:opacity-100 sticky -right-3"
+                    className="sticky opacity-100 group-hover:opacity-100 -right-3"
                   >
                     <div className="flex items-center gap-3">
                       {item.role_is_active === 1 ? (

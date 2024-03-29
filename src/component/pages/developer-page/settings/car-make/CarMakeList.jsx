@@ -1,4 +1,4 @@
-import { getUserType } from "@/component/helpers/functions-general";
+import { apiVersion, getUserType } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -25,6 +25,7 @@ import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import { HiUsers } from "react-icons/hi2";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
+import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 
 const CarMakeList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -53,8 +54,8 @@ const CarMakeList = ({ setItemEdit }) => {
     queryKey: ["carmake", search.current.value, store.isSearch, carMakeStatus],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/car-make/search`, // search endpoint
-        `/v1/car-make/page/${pageParam}`, // list endpoint
+        `${apiVersion}/car-make/search`, // search endpoint
+        `${apiVersion}/car-make/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -158,8 +159,8 @@ const CarMakeList = ({ setItemEdit }) => {
           />
         </div>
       </div>
-      <div className="relative min-h-[20vh] overflow-auto">
-        {status !== "loading" && isFetching && <TableSpinner />}
+      <div className="relative min-h-[20vh] overflow-hidden">
+        {status !== "loading" && isFetching && <FetchingSpinner />}
         <table>
           <thead>
             <tr>
@@ -204,9 +205,9 @@ const CarMakeList = ({ setItemEdit }) => {
                       </td>
                       <td className="hidden sm:table-cell">
                         {item.car_make_is_active === 1 ? (
-                          <Status text="active" />
+                          <Status text="Active" />
                         ) : (
-                          <Status text="inactive" />
+                          <Status text="Inactive" />
                         )}
                       </td>
                       <td>{item.car_make_name}</td>

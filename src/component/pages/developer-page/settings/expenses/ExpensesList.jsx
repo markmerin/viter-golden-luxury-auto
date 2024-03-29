@@ -1,4 +1,4 @@
-import { getUserType } from "@/component/helpers/functions-general";
+import { apiVersion, getUserType } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -9,6 +9,7 @@ import TableLoading from "@/component/partials/TableLoading";
 import ModalArchive from "@/component/partials/modals/ModalArchive";
 import ModalDelete from "@/component/partials/modals/ModalDelete";
 import ModalRestore from "@/component/partials/modals/ModalRestore";
+import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import TableSpinner from "@/component/partials/spinners/TableSpinner";
 import {
   setIsAdd,
@@ -58,8 +59,8 @@ const ExpensesList = ({ setItemEdit }) => {
     ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/expenses/search`, // search endpoint
-        `/v1/expenses/page/${pageParam}`, // list endpoint
+        `${apiVersion}/expenses/search`, // search endpoint
+        `${apiVersion}/expenses/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -164,7 +165,7 @@ const ExpensesList = ({ setItemEdit }) => {
         </div>
       </div>
       <div className="relative min-h-[20vh] overflow-auto">
-        {status !== "loading" && isFetching && <TableSpinner />}
+        {status !== "loading" && isFetching && <FetchingSpinner />}
         <table>
           <thead>
             <tr>

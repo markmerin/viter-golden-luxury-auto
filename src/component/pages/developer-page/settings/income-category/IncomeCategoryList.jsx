@@ -1,4 +1,4 @@
-import { getUserType } from "@/component/helpers/functions-general";
+import { apiVersion, getUserType } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -25,6 +25,7 @@ import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import { HiUsers } from "react-icons/hi2";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
+import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 
 const IncomeCategoryList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -58,8 +59,8 @@ const IncomeCategoryList = ({ setItemEdit }) => {
     ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/income-category/search`, // search endpoint
-        `/v1/income-category/page/${pageParam}`, // list endpoint
+        `${apiVersion}/income-category/search`, // search endpoint
+        `${apiVersion}/income-category/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -164,7 +165,7 @@ const IncomeCategoryList = ({ setItemEdit }) => {
         </div>
       </div>
       <div className="relative min-h-[20vh] overflow-auto">
-        {status !== "loading" && isFetching && <TableSpinner />}
+        {status !== "loading" && isFetching && <FetchingSpinner />}
         <table>
           <thead>
             <tr>
