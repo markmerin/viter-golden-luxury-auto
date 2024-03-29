@@ -111,8 +111,6 @@ const Account = () => {
           </div>
         </div>
 
-        <hr />
-
         <div className="relative pt-2 pb-40 max-w-[650px]">
           <div
             className="group flex items-center justify-between border-b border-solid border-gray-300 cursor-pointer relative"
