@@ -22,7 +22,7 @@ import { StoreContext } from "../../store/StoreContext";
 // export const devApiUrl = `${urlPathLcss}/rest`;
 // export const devBaseUrl = `${urlPathLcss}`;
 // export const devBaseImgUrl = `${imgUrlPath}`;
-// export const devNavUrl = "/v1";
+// export const devNavUrl = "";
 // export const apiVersion = "/v1";
 
 // ONLINE PRODUCTION START HERE //
