@@ -10,9 +10,9 @@ import {
 import { StoreContext } from "../../store/StoreContext";
 
 // // // Mac // Mon
-const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
-const imgUrlPath =
-  "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
+// const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
+// const imgUrlPath =
+//   "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
 
 // // // // Patrick
 const urlPathLcss = `https://devapp.fbasapp.com`;

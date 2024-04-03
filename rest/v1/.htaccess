@@ -8,6 +8,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 Header set Access-Control-Allow-Origin *
 
 ######################################### FOR DEVELOPER #####################################
+### FOR UPLOAD PHOTO ###
+RewriteRule ^upload/photo$ core/upload-photo.php [L]
 
 ### ACCOUNT CHANGE PASS ### 
 RewriteRule ^account/system/update-password$ controllers/developer/account/system/account-change-password.php [L] 

@@ -5,7 +5,7 @@ import TableLoading from "@/component/partials/TableLoading";
 import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import React from "react";
-import { FaCar, FaUser } from "react-icons/fa";
+import { FaCar, FaCarSide, FaUser } from "react-icons/fa";
 import { FaHandHoldingDollar } from "react-icons/fa6";
 import { StoreContext } from "../../../../../store/StoreContext";
 import {
@@ -99,7 +99,7 @@ const ClientViewInfo = () => {
             </li>
             <li>
               <div className="group flex items-center justify-between gap-2 border-b border-solid border-gray-300">
-                <FaCar />
+                <FaCarSide />
                 {getPageLink(
                   link,
                   `client/view-info/car?clientId=${clientId}`,

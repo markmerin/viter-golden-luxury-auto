@@ -98,6 +98,7 @@ const ClientCar = () => {
               isFetchingClient={isFetching}
               clientId={clientId}
               setItemEdit={setItemEdit}
+              itemEdit={itemEdit}
             />
           </div>
         )}

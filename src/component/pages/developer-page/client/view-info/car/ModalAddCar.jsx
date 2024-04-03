@@ -1,7 +1,13 @@
 import useQueryData from "@/component/custom-hooks/useQueryData";
-import { InputSelect, InputText } from "@/component/helpers/FormInputs";
+import useUploadPhoto from "@/component/custom-hooks/useUploadPhoto";
+import {
+  InputFileUpload,
+  InputSelect,
+  InputText,
+} from "@/component/helpers/FormInputs";
 import {
   apiVersion,
+  devBaseImgUrl,
   handleEscape,
 } from "@/component/helpers/functions-general";
 import { queryData } from "@/component/helpers/queryData";
@@ -17,13 +23,18 @@ import { StoreContext } from "@/store/StoreContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
-import { FaTimesCircle } from "react-icons/fa";
+import { FaRegImage, FaTimesCircle, FaUpload } from "react-icons/fa";
 import * as Yup from "yup";
 
 const ModalAddCar = ({ clientId, itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const queryClient = useQueryClient();
+
+  const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
+    `${apiVersion}/upload/photo`,
+    dispatch
+  );
 
   const {
     isLoading,
@@ -94,6 +105,8 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     setAnimate("");
   }, []);
 
+  console.log(photo);
+
   return (
     <>
       <ModalWrapperSide
@@ -117,14 +130,68 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              mutation.mutate(values);
+              // mutate data
+              uploadPhoto();
+              mutation.mutate({
+                ...values,
+                car_photo:
+                  itemEdit.car_photo === "" || photo
+                    ? photo.name
+                    : itemEdit.car_photo,
+              });
             }}
           >
             {(props) => {
               return (
                 <Form>
                   <div className="modal-overflow">
-                    <div className="relative mt-5 mb-6">
+                    <div className="relative mt-5 mb-6 border border-gray-300 rounded-md">
+                      {photo || (itemEdit && itemEdit.car_photo !== "") ? (
+                        <img
+                          src={
+                            photo
+                              ? URL.createObjectURL(photo) // preview
+                              : itemEdit.car_photo // check db
+                              ? devBaseImgUrl + "/" + itemEdit.car_photo
+                              : null
+                          }
+                          alt="car photo"
+                          className="rounded-tr-md rounded-tl-md max-h-full w-full object-cover object-center m-auto"
+                        />
+                      ) : (
+                        // <FaRegImage className="m-auto h-20 w-20 fill-gray-200" />
+                        <span className="min-h-20 flex items-center justify-center">
+                          <span className="text-accent mr-1">Drag & Drop</span>{" "}
+                          photo here or{" "}
+                          <span className="text-accent ml-1">Browse</span>
+                        </span>
+                      )}
+
+                      {(photo !== null ||
+                        (itemEdit && itemEdit.car_photo !== "")) && (
+                        <span className="min-h-10 flex items-center justify-center">
+                          <span className="text-accent mr-1">Drag & Drop</span>{" "}
+                          photo here or{" "}
+                          <span className="text-accent ml-1">Browse</span>
+                        </span>
+                      )}
+
+                      {/* <FaUpload className="opacity-100 duration-200 group-hover:opacity-100 fill-dark/70 absolute top-0 right-0 bottom-0 left-0 min-w-[1.2rem] min-h-[1.2rem] max-w-[1.2rem] max-h-[1.2rem] m-auto cursor-pointer" /> */}
+                      <InputFileUpload
+                        label="Car Photo"
+                        name="photo"
+                        type="file"
+                        id="myFile"
+                        accept="image/*"
+                        title="Upload photo"
+                        onChange={handleChangePhoto}
+                        onDragOver={handleChangePhoto}
+                        onDrop={handleChangePhoto}
+                        className="opacity-0 absolute right-0 bottom-0 left-0 m-auto cursor-pointer h-full"
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
                       <InputSelect
                         label="Vehicle Make"
                         name="car_vehicle_make_id"
@@ -238,7 +305,9 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                     <div className="absolute bottom-0 left-0 flex justify-end w-full gap-2 px-6 mt-6 mb-4 modal__action">
                       <button
                         type="submit"
-                        disabled={mutation.isPending || !props.dirty}
+                        disabled={
+                          (mutation.isPending || !props.dirty) && photo === null
+                        }
                         className="relative btn-modal-submit"
                       >
                         {mutation.isPending ? <ButtonSpinner /> : "Add"}

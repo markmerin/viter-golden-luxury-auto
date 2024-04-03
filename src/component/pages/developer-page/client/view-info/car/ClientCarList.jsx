@@ -31,18 +31,21 @@ import {
 } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
+import ModalViewCar from "./ModalViewCar";
 
 const ClientCarList = ({
   isLoadingClient,
   isFetchingClient,
   clientId,
   setItemEdit,
+  itemEdit,
 }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
   const [dataItem, setData] = React.useState(null);
   const [onSearch, setOnSearch] = React.useState(false);
   const [isFilter, setIsFilter] = React.useState(false);
+  const [isViewImage, setIsViewImage] = React.useState(false);
   const [clientStatus, setClientStatus] = React.useState("all");
   const [isTableScroll, setIsTableScroll] = React.useState(false);
   const search = React.useRef({ value: "" });
@@ -89,6 +92,11 @@ const ClientCarList = ({
       fetchNextPage();
     }
   }, [inView]);
+
+  const handleViewCar = (item) => {
+    setIsViewImage(true);
+    setItemEdit(item);
+  };
 
   const handleEdit = (item) => {
     dispatch(setIsAdd(true));
@@ -273,7 +281,7 @@ const ClientCarList = ({
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
                                   data-tooltip="View Image"
-                                  onClick={() => handleArchive(item)}
+                                  onClick={() => handleViewCar(item)}
                                 >
                                   <FaImage className="w-3 h-3" />
                                 </button>
@@ -339,6 +347,11 @@ const ClientCarList = ({
           store={store}
         />
       </div>
+
+      {isViewImage && (
+        <ModalViewCar itemEdit={itemEdit} setIsViewImage={setIsViewImage} />
+      )}
+
       {store.isArchive && (
         <ModalArchive
           mysqlApiArchive={`${apiVersion}/car/active/${id}`}
