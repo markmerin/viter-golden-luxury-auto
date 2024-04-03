@@ -10,8 +10,8 @@ import ModalSuccess from "@/component/partials/modals/ModalSuccess";
 import { setIsAdd, setIsSettingsOpen } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import Navigation from "../../Navigation";
-import RepresentativeList from "./RepresentativeList";
 import ModalAddRepresentative from "./ModalAddRepresentative";
+import RepresentativeList from "./RepresentativeList";
 
 const Representative = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -38,7 +38,7 @@ const Representative = () => {
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
-            <h4 className="my-3 text-base capitalize">
+            <h4 className="text-base my-3 capitalize">
               {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
@@ -49,6 +49,7 @@ const Representative = () => {
             </button>
           </div>
         </div>
+
         <div className="w-full pt-5 pb-4 ">
           <RepresentativeList setItemEdit={setItemEdit} />
         </div>

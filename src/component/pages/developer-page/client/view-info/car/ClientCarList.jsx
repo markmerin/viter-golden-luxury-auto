@@ -1,4 +1,4 @@
-import { apiVersion } from "@/component/helpers/functions-general";
+import { apiVersion, formatDate } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -21,25 +21,37 @@ import {
 import { StoreContext } from "@/store/StoreContext";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
-import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
-
+import {
+  FaArchive,
+  FaEdit,
+  FaHistory,
+  FaImage,
+  FaListUl,
+  FaTrash,
+} from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
 
-const RepresentativeList = ({ setItemEdit }) => {
+const ClientCarList = ({
+  isLoadingClient,
+  isFetchingClient,
+  clientId,
+  setItemEdit,
+}) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
   const [dataItem, setData] = React.useState(null);
   const [onSearch, setOnSearch] = React.useState(false);
   const [isFilter, setIsFilter] = React.useState(false);
-  const [representativesStatus, setRepresentativesStatus] =
-    React.useState("all");
+  const [clientStatus, setClientStatus] = React.useState("all");
   const [isTableScroll, setIsTableScroll] = React.useState(false);
   const search = React.useRef({ value: "" });
   const [page, setPage] = React.useState(1);
   const { ref, inView } = useInView();
-  let counter = 1;
   const scrollRef = React.useRef(null);
+
+  let counter = 1;
+
   const {
     data: result,
     error,
@@ -49,22 +61,17 @@ const RepresentativeList = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: [
-      "representatives",
-      search.current.value,
-      store.isSearch,
-      representativesStatus,
-    ],
+    queryKey: ["car", search.current.value, store.isSearch, clientStatus],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `${apiVersion}/representatives/search`, // search endpoint
-        `${apiVersion}/representatives/page/${pageParam}`, // list endpoint
+        `/${apiVersion}/car/search`, // search endpoint
+        `/${apiVersion}/car/page/${pageParam}/${clientId}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
-          id: "",
           isFilter,
-          representatives_is_active: representativesStatus,
+          car_is_active: clientStatus,
+          car_client_id: clientId,
         }
       ),
     getNextPageParam: (lastPage) => {
@@ -90,22 +97,22 @@ const RepresentativeList = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsArchive(true));
-    setId(item.representatives_aid);
+    setId(item.car_aid);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.representatives_aid);
+    setId(item.car_aid);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsDelete(true));
-    setId(item.representatives_aid);
+    setId(item.car_aid);
     setData(item);
   };
 
-  const handleChangeRepresentativesStatus = (e) => {
-    setRepresentativesStatus(e.target.value);
+  const handleChangeClientStatus = (e) => {
+    setClientStatus(e.target.value);
     setIsFilter(false);
     dispatch(setIsSearch(false));
     search.current.value = "";
@@ -134,8 +141,8 @@ const RepresentativeList = ({ setItemEdit }) => {
               <label>Filter</label>
               <select
                 name="status"
-                value={representativesStatus}
-                onChange={(e) => handleChangeRepresentativesStatus(e)}
+                value={clientStatus}
+                onChange={(e) => handleChangeClientStatus(e)}
                 disabled={isFetching || status === "pending"}
                 className="h-[35px] py-0"
               >
@@ -174,9 +181,9 @@ const RepresentativeList = ({ setItemEdit }) => {
         </div>
       </div>
       <div className="relative rounded-md text-center overflow-auto z-0">
-        {isFetching && !isFetchingNextPage && status !== "pending" && (
-          <FetchingSpinner />
-        )}
+        {(isFetching || isFetchingClient) &&
+          !isFetchingNextPage &&
+          status !== "pending" && <FetchingSpinner />}
         <div
           className="overflow-auto max-h-[70vh] "
           ref={scrollRef}
@@ -187,16 +194,25 @@ const RepresentativeList = ({ setItemEdit }) => {
               <tr>
                 <th className="w-[2rem] text-center">#</th>
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Vehicle Make</th>
+                <th>Vehicle Year</th>
+                <th>Model / Specs</th>
+                <th>VIN #</th>
+                <th>Licence / Plate Number</th>
+                <th>Licence / Registration Date</th>
+                <th>Gas</th>
+                <th>Tire Size</th>
+                <th>Oil Type</th>
                 <th colSpan={"100%"}></th>
               </tr>
             </thead>
             <tbody>
-              {(status === "pending" || result?.pages[0].data.length === 0) && (
+              {(status === "pending" ||
+                isLoadingClient ||
+                result?.pages[0].data.length === 0) && (
                 <tr>
                   <td colSpan="100%" className="p-10">
-                    {status === "pending" ? (
+                    {status === "pending" || isLoadingClient ? (
                       <TableLoading count={20} cols={3} />
                     ) : (
                       <NoData />
@@ -219,39 +235,56 @@ const RepresentativeList = ({ setItemEdit }) => {
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
                         <td className="pl-3 sm:hidden">
-                          {item.representatives_is_active === 1 ? (
+                          {item.car_is_active === 1 ? (
                             <span className="block w-3 h-3 bg-green-700 rounded-full"></span>
                           ) : (
                             <span className="block w-3 h-3 bg-gray-400 rounded-full"></span>
                           )}
                         </td>
                         <td className="hidden sm:table-cell">
-                          {item.representatives_is_active === 1 ? (
+                          {item.car_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
                         </td>
+                        <td>{item.car_make_name}</td>
+                        <td>{item.car_year}</td>
+                        <td>{item.car_specs}</td>
+                        <td>{item.car_vin_number}</td>
+                        <td>{item.car_plate_number}</td>
                         <td>
-                          {item.representatives_lname},{" "}
-                          {item.representatives_fname}
+                          {item.car_registration_date === ""
+                            ? "Unspecified"
+                            : formatDate(item.car_registration_date)}
                         </td>
-                        <td>{item.representatives_email}</td>
+                        <td>{item.car_gas}</td>
+                        <td>{item.car_tire_size}</td>
+                        <td>{item.car_oil_type}</td>
 
                         <td
                           colSpan={"100%"}
                           className="opacity-100 group-hover:opacity-100"
                         >
                           <div className="flex items-center justify-end gap-3 ml-4">
-                            {item.representatives_is_active === 1 ? (
+                            {item.car_is_active === 1 ? (
                               <div className="flex items-center ">
+                                <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
+                                  data-tooltip="View Image"
+                                  onClick={() => handleArchive(item)}
+                                >
+                                  <FaImage className="w-3 h-3" />
+                                </button>
+
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
                                   data-tooltip="Edit"
                                   onClick={() => handleEdit(item)}
                                 >
-                                  <FaEdit />
+                                  <FaEdit className="w-3 h-3" />
                                 </button>
 
                                 <button
@@ -308,31 +341,31 @@ const RepresentativeList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`${apiVersion}/representatives/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/car/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
-          queryKey={"representatives"}
+          queryKey={"car"}
         />
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/representatives/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/car/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
-          queryKey={"representatives"}
+          queryKey={"car"}
         />
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/representatives/${id}`}
+          mysqlApiDelete={`${apiVersion}/car/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
-          item={dataItem.representatives_name}
-          queryKey={"representatives"}
+          item={dataItem.car_name}
+          queryKey={"car"}
         />
       )}
     </>
   );
 };
 
-export default RepresentativeList;
+export default ClientCarList;

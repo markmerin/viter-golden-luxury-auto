@@ -42,7 +42,6 @@ const Earning = () => {
             </button>
           </div> */}
         </div>
-        <hr />
         <div className="w-full pt-5 pb-4 ">
           <EarningList setItemEdit={setItemEdit} />
         </div>

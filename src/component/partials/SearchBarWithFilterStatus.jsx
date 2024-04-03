@@ -44,33 +44,17 @@ const SearchBarWithFilterStatus = ({
       }}
       className="search-box"
     >
-      {/* <div className="flex items-center pb-2">
-        <input
-          type="search"
-          placeholder="Search here..."
-          className="rounded-tr-none rounded-br-none border-r-0 text-xs py-[0px] h-[35px]"
-          ref={search}
-          onChange={(e) => handleChange(e)}
-        />
-        <button
-          type="submit"
-          className="btn-action-table text-[16px] h-[35px] py-[5px] rounded-tl-none rounded-bl-none border-l-0 bg-primary text-white border-primary hover:bg-primary"
-        >
-          <FaSearch />
-        </button>
-      </div> */}
-
-      <div className="relative">
+      <div className="flex items-center relative">
         <div
           type="submit"
-          className="absolute left-2 top-[5.1px] text-[14px] h-[30px] py-[3px] rounded-tr-none rounded-br-none border-l-0  text-gray-400 cursor-default"
+          className="absolute pointer-events-none cursor-default left-0 btn-action-table border-0 text-[16px] py-[5px] border-l-0 text-gray-300 border-gray-300 hover:bg-[unset]"
         >
           <FaSearch />
         </div>
         <input
           type="search"
           placeholder="Search here..."
-          className="text-xs py-[0px] h-[30px] pl-7"
+          className="text-xs py-[0px] h-[35px] pl-7"
           ref={search}
           onChange={(e) => handleChange(e)}
         />
