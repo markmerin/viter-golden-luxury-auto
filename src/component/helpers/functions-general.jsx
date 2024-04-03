@@ -14,25 +14,25 @@ import { StoreContext } from "../../store/StoreContext";
 // const imgUrlPath =
 //   "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
 
-// // // // Patrick
-const urlPathLcss = `https://devapp.fbasapp.com`;
-const imgUrlPath = `https://devapp.fbasapp.com/img`;
+// // // // // Patrick
+// const urlPathLcss = `https://devapp.fbasapp.com`;
+// const imgUrlPath = `https://devapp.fbasapp.com/img`;
 
-// // // Local Dev and Online Dev URL
-export const devApiUrl = `${urlPathLcss}/rest`;
-export const devBaseUrl = `${urlPathLcss}`;
-export const devBaseImgUrl = `${imgUrlPath}`;
-export const devNavUrl = "";
-export const apiVersion = "/v1";
+// // // // Local Dev and Online Dev URL
+// export const devApiUrl = `${urlPathLcss}/rest`;
+// export const devBaseUrl = `${urlPathLcss}`;
+// export const devBaseImgUrl = `${imgUrlPath}`;
+// export const devNavUrl = "";
+// export const apiVersion = "/v1";
 
 // ONLINE PRODUCTION START HERE //
 
 // Online URL prod hris
-// export const devApiUrl = "https://devapp.fbasapp.com/rest";
-// export const devBaseUrl = "https://devapp.fbasapp.com/gla";
-// export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";
-// export const devNavUrl = "/gla";
-// export const apiVersion = "/gla";
+export const devApiUrl = "https://devapp.fbasapp.com/rest";
+export const devBaseUrl = "https://devapp.fbasapp.com/gla";
+export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";
+export const devNavUrl = "/gla";
+export const apiVersion = "/gla";
 
 export const devKey =
   "$2a$12$5obsBD1n0We9BIAM01RJy.4F0t4W2KmMPJppAur2eY1tmpG4y87vO";

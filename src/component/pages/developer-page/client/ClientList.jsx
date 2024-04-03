@@ -57,8 +57,8 @@ const ClientList = () => {
     queryKey: ["client", search.current.value, store.isSearch, clientStatus],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/${apiVersion}/client/search`, // search endpoint
-        `/${apiVersion}/client/page/${pageParam}`, // list endpoint
+        `${apiVersion}/client/search`, // search endpoint
+        `${apiVersion}/client/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
