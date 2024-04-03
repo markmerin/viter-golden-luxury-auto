@@ -4,7 +4,7 @@ require '../../../core/header.php';
 // use needed functions
 require '../../../core/functions.php';
 // use needed classes
-require '../../../models/developer/client/client.php';
+require '../../../models/developer/client/Client.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();

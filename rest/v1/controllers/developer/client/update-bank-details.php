@@ -5,7 +5,7 @@ require '../../../core/header.php';
 require '../../../core/functions.php';
 require 'functions.php';
 // use needed classes
-require '../../../models/developer/client/client.php';
+require '../../../models/developer/client/Client.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();
