@@ -1,3 +1,4 @@
+import { setIsAdd } from "@/store/StoreAction";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 import { StoreContext } from "../../../../store/StoreContext";
@@ -9,14 +10,13 @@ import ModalError from "../../../partials/modals/ModalError";
 import ModalSuccess from "../../../partials/modals/ModalSuccess";
 import Navigation from "../Navigation";
 import ClientList from "./ClientList";
+import ModalAddClient from "./ModalAddClient";
 
 const Client = () => {
   const { store, dispatch } = React.useContext(StoreContext);
-  const [itemEdit, setItemEdit] = React.useState(null);
 
   const handleAdd = () => {
-    // dispatch(setIsAdd(true));
-    // setItemEdit(null);
+    dispatch(setIsAdd(true));
   };
 
   return (
@@ -35,20 +35,20 @@ const Client = () => {
               {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
-          {/* <div className="flex items-center gap-1 print:invisible">
+          <div className="flex items-center gap-1 print:invisible">
             <button type="button" className="btn-primary" onClick={handleAdd}>
               <FaPlus />
               <span>Add</span>
             </button>
-          </div> */}
+          </div>
         </div>
-        <hr />
         <div className="w-full pt-5 pb-4 ">
-          <ClientList setItemEdit={setItemEdit} />
+          <ClientList />
         </div>
         <Footer />
       </div>
 
+      {store.isAdd && <ModalAddClient />}
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}
     </>

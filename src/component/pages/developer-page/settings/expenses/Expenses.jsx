@@ -38,7 +38,7 @@ const Expenses = () => {
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
-            <h4 className="my-3 text-base capitalize">
+            <h4 className="text-base my-3 capitalize">
               {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
@@ -49,6 +49,7 @@ const Expenses = () => {
             </button>
           </div>
         </div>
+
         <div className="w-full pt-5 pb-4 ">
           <ExpensesList setItemEdit={setItemEdit} />
         </div>

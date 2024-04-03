@@ -37,7 +37,6 @@ const Users = () => {
           </div>
         </div>
 
-        <hr />
         <ul className="pb-40 relative">
           <li>
             <div className="group flex items-center justify-between border-b border-solid border-gray-300">

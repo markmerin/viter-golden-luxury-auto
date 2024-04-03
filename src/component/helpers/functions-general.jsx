@@ -15,8 +15,8 @@ const imgUrlPath =
   "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
 
 // // // // Patrick
-// const urlPathLcss = `https://devapp.fbasapp.com`;
-// const imgUrlPath = `https://devapp.fbasapp.com/img`;
+const urlPathLcss = `https://devapp.fbasapp.com`;
+const imgUrlPath = `https://devapp.fbasapp.com/img`;
 
 // // // Local Dev and Online Dev URL
 export const devApiUrl = `${urlPathLcss}/rest`;
