@@ -154,12 +154,6 @@ body {
   }
 }
 
-<<<<<<< HEAD
-
-.navigation.show-nav {
-  @apply !ml-0
-}
-=======
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -173,4 +167,8 @@ input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
 }
->>>>>>> 5811a993b9a155a457d3334b86bf58d80166ac2a
+
+
+.expand {
+  @apply ml-0 sm:ml-[-256px]
+}

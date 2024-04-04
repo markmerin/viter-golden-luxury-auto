@@ -41,35 +41,34 @@ const UserClient = () => {
   return (
     <>
       <Header />
-      <div className="flex items-start">
-        <Navigation menu="settings" submenu="users" />
-        <div
-          className={`wrapper  
-           ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
-           transition-all ease-in duration-200 w-full ml-0 sm:ml-[256px] `}
-        >
-          <div className="flex items-start justify-between mt-1 md:ml-0 print:hidden">
-            <div className="flex flex-col justify-center">
-              <BreadCrumbs param={location.search} />
-              <h4 className="my-3 text-base capitalize">
-                {location.pathname.split("/").pop().replaceAll("-", " ")}
-              </h4>
-            </div>
-            {/* <div className="flex items-center gap-1 print:invisible">
+      <Navigation menu="settings" submenu="users" />
+      <div
+        className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
+          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
+        }`}
+      >
+        <div className="mt-1 md:ml-0 print:hidden">
+          <div className="flex flex-col justify-center">
+            <BreadCrumbs param={location.search} />
+            <h4 className="my-3 text-base capitalize">
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
+            </h4>
+          </div>
+          {/* <div className="flex items-center gap-1 print:invisible">
             <button type="button" className="btn-primary" onClick={handleAdd}>
               <FaPlus />
               <span>Add</span>
             </button>
           </div> */}
-          </div>
-
-          <div className="w-full pt-5 pb-4 ">
-            <p className="text-left">We'll be right back.</p>
-            {/* <UserMainList setItemEdit={setItemEdit} /> */}
-          </div>
-          <Footer />
         </div>
+
+        <div className="w-full pt-5 pb-4 ">
+          <p className="text-left">We'll be right back.</p>
+          {/* <UserMainList setItemEdit={setItemEdit} /> */}
+        </div>
+        <Footer />
       </div>
+
       {store.isAdd && <ModalAddUserMain itemEdit={itemEdit} roles={roles} />}
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}

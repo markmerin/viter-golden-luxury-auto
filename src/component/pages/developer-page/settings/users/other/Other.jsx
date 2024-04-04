@@ -25,53 +25,52 @@ const Other = () => {
   return (
     <>
       <Header />
-      <div className="flex items-start">
-        <Navigation menu="settings" submenu="users" />
-        <div
-          className={`wrapper  
-           ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
-           transition-all ease-in duration-200 w-full ml-0 sm:ml-[256px] `}
-        >
-          <div className="flex items-start justify-between mt-1 md:ml-0 print:hidden">
-            <div className="flex flex-col justify-center">
-              <BreadCrumbs param={location.search} />
-              <h4 className="my-3 text-base capitalize">
-                {location.pathname.split("/").pop().replaceAll("-", " ")}
-              </h4>
-              <div className="flex items-center gap-1 print:invisible"></div>
-            </div>
-          </div>
 
-          <ul className="relative pb-40">
-            <li>
-              <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-                {getPageLink(
-                  link,
-                  `${
-                    store.credentials.data.role_is_developer === 1
-                      ? "settings/user/other/staff"
-                      : "settings/user/staff"
-                  }`,
-                  "GLA Admin"
-                )}
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-                {getPageLink(
-                  link,
-                  `${
-                    store.credentials.data.role_is_developer === 1
-                      ? "settings/user/other/client"
-                      : "settings/user/client"
-                  }`,
-                  "Client User"
-                )}
-              </div>
-            </li>
-          </ul>
-          <Footer />
+      <Navigation menu="settings" submenu="users" />
+      <div
+        className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
+          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
+        }`}
+      >
+        <div className="mt-1 md:ml-0 print:hidden">
+          <div className="flex flex-col justify-center">
+            <BreadCrumbs param={location.search} />
+            <h4 className="my-3 text-base capitalize">
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
+            </h4>
+            <div className="flex items-center gap-1 print:invisible"></div>
+          </div>
         </div>
+
+        <ul className="relative pb-40">
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(
+                link,
+                `${
+                  store.credentials.data.role_is_developer === 1
+                    ? "settings/user/other/staff"
+                    : "settings/user/staff"
+                }`,
+                "GLA Admin"
+              )}
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(
+                link,
+                `${
+                  store.credentials.data.role_is_developer === 1
+                    ? "settings/user/other/client"
+                    : "settings/user/client"
+                }`,
+                "Client User"
+              )}
+            </div>
+          </li>
+        </ul>
+        <Footer />
       </div>
     </>
   );

@@ -29,6 +29,14 @@ const Navigation = ({ menu, submenu = null }) => {
     }, 10);
   };
 
+  const handleLinkClick = (e) => {
+    if (window.innerWidth > 650) {
+      dispatch(setIsShow(true));
+    } else {
+      dispatch(setIsShow(!store.isShow));
+    }
+  };
+
   const handleScroll = (e) => {
     dispatch(setScrollPosition(e.target.scrollTop));
   };
@@ -37,16 +45,14 @@ const Navigation = ({ menu, submenu = null }) => {
     scrollRef.current?.scrollTo(0, store.scrollPosition);
   }, []);
 
-  console.log(store.isShow);
-
   return (
     <>
       <nav
         ref={scrollRef}
         onScroll={(e) => handleScroll(e)}
         className={`${
-          store.isShow ? "nav-show" : " "
-        }  navigation overflow-visible z-50 bg-dark w-[256px] px-2 h-[calc(100vh-36px)]  transition-all shrink-0 -ml-[256px] sm:ml-0`}
+          store.isShow ? "sm:ml-0" : "expand "
+        }  navigation overflow-visible z-50 bg-dark w-[256px] px-2 h-[calc(100vh)]  transition-all shrink-0 -ml-[256px] `}
       >
         <button
           onClick={handleShow}
@@ -63,7 +69,7 @@ const Navigation = ({ menu, submenu = null }) => {
           </li>
 
           <li
-            onClick={handleShow}
+            onClick={handleLinkClick}
             className={
               menu === "client"
                 ? "active uppercase"
@@ -80,7 +86,7 @@ const Navigation = ({ menu, submenu = null }) => {
           </li>
 
           <li
-            onClick={handleShow}
+            onClick={handleLinkClick}
             className={
               menu === "car"
                 ? "active uppercase"
@@ -97,7 +103,7 @@ const Navigation = ({ menu, submenu = null }) => {
           </li>
 
           <li
-            onClick={handleShow}
+            onClick={handleLinkClick}
             className={
               menu === "earnings"
                 ? "active uppercase"
@@ -142,7 +148,7 @@ const Navigation = ({ menu, submenu = null }) => {
             <ul className="pb-6 mt-1 ml-7 lg:block">
               <li>
                 <Link
-                  onClick={() => handleShow()}
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/user`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "users"
@@ -155,7 +161,7 @@ const Navigation = ({ menu, submenu = null }) => {
               </li>
               <li>
                 <Link
-                  onClick={() => handleShow()}
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/car-make`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "car-make"
@@ -168,7 +174,7 @@ const Navigation = ({ menu, submenu = null }) => {
               </li>
               <li>
                 <Link
-                  onClick={() => handleShow()}
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/representatives`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "representatives"
@@ -181,7 +187,7 @@ const Navigation = ({ menu, submenu = null }) => {
               </li>
               <li>
                 <Link
-                  onClick={() => handleShow()}
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/expenses`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "expenses"
@@ -194,7 +200,7 @@ const Navigation = ({ menu, submenu = null }) => {
               </li>
               <li>
                 <Link
-                  onClick={() => handleShow()}
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/income-category`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "income-category"
@@ -207,7 +213,7 @@ const Navigation = ({ menu, submenu = null }) => {
               </li>
               <li>
                 <Link
-                  onClick={() => handleShow()}
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/income-item`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "income-item"
