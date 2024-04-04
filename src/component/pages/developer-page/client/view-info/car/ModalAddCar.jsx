@@ -63,6 +63,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["client-car"] });
+      queryClient.invalidateQueries({ queryKey: ["car"] });
 
       // show error box
       if (!data.success) {
@@ -77,6 +78,8 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
       }
     },
   });
+
+  console.log(itemEdit.car_photo);
 
   const initVal = {
     car_photo: itemEdit ? itemEdit.car_photo : "",
@@ -130,7 +133,9 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
         className={`transition-all ease-in-out transform duration-200 ${animate}`}
       >
         <div className="relative mb-4 modal_header">
-          <h3 className="text-sm text-black">Add Car</h3>
+          <h3 className="text-sm text-black">
+            {itemEdit ? "Update" : "Add"} Car
+          </h3>
           <button
             type="button"
             className="absolute top-0 right-0"
@@ -391,7 +396,13 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         }
                         className="relative btn-modal-submit"
                       >
-                        {mutation.isPending ? <ButtonSpinner /> : "Add"}
+                        {mutation.isPending ? (
+                          <ButtonSpinner />
+                        ) : itemEdit ? (
+                          "Save"
+                        ) : (
+                          "Add"
+                        )}
                       </button>
                       <button
                         type="reset"

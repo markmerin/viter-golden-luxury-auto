@@ -36,6 +36,7 @@ import {
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
 import { Link, useNavigate } from "react-router-dom";
+import ModalAddCar from "../client/view-info/car/ModalAddCar";
 import ModalViewCar from "../client/view-info/car/ModalViewCar";
 
 const CarList = () => {
@@ -102,6 +103,7 @@ const CarList = () => {
   const handleEdit = (item) => {
     dispatch(setIsAdd(true));
     setItemEdit(item);
+    setId(item.client_aid);
   };
 
   const handleArchive = (item) => {
@@ -287,15 +289,7 @@ const CarList = () => {
                           className="opacity-100 group-hover:opacity-100"
                         >
                           <div className="flex items-center justify-end gap-3 ml-4">
-                            <button
-                              type="button"
-                              className="btn-action-table tooltip-action-table"
-                              data-tooltip="View Full Details"
-                              onClick={() => handleViewCar(item)}
-                            >
-                              <FaListAlt className="w-3 h-3" />
-                            </button>
-                            {/* {item.car_is_active === 1 ? (
+                            {item.car_is_active === 1 ? (
                               <div className="flex items-center ">
                                 <button
                                   type="button"
@@ -343,7 +337,7 @@ const CarList = () => {
                                   <FaTrash className="w-3 h-3" />
                                 </button>
                               </div>
-                            )} */}
+                            )}
                           </div>
                         </td>
                       </tr>
@@ -371,6 +365,8 @@ const CarList = () => {
       {isViewImage && (
         <ModalViewCar itemEdit={itemEdit} setIsViewImage={setIsViewImage} />
       )}
+
+      {store.isAdd && <ModalAddCar clientId={id} itemEdit={itemEdit} />}
 
       {store.isArchive && (
         <ModalArchive

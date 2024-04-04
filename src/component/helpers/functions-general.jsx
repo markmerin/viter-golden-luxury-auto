@@ -27,7 +27,7 @@ import { StoreContext } from "../../store/StoreContext";
 
 // ONLINE PRODUCTION START HERE //
 
-// Online URL prod hris
+// Online URL prod GLA
 export const devApiUrl = "https://devapp.fbasapp.com/rest";
 export const devBaseUrl = "https://devapp.fbasapp.com/gla";
 export const devBaseImgUrl = "https://devapp.fbasapp.com/gla/img";

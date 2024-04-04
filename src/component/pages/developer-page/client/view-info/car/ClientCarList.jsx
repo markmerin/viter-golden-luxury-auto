@@ -356,7 +356,12 @@ const ClientCarList = ({
       </div>
 
       {isViewImage && (
-        <ModalViewCar itemEdit={itemEdit} setIsViewImage={setIsViewImage} />
+        <ModalViewCar
+          itemEdit={itemEdit}
+          setIsViewImage={setIsViewImage}
+          isFetching={isFetching}
+          status={status}
+        />
       )}
 
       {store.isArchive && (

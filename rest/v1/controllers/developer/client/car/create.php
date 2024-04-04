@@ -11,7 +11,7 @@ if (array_key_exists("carid", $_GET)) {
 checkPayload($data);
 
 // get data
-$car->car_photo = $data["car_photo"];
+$car->car_photo = strtolower($data["car_photo"]);
 $car->car_client_id = $data["car_client_id"];
 $car->car_is_active = 1;
 $car->car_vehicle_make_id = $data["car_vehicle_make_id"];
