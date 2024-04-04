@@ -79,8 +79,6 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     },
   });
 
-  console.log(itemEdit.car_photo);
-
   const initVal = {
     car_photo: itemEdit ? itemEdit.car_photo : "",
     car_client_id: clientId,
@@ -188,7 +186,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                               : null
                           }
                           alt="car photo"
-                          className="rounded-tr-md rounded-tl-md max-h-full w-full object-cover object-center m-auto"
+                          className="rounded-tr-md rounded-tl-md h-[200px] max-h-[200px] w-full object-cover object-center m-auto"
                         />
                       ) : (
                         // <FaRegImage className="m-auto h-20 w-20 fill-gray-200" />

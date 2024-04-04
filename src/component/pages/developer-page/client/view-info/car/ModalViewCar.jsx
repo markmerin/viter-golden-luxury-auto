@@ -9,7 +9,7 @@ import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
-const ModalViewCar = ({ itemEdit, setIsViewImage, isFetching, status }) => {
+const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
   const [show, setShow] = React.useState("show");
 
   const handleClose = () => {
@@ -20,10 +20,6 @@ const ModalViewCar = ({ itemEdit, setIsViewImage, isFetching, status }) => {
   };
 
   handleEscape(() => handleClose());
-
-  console.log(isFetching);
-  console.log(status);
-  console.log(devBaseImgUrl + "/" + itemEdit.car_photo);
 
   return (
     <>
