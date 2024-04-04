@@ -9,6 +9,7 @@ import TableLoading from "@/component/partials/TableLoading";
 import ModalArchive from "@/component/partials/modals/ModalArchive";
 import ModalDelete from "@/component/partials/modals/ModalDelete";
 import ModalRestore from "@/component/partials/modals/ModalRestore";
+import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import TableSpinner from "@/component/partials/spinners/TableSpinner";
 import {
@@ -143,11 +144,13 @@ const RepresentativeList = ({ setItemEdit }) => {
           <div className="relative flex items-center gap-1 ml-2 text-sm text-gray-600">
             <MdOutlineFormatListNumbered />
             <span>
-              {isFetching || status === "pending"
-                ? "loading"
-                : store.isSearch || isFilter
-                ? result?.pages[0].count
-                : result?.pages[0].total}
+              {isFetching || status === "pending" ? (
+                <ButtonSpinner />
+              ) : store.isSearch || isFilter ? (
+                result?.pages[0].count
+              ) : (
+                result?.pages[0].total
+              )}
             </span>
           </div>
         </div>

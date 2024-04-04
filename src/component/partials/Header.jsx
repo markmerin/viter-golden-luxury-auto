@@ -85,19 +85,7 @@ const Header = () => {
       <header
         className={`pr-5 lg:pr-5 md:pr-5 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-dark `}
       >
-        <button
-          onClick={handleShowMenu}
-          className={`${
-            store.isShow ? "left-48 " : "left-0 "
-          } text-dark absolute top-0 z-50 flex items-center rounded-br-sm p-2 focus:outline-0 bg-dark hover:bg-dark hover:text-secondary transition-all ease-in duration-200`}
-          title={store.isShow ? "Collapse" : "Expand"}
-        >
-          <FaIndent
-            className={`h-4 w-4 duration-200 fill-white ${
-              store.isShow ? "-scale-x-[1]" : ""
-            }`}
-          />
-        </button>
+      
 
         <div className="header__avatar" ref={ref} onClick={handleShow}>
           <div className="flex items-center py-2 cursor-pointer">
@@ -106,7 +94,7 @@ const Header = () => {
                 show ? "!border-primary" : "border-opacity-50"
               }`}
             >
-              <div className="flex bg-dark rounded-full justify-center items-center h-8 w-8 ">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-dark ">
                 <span className="text-[0] first-letter:text-xs first-letter:font-bold text-white">
                   {name}
                 </span>
@@ -124,32 +112,32 @@ const Header = () => {
             >
               <span className="bg-dark/50 absolute w-full h-[3.5rem] left-0 top-0"></span>
               <div className="flex flex-col items-center py-3">
-                <FaUserCircle className="w-12 h-12 text-gray-400 mb-2 z-50 bg-white rounded-full" />
-                <p className="mb-1  flex items-center gap-2 font-bold">
+                <FaUserCircle className="z-50 w-12 h-12 mb-2 text-gray-400 bg-white rounded-full" />
+                <p className="flex items-center gap-2 mb-1 font-bold">
                   {name} - {role}
                 </p>
-                <p className="mb-0 pb-2 flex items-center gap-2 text-xs">
+                <p className="flex items-center gap-2 pb-2 mb-0 text-xs">
                   <MdOutlineMailOutline />
                   {email}
                 </p>
               </div>
 
-              <ul className="border-t border-b border-gray-100 py-2 ">
+              <ul className="py-2 border-t border-b border-gray-100 ">
                 <li className="flex items-center gap-2 hover:text-accent">
                   <MdOutlineAccountCircle />
-                  <Link to={`${devNavUrl}/${link}/account`} className=" w-full">
+                  <Link to={`${devNavUrl}/${link}/account`} className="w-full ">
                     Account
                   </Link>
                 </li>
               </ul>
 
               {store.credentials.data.role_is_client !== 1 && (
-                <ul className="border-t border-b border-gray-100 py-2 ">
+                <ul className="py-2 border-t border-b border-gray-100 ">
                   <li className="flex items-center gap-2 hover:text-accent">
                     <RiToolsLine />
                     <Link
                       to={`${devNavUrl}/${link}/maintenance`}
-                      className=" w-full"
+                      className="w-full "
                     >
                       Maintenance
                     </Link>
@@ -158,7 +146,7 @@ const Header = () => {
               )}
               <button
                 onClick={handleLogout}
-                className="hover:text-accent flex items-center gap-2 pt-2 w-full"
+                className="flex items-center w-full gap-2 pt-2 hover:text-accent"
               >
                 <MdOutlineLogout />
                 Logout

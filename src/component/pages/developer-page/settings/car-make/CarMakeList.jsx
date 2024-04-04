@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { HiUsers } from "react-icons/hi2";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
+import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 
 const CarMakeList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -137,11 +138,13 @@ const CarMakeList = ({ setItemEdit }) => {
           <div className="relative flex items-center gap-1 ml-2 text-sm text-gray-600">
             <MdOutlineFormatListNumbered />
             <span>
-              {isFetching || status === "pending"
-                ? "loading"
-                : store.isSearch || isFilter
-                ? result?.pages[0].count
-                : result?.pages[0].total}
+              {isFetching || status === "pending" ? (
+                <ButtonSpinner />
+              ) : store.isSearch || isFilter ? (
+                result?.pages[0].count
+              ) : (
+                result?.pages[0].total
+              )}
             </span>
           </div>
         </div>

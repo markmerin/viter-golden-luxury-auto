@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { HiUsers } from "react-icons/hi2";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
+import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 
 const IncomeCategoryList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -142,11 +143,13 @@ const IncomeCategoryList = ({ setItemEdit }) => {
           <div className="relative flex items-center gap-1 ml-2 text-sm text-gray-600">
             <MdOutlineFormatListNumbered />
             <span>
-              {isFetching || status === "loading"
-                ? "loading"
-                : store.isSearch || isFilter
-                ? result?.pages[0].count
-                : result?.pages[0].total}
+              {isFetching || status === "loading" ? (
+                <ButtonSpinner />
+              ) : store.isSearch || isFilter ? (
+                result?.pages[0].count
+              ) : (
+                result?.pages[0].total
+              )}
             </span>
           </div>
         </div>

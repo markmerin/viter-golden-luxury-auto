@@ -111,13 +111,13 @@ const Maintenance = () => {
       <Header />
       <Navigation menu="" submenu="" />
       <div
-        className={`wrapper ${store.isShow && "ml-48"} ${
-          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
-        }`}
+        className={`wrapper  
+           ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
+           transition-all ease-in duration-200 w-full ml-0 sm:ml-[256px] `}
       >
-        <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
+        <div className="flex items-start justify-between mt-1 md:ml-0 print:hidden">
           <div className="flex flex-col justify-center">
-            <h4 className="text-base my-3 capitalize">
+            <h4 className="my-3 text-base capitalize">
               {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>

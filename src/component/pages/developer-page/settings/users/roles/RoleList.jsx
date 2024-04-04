@@ -77,7 +77,7 @@ const RoleList = ({ setItemEdit }) => {
   return (
     <>
       <div className="relative z-0 overflow-auto text-center rounded-md">
-        {!isFetching && !isLoading && <FetchingSpinner />}
+        {(isFetching || isLoading) && <FetchingSpinner />}
 
         <div
           className="overflow-auto max-h-[70vh] "

@@ -100,23 +100,23 @@ const Account = () => {
       <Header />
       <Navigation menu={``} />
       <div
-        className={`wrapper ${store.isShow ? "ml-48" : "ml-0"} 
-        ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
-        transition-all ease-in duration-200 `}
+        className={`wrapper  
+           ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
+           transition-all ease-in duration-200 w-full ml-0 sm:ml-[256px] `}
       >
         <div className="flex items-start justify-between mt-1 ml-0">
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
-            <h4 className="text-base mt-3 mb-2">Account</h4>
+            <h4 className="mt-3 mb-2 text-base">Account</h4>
           </div>
         </div>
 
         <div className="relative pt-2 pb-40 max-w-[650px]">
           <div
-            className="group flex items-center justify-between border-b border-solid border-gray-300 cursor-pointer relative"
+            className="relative flex items-center justify-between border-b border-gray-300 border-solid cursor-pointer group"
             onClick={showInformationTab}
           >
-            <span className="font-bold py-2">Information</span>
+            <span className="py-2 font-bold">Information</span>
             <div
               className="print:hidden tooltip-action-table"
               data-tooltip={!showInformation ? "Close" : `Open`}
@@ -134,21 +134,21 @@ const Account = () => {
               showInformation ? "max-h-0" : "max-h-[100rem]"
             } overflow-hidden transition-all duration-300 relative`}
           >
-            <div className="flex sm:gap-3 flex-col md:flex-row mt-5">
+            <div className="flex flex-col mt-5 sm:gap-3 md:flex-row">
               <p className="font-bold w-[20rem] my-1">Name:</p>
-              <p className="my-1 w-full">{userName}</p>
+              <p className="w-full my-1">{userName}</p>
             </div>
-            <div className="flex sm:gap-3 flex-col md:flex-row mb-5">
+            <div className="flex flex-col mb-5 sm:gap-3 md:flex-row">
               <p className="font-bold w-[20rem] my-1">Email:</p>
-              <p className="my-1 w-full">{userEmail}</p>
+              <p className="w-full my-1">{userEmail}</p>
             </div>
           </div>
 
           <div
-            className="group flex items-center justify-between border-b border-solid border-gray-300 cursor-pointer relative"
+            className="relative flex items-center justify-between border-b border-gray-300 border-solid cursor-pointer group"
             onClick={showPasswordTab}
           >
-            <span className="font-bold py-2">Password</span>
+            <span className="py-2 font-bold">Password</span>
 
             <div
               className="print:hidden tooltip-action-table"
@@ -174,11 +174,11 @@ const Account = () => {
               {(props) => {
                 return (
                   <Form>
-                    <div className="flex items-center sm:gap-3 flex-col md:flex-row mt-5">
+                    <div className="flex flex-col items-center mt-5 sm:gap-3 md:flex-row">
                       <p className="font-bold w-[20rem] my-3">
                         Current Password:
                       </p>
-                      <p className="my-3 w-full relative">
+                      <p className="relative w-full my-3">
                         <InputText
                           type={showCurrentPassword ? "text" : "password"}
                           name="current_password"
@@ -189,7 +189,7 @@ const Account = () => {
                         {props.values.current_password && (
                           <button
                             type="button"
-                            className="absolute top-1/2 -translate-y-1/2 text-sm text-gray-400 right-3"
+                            className="absolute text-sm text-gray-400 -translate-y-1/2 top-1/2 right-3"
                             onClick={handleShowCurrentPassword}
                           >
                             {showCurrentPassword ? <FaEyeSlash /> : <FaEye />}
@@ -198,9 +198,9 @@ const Account = () => {
                       </p>
                     </div>
 
-                    <div className="flex items-center sm:gap-3 flex-col md:flex-row">
+                    <div className="flex flex-col items-center sm:gap-3 md:flex-row">
                       <p className="font-bold w-[20rem] my-3">New Password:</p>
-                      <p className="my-3 w-full relative">
+                      <p className="relative w-full my-3">
                         <InputText
                           type={showNewPassword ? "text" : "password"}
                           name="new_password"
@@ -212,7 +212,7 @@ const Account = () => {
                         {props.values.new_password && (
                           <button
                             type="button"
-                            className="absolute top-1/2 -translate-y-1/2 text-sm text-gray-400 right-3"
+                            className="absolute text-sm text-gray-400 -translate-y-1/2 top-1/2 right-3"
                             onClick={handleShowNewPassword}
                           >
                             {showNewPassword ? <FaEyeSlash /> : <FaEye />}
@@ -221,11 +221,11 @@ const Account = () => {
                       </p>
                     </div>
 
-                    <div className="flex items-center sm:gap-3 flex-col md:flex-row">
+                    <div className="flex flex-col items-center sm:gap-3 md:flex-row">
                       <p className="font-bold w-[20rem] my-3">
                         Confirm New Password:
                       </p>
-                      <p className="my-3 w-full relative">
+                      <p className="relative w-full my-3">
                         <InputText
                           type={showConfirmPassword ? "text" : "password"}
                           name="confirm_password"
@@ -236,7 +236,7 @@ const Account = () => {
                         {props.values.confirm_password && (
                           <button
                             type="button"
-                            className="absolute top-1/2 -translate-y-1/2 text-sm text-gray-400 right-3"
+                            className="absolute text-sm text-gray-400 -translate-y-1/2 top-1/2 right-3"
                             onClick={handleShowConfirmPassword}
                           >
                             {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
@@ -245,9 +245,9 @@ const Account = () => {
                       </p>
                     </div>
 
-                    <div className="flex sm:gap-3 flex-col md:flex-row">
+                    <div className="flex flex-col sm:gap-3 md:flex-row">
                       <p className="font-bold w-[20rem]"></p>
-                      <p className="m-0 w-full">
+                      <p className="w-full m-0">
                         <button
                           className="btn-modal-submit w-fit"
                           type="submit"

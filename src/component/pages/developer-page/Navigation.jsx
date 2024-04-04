@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCarSide, FaCog, FaUsers } from "react-icons/fa";
+import { FaCarSide, FaCog, FaIndent, FaUsers } from "react-icons/fa";
 import { FaHandHoldingDollar } from "react-icons/fa6";
 import { PiCaretRight } from "react-icons/pi";
 import { Link } from "react-router-dom";
@@ -23,8 +23,10 @@ const Navigation = ({ menu, submenu = null }) => {
   };
 
   const handleShow = () => {
-    dispatch(setIsShow(true));
-    dispatch(setIsSearch(false));
+    setTimeout(() => {
+      dispatch(setIsShow(!store.isShow));
+      dispatch(setIsSearch(false));
+    }, 10);
   };
 
   const handleScroll = (e) => {
@@ -35,184 +37,191 @@ const Navigation = ({ menu, submenu = null }) => {
     scrollRef.current?.scrollTo(0, store.scrollPosition);
   }, []);
 
+  console.log(store.isShow);
+
   return (
     <>
-      <div className="relative">
-        <nav
-          ref={scrollRef}
-          onScroll={(e) => handleScroll(e)}
-          className={`${
-            store.isShow ? "" : "-translate-x-48"
-          } duration-200 ease-in z-50 bg-dark w-48 px-2`}
+      <nav
+        ref={scrollRef}
+        onScroll={(e) => handleScroll(e)}
+        className={`${
+          store.isShow ? "nav-show" : " "
+        }  navigation overflow-visible z-50 bg-dark w-[256px] px-2 h-[calc(100vh-36px)]  transition-all shrink-0 -ml-[256px] sm:ml-0`}
+      >
+        <button
+          onClick={handleShow}
+          className={`text-dark absolute top-0 -right-[32px] z-50 focus:outline-0 bg-dark  hover:text-secondary size-8 grid place-content-center `}
         >
-          <ul className="text-sm pt-3 overflow-y-auto overflow-x-hidden relative">
-            <li className="mb-6">
-              <div className="flex items-center justify-center h-full">
-                <GlaLogo />
-              </div>
-            </li>
+          <FaIndent className={`size-4 duration-200 fill-white `} />
+        </button>
 
-            <li
-              onClick={handleShow}
-              className={
-                menu === "client"
-                  ? "active uppercase"
-                  : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
-              }
+        <ul className="relative pt-3 overflow-y-auto text-sm">
+          <li className="mb-6">
+            <div className="flex items-center justify-center h-full">
+              <GlaLogo />
+            </div>
+          </li>
+
+          <li
+            onClick={handleShow}
+            className={
+              menu === "client"
+                ? "active uppercase"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+            }
+          >
+            <Link
+              to={`${devNavUrl}/${link}/client`}
+              className="flex items-center w-full px-2 py-1 lg:justify-start"
             >
-              <Link
-                to={`${devNavUrl}/${link}/client`}
-                className="w-full flex items-center py-1 px-2 lg:justify-start"
-              >
-                <FaUsers className="mr-3 lg:mr-3" />
-                <span className="lg:block">Client</span>
-              </Link>
-            </li>
+              <FaUsers className="mr-3 lg:mr-3" />
+              <span className="lg:block">Client</span>
+            </Link>
+          </li>
 
-            <li
-              onClick={handleShow}
-              className={
-                menu === "car"
-                  ? "active uppercase"
-                  : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
-              }
+          <li
+            onClick={handleShow}
+            className={
+              menu === "car"
+                ? "active uppercase"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+            }
+          >
+            <Link
+              to={`${devNavUrl}/${link}/car`}
+              className="flex items-center w-full px-2 py-1 lg:justify-start"
             >
-              <Link
-                to={`${devNavUrl}/${link}/car`}
-                className="w-full flex items-center py-1 px-2 lg:justify-start"
-              >
-                <FaCarSide className="mr-3 lg:mr-3" />
-                <span className="lg:block">Car</span>
-              </Link>
-            </li>
+              <FaCarSide className="mr-3 lg:mr-3" />
+              <span className="lg:block">Car</span>
+            </Link>
+          </li>
 
-            <li
-              onClick={handleShow}
-              className={
-                menu === "earnings"
-                  ? "active uppercase"
-                  : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
-              }
+          <li
+            onClick={handleShow}
+            className={
+              menu === "earnings"
+                ? "active uppercase"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+            }
+          >
+            <Link
+              to={`${devNavUrl}/${link}/earnings`}
+              className="flex items-center w-full px-2 py-1 lg:justify-start"
             >
-              <Link
-                to={`${devNavUrl}/${link}/earnings`}
-                className="w-full flex items-center py-1 px-2 lg:justify-start"
-              >
-                <FaHandHoldingDollar className="mr-3 lg:mr-3" />
-                <span className="lg:block">Earnings</span>
-              </Link>
-            </li>
+              <FaHandHoldingDollar className="mr-3 lg:mr-3" />
+              <span className="lg:block">Earnings</span>
+            </Link>
+          </li>
 
-            <li
-              onClick={handleDropDownSetting}
-              className={`cursor-pointer ${
-                menu === "settings"
-                  ? "active uppercase"
-                  : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
-              }
+          <li
+            onClick={handleDropDownSetting}
+            className={`cursor-pointer ${
+              menu === "settings"
+                ? "active uppercase"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+            }
               
             `}
-            >
-              <div className="w-full flex items-center py-1 px-2 lg:justify-start">
-                <FaCog className="mr-4 lg:mr-4" />
-                <div className=" w-full flex items-center justify-between">
-                  <span className="lg:block">Settings</span>
-                  <PiCaretRight
-                    className={
-                      !store.isSettingsOpen
-                        ? "rotate-90 duration-200"
-                        : "-rotate-90 duration-200"
-                    }
-                  />
-                </div>
+          >
+            <div className="flex items-center w-full px-2 py-1 lg:justify-start">
+              <FaCog className="mr-4 lg:mr-4" />
+              <div className="flex items-center justify-between w-full ">
+                <span className="lg:block">Settings</span>
+                <PiCaretRight
+                  className={
+                    !store.isSettingsOpen
+                      ? "rotate-90 duration-200"
+                      : "-rotate-90 duration-200"
+                  }
+                />
               </div>
-            </li>
+            </div>
+          </li>
 
-            {store.isSettingsOpen && (
-              <ul className=" ml-7 lg:block mt-1 pb-6">
-                <li>
-                  <Link
-                    onClick={() => handleShow()}
-                    to={`${devNavUrl}/${link}/settings/user`}
-                    className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                      submenu === "users"
-                        ? "active__submenu"
-                        : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
-                    }`}
-                  >
-                    Users
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => handleShow()}
-                    to={`${devNavUrl}/${link}/settings/car-make`}
-                    className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                      submenu === "car-make"
-                        ? "active__submenu"
-                        : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
-                    }`}
-                  >
-                    Car Make
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => handleShow()}
-                    to={`${devNavUrl}/${link}/settings/representatives`}
-                    className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                      submenu === "representatives"
-                        ? "active__submenu"
-                        : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
-                    }`}
-                  >
-                    Representatives
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => handleShow()}
-                    to={`${devNavUrl}/${link}/settings/expenses`}
-                    className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                      submenu === "expenses"
-                        ? "active__submenu"
-                        : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
-                    }`}
-                  >
-                    Expenses
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => handleShow()}
-                    to={`${devNavUrl}/${link}/settings/income-category`}
-                    className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                      submenu === "income-category"
-                        ? "active__submenu"
-                        : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
-                    }`}
-                  >
-                    Income Category
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => handleShow()}
-                    to={`${devNavUrl}/${link}/settings/income-item`}
-                    className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                      submenu === "income-item"
-                        ? "active__submenu"
-                        : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
-                    }`}
-                  >
-                    Income Item
-                  </Link>
-                </li>
-              </ul>
-            )}
-          </ul>
-        </nav>
-      </div>
+          {store.isSettingsOpen && (
+            <ul className="pb-6 mt-1 ml-7 lg:block">
+              <li>
+                <Link
+                  onClick={() => handleShow()}
+                  to={`${devNavUrl}/${link}/settings/user`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "users"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Users
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleShow()}
+                  to={`${devNavUrl}/${link}/settings/car-make`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "car-make"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Car Make
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleShow()}
+                  to={`${devNavUrl}/${link}/settings/representatives`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "representatives"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Representatives
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleShow()}
+                  to={`${devNavUrl}/${link}/settings/expenses`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "expenses"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Expenses
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleShow()}
+                  to={`${devNavUrl}/${link}/settings/income-category`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "income-category"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Income Category
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleShow()}
+                  to={`${devNavUrl}/${link}/settings/income-item`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "income-item"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Income Item
+                </Link>
+              </li>
+            </ul>
+          )}
+        </ul>
+      </nav>
     </>
   );
 };
