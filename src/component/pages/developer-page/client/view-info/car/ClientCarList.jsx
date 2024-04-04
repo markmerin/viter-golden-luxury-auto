@@ -1,4 +1,7 @@
-import { apiVersion, formatDate } from "@/component/helpers/functions-general";
+import {
+  apiVersion,
+  formatMonthAndYear,
+} from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -25,8 +28,7 @@ import {
   FaArchive,
   FaEdit,
   FaHistory,
-  FaImage,
-  FaListUl,
+  FaListAlt,
   FaTrash,
 } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
@@ -39,6 +41,7 @@ const ClientCarList = ({
   clientId,
   setItemEdit,
   itemEdit,
+  client,
 }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
@@ -52,7 +55,6 @@ const ClientCarList = ({
   const [page, setPage] = React.useState(1);
   const { ref, inView } = useInView();
   const scrollRef = React.useRef(null);
-
   let counter = 1;
 
   const {
@@ -64,11 +66,16 @@ const ClientCarList = ({
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["car", search.current.value, store.isSearch, clientStatus],
+    queryKey: [
+      "client-car",
+      search.current.value,
+      store.isSearch,
+      clientStatus,
+    ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/${apiVersion}/car/search`, // search endpoint
-        `/${apiVersion}/car/page/${pageParam}/${clientId}`, // list endpoint
+        `${apiVersion}/client-car/search`, // search endpoint
+        `${apiVersion}/client-car/page/${pageParam}/${clientId}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
@@ -95,7 +102,7 @@ const ClientCarList = ({
 
   const handleViewCar = (item) => {
     setIsViewImage(true);
-    setItemEdit(item);
+    setItemEdit({ ...item, ...client?.data[0] });
   };
 
   const handleEdit = (item) => {
@@ -193,7 +200,7 @@ const ClientCarList = ({
           !isFetchingNextPage &&
           status !== "pending" && <FetchingSpinner />}
         <div
-          className="overflow-auto max-h-[70vh] "
+          className="overflow-auto max-h-[70vh]"
           ref={scrollRef}
           onScroll={(e) => handleScroll(e)}
         >
@@ -264,7 +271,7 @@ const ClientCarList = ({
                         <td>
                           {item.car_registration_date === ""
                             ? "Unspecified"
-                            : formatDate(item.car_registration_date)}
+                            : formatMonthAndYear(item.car_registration_date)}
                         </td>
                         <td>{item.car_gas}</td>
                         <td>{item.car_tire_size}</td>
@@ -280,10 +287,10 @@ const ClientCarList = ({
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
-                                  data-tooltip="View Image"
+                                  data-tooltip="View Full Details"
                                   onClick={() => handleViewCar(item)}
                                 >
-                                  <FaImage className="w-3 h-3" />
+                                  <FaListAlt className="w-3 h-3" />
                                 </button>
 
                                 <button
@@ -333,19 +340,19 @@ const ClientCarList = ({
               ))}
             </tbody>
           </table>
+          <div className="flex flex-col items-center justify-center pb-10 loadmore">
+            <Loadmore
+              fetchNextPage={fetchNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
+              result={result?.pages[0]}
+              setPage={setPage}
+              page={page}
+              refView={ref}
+              store={store}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center justify-center pb-10 loadmore">
-        <Loadmore
-          fetchNextPage={fetchNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          hasNextPage={hasNextPage}
-          result={result?.pages[0]}
-          setPage={setPage}
-          page={page}
-          refView={ref}
-          store={store}
-        />
       </div>
 
       {isViewImage && (
@@ -354,27 +361,27 @@ const ClientCarList = ({
 
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`${apiVersion}/car/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/client-car/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
-          queryKey={"car"}
+          queryKey={"client-car"}
         />
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/car/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/client-car/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
-          queryKey={"car"}
+          queryKey={"client-car"}
         />
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/car/${id}`}
+          mysqlApiDelete={`${apiVersion}/client-car/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.car_name}
-          queryKey={"car"}
+          queryKey={"client-car"}
         />
       )}
     </>

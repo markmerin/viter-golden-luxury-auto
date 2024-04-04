@@ -99,6 +99,7 @@ const ClientCar = () => {
               clientId={clientId}
               setItemEdit={setItemEdit}
               itemEdit={itemEdit}
+              client={client}
             />
           </div>
         )}

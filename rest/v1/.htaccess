@@ -99,9 +99,13 @@ RewriteRule ^client/page/([0-9]+)$ controllers/developer/client/page.php?start=$
 RewriteRule ^client/search$ controllers/developer/client/search.php [L]
 RewriteRule ^client/update-bank-details/([0-9]+)$ controllers/developer/client/update-bank-details.php?clientid=$1 [L]
 
+### CLIENT CAR ###
+RewriteRule ^client-car$ controllers/developer/client/car/car.php [L]
+RewriteRule ^client-car/([0-9]+)$ controllers/developer/client/car/car.php?carid=$1 [L]
+RewriteRule ^client-car/active/([0-9]+)$ controllers/developer/client/car/active.php?carid=$1 [L]
+RewriteRule ^client-car/page/([0-9]+)/([0-9]+)$ controllers/developer/client/car/page.php?start=$1&clientid=$2 [L]
+RewriteRule ^client-car/search$ controllers/developer/client/car/search.php [L]
+
 ### CAR ###
-RewriteRule ^car$ controllers/developer/car/car.php [L]
-RewriteRule ^car/([0-9]+)$ controllers/developer/car/car.php?carid=$1 [L]
-RewriteRule ^car/active/([0-9]+)$ controllers/developer/car/active.php?carid=$1 [L]
-RewriteRule ^car/page/([0-9]+)/([0-9]+)$ controllers/developer/car/page.php?start=$1&clientid=$2 [L]
+RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
 RewriteRule ^car/search$ controllers/developer/car/search.php [L]

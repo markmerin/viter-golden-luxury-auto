@@ -1,5 +1,4 @@
 import React from "react";
-import { FaPlus } from "react-icons/fa";
 import { StoreContext } from "../../../../store/StoreContext";
 import { isDemoMode } from "../../../helpers/functions-general";
 import BreadCrumbs from "../../../partials/BreadCrumbs";
@@ -11,13 +10,7 @@ import Navigation from "../Navigation";
 import CarList from "./CarList";
 
 const Car = () => {
-  const { store, dispatch } = React.useContext(StoreContext);
-  const [itemEdit, setItemEdit] = React.useState(null);
-
-  const handleAdd = () => {
-    // dispatch(setIsAdd(true));
-    // setItemEdit(null);
-  };
+  const { store } = React.useContext(StoreContext);
 
   return (
     <>
@@ -35,15 +28,9 @@ const Car = () => {
               {location.pathname.split("/").pop().replaceAll("-", " ")}
             </h4>
           </div>
-          {/* <div className="flex items-center gap-1 print:invisible">
-            <button type="button" className="btn-primary" onClick={handleAdd}>
-              <FaPlus />
-              <span>Add</span>
-            </button>
-          </div> */}
         </div>
         <div className="w-full pt-5 pb-4 ">
-          <CarList setItemEdit={setItemEdit} />
+          <CarList />
         </div>
         <Footer />
       </div>

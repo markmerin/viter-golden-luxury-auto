@@ -1,10 +1,10 @@
 <?php
 // set http header
-require '../../../core/header.php';
+require '../../../../core/header.php';
 // use needed functions
-require '../../../core/functions.php';
+require '../../../../core/functions.php';
 // use needed classes
-require '../../../models/developer/car/Car.php';
+require '../../../../models/developer/client/car/Car.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();

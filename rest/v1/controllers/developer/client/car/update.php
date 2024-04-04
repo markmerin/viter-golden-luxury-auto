@@ -23,6 +23,12 @@ if (array_key_exists("carid", $_GET)) {
     $car->car_gas = $data["car_gas"];
     $car->car_tire_size = $data["car_tire_size"];
     $car->car_oil_type = $data["car_oil_type"];
+    $car->car_nada_retail = $data["car_nada_retail"];
+    $car->car_nada_clean = $data["car_nada_clean"];
+    $car->car_nada_average = $data["car_nada_average"];
+    $car->car_nada_rough = $data["car_nada_rough"];
+    $car->car_miles = $data["car_miles"];
+    $car->car_last_oil_change = $data["car_last_oil_change"];
     $car->car_datetime = date("Y-m-d H:i:s");
 
     // update

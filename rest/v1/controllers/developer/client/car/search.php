@@ -1,12 +1,12 @@
 <?php
 
 // set http header
-require '../../../core/header.php';
+require '../../../../core/header.php';
 // use needed functions
-require '../../../core/functions.php';
+require '../../../../core/functions.php';
 require 'functions.php';
 // use needed classes
-require '../../../models/developer/car/Car.php';
+require '../../../../models/developer/client/car/Car.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();
@@ -21,6 +21,7 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkPayload($data);
     // get data
     $car->car_search = $data["searchValue"];
+    $car->car_client_id = $data["car_client_id"];
 
     // only if filtering
     if ($data["isFilter"]) {

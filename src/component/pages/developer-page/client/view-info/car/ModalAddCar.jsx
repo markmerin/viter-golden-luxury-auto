@@ -29,7 +29,11 @@ import * as Yup from "yup";
 const ModalAddCar = ({ clientId, itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
+  const [title, setTitle] = React.useState(
+    itemEdit ? itemEdit.car_make_name : ""
+  );
   const queryClient = useQueryClient();
+  let fileName = "";
 
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
     `${apiVersion}/upload/photo`,
@@ -50,13 +54,15 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `${apiVersion}/car/${itemEdit.car_aid}`,
+        itemEdit
+          ? `${apiVersion}/client-car/${itemEdit.car_aid}`
+          : `${apiVersion}/client-car`,
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["car"] });
+      queryClient.invalidateQueries({ queryKey: ["client-car"] });
 
       // show error box
       if (!data.success) {
@@ -84,11 +90,23 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     car_gas: itemEdit ? itemEdit.car_gas : "",
     car_tire_size: itemEdit ? itemEdit.car_tire_size : "",
     car_oil_type: itemEdit ? itemEdit.car_oil_type : "",
+    car_nada_retail: itemEdit ? itemEdit.car_nada_retail : "",
+    car_nada_clean: itemEdit ? itemEdit.car_nada_clean : "",
+    car_nada_average: itemEdit ? itemEdit.car_nada_average : "",
+    car_nada_rough: itemEdit ? itemEdit.car_nada_rough : "",
+    car_miles: itemEdit ? itemEdit.car_miles : "",
+    car_last_oil_change: itemEdit ? itemEdit.car_last_oil_change : "",
   };
 
   const yupSchema = Yup.object({
     car_vehicle_make_id: Yup.string().required("Required"),
+    car_year: Yup.string().required("Required"),
+    car_specs: Yup.string().required("Required"),
   });
+
+  const handleChangeTitle = (e) => {
+    setTitle(e.target.options[e.target.selectedIndex].textContent);
+  };
 
   const handleClose = () => {
     // set animation
@@ -104,8 +122,6 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
   React.useEffect(() => {
     setAnimate("");
   }, []);
-
-  console.log(photo);
 
   return (
     <>
@@ -124,24 +140,35 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
             <FaTimesCircle className="text-lg text-gray-400" />
           </button>
         </div>
-        <div className="modal_body overflow-y-auto overflow-x-hidden max-h-[80vh]">
+        <div className="modal_body ">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              // mutate data
-              uploadPhoto();
+              uploadPhoto(fileName.toLowerCase());
               mutation.mutate({
                 ...values,
                 car_photo:
-                  itemEdit.car_photo === "" || photo
-                    ? photo.name
-                    : itemEdit.car_photo,
+                  (itemEdit && itemEdit.car_photo === "") ||
+                  photo ||
+                  itemEdit.car_photo !==
+                    `${fileName}.${itemEdit.car_photo.split(".").pop()}`
+                    ? `${fileName}.${
+                        photo === null
+                          ? itemEdit.car_photo.split(".").pop()
+                          : photo.name.split(".").pop()
+                      }`
+                    : values.car_photo,
               });
             }}
           >
             {(props) => {
+              fileName = `${title}-${props.values.car_specs.replaceAll(
+                " ",
+                ""
+              )}-${props.values.car_year}`;
+
               return (
                 <Form>
                   <div className="modal-overflow">
@@ -184,9 +211,8 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         id="myFile"
                         accept="image/*"
                         title="Upload photo"
-                        onChange={handleChangePhoto}
-                        onDragOver={handleChangePhoto}
-                        onDrop={handleChangePhoto}
+                        onChange={(e) => handleChangePhoto(e)}
+                        onDrop={(e) => handleChangePhoto(e)}
                         className="opacity-0 absolute right-0 bottom-0 left-0 m-auto cursor-pointer h-full"
                       />
                     </div>
@@ -196,6 +222,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         label="Vehicle Make"
                         name="car_vehicle_make_id"
                         disabled={mutation.isPending || isLoading || error}
+                        onChange={(e) => handleChangeTitle(e)}
                       >
                         {isLoading ? (
                           <option value="" disabled>
@@ -269,7 +296,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                     <div className="relative mb-6">
                       <InputText
                         label="License / Registration Date"
-                        type="date"
+                        type="month"
                         name="car_registration_date"
                         disabled={mutation.isPending}
                       />
@@ -298,6 +325,60 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         label="Oil Type"
                         type="text"
                         name="car_oil_type"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="NADA - Retail"
+                        type="number"
+                        name="car_nada_retail"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="NADA - Clean"
+                        type="number"
+                        name="car_nada_clean"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="NADA - Average"
+                        type="number"
+                        name="car_nada_average"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="NADA - Rough"
+                        type="number"
+                        name="car_nada_rough"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="MILES"
+                        type="number"
+                        name="car_miles"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="Last Change Oil"
+                        type="date"
+                        name="car_last_oil_change"
                         disabled={mutation.isPending}
                       />
                     </div>

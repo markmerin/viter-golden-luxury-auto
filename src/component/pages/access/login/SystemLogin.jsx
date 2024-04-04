@@ -36,7 +36,7 @@ const SystemLogin = () => {
 
   const mutation = useMutation({
     mutationFn: (values) =>
-      queryData(`/${apiVersion}/user-system/login`, "post", values),
+      queryData(`${apiVersion}/user-system/login`, "post", values),
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["system"] });

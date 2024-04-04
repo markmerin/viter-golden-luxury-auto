@@ -39,8 +39,9 @@ export const devKey =
 
 export const developerPath = "developer";
 export const adminPath = "admin";
-export const isDemoMode = 1;
+export const isDemoMode = 0;
 export const pesoSign = <span>&#8369;</span>;
+export const dollarSign = <span>&#36;</span>;
 
 // Copyright year
 export const copyrightYear = () => {
@@ -86,6 +87,29 @@ export const formatDate = (dateVal) => {
   ];
 
   return `${months[month]} ${date}, ${year}`;
+};
+
+// formatting date
+export const formatMonthAndYear = (dateVal) => {
+  const d = new Date(dateVal);
+  const year = d.getFullYear();
+  const month = d.getMonth();
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return `${months[month]} ${year}`;
 };
 
 // get focus on a button
@@ -182,5 +206,6 @@ export const fetchFormData = (url, fd = {}) => {
     .catch((error) => {
       console.error(error + " api endpoint error");
     });
+
   return data;
 };

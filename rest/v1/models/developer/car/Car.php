@@ -14,6 +14,12 @@ class Car
     public $car_gas;
     public $car_tire_size;
     public $car_oil_type;
+    public $car_nada_retail;
+    public $car_nada_clean;
+    public $car_nada_average;
+    public $car_nada_rough;
+    public $car_miles;
+    public $car_last_oil_change;
     public $car_created;
     public $car_datetime;
 
@@ -25,69 +31,14 @@ class Car
 
     public $tblCar;
     public $tblCarMake;
+    public $tblClient;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblCar = "glav1_car";
         $this->tblCarMake = "glav1_car_make";
-    }
-
-    // create
-    public function create()
-    {
-        try {
-            $sql = "insert into {$this->tblCar} ";
-            $sql .= "( car_photo, ";
-            $sql .= "car_client_id, ";
-            $sql .= "car_is_active, ";
-            $sql .= "car_vehicle_make_id, ";
-            $sql .= "car_year, ";
-            $sql .= "car_specs, ";
-            $sql .= "car_vin_number, ";
-            $sql .= "car_plate_number, ";
-            $sql .= "car_registration_date, ";
-            $sql .= "car_gas, ";
-            $sql .= "car_tire_size, ";
-            $sql .= "car_oil_type, ";
-            $sql .= "car_created, ";
-            $sql .= "car_datetime ) values ( ";
-            $sql .= ":car_photo, ";
-            $sql .= ":car_client_id, ";
-            $sql .= ":car_is_active, ";
-            $sql .= ":car_vehicle_make_id, ";
-            $sql .= ":car_year, ";
-            $sql .= ":car_specs, ";
-            $sql .= ":car_vin_number, ";
-            $sql .= ":car_plate_number, ";
-            $sql .= ":car_registration_date, ";
-            $sql .= ":car_gas, ";
-            $sql .= ":car_tire_size, ";
-            $sql .= ":car_oil_type, ";
-            $sql .= ":car_created, ";
-            $sql .= ":car_datetime ) ";
-            $query = $this->connection->prepare($sql);
-            $query->execute([
-                "car_photo" => $this->car_photo,
-                "car_client_id" => $this->car_client_id,
-                "car_is_active" => $this->car_is_active,
-                "car_vehicle_make_id" => $this->car_vehicle_make_id,
-                "car_year" => $this->car_year,
-                "car_specs" => $this->car_specs,
-                "car_vin_number" => $this->car_vin_number,
-                "car_plate_number" => $this->car_plate_number,
-                "car_registration_date" => $this->car_registration_date,
-                "car_gas" => $this->car_gas,
-                "car_tire_size" => $this->car_tire_size,
-                "car_oil_type" => $this->car_oil_type,
-                "car_created" => $this->car_created,
-                "car_datetime" => $this->car_datetime,
-            ]);
-            $this->lastInsertedId = $this->connection->lastInsertId();
-        } catch (PDOException $ex) {
-            $query = false;
-        }
-        return $query;
+        $this->tblClient = "glav1_client";
     }
 
     // read all
@@ -96,18 +47,17 @@ class Car
         try {
             $sql = "select ";
             $sql .= "car.*, ";
+            $sql .= "client.*, ";
             $sql .= "carMake.car_make_name ";
             $sql .= "from {$this->tblCar} as car, ";
-            $sql .= "{$this->tblCarMake} as carMake ";
-            $sql .= "where car.car_client_id = :car_client_id ";
+            $sql .= "{$this->tblCarMake} as carMake, ";
+            $sql .= "{$this->tblClient} as client ";
+            $sql .= "where car.car_client_id = client.client_aid ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "group by car.car_aid ";
             $sql .= "order by car.car_is_active desc, ";
             $sql .= "carMake.car_make_name ";
-            $query = $this->connection->prepare($sql);
-            $query->execute([
-                "car_client_id" => $this->car_client_id
-            ]);
+            $query = $this->connection->query($sql);
         } catch (PDOException $ex) {
             $query = false;
         }
@@ -120,10 +70,12 @@ class Car
         try {
             $sql = "select ";
             $sql .= "car.*, ";
+            $sql .= "client.*, ";
             $sql .= "carMake.car_make_name ";
             $sql .= "from {$this->tblCar} as car, ";
-            $sql .= "{$this->tblCarMake} as carMake ";
-            $sql .= "where car.car_client_id = :car_client_id ";
+            $sql .= "{$this->tblCarMake} as carMake, ";
+            $sql .= "{$this->tblClient} as client ";
+            $sql .= "where car.car_client_id = client.client_aid ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "group by car.car_aid ";
             $sql .= "order by car.car_is_active desc, ";
@@ -134,7 +86,6 @@ class Car
             $query->execute([
                 "start" => $this->car_start - 1,
                 "total" => $this->car_total,
-                "car_client_id" => $this->car_client_id
             ]);
         } catch (PDOException $ex) {
             $query = false;
@@ -148,11 +99,13 @@ class Car
         try {
             $sql = "select ";
             $sql .= "car.*, ";
+            $sql .= "client.*, ";
             $sql .= "carMake.car_make_name ";
             $sql .= "from {$this->tblCar} as car, ";
-            $sql .= "{$this->tblCarMake} as carMake ";
+            $sql .= "{$this->tblCarMake} as carMake, ";
+            $sql .= "{$this->tblClient} as client ";
             $sql .= "where car_is_active = :car_is_active ";
-            $sql .= "and car.car_client_id = :car_client_id ";
+            $sql .= "and car.car_client_id = client.client_aid ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "group by car.car_aid ";
             $sql .= "order by car.car_is_active desc, ";
@@ -160,7 +113,6 @@ class Car
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "car_is_active" => $this->car_is_active,
-                "car_client_id" => $this->car_client_id
             ]);
         } catch (PDOException $ex) {
             $query = false;
@@ -174,13 +126,18 @@ class Car
         try {
             $sql = "select ";
             $sql .= "car.*, ";
+            $sql .= "client.*, ";
             $sql .= "carMake.car_make_name ";
             $sql .= "from {$this->tblCar} as car, ";
-            $sql .= "{$this->tblCarMake} as carMake ";
-            $sql .= "where car.car_client_id = :car_client_id ";
+            $sql .= "{$this->tblCarMake} as carMake, ";
+            $sql .= "{$this->tblClient} as client ";
+            $sql .= "where car.car_client_id = client.client_aid ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "and ( carMake.car_make_name like :car_make_name ";
             $sql .= "or car.car_year like :car_year ";
+            $sql .= "or client.client_fname like :client_fname ";
+            $sql .= "or client.client_lname like :client_lname ";
+            $sql .= "or CONCAT(client.client_fname, ' ', client.client_lname) like :client_fullname ";
             $sql .= "or car.car_specs like :car_specs ";
             $sql .= "or car.car_vin_number like :car_vin_number ";
             $sql .= "or car.car_plate_number like :car_plate_number ";
@@ -192,10 +149,12 @@ class Car
             $query->execute([
                 "car_year" => "%{$this->car_search}%",
                 "car_specs" => "%{$this->car_search}%",
+                "client_fname" => "%{$this->car_search}%",
+                "client_lname" => "%{$this->car_search}%",
+                "client_fullname" => "%{$this->car_search}%",
                 "car_vin_number" => "%{$this->car_search}%",
                 "car_plate_number" => "%{$this->car_search}%",
                 "car_make_name" => "%{$this->car_search}%",
-                "car_client_id" => $this->car_client_id
             ]);
         } catch (PDOException $ex) {
             $query = false;
@@ -209,14 +168,19 @@ class Car
         try {
             $sql = "select ";
             $sql .= "car.*, ";
+            $sql .= "client.*, ";
             $sql .= "carMake.car_make_name ";
             $sql .= "from {$this->tblCar} as car, ";
-            $sql .= "{$this->tblCarMake} as carMake ";
-            $sql .= "where car.car_client_id = :car_client_id ";
+            $sql .= "{$this->tblCarMake} as carMake, ";
+            $sql .= "{$this->tblClient} as client ";
+            $sql .= "where car.car_client_id = client.client_aid ";
             $sql .= "and car_is_active = :car_is_active ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "and ( carMake.car_make_name like :car_make_name ";
             $sql .= "or car.car_year like :car_year ";
+            $sql .= "or client.client_fname like :client_fname ";
+            $sql .= "or client.client_lname like :client_lname ";
+            $sql .= "or CONCAT(client.client_fname, ' ', client.client_lname) like :client_fullname ";
             $sql .= "or car.car_specs like :car_specs ";
             $sql .= "or car.car_vin_number like :car_vin_number ";
             $sql .= "or car.car_plate_number like :car_plate_number ";
@@ -228,102 +192,13 @@ class Car
             $query->execute([
                 "car_year" => "%{$this->car_search}%",
                 "car_specs" => "%{$this->car_search}%",
+                "client_fname" => "%{$this->car_search}%",
+                "client_lname" => "%{$this->car_search}%",
+                "client_fullname" => "%{$this->car_search}%",
                 "car_vin_number" => "%{$this->car_search}%",
                 "car_plate_number" => "%{$this->car_search}%",
                 "car_make_name" => "%{$this->car_search}%",
                 "car_is_active" => $this->car_is_active,
-                "car_client_id" => $this->car_client_id,
-            ]);
-        } catch (PDOException $ex) {
-            $query = false;
-        }
-        return $query;
-    }
-
-    // read by id
-    public function readById()
-    {
-        try {
-            $sql = "select * from {$this->tblCar} ";
-            $sql .= "where car_aid = :car_aid ";
-            $sql .= "order by car_photo asc ";
-            $query = $this->connection->prepare($sql);
-            $query->execute([
-                "car_aid" => $this->car_aid,
-            ]);
-        } catch (PDOException $ex) {
-            $query = false;
-        }
-        return $query;
-    }
-
-    // update
-    public function update()
-    {
-        try {
-            $sql = "update {$this->tblCar} set ";
-            $sql .= "car_photo = :car_photo, ";
-            $sql .= "car_vehicle_make_id = :car_vehicle_make_id, ";
-            $sql .= "car_year = :car_year, ";
-            $sql .= "car_specs = :car_specs, ";
-            $sql .= "car_vin_number = :car_vin_number, ";
-            $sql .= "car_plate_number = :car_plate_number, ";
-            $sql .= "car_registration_date = :car_registration_date, ";
-            $sql .= "car_gas = :car_gas, ";
-            $sql .= "car_tire_size = :car_tire_size, ";
-            $sql .= "car_oil_type = :car_oil_type, ";
-            $sql .= "car_datetime = :car_datetime ";
-            $sql .= "where car_aid  = :car_aid ";
-            $query = $this->connection->prepare($sql);
-            $query->execute([
-                "car_photo" => $this->car_photo,
-                "car_vehicle_make_id" => $this->car_vehicle_make_id,
-                "car_year" => $this->car_year,
-                "car_specs" => $this->car_specs,
-                "car_vin_number" => $this->car_vin_number,
-                "car_plate_number" => $this->car_plate_number,
-                "car_registration_date" => $this->car_registration_date,
-                "car_gas" => $this->car_gas,
-                "car_tire_size" => $this->car_tire_size,
-                "car_oil_type" => $this->car_oil_type,
-                "car_datetime" => $this->car_datetime,
-                "car_aid" => $this->car_aid,
-            ]);
-        } catch (PDOException $ex) {
-            $query = false;
-        }
-        return $query;
-    }
-
-    // active
-    public function active()
-    {
-        try {
-            $sql = "update {$this->tblCar} set ";
-            $sql .= "car_is_active = :car_is_active, ";
-            $sql .= "car_datetime = :car_datetime ";
-            $sql .= "where car_aid = :car_aid ";
-            $query = $this->connection->prepare($sql);
-            $query->execute([
-                "car_is_active" => $this->car_is_active,
-                "car_datetime" => $this->car_datetime,
-                "car_aid" => $this->car_aid,
-            ]);
-        } catch (PDOException $ex) {
-            $query = false;
-        }
-        return $query;
-    }
-
-    // delete
-    public function delete()
-    {
-        try {
-            $sql = "delete from {$this->tblCar} ";
-            $sql .= "where car_aid = :car_aid ";
-            $query = $this->connection->prepare($sql);
-            $query->execute([
-                "car_aid" => $this->car_aid,
             ]);
         } catch (PDOException $ex) {
             $query = false;

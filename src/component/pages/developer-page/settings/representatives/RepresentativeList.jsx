@@ -292,19 +292,19 @@ const RepresentativeList = ({ setItemEdit }) => {
               ))}
             </tbody>
           </table>
+          <div className="flex flex-col items-center justify-center pb-10 loadmore">
+            <Loadmore
+              fetchNextPage={fetchNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
+              result={result?.pages[0]}
+              setPage={setPage}
+              page={page}
+              refView={ref}
+              store={store}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center justify-center pb-10 loadmore">
-        <Loadmore
-          fetchNextPage={fetchNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          hasNextPage={hasNextPage}
-          result={result?.pages[0]}
-          setPage={setPage}
-          page={page}
-          refView={ref}
-          store={store}
-        />
       </div>
       {store.isArchive && (
         <ModalArchive
