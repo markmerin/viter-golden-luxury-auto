@@ -1,3 +1,6 @@
+import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
+import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
+import ClientProfile from "@/component/pages/developer-page/client/view-info/profile/ClientProfile";
 import {
   devNavUrl,
   developerPath,
@@ -122,6 +125,30 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <Client />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/client/view-info`,
+    element: (
+      <ProtectedRouteSystem>
+        <ClientViewInfo />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/client/view-info/profile`,
+    element: (
+      <ProtectedRouteSystem>
+        <ClientProfile />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/client/view-info/car`,
+    element: (
+      <ProtectedRouteSystem>
+        <ClientCar />
       </ProtectedRouteSystem>
     ),
   },

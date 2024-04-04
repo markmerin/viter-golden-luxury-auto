@@ -49,6 +49,10 @@ const Earning = () => {
           </div>
           <Footer />
         </div>
+        <div className="w-full pt-5 pb-4 ">
+          <EarningList setItemEdit={setItemEdit} />
+        </div>
+        <Footer />
       </div>
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}

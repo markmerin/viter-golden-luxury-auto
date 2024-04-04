@@ -8,6 +8,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 Header set Access-Control-Allow-Origin *
 
 ######################################### FOR DEVELOPER #####################################
+### FOR UPLOAD PHOTO ###
+RewriteRule ^upload/photo$ core/upload-photo.php [L]
 
 ### ACCOUNT CHANGE PASS ### 
 RewriteRule ^account/system/update-password$ controllers/developer/account/system/account-change-password.php [L] 
@@ -54,7 +56,6 @@ RewriteRule ^account/admin/update-password$ controllers/admin/account/other/acco
 RewriteRule ^maintenance$ controllers/developer/maintenance/maintenance.php [L]
 RewriteRule ^maintenance/([0-9]+)$ controllers/developer/maintenance/maintenance.php?maintenanceid=$1 [L]
 
-
 ### CAR MAKE ###
 RewriteRule ^car-make$ controllers/developer/settings/car-make/car-make.php [L]
 RewriteRule ^car-make/([0-9]+)$ controllers/developer/settings/car-make/car-make.php?carmakeid=$1 [L]
@@ -83,10 +84,28 @@ RewriteRule ^income-category/active/([0-9]+)$ controllers/developer/settings/inc
 RewriteRule ^income-category/page/([0-9]+)$ controllers/developer/settings/income-category/page.php?start=$1 [L]
 RewriteRule ^income-category/search$ controllers/developer/settings/income-category/search.php [L]
 
-
 ### INCOME ITEM ###
 RewriteRule ^income-item$ controllers/developer/settings/income-item/income-item.php [L]
 RewriteRule ^income-item/([0-9]+)$ controllers/developer/settings/income-item/income-item.php?incomeitemid=$1 [L]
 RewriteRule ^income-item/active/([0-9]+)$ controllers/developer/settings/income-item/active.php?incomeitemid=$1 [L]
 RewriteRule ^income-item/page/([0-9]+)$ controllers/developer/settings/income-item/page.php?start=$1 [L]
 RewriteRule ^income-item/search$ controllers/developer/settings/income-item/search.php [L]
+
+### CLIENT ###
+RewriteRule ^client$ controllers/developer/client/client.php [L]
+RewriteRule ^client/([0-9]+)$ controllers/developer/client/client.php?clientid=$1 [L]
+RewriteRule ^client/active/([0-9]+)$ controllers/developer/client/active.php?clientid=$1 [L]
+RewriteRule ^client/page/([0-9]+)$ controllers/developer/client/page.php?start=$1 [L]
+RewriteRule ^client/search$ controllers/developer/client/search.php [L]
+RewriteRule ^client/update-bank-details/([0-9]+)$ controllers/developer/client/update-bank-details.php?clientid=$1 [L]
+
+### CLIENT CAR ###
+RewriteRule ^client-car$ controllers/developer/client/car/car.php [L]
+RewriteRule ^client-car/([0-9]+)$ controllers/developer/client/car/car.php?carid=$1 [L]
+RewriteRule ^client-car/active/([0-9]+)$ controllers/developer/client/car/active.php?carid=$1 [L]
+RewriteRule ^client-car/page/([0-9]+)/([0-9]+)$ controllers/developer/client/car/page.php?start=$1&clientid=$2 [L]
+RewriteRule ^client-car/search$ controllers/developer/client/car/search.php [L]
+
+### CAR ###
+RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
+RewriteRule ^car/search$ controllers/developer/car/search.php [L]

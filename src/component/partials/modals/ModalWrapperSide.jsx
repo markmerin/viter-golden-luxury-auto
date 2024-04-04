@@ -9,9 +9,11 @@ const ModalWrapperSide = ({ children, handleClose, className = "" }) => {
           onClick={handleClose}
         ></div>
         <div
-          className={`absolute mx-1.5 h-screen bg-white border border-gray-200 top-0 right-[-5px] py-4 px-6 w-full max-w-[25rem] shadow-xl ${className}`}
+          className={`absolute mx-1.5 h-screen bg-white border border-gray-200 top-0 right-[-5px] py-4 w-full xl:w-[30rem] lg:w-[25rem] md:w-[25rem] sm:w-[25rem] shadow-xl ${className}`}
         >
-          {children}
+          <div className="overflow-y-auto overflow-x-hidden max-h-[85vh] px-6">
+            {children}
+          </div>
         </div>
       </div>
     </>

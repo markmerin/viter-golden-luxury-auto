@@ -22,44 +22,41 @@ const Users = () => {
   return (
     <>
       <Header />
-      <div className="flex items-start">
-        <Navigation menu="settings" submenu="users" />
-        <div
-          className={`wrapper  
+      <Navigation menu="settings" submenu="users" />
+      <div
+        className={`wrapper  
            ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
            transition-all ease-in duration-200 w-full  ml-0 sm:ml-[256px] ${
              store.isShow ? "ml-0 sm:ml-[256px]" : ""
            } `}
-        >
-          <div className="flex items-start justify-between mt-1 md:ml-0">
-            <div className="flex flex-col justify-center">
-              <BreadCrumbs param={location.search} />
-              <h4 className="my-3 text-base capitalize">
-                {location.pathname.split("/").pop().replaceAll("-", " ")}
-              </h4>
-            </div>
+      >
+        <div className="flex items-start justify-between mt-1 md:ml-0">
+          <div className="flex flex-col justify-center">
+            <BreadCrumbs param={location.search} />
+            <h4 className="my-3 text-base capitalize">
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
+            </h4>
           </div>
-
-          <hr />
-          <ul className="relative pb-40">
-            <li>
-              <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-                {getPageLink(link, "settings/user/system", "System user")}
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-                {getPageLink(link, "settings/user/other", "Other user")}
-              </div>
-            </li>
-            <li>
-              <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-                {getPageLink(link, "settings/user/role", "Roles")}
-              </div>
-            </li>
-          </ul>
-          <Footer />
         </div>
+
+        <ul className="relative pb-40">
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(link, "settings/user/system", "System user")}
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(link, "settings/user/other", "Other user")}
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(link, "settings/user/role", "Roles")}
+            </div>
+          </li>
+        </ul>
+        <Footer />
       </div>
     </>
   );

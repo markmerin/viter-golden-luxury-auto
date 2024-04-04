@@ -123,8 +123,6 @@ const Maintenance = () => {
           </div>
         </div>
 
-        <hr />
-
         <div className="relative w-[650px] pt-5 pb-4 ">
           {loadingMaintenance || isFetching || isLoading ? (
             <FetchingSpinner />

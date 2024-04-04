@@ -36,7 +36,7 @@ const OtherLogin = () => {
 
   const mutation = useMutation({
     mutationFn: (values) =>
-      queryData(`/${apiVersion}/user-other/login`, "post", values),
+      queryData(`${apiVersion}/user-other/login`, "post", values),
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ["other"] });

@@ -1,17 +1,17 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 
-import CarMakeList from "./CarMakeList";
-import ModalAddCarMake from "./ModalAddCarMake";
-import { StoreContext } from "@/store/StoreContext";
-import { setIsAdd, setIsSettingsOpen } from "@/store/StoreAction";
-import Header from "@/component/partials/Header";
-import Navigation from "../../Navigation";
 import { isDemoMode } from "@/component/helpers/functions-general";
 import BreadCrumbs from "@/component/partials/BreadCrumbs";
 import Footer from "@/component/partials/Footer";
-import ModalSuccess from "@/component/partials/modals/ModalSuccess";
+import Header from "@/component/partials/Header";
 import ModalError from "@/component/partials/modals/ModalError";
+import ModalSuccess from "@/component/partials/modals/ModalSuccess";
+import { setIsAdd, setIsSettingsOpen } from "@/store/StoreAction";
+import { StoreContext } from "@/store/StoreContext";
+import Navigation from "../../Navigation";
+import CarMakeList from "./CarMakeList";
+import ModalAddCarMake from "./ModalAddCarMake";
 
 const CarMake = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -29,36 +29,29 @@ const CarMake = () => {
   return (
     <>
       <Header />
-      <div className="relative flex items-start">
-        <Navigation menu="settings" submenu="car-make" />
-        <div
-          className={`wrapper  
-        ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
-        transition-all ease-in duration-200 w-full ml-0 sm:ml-[256px] `}
-        >
-          <div className="flex items-start justify-between mt-1 md:ml-0 print:hidden">
-            <div className="flex flex-col justify-center">
-              <BreadCrumbs param={location.search} />
-              <h4 className="my-3 text-base capitalize">
-                {location.pathname.split("/").pop().replaceAll("-", " ")}
-              </h4>
-            </div>
-            <div className="flex items-center gap-1 print:invisible">
-              <button
-                type="button"
-                className="pr-0 btn-primary"
-                onClick={handleAdd}
-              >
-                <FaPlus />
-                <span>Add</span>
-              </button>
-            </div>
+      <Navigation menu="settings" submenu="car-make" />
+      <div
+        className={`wrapper ${store.isShow && "ml-48"} ${
+          isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
+        }`}
+      >
+        <div className="flex items-start justify-between mt-1 ml-4 md:ml-0 print:hidden">
+          <div className="flex flex-col justify-center">
+            <BreadCrumbs param={location.search} />
+            <h4 className="my-3 text-base capitalize">
+              {location.pathname.split("/").pop().replaceAll("-", " ")}
+            </h4>
           </div>
           <div className="w-full pt-5 pb-4 ">
             <CarMakeList setItemEdit={setItemEdit} />
           </div>
           <Footer />
         </div>
+
+        <div className="w-full pt-5 pb-4">
+          <CarMakeList setItemEdit={setItemEdit} />
+        </div>
+        <Footer />
       </div>
 
       {store.isAdd && <ModalAddCarMake itemEdit={itemEdit} />}
