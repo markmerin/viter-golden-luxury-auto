@@ -53,42 +53,42 @@ const ClientViewInfo = () => {
       <Header />
       <Navigation menu="client" />
       <div
-        className={`wrapper ${store.isShow && "ml-48"} ${
+        className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
           isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
         }`}
       >
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0">
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
-            <h4 className="text-base my-3 capitalize flex items-center">
+            <h4 className="flex items-center my-3 text-base capitalize">
               <span className="inline-flex">{getClientName}</span>
             </h4>
           </div>
         </div>
 
         {client?.count === 0 && (
-          <ul className="pb-40 pt-5 relative">
+          <ul className="relative pt-5 pb-40">
             <NoData />
           </ul>
         )}
 
         {error && (
-          <ul className="pb-40 pt-5 relative">
+          <ul className="relative pt-5 pb-40">
             <ServerError />
           </ul>
         )}
 
         {isLoading && (
-          <ul className="pb-40 pt-5 relative">
+          <ul className="relative pt-5 pb-40">
             <TableLoading count={7} cols={2} />
           </ul>
         )}
 
         {client?.count > 0 && (
-          <ul className="pb-40 relative">
+          <ul className="relative pb-40">
             {isFetching && <FetchingSpinner />}
             <li>
-              <div className="group flex items-center justify-between gap-2 border-b border-solid border-gray-300">
+              <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
                 <FaUser />
                 {getPageLink(
                   link,
@@ -98,7 +98,7 @@ const ClientViewInfo = () => {
               </div>
             </li>
             <li>
-              <div className="group flex items-center justify-between gap-2 border-b border-solid border-gray-300">
+              <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
                 <FaCarSide />
                 {getPageLink(
                   link,
@@ -108,7 +108,7 @@ const ClientViewInfo = () => {
               </div>
             </li>
             <li>
-              <div className="group flex items-center justify-between gap-2 border-b border-solid border-gray-300">
+              <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
                 <FaHandHoldingDollar />
                 {getPageLink(
                   link,
