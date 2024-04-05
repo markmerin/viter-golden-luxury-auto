@@ -117,6 +117,17 @@ const ClientViewInfo = () => {
                 )}
               </div>
             </li>
+
+            <li>
+              <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
+                <FaHandHoldingDollar />
+                {getPageLink(
+                  link,
+                  `client/view-info/records-files?clientId=${clientId}`,
+                  "Records and Files"
+                )}
+              </div>
+            </li>
           </ul>
         )}
         <Footer />

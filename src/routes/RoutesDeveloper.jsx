@@ -22,6 +22,7 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
+import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 
 export const routesDeveloper = [
   {
@@ -152,6 +153,15 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
+  {
+    path: `${devNavUrl}/${developerPath}/client/view-info/records-files`,
+    element: (
+      <ProtectedRouteSystem>
+        <RecordsFiles />
+      </ProtectedRouteSystem>
+    ),
+  },
   {
     path: `${devNavUrl}/${developerPath}/car`,
     element: (
@@ -168,6 +178,7 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
   {
     path: `${devNavUrl}/${developerPath}/maintenance`,
     element: (
