@@ -1,5 +1,6 @@
 import {
   apiVersion,
+  devBaseImgUrl,
   formatMonthAndYear,
 } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
@@ -385,7 +386,7 @@ const ClientCarList = ({
           mysqlApiDelete={`${apiVersion}/client-car/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
-          item={dataItem.car_name}
+          item={dataItem.car_photo}
           queryKey={"client-car"}
         />
       )}

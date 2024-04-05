@@ -171,12 +171,12 @@ const ModalAddUserMain = ({ itemEdit, roles }) => {
                       />
                     </div>
 
-                    <div className="relative mb-6">
+                    {/* <div className="relative mb-6">
                       <p className="flex gap-1">
                         <span className="w-8 text-primary">Role:</span>
                         <span>{getNonDeveloperRole[0].role_name}</span>
                       </p>
-                    </div>
+                    </div> */}
 
                     <div className="modal__action flex justify-end absolute w-full bottom-0 mt-6 mb-4 gap-2 left-0 px-6">
                       <button

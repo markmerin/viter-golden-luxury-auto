@@ -12,6 +12,8 @@ if (array_key_exists("carmakeid", $_GET)) {
     // validations
     checkId($car_make->car_make_aid);
 
+    isAssociated($car_make);
+
     $query = checkDelete($car_make);
     returnSuccess($car_make, "Car Make Delete", $query);
 }
