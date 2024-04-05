@@ -18,6 +18,7 @@ import ModalSuccess from "../../../../../partials/modals/ModalSuccess";
 import Navigation from "../../../Navigation";
 import ModalAddRecordsFiles from "./ModalAddRecordsFiles";
 import RecordsFilesList from "./RecordsFilesList";
+import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 
 const RecordsFiles = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -28,13 +29,23 @@ const RecordsFiles = () => {
     isLoading,
     isFetching,
     error,
-    data: recordsfiles,
+    data: client,
   } = useQueryData(
-    `${apiVersion}/records-files/${clientId}`, // endpoint
+    `${apiVersion}/client/${clientId}`, // endpoint
     "get", // method
-    "recordsfiles", // key
+    "client", // key
     {},
     clientId
+  );
+
+  const getClientName = isLoading ? (
+    <ButtonSpinner />
+  ) : client?.count === 0 ? (
+    "No data"
+  ) : error ? (
+    "Server error"
+  ) : (
+    `${client?.data[0].client_fname} ${client?.data[0].client_lname}`
   );
 
   const handleAdd = () => {
@@ -66,7 +77,7 @@ const RecordsFiles = () => {
           </div>
         </div>
 
-        {recordsfiles?.count === 0 && (
+        {client?.count === 0 && (
           <div className="w-full pt-5 pb-32 ">
             <NoData />
           </div>
@@ -78,15 +89,24 @@ const RecordsFiles = () => {
           </div>
         )}
 
-        {recordsfiles?.count > 0 && (
+        {client?.count > 0 && (
           <div className="w-full pt-5 pb-4 ">
-            <RecordsFilesList />
+            <RecordsFilesList
+              isLoadingClient={isLoading}
+              isFetchingClient={isFetching}
+              clientId={clientId}
+              setItemEdit={setItemEdit}
+              itemEdit={itemEdit}
+              client={client}
+            />
           </div>
         )}
         <Footer />
       </div>
 
-      {store.isAdd && <ModalAddRecordsFiles itemEdit={itemEdit} />}
+      {store.isAdd && (
+        <ModalAddRecordsFiles itemEdit={itemEdit} clientId={clientId} />
+      )}
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}
     </>

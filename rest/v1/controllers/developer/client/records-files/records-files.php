@@ -1,11 +1,10 @@
 <?php
-
 // set http header
 require '../../../../core/header.php';
 // use needed functions
 require '../../../../core/functions.php';
 // use needed classes
-require '../../../../models/developer/record-files/RecordFiles.php';
+require '../../../../models/developer/client/record-files/RecordFiles.php';
 
 // get payload
 $body = file_get_contents("php://input");

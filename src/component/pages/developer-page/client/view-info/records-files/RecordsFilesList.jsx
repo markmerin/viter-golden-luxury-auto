@@ -1,7 +1,4 @@
-import {
-  apiVersion,
-  formatMonthAndYear,
-} from "@/component/helpers/functions-general";
+import { apiVersion } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -9,28 +6,14 @@ import SearchBarWithFilterStatus from "@/component/partials/SearchBarWithFilterS
 import ServerError from "@/component/partials/ServerError";
 import Status from "@/component/partials/Status";
 import TableLoading from "@/component/partials/TableLoading";
-import ModalArchive from "@/component/partials/modals/ModalArchive";
 import ModalDelete from "@/component/partials/modals/ModalDelete";
-import ModalRestore from "@/component/partials/modals/ModalRestore";
 import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
-import {
-  setIsAdd,
-  setIsArchive,
-  setIsDelete,
-  setIsRestore,
-  setIsSearch,
-} from "@/store/StoreAction";
+import { setIsAdd, setIsDelete, setIsSearch } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
-import {
-  FaArchive,
-  FaEdit,
-  FaHistory,
-  FaListAlt,
-  FaTrash,
-} from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
 
@@ -39,15 +22,12 @@ const RecordsFilesList = ({
   isFetchingClient,
   clientId,
   setItemEdit,
-  itemEdit,
-  client,
 }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
   const [dataItem, setData] = React.useState(null);
   const [onSearch, setOnSearch] = React.useState(false);
   const [isFilter, setIsFilter] = React.useState(false);
-  const [isViewImage, setIsViewImage] = React.useState(false);
   const [clientStatus, setClientStatus] = React.useState("all");
   const [isTableScroll, setIsTableScroll] = React.useState(false);
   const search = React.useRef({ value: "" });
@@ -65,7 +45,12 @@ const RecordsFilesList = ({
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["records-files", search.current.value, store.isSearch],
+    queryKey: [
+      "records-files",
+      search.current.value,
+      store.isSearch,
+      clientStatus,
+    ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
         `${apiVersion}/records-files/search`, // search endpoint
@@ -74,8 +59,8 @@ const RecordsFilesList = ({
         {
           searchValue: search?.current?.value,
           isFilter,
-          car_is_active: clientStatus,
-          car_client_id: clientId,
+          record_files_is_active: clientStatus,
+          record_files_client_id: clientId,
         }
       ),
     getNextPageParam: (lastPage) => {
@@ -101,8 +86,20 @@ const RecordsFilesList = ({
 
   const handleDelete = (item) => {
     dispatch(setIsDelete(true));
-    setId(item.car_aid);
+    setId(item.record_files_aid);
     setData(item);
+  };
+
+  const handleChangeClientStatus = (e) => {
+    setClientStatus(e.target.value);
+    setIsFilter(false);
+    dispatch(setIsSearch(false));
+    search.current.value = "";
+    if (e.target.value !== "all") {
+      setIsFilter(true);
+      dispatch(setIsSearch(true));
+    }
+    setPage(1);
   };
 
   const handleScroll = (e) => {
@@ -119,7 +116,20 @@ const RecordsFilesList = ({
       <div className="flex flex-col justify-between gap-3 pb-2 md:flex-row">
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
-            <div className="relative w-28 "></div>
+            <div className="relative w-28 ">
+              <label>Filter</label>
+              <select
+                name="status"
+                value={clientStatus}
+                onChange={(e) => handleChangeClientStatus(e)}
+                disabled={isFetching || status === "pending"}
+                className="h-[35px] py-0"
+              >
+                <option value="all">All</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+            </div>
           </div>
 
           <div className="relative flex items-center gap-1 ml-2 text-sm text-gray-600">
@@ -163,15 +173,10 @@ const RecordsFilesList = ({
               <tr>
                 <th className="w-[2rem] text-center">#</th>
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
-                <th>Vehicle Make</th>
-                <th>Vehicle Year</th>
-                <th>Model / Specs</th>
-                <th>VIN #</th>
-                <th>Licence / Plate Number</th>
-                <th>Licence / Registration Date</th>
-                <th>Gas</th>
-                <th>Tire Size</th>
-                <th>Oil Type</th>
+                <th>Document Name</th>
+                <th>Date</th>
+                <th>Remarks</th>
+
                 <th colSpan={"100%"}></th>
               </tr>
             </thead>
@@ -204,32 +209,22 @@ const RecordsFilesList = ({
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
                         <td className="pl-3 sm:hidden">
-                          {item.car_is_active === 1 ? (
+                          {item.record_files_is_active === 1 ? (
                             <span className="block w-3 h-3 bg-green-700 rounded-full"></span>
                           ) : (
                             <span className="block w-3 h-3 bg-gray-400 rounded-full"></span>
                           )}
                         </td>
                         <td className="hidden sm:table-cell">
-                          {item.car_is_active === 1 ? (
+                          {item.record_files_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
                         </td>
-                        <td>{item.car_make_name}</td>
-                        <td>{item.car_year}</td>
-                        <td>{item.car_specs}</td>
-                        <td>{item.car_vin_number}</td>
-                        <td>{item.car_plate_number}</td>
-                        <td>
-                          {item.car_registration_date === ""
-                            ? "Unspecified"
-                            : formatMonthAndYear(item.car_registration_date)}
-                        </td>
-                        <td>{item.car_gas}</td>
-                        <td>{item.car_tire_size}</td>
-                        <td>{item.car_oil_type}</td>
+                        <td>{item.record_files_doc_name}</td>
+                        <td>{item.record_files_date}</td>
+                        <td>{item.record_files_remarks}</td>
 
                         <td
                           colSpan={"100%"}
@@ -245,9 +240,7 @@ const RecordsFilesList = ({
                               >
                                 <FaEdit className="w-3 h-3" />
                               </button>
-                            </div>
 
-                            <div className="flex items-center ">
                               <button
                                 type="button"
                                 className="btn-action-table tooltip-action-table"
@@ -286,8 +279,8 @@ const RecordsFilesList = ({
           mysqlApiDelete={`${apiVersion}/records-files/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
-          item={dataItem.car_name}
-          queryKey={"recordsfiles"}
+          item={dataItem.record_files_doc_name}
+          queryKey={"records-files"}
         />
       )}
     </>

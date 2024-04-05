@@ -4,6 +4,7 @@ import {
   InputFileUpload,
   InputSelect,
   InputText,
+  InputTextArea,
 } from "@/component/helpers/FormInputs";
 import {
   apiVersion,
@@ -29,41 +30,21 @@ import * as Yup from "yup";
 const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
-  const [title, setTitle] = React.useState(
-    itemEdit ? itemEdit.car_make_name : ""
-  );
+
   const queryClient = useQueryClient();
-  let fileName = "";
-
-  const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
-    `${apiVersion}/upload/photo`,
-    dispatch
-  );
-
-  const {
-    isLoading,
-    isFetching,
-    error,
-    data: carMake,
-  } = useQueryData(
-    `${apiVersion}/car-make`, // endpoint
-    "get", // method
-    "carMake" // key
-  );
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `${apiVersion}/client-car/${itemEdit.car_aid}`
-          : `${apiVersion}/client-car`,
+          ? `${apiVersion}/records-files/${itemEdit.record_files_aid}`
+          : `${apiVersion}/records-files`,
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["client-car"] });
-      queryClient.invalidateQueries({ queryKey: ["car"] });
+      queryClient.invalidateQueries({ queryKey: ["records-files"] });
 
       // show error box
       if (!data.success) {
@@ -80,34 +61,18 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
   });
 
   const initVal = {
-    car_photo: itemEdit ? itemEdit.car_photo : "",
-    car_client_id: clientId,
-    car_vehicle_make_id: itemEdit ? itemEdit.car_vehicle_make_id : "",
-    car_year: itemEdit ? itemEdit.car_year : "",
-    car_specs: itemEdit ? itemEdit.car_specs : "",
-    car_vin_number: itemEdit ? itemEdit.car_vin_number : "",
-    car_plate_number: itemEdit ? itemEdit.car_plate_number : "",
-    car_registration_date: itemEdit ? itemEdit.car_registration_date : "",
-    car_gas: itemEdit ? itemEdit.car_gas : "",
-    car_tire_size: itemEdit ? itemEdit.car_tire_size : "",
-    car_oil_type: itemEdit ? itemEdit.car_oil_type : "",
-    car_nada_retail: itemEdit ? itemEdit.car_nada_retail : "",
-    car_nada_clean: itemEdit ? itemEdit.car_nada_clean : "",
-    car_nada_average: itemEdit ? itemEdit.car_nada_average : "",
-    car_nada_rough: itemEdit ? itemEdit.car_nada_rough : "",
-    car_miles: itemEdit ? itemEdit.car_miles : "",
-    car_last_oil_change: itemEdit ? itemEdit.car_last_oil_change : "",
+    record_files_aid: itemEdit ? itemEdit.record_files_aid : "",
+    record_files_doc_name: itemEdit ? itemEdit.record_files_doc_name : "",
+    record_files_date: itemEdit ? itemEdit.record_files_date : "",
+    record_files_remarks: itemEdit ? itemEdit.record_files_remarks : "",
+    record_files_client_id: clientId,
+    record_files_doc_name_old: itemEdit ? itemEdit.record_files_doc_name : "",
   };
 
   const yupSchema = Yup.object({
-    car_vehicle_make_id: Yup.string().required("Required"),
-    car_year: Yup.string().required("Required"),
-    car_specs: Yup.string().required("Required"),
+    record_files_doc_name: Yup.string().required("Required"),
+    record_files_date: Yup.string().required("Required"),
   });
-
-  const handleChangeTitle = (e) => {
-    setTitle(e.target.options[e.target.selectedIndex].textContent);
-  };
 
   const handleClose = () => {
     // set animation
@@ -132,7 +97,7 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
       >
         <div className="relative mb-4 modal_header">
           <h3 className="text-sm text-black">
-            {itemEdit ? "Update" : "Add"} Car
+            {itemEdit ? "Update" : "Add"} Records and Files
           </h3>
           <button
             type="button"
@@ -149,239 +114,38 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              uploadPhoto(fileName.toLowerCase());
               mutation.mutate({
                 ...values,
-                car_photo:
-                  (itemEdit && itemEdit.car_photo === "") ||
-                  photo ||
-                  itemEdit.car_photo !==
-                    `${fileName}.${itemEdit.car_photo.split(".").pop()}`
-                    ? `${fileName}.${
-                        photo === null
-                          ? itemEdit.car_photo.split(".").pop()
-                          : photo.name.split(".").pop()
-                      }`
-                    : values.car_photo,
+                record_files_client_id: clientId,
               });
             }}
           >
             {(props) => {
-              fileName = `${title}-${props.values.car_specs.replaceAll(
-                " ",
-                ""
-              )}-${props.values.car_year}`;
-
               return (
                 <Form>
                   <div className="modal-overflow">
-                    <div className="relative mt-5 mb-6 border border-gray-300 rounded-md">
-                      {photo || (itemEdit && itemEdit.car_photo !== "") ? (
-                        <img
-                          src={
-                            photo
-                              ? URL.createObjectURL(photo) // preview
-                              : itemEdit.car_photo // check db
-                              ? devBaseImgUrl + "/" + itemEdit.car_photo
-                              : null
-                          }
-                          alt="car photo"
-                          className="rounded-tr-md rounded-tl-md h-[200px] max-h-[200px] w-full object-cover object-center m-auto"
-                        />
-                      ) : (
-                        // <FaRegImage className="w-20 h-20 m-auto fill-gray-200" />
-                        <span className="flex items-center justify-center min-h-20">
-                          <span className="mr-1 text-accent">Drag & Drop</span>{" "}
-                          photo here or{" "}
-                          <span className="ml-1 text-accent">Browse</span>
-                        </span>
-                      )}
-
-                      {(photo !== null ||
-                        (itemEdit && itemEdit.car_photo !== "")) && (
-                        <span className="flex items-center justify-center min-h-10">
-                          <span className="mr-1 text-accent">Drag & Drop</span>{" "}
-                          photo here or{" "}
-                          <span className="ml-1 text-accent">Browse</span>
-                        </span>
-                      )}
-
-                      {/* <FaUpload className="opacity-100 duration-200 group-hover:opacity-100 fill-dark/70 absolute top-0 right-0 bottom-0 left-0 min-w-[1.2rem] min-h-[1.2rem] max-w-[1.2rem] max-h-[1.2rem] m-auto cursor-pointer" /> */}
-                      <InputFileUpload
-                        label="Car Photo"
-                        name="photo"
-                        type="file"
-                        id="myFile"
-                        accept="image/*"
-                        title="Upload photo"
-                        onChange={(e) => handleChangePhoto(e)}
-                        onDrop={(e) => handleChangePhoto(e)}
-                        className="absolute bottom-0 left-0 right-0 h-full m-auto opacity-0 cursor-pointer"
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputSelect
-                        label="Vehicle Make"
-                        name="car_vehicle_make_id"
-                        disabled={mutation.isPending || isLoading || error}
-                        onChange={(e) => handleChangeTitle(e)}
-                      >
-                        {isLoading ? (
-                          <option value="" disabled>
-                            Loading...
-                          </option>
-                        ) : error ? (
-                          <option value="" disabled>
-                            API / Network Error
-                          </option>
-                        ) : carMake?.count > 0 ? (
-                          <>
-                            <option value="" hidden></option>
-                            {carMake?.count > 0 ? (
-                              carMake?.data.map((item, key) => {
-                                return (
-                                  <option value={item.car_make_aid} key={key}>
-                                    {item.car_make_name}
-                                  </option>
-                                );
-                              })
-                            ) : (
-                              <option value="" disabled>
-                                No data
-                              </option>
-                            )}
-                          </>
-                        ) : (
-                          <option value="" disabled>
-                            No data
-                          </option>
-                        )}
-                      </InputSelect>
-                    </div>
-
                     <div className="relative mb-6">
                       <InputText
-                        label="Vehicle Year"
-                        type="number"
-                        name="car_year"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Model / Specs"
+                        label="Document Name"
                         type="text"
-                        name="car_specs"
+                        name="record_files_doc_name"
                         disabled={mutation.isPending}
                       />
                     </div>
 
                     <div className="relative mb-6">
                       <InputText
-                        label="VIN #"
-                        type="text"
-                        name="car_vin_number"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="License / Plate Number"
-                        type="text"
-                        name="car_plate_number"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="License / Registration Date"
-                        type="month"
-                        name="car_registration_date"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Gas"
-                        type="text"
-                        name="car_gas"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Tire Size"
-                        type="text"
-                        name="car_tire_size"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Oil Type"
-                        type="text"
-                        name="car_oil_type"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="NADA - Retail"
-                        type="number"
-                        name="car_nada_retail"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="NADA - Clean"
-                        type="number"
-                        name="car_nada_clean"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="NADA - Average"
-                        type="number"
-                        name="car_nada_average"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="NADA - Rough"
-                        type="number"
-                        name="car_nada_rough"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="MILES"
-                        type="number"
-                        name="car_miles"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Last Change Oil"
+                        label="Date"
                         type="date"
-                        name="car_last_oil_change"
+                        name="record_files_date"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputTextArea
+                        label="Remarks"
+                        name="record_files_remarks"
                         disabled={mutation.isPending}
                       />
                     </div>
@@ -389,9 +153,7 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
                     <div className="absolute bottom-0 left-0 flex justify-end w-full gap-2 px-6 mt-6 mb-4 modal__action">
                       <button
                         type="submit"
-                        disabled={
-                          (mutation.isPending || !props.dirty) && photo === null
-                        }
+                        disabled={mutation.isPending || !props.dirty}
                         className="relative btn-modal-submit"
                       >
                         {mutation.isPending ? (

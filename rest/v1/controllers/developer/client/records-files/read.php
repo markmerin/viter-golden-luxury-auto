@@ -3,19 +3,19 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$client = new Client($conn);
+$record_files = new RecordFiles($conn);
 // get $_GET data
 
-if (array_key_exists("clientid", $_GET)) {
-    $client->client_aid = $_GET['clientid'];
-    checkId($client->client_aid);
-    $query = checkReadById($client);
+if (array_key_exists("recordfilesid", $_GET)) {
+    $record_files->record_files_aid  = $_GET['recordfilesid'];
+    checkId($record_files->record_files_aid);
+    $query = checkReadById($car);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($client);
+    $query = checkReadAll($record_files);
     http_response_code(200);
     getQueriedData($query);
 }
