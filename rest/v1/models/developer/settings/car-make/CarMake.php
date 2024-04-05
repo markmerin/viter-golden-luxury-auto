@@ -16,11 +16,13 @@ class CarMake
 
 
     public $tblCarMake;
+    public $tblCar;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblCarMake = "glav1_car_make";
+        $this->tblCar = "glav1_car";
     }
 
     // create
@@ -239,21 +241,19 @@ class CarMake
         return $query;
     }
 
-
-
     // association
-    // public function checkDesignationAssociation()
-    // {
-    //     try {
-    //         $sql = "select designation_car_make_id from {$this->tblDesignation} ";
-    //         $sql .= "where designation_car_make_id = :car_make_aid ";
-    //         $query = $this->connection->prepare($sql);
-    //         $query->execute([
-    //             "car_make_aid" => "{$this->car_make_aid}",
-    //         ]);
-    //     } catch (PDOException $ex) {
-    //         $query = false;
-    //     }
-    //     return $query;
-    // }
+    public function checkAssociation()
+    {
+        try {
+            $sql = "select car_vehicle_make_id from {$this->tblCar} ";
+            $sql .= "where car_vehicle_make_id = :car_vehicle_make_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "car_vehicle_make_id" => $this->car_make_aid,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
 }

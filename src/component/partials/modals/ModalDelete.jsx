@@ -60,7 +60,7 @@ const ModalDelete = ({ mysqlApiDelete, msg, item, queryKey, successMsg }) => {
           <div className="bg-white p-6 pt-10 text-center rounded-lg">
             <FaQuestion className="my-2 mx-auto animate-bounce h-11 w-11 text-red-700" />
             <p className="text-sm">{msg}</p>
-            <span className="text-xs font-bold underline">{item}</span>
+            {/* <span className="text-xs font-bold underline">{item}</span> */}
             <div className="flex items-center gap-1 pt-8">
               <button
                 type="submit"
