@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 10:43 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Apr 05, 2024 at 04:08 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,11 +56,7 @@ CREATE TABLE `glav1_car` (
 --
 
 INSERT INTO `glav1_car` (`car_aid`, `car_is_active`, `car_photo`, `car_client_id`, `car_vehicle_make_id`, `car_year`, `car_specs`, `car_vin_number`, `car_plate_number`, `car_registration_date`, `car_gas`, `car_tire_size`, `car_oil_type`, `car_nada_retail`, `car_nada_clean`, `car_nada_average`, `car_nada_rough`, `car_miles`, `car_last_oil_change`, `car_created`, `car_datetime`) VALUES
-(12, 1, '', 2, 1, 2020, 'MDX', '5J8YD4H37LL042022', 'CF90734', '2024-04', 'Premium', 'P265/45R20', '0W-20', 0, 0, 0, 0, 0, '', '2024-04-04 10:05:28', '2024-04-04 15:59:31'),
-(13, 1, 'cadillac-escaladeesv-2018.jpg', 2, 3, 2018, 'Escalade ESV', '1GYS4JKJ0JR130246', 'G129PE', '2023-10', 'Premium', 'P275/50R21', '0W-20', 30998, 27775, 25850, 23550, 122430, '2023-10-10', '2024-04-04 10:09:58', '2024-04-04 16:08:14'),
-(14, 1, '', 2, 2, 2018, 'x2', 'WBXYJ5C33JEF73360', 'CG57789', '2023-11', 'Premium', 'P225/50R18', '0W20', 23550, 20700, 19050, 17075, 63835, '2020-03-04', '2024-04-04 10:34:57', '2024-04-04 10:34:57'),
-(15, 1, '', 3, 2, 2019, 'x6', '5UXKU2C57K0Z63897', 'G108NE', '2023-11', 'Premium', 'P275/50R22', '0W30', 35795, 32750, 30800, 28475, 73115, '2022-03-03', '2024-04-04 13:56:56', '2024-04-04 13:56:56'),
-(16, 1, 'chevrolet-tahoe-2020.jpg', 3, 4, 2020, 'Tahoe', '5J8YD4H37LL042020', 'CF90734', '2024-04', 'Premium', '', '', 0, 0, 0, 0, 0, '', '2024-04-04 15:01:08', '2024-04-04 16:18:31');
+(4, 1, 'bf12lsxdskk8ycx1lhgnrg.2880x1400-768x373.jpg', 2, 1, 2020, 'MDX', '', '', '', '', '', '', 0, 0, 0, 0, 0, '', '2024-04-05 21:00:00', '2024-04-05 21:27:58');
 
 -- --------------------------------------------------------
 
@@ -81,10 +77,10 @@ CREATE TABLE `glav1_car_make` (
 --
 
 INSERT INTO `glav1_car_make` (`car_make_aid`, `car_make_is_active`, `car_make_name`, `car_make_datetime`, `car_make_created`) VALUES
-(1, 1, 'Acura', '2024-04-03 15:02:02', '2024-04-03 15:02:02'),
-(2, 1, 'BMW', '2024-04-03 15:02:08', '2024-04-03 15:02:08'),
-(3, 1, 'Cadillac', '2024-04-03 15:02:23', '2024-04-03 15:02:23'),
-(4, 1, 'Chevrolet', '2024-04-03 15:02:48', '2024-04-03 15:02:48');
+(1, 0, 'Acura', '2024-04-05 21:31:18', '2024-04-03 21:19:33'),
+(2, 1, 'BMW', '2024-04-03 21:19:37', '2024-04-03 21:19:37'),
+(3, 1, 'Cadillac', '2024-04-03 21:19:52', '2024-04-03 21:19:52'),
+(4, 1, 'Chevrolet', '2024-04-03 21:20:04', '2024-04-03 21:20:04');
 
 -- --------------------------------------------------------
 
@@ -128,6 +124,19 @@ CREATE TABLE `glav1_expenses` (
   `expenses_created` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `glav1_expenses`
+--
+
+INSERT INTO `glav1_expenses` (`expenses_aid`, `expenses_is_active`, `expenses_name`, `expenses_datetime`, `expenses_created`) VALUES
+(1, 1, 'Car Cleaning', '2024-03-28 10:41:20', '2024-03-28 10:33:58'),
+(3, 1, 'xxxxx3333', '2024-03-28 10:52:16', '2024-03-28 10:42:02'),
+(4, 1, 'dfdfdf', '2024-03-28 10:52:19', '2024-03-28 10:52:19'),
+(5, 1, 'sdsdsds', '2024-03-28 10:52:22', '2024-03-28 10:52:22'),
+(6, 1, 'fdfdfdfdf', '2024-03-28 10:52:26', '2024-03-28 10:52:26'),
+(7, 1, 'werwerwer', '2024-03-28 10:52:28', '2024-03-28 10:52:28'),
+(8, 1, 'vvvvbv', '2024-03-28 10:52:31', '2024-03-28 10:52:31');
+
 -- --------------------------------------------------------
 
 --
@@ -141,6 +150,14 @@ CREATE TABLE `glav1_income_category` (
   `income_category_datetime` varchar(20) NOT NULL,
   `income_category_created` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `glav1_income_category`
+--
+
+INSERT INTO `glav1_income_category` (`income_category_aid`, `income_category_is_active`, `income_category_name`, `income_category_datetime`, `income_category_created`) VALUES
+(3, 1, 'cccc', '2024-03-29 08:15:19', '2024-03-28 21:07:59'),
+(4, 1, 'test', '2024-03-29 08:39:13', '2024-03-28 22:32:23');
 
 -- --------------------------------------------------------
 
@@ -156,6 +173,13 @@ CREATE TABLE `glav1_income_item` (
   `income_item_created` varchar(20) NOT NULL,
   `income_item_datetime` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `glav1_income_item`
+--
+
+INSERT INTO `glav1_income_item` (`income_item_aid`, `income_item_is_active`, `income_item_name`, `income_item_category_id`, `income_item_created`, `income_item_datetime`) VALUES
+(5, 1, 'qqq', 4, '2024-03-29 08:38:13', '2024-03-29 08:38:13');
 
 -- --------------------------------------------------------
 
@@ -193,6 +217,13 @@ CREATE TABLE `glav1_representatives` (
   `representatives_datetime` varchar(20) NOT NULL,
   `representatives_created` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `glav1_representatives`
+--
+
+INSERT INTO `glav1_representatives` (`representatives_aid`, `representatives_is_active`, `representatives_fname`, `representatives_lname`, `representatives_email`, `representatives_datetime`, `representatives_created`) VALUES
+(1, 1, 'd', 'dsds', 'dsd@asd.ciom', '2024-03-28 14:07:02', '2024-03-28 14:07:02');
 
 -- --------------------------------------------------------
 
@@ -244,7 +275,8 @@ CREATE TABLE `glav1_user_other` (
 --
 
 INSERT INTO `glav1_user_other` (`user_other_aid`, `user_other_is_active`, `user_other_fname`, `user_other_lname`, `user_other_email`, `user_other_new_email`, `user_other_role_id`, `user_other_key`, `user_other_password`, `user_other_created`, `user_other_datetime`) VALUES
-(1, 1, 'Mark', 'Ryan', 'macmerin24@gmail.com', '', '2', '', '$2y$10$hmyVpp/aMwaw/a762wgDOe/bQYuQqoa37yJt8ldcU0imGb/ESPHES', '2024-03-26 21:13:33', '2024-03-27 12:17:01');
+(2, 1, 'Mac', 'Merin', 'macmerin24@gmail.com', '', '2', '', '$2y$10$rafVF0tPZV71HhGPNc.oguaEKDE8Ech/mZ5GYVjPEvH.eIrOpOLxa', '2024-04-05 19:59:14', '2024-04-05 20:01:02'),
+(3, 1, 'Mac', 'Mac', 'merin.ryanmark@gmail.com', '', '2', '', '$2y$10$v9bLuieYO.QXvHzKCX9Ms.g70KwTNXAfeW0eHaQuxxr1CUxZzaT1W', '2024-04-05 21:03:14', '2024-04-05 21:04:15');
 
 -- --------------------------------------------------------
 
@@ -271,8 +303,8 @@ CREATE TABLE `glav1_user_system` (
 --
 
 INSERT INTO `glav1_user_system` (`user_system_aid`, `user_system_is_active`, `user_system_fname`, `user_system_lname`, `user_system_email`, `user_system_new_email`, `user_system_role_id`, `user_system_key`, `user_system_password`, `user_system_created`, `user_system_datetime`) VALUES
-(1, 1, 'Mark Ryan', 'Merin', 'mark.merin@frontlinebusiness.com.ph', '', '1', '', '$2y$10$oi5ebNrNt0kkK9qKZ6ozVuPfmL/JNe.sFYdaIr6U.ZuKZ7swwhD.G', '2024-03-26 00:29:49', '2024-03-27 12:08:57'),
-(2, 1, 'Mac', 'Merin', 'macmerin32@gmail.com', '', '1', '', '$2y$10$MiS46dj.YiEwuwmTjJUbUuMYlmeg04c/VxP.7QLOkf0FF7kk4Of.W', '2024-03-26 20:16:05', '2024-03-27 10:15:39');
+(1, 1, 'Mark Ryan', 'Merin', 'mark.merin@frontlinebusiness.com.ph', '', '1', '', '$2y$10$ba/3FB/rwVxWYGOErDv6wehWCfSjd1ZgpHPvTnA2F7KCi.4xe4/bG', '2024-03-26 00:29:49', '0000-00-00 00:00:00'),
+(2, 1, 'Mac', 'Merin', 'macmerin24@gmail.com', '', '1', '', '$2y$10$MiS46dj.YiEwuwmTjJUbUuMYlmeg04c/VxP.7QLOkf0FF7kk4Of.W', '2024-03-26 20:16:05', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -352,7 +384,7 @@ ALTER TABLE `glav1_user_system`
 -- AUTO_INCREMENT for table `glav1_car`
 --
 ALTER TABLE `glav1_car`
-  MODIFY `car_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `car_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `glav1_car_make`
@@ -406,7 +438,7 @@ ALTER TABLE `glav1_roles`
 -- AUTO_INCREMENT for table `glav1_user_other`
 --
 ALTER TABLE `glav1_user_other`
-  MODIFY `user_other_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_other_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `glav1_user_system`
