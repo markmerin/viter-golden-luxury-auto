@@ -191,7 +191,7 @@ const CarList = () => {
           />
         </div>
       </div>
-      <div className="relative rounded-md text-center overflow-auto z-0">
+      <div className="relative z-0 overflow-auto text-center rounded-md">
         {isFetching && !isFetchingNextPage && status !== "pending" && (
           <FetchingSpinner />
         )}
@@ -266,7 +266,7 @@ const CarList = () => {
                               `${devNavUrl}/${link}/client/view-info/car?clientId=${item.client_aid}`
                             )
                           }
-                          className="relative tooltip-action-table cursor-pointer overflow-visible text-accent underline"
+                          className="relative overflow-visible underline cursor-pointer tooltip-action-table text-accent"
                           data-tooltip={`View ${item.client_fname} ${item.client_lname} Cars`}
                         >
                           {item.client_fname} {item.client_lname}
@@ -286,11 +286,11 @@ const CarList = () => {
 
                         <td
                           colSpan={"100%"}
-                          className="opacity-100 group-hover:opacity-100"
+                          className="sticky opacity-100 group-hover:opacity-100 -right-3"
                         >
-                          <div className="flex items-center justify-end gap-3 ml-4">
+                          <div className="flex items-center gap-3 table-action">
                             {item.car_is_active === 1 ? (
-                              <div className="flex items-center ">
+                              <div className="!absolute  right-3 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
