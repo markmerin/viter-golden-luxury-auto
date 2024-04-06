@@ -4,7 +4,7 @@ const LogoForAccess = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsLink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       width="310"
       height="57"
       viewBox="0 0 310 57"
