@@ -106,6 +106,16 @@ RewriteRule ^client-car/active/([0-9]+)$ controllers/developer/client/car/active
 RewriteRule ^client-car/page/([0-9]+)/([0-9]+)$ controllers/developer/client/car/page.php?start=$1&clientid=$2 [L]
 RewriteRule ^client-car/search$ controllers/developer/client/car/search.php [L]
 
+
+### CLIENT CAR ###
+RewriteRule ^records-files$ controllers/developer/client/records-files/records-files.php [L]
+RewriteRule ^records-files/([0-9]+)$ controllers/developer/client/records-files/records-files.php?recordsfilesid=$1 [L]
+RewriteRule ^records-files/active/([0-9]+)$ controllers/developer/client/records-files/active.php?recordsfilesid=$1 [L]
+RewriteRule ^records-files/page/([0-9]+)/([0-9]+)$ controllers/developer/client/records-files/page.php?start=$1&clientid=$2 [L]
+RewriteRule ^records-files/search$ controllers/developer/client/records-files/search.php [L]
+
+
+
 ### CAR ###
 RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
 RewriteRule ^car/search$ controllers/developer/car/search.php [L]

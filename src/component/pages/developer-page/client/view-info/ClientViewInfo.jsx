@@ -19,6 +19,7 @@ import BreadCrumbs from "../../../../partials/BreadCrumbs";
 import Footer from "../../../../partials/Footer";
 import Header from "../../../../partials/Header";
 import Navigation from "../../Navigation";
+import { HiDocument } from "react-icons/hi2";
 
 const ClientViewInfo = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -114,6 +115,17 @@ const ClientViewInfo = () => {
                   link,
                   `client/view-info/earnings?clientId=${clientId}`,
                   "Earning"
+                )}
+              </div>
+            </li>
+
+            <li>
+              <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
+                <HiDocument />
+                {getPageLink(
+                  link,
+                  `client/view-info/records-files?clientId=${clientId}`,
+                  "Records and Files"
                 )}
               </div>
             </li>
