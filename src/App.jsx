@@ -14,6 +14,7 @@ import VerifyEmailOtherUser from "./component/pages/access/verify-email/VerifyEm
 import VerifyEmailSystemUser from "./component/pages/access/verify-email/VerifyEmailSystemUser";
 import PageNotFound from "./component/partials/PageNotFound";
 import { routesAdmin } from "./routes/RoutesAdmin";
+import { routesClient } from "./routes/RoutesClient";
 import { routesDeveloper } from "./routes/RoutesDeveloper";
 import { StoreProvider } from "./store/StoreContext";
 
@@ -63,6 +64,11 @@ function App() {
 
             {/* ADMIN USER ROUTE */}
             {routesAdmin.map(({ ...routeProps }, key) => {
+              return <Route key={key} {...routeProps} />;
+            })}
+
+            {/* CLIENT USER ROUTE */}
+            {routesClient.map(({ ...routeProps }, key) => {
               return <Route key={key} {...routeProps} />;
             })}
 

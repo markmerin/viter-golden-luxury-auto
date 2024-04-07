@@ -1,3 +1,4 @@
+import LogoForAccess from "@/component/svg/LogoForAccess";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 import useQueryData from "../../../custom-hooks/useQueryData";
@@ -41,8 +42,9 @@ const VerifyEmailOtherUser = () => {
             </div>
           )}
           <div className="w-96 p-6">
-            <div className="flex justify-center items-center flex-col">
-              <GlaLogo />
+            {/* <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1"> */}
+            <div className="flex justify-center items-center flex-col ">
+              <LogoForAccess />
             </div>
             <FaCheck className="h-16 w-16 fill-green-700 mx-auto mt-8" />
             <h2 className="mb-4 mt-2 text-lg text-center">Success!</h2>

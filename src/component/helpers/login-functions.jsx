@@ -1,5 +1,7 @@
 import { devNavUrl } from "./functions-general";
 
 export const checkRoleToRedirect = (navigate, data) => {
-  navigate(`${devNavUrl}/${data.role_name.toLowerCase()}/settings/user`);
+  data.role_is_client === 1
+    ? navigate(`${devNavUrl}/${data.role_name.toLowerCase()}/profile`)
+    : navigate(`${devNavUrl}/${data.role_name.toLowerCase()}/settings/user`);
 };

@@ -1,3 +1,5 @@
+import useQueryData from "@/component/custom-hooks/useQueryData";
+import TableSpinner from "@/component/partials/spinners/TableSpinner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
@@ -22,6 +24,19 @@ const ModalUpdateProfile = ({ itemEdit, setUpdateProfile }) => {
   const { dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
   const [animate, setAnimate] = React.useState("translate-x-full");
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: clientEmail,
+  } = useQueryData(
+    `${apiVersion}/client/user-account-by-email`, // endpoint
+    "post", // method
+    "client-email", // key
+    { client_email: itemEdit.client_email },
+    { client_email: itemEdit.client_email }
+  );
 
   const mutation = useMutation({
     mutationFn: (values) =>
@@ -78,6 +93,7 @@ const ModalUpdateProfile = ({ itemEdit, setUpdateProfile }) => {
         handleClose={handleClose}
         className={`transition-all ease-in-out transform duration-200 ${animate}`}
       >
+        {itemEdit && (isLoading || isFetching) && <TableSpinner />}
         <div className="relative mb-4 modal_header">
           <h3 className="text-sm text-black">Update Profile</h3>
           <button
@@ -89,7 +105,7 @@ const ModalUpdateProfile = ({ itemEdit, setUpdateProfile }) => {
             <FaTimesCircle className="text-lg text-gray-400" />
           </button>
         </div>
-        <div className="modal_body overflow-y-auto overflow-x-hidden max-h-[85vh]">
+        <div className="modal_body">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}
@@ -134,9 +150,19 @@ const ModalUpdateProfile = ({ itemEdit, setUpdateProfile }) => {
                         label="Email"
                         type="text"
                         name="client_email"
-                        disabled={mutation.isPending}
+                        disabled={
+                          mutation.isLoading ||
+                          (clientEmail?.count > 0 && itemEdit)
+                        }
                       />
                     </div>
+
+                    {itemEdit && clientEmail?.count > 0 && (
+                      <p className="bg-[#fffde7] m-0 w-fit text-left  p-2 px-5">
+                        NOTE: Email editing is unavailable if the client has a
+                        user account.
+                      </p>
+                    )}
 
                     <div className="absolute bottom-0 left-0 flex justify-end w-full gap-2 px-6 mt-6 mb-4 modal__action">
                       <button

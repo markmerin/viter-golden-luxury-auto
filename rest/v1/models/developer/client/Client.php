@@ -20,13 +20,14 @@ class Client
     public $client_search;
 
     public $tblClient;
-    public $tblRole;
-    public $tblAccess;
+    public $tblUserOther;
+
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblClient = "glav1_client";
+        $this->tblUserOther = "glav1_user_other";
     }
 
     // create
@@ -214,6 +215,50 @@ class Client
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "client_aid" => $this->client_aid,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    // read by id
+    public function readUserAccountByEmail()
+    {
+        try {
+            $sql = "select user_other_email from {$this->tblUserOther} ";
+            $sql .= "where user_other_email = :user_other_email ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "user_other_email" => $this->client_email,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function readActiveClient()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "client_aid, ";
+            $sql .= "CONCAT(client_fname, ' ', client_lname) as clientFullname, ";
+            $sql .= "client_fname, ";
+            $sql .= "client_lname, ";
+            $sql .= "client_email ";
+            $sql .= "from ";
+            $sql .= "{$this->tblClient} ";
+            $sql .= "where client_is_active = 1 ";
+            $sql .= "and (client_fname like :client_fname ";
+            $sql .= "or client_lname like :client_lname ";
+            $sql .= "or CONCAT(client_fname, ' ', client_lname) like :client_fullname) ";
+            $sql .= "order by client_fname ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "client_fname" => "%{$this->client_search}%",
+                "client_lname" => "%{$this->client_search}%",
+                "client_fullname" => "%{$this->client_search}%",
             ]);
         } catch (PDOException $ex) {
             $query = false;

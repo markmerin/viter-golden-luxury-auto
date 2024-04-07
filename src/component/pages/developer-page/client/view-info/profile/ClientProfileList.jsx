@@ -28,14 +28,16 @@ const ClientProfileList = ({ client }) => {
           <div key={key}>
             <div className="border-b py-2 flex justify-between items-center mb-3">
               <h4 className="text-sm text-accent">Profile</h4>
-              <button
-                type="button"
-                className="tooltip-action-table hover:text-accent"
-                data-tooltip="Edit"
-                onClick={() => handleEdit(item)}
-              >
-                <FaEdit />
-              </button>
+              {store.credentials.data.role_is_client !== 1 && (
+                <button
+                  type="button"
+                  className="tooltip-action-table hover:text-accent"
+                  data-tooltip="Edit"
+                  onClick={() => handleEdit(item)}
+                >
+                  <FaEdit />
+                </button>
+              )}
             </div>
 
             <div className="md:flex">
@@ -61,14 +63,16 @@ const ClientProfileList = ({ client }) => {
 
             <div className="border-b py-2 flex justify-between items-center mb-3 mt-4">
               <h4 className="text-sm text-accent">Bank Details</h4>
-              <button
-                type="button"
-                className="tooltip-action-table hover:text-accent"
-                data-tooltip="Edit"
-                onClick={() => handleEditBankDetails(item)}
-              >
-                <FaEdit />
-              </button>
+              {store.credentials.data.role_is_client !== 1 && (
+                <button
+                  type="button"
+                  className="tooltip-action-table hover:text-accent"
+                  data-tooltip="Edit"
+                  onClick={() => handleEditBankDetails(item)}
+                >
+                  <FaEdit />
+                </button>
+              )}
             </div>
 
             <div className="md:flex">

@@ -1,0 +1,13 @@
+models
+1. rest/v1/models/developer/settings/user/other/UserMain.php 
+2. rest/v1/models/developer/settings/user/other/UserClient.php 
+3. rest/v1/models/developer/client/Client.php 
+
+controllers
+1. rest/v1/controllers/developer/settings/user/other/client 
+2. rest/v1/controllers/developer/client/search-active-client.php 
+3. rest/v1/controllers/developer/client/functions.php 
+4. rest/v1/controllers/developer/client/user-account-by-email.php
+5. rest/v1/controllers/client
+
+rest/v1/.htaccess 

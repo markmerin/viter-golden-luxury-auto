@@ -128,7 +128,7 @@ const ModalAddUserSystem = ({ itemEdit, roles }) => {
           </button>
         </div>
 
-        <div className="modal_body overflow-y-auto overflow-x-hidden max-h-[85vh]">
+        <div className="modal_body">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}

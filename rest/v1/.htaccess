@@ -48,6 +48,13 @@ RewriteRule ^user-main/active/([0-9]+)$ controllers/developer/settings/user/othe
 RewriteRule ^user-main/page/([0-9]+)$ controllers/developer/settings/user/other/main/page.php?start=$1 [L]
 RewriteRule ^user-main/search$ controllers/developer/settings/user/other/main/search.php [L]
 
+### OTHER USER CLIENT ###
+RewriteRule ^user-client$ controllers/developer/settings/user/other/client/user-client.php [L]
+RewriteRule ^user-client/([0-9]+)$ controllers/developer/settings/user/other/client/user-client.php?userotherid=$1 [L]
+RewriteRule ^user-client/active/([0-9]+)$ controllers/developer/settings/user/other/client/active.php?userotherid=$1 [L]
+RewriteRule ^user-client/page/([0-9]+)$ controllers/developer/settings/user/other/client/page.php?start=$1 [L]
+RewriteRule ^user-client/search$ controllers/developer/settings/user/other/client/search.php [L]
+
 ### ACCOUNT CHANGE PASS ### 
 RewriteRule ^account/developer/update-password$ controllers/developer/account/system/account-change-password.php [L] 
 RewriteRule ^account/admin/update-password$ controllers/admin/account/other/account-change-password.php [L] 
@@ -98,6 +105,8 @@ RewriteRule ^client/active/([0-9]+)$ controllers/developer/client/active.php?cli
 RewriteRule ^client/page/([0-9]+)$ controllers/developer/client/page.php?start=$1 [L]
 RewriteRule ^client/search$ controllers/developer/client/search.php [L]
 RewriteRule ^client/update-bank-details/([0-9]+)$ controllers/developer/client/update-bank-details.php?clientid=$1 [L]
+RewriteRule ^client/search-active-client$ controllers/developer/client/search-active-client.php [L]
+RewriteRule ^client/user-account-by-email$ controllers/developer/client/user-account-by-email.php [L]
 
 ### CLIENT CAR ###
 RewriteRule ^client-car$ controllers/developer/client/car/car.php [L]
@@ -106,6 +115,18 @@ RewriteRule ^client-car/active/([0-9]+)$ controllers/developer/client/car/active
 RewriteRule ^client-car/page/([0-9]+)/([0-9]+)$ controllers/developer/client/car/page.php?start=$1&clientid=$2 [L]
 RewriteRule ^client-car/search$ controllers/developer/client/car/search.php [L]
 
+### CLIENT CAR ###
+RewriteRule ^records-files$ controllers/developer/client/records-files/records-files.php [L]
+RewriteRule ^records-files/([0-9]+)$ controllers/developer/client/records-files/records-files.php?recordsfilesid=$1 [L]
+RewriteRule ^records-files/active/([0-9]+)$ controllers/developer/client/records-files/active.php?recordsfilesid=$1 [L]
+RewriteRule ^records-files/page/([0-9]+)/([0-9]+)$ controllers/developer/client/records-files/page.php?start=$1&clientid=$2 [L]
+RewriteRule ^records-files/search$ controllers/developer/client/records-files/search.php [L]
+
 ### CAR ###
 RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
 RewriteRule ^car/search$ controllers/developer/car/search.php [L]
+
+######################################### FOR CLIENT #####################################
+RewriteRule ^client/read-by-email$ controllers/client/read-by-email.php [L]
+RewriteRule ^client/car/page/([0-9]+)/(.*)$ controllers/client/car/page.php?start=$1&email=$2 [L]
+RewriteRule ^client/car/search$ controllers/client/car/search.php [L]

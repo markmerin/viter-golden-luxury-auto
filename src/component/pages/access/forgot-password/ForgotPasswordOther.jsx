@@ -1,3 +1,4 @@
+import LogoForAccess from "@/component/svg/LogoForAccess";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
@@ -48,8 +49,9 @@ const ForgotPasswordOther = () => {
         style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
       >
         <div className="w-96 p-6">
-          <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
-            <GlaLogo />
+          {/* <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1"> */}
+          <div className="flex justify-center items-center flex-col ">
+            <LogoForAccess />
           </div>
           {isSuccess ? (
             <>

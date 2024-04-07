@@ -147,7 +147,7 @@ body {
     @apply relative p-1 leading-none bg-transparent;
   }
   .tooltip-action-table::after {
-    @apply content-[attr(data-tooltip)] absolute left-2/4 -translate-x-2/4 bottom-full -top-[22px] bg-dark/80 text-white p-1 rounded-sm h-fit leading-none z-50 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none scale-0 transition duration-75 ease-in-out;
+    @apply content-[attr(data-tooltip)] absolute left-2/4 -translate-x-2/4 bottom-full -top-[22px] bg-dark/80 text-white p-1 rounded-sm h-fit leading-none z-50 whitespace-nowrap text-center opacity-0 text-[10px] pointer-events-none scale-0 transition duration-75 ease-in-out hidden sm:block;
   }
   .tooltip-action-table:hover::after {
     @apply scale-100 opacity-100;
@@ -171,4 +171,8 @@ input[type="number"] {
 
 .expand {
   @apply ml-0 sm:ml-[-256px]
+}
+
+.table-action > div {
+  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2
 }

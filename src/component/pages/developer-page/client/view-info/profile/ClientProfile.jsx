@@ -51,14 +51,14 @@ const ClientProfile = () => {
       <Header />
       <Navigation menu="client" />
       <div
-        className={`wrapper ${store.isShow && "ml-48"} ${
+        className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
           isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
         }`}
       >
         <div className="flex items-start justify-between mt-1 ml-4 md:ml-0">
           <div className="flex flex-col justify-center">
             <BreadCrumbs param={location.search} />
-            <h4 className="text-base my-3 capitalize flex items-center">
+            <h4 className="flex items-center my-3 text-base capitalize">
               <span className="inline-flex">{getClientName}</span>
             </h4>
           </div>

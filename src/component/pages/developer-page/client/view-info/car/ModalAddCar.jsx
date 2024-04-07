@@ -34,12 +34,8 @@ import * as Yup from "yup";
 const ModalAddCar = ({ clientId, itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
-  const [withOpacity, setWithOpacity] = React.useState(false);
-  const [title, setTitle] = React.useState(
-    itemEdit ? itemEdit.car_make_name : ""
-  );
   const queryClient = useQueryClient();
-  let fileName = "";
+  const [withPhoto, setWithPhoto] = React.useState(false);
 
   const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
     `${apiVersion}/upload/photo`,
@@ -111,10 +107,6 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     car_specs: Yup.string().required("Required"),
   });
 
-  const handleChangeTitle = (e) => {
-    setTitle(e.target.options[e.target.selectedIndex].textContent);
-  };
-
   const handleClose = () => {
     // set animation
     setAnimate("translate-x-full");
@@ -155,38 +147,28 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              uploadPhoto(fileName.toLowerCase());
+              uploadPhoto();
               mutation.mutate({
                 ...values,
                 car_photo:
-                  (itemEdit && itemEdit.car_photo === "") ||
-                  photo ||
-                  itemEdit.car_photo !==
-                    `${fileName}.${itemEdit.car_photo.split(".").pop()}`
-                    ? `${fileName}.${
-                        photo === null
-                          ? itemEdit.car_photo.split(".").pop()
-                          : photo.name.split(".").pop()
-                      }`
+                  (itemEdit && itemEdit.car_photo === "") || photo
+                    ? photo === null
+                      ? itemEdit.car_photo
+                      : photo.name
                     : values.car_photo,
               });
             }}
           >
             {(props) => {
-              fileName = `${title}-${props.values.car_specs.replaceAll(
-                " ",
-                ""
-              )}-${props.values.car_year}`;
-
               return (
                 <Form>
                   <div className="modal-overflow">
                     <div
-                      className={`relative mt-5 mb-6 border border-gray-300 rounded-md ${
-                        withOpacity && ""
+                      className={`relative mt-5 mb-6 border border-gray-300 rounded-md hover:border-primary hover:border-dashed ${
+                        withPhoto && "border-primary border-dashed"
                       }`}
-                      onDragOver={() => setWithOpacity(true)}
-                      onDragLeave={() => setWithOpacity(false)}
+                      onDragOver={() => setWithPhoto(true)}
+                      onDragLeave={() => setWithPhoto(false)}
                     >
                       {photo || (itemEdit && itemEdit.car_photo !== "") ? (
                         <img
@@ -245,7 +227,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         title="Upload photo"
                         onChange={(e) => handleChangePhoto(e)}
                         onDrop={(e) => handleChangePhoto(e)}
-                        className="opacity-0 absolute right-0 bottom-0 left-0 m-auto cursor-pointer h-full"
+                        className="opacity-0 absolute right-0 bottom-0 left-0 m-auto cursor-pointer h-full "
                       />
                     </div>
 
@@ -254,7 +236,6 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         label="Vehicle Make"
                         name="car_vehicle_make_id"
                         disabled={mutation.isPending || isLoading || error}
-                        onChange={(e) => handleChangeTitle(e)}
                       >
                         {isLoading ? (
                           <option value="" disabled>
