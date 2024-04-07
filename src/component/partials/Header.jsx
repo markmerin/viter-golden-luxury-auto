@@ -18,6 +18,7 @@ import {
 } from "../helpers/functions-general";
 import DemoMode from "./DemoMode";
 import FetchingSpinner from "./spinners/FetchingSpinner";
+import GlaLogo from "../svg/GlaLogo";
 
 const Header = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -83,9 +84,12 @@ const Header = () => {
       {isDemoMode === 1 && <DemoMode />}
       {loading && <FetchingSpinner />}
       <header
-        className={`pr-5 lg:pr-5 md:pr-5 fixed z-50 bg-white w-full flex justify-end items-center h-16 border-solid border-b-2 border-dark `}
+        className={`pr-5 lg:pr-5 md:pr-5 fixed z-50 bg-white w-full flex justify-between items-center h-16 border-solid border-b-2 border-dark `}
       >
-      
+        <div></div>
+        <div className="translate-x-[1.5rem] sm:hidden">
+          <GlaLogo />
+        </div>
 
         <div className="header__avatar" ref={ref} onClick={handleShow}>
           <div className="flex items-center py-2 cursor-pointer">

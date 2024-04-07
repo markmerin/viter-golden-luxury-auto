@@ -196,7 +196,7 @@ const ClientCarList = ({
           />
         </div>
       </div>
-      <div className="relative rounded-md text-center overflow-auto z-0">
+      <div className="relative z-0 overflow-auto text-center rounded-md">
         {(isFetching || isFetchingClient) &&
           !isFetchingNextPage &&
           status !== "pending" && <FetchingSpinner />}

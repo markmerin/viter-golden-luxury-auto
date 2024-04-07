@@ -142,7 +142,7 @@ const UserSystemList = ({ setItemEdit }) => {
         setOnSearch={setOnSearch}
         onSearch={onSearch}
       />
-      <div className="relative rounded-md text-center overflow-auto z-0">
+      <div className="relative z-0 overflow-auto text-center rounded-md">
         {isFetching && !isFetchingNextPage && status !== "pending" && (
           <FetchingSpinner />
         )}
@@ -211,11 +211,11 @@ const UserSystemList = ({ setItemEdit }) => {
                       </td>
                       <td
                         colSpan={"100%"}
-                        className="opacity-100 group-hover:opacity-100 sticky -right-3 "
+                        className="sticky opacity-100 group-hover:opacity-100 -right-3 "
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 table-action">
                           {item.user_system_is_active === 1 ? (
-                            <div className="!absolute right-3 flex items-center bg-gray-50 h-full">
+                            <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                               <button
                                 type="button"
                                 className="btn-action-table tooltip-action-table"
@@ -242,7 +242,7 @@ const UserSystemList = ({ setItemEdit }) => {
                               </button>
                             </div>
                           ) : (
-                            <div className="!absolute right-3 flex items-center bg-gray-50 h-full">
+                            <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                               <button
                                 type="button"
                                 className="btn-action-table tooltip-action-table"

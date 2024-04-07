@@ -16,10 +16,10 @@ $data = json_decode($body, true);
 // validate api key
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkApiKey();
-    if (array_key_exists("recordfilesid", $_GET)) {
+    if (array_key_exists("recordsfilesid", $_GET)) {
         // check data
         checkPayload($data);
-        $record_files->record_files_aid  = $_GET['recordfilesid'];
+        $record_files->record_files_aid  = $_GET['recordsfilesid'];
         $record_files->record_files_is_active = trim($data["isActive"]);
         checkId($record_files->record_files_aid);
         $query = checkActive($record_files);

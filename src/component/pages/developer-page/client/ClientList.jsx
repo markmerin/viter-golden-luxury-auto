@@ -167,7 +167,7 @@ const ClientList = () => {
           />
         </div>
       </div>
-      <div className="relative rounded-md text-center overflow-auto z-0">
+      <div className="relative z-0 overflow-auto text-center rounded-md">
         {isFetching && !isFetchingNextPage && status !== "pending" && (
           <FetchingSpinner />
         )}
@@ -213,7 +213,7 @@ const ClientList = () => {
                     return (
                       <tr
                         key={key}
-                        className="relative group tooltip-action-table cursor-pointer"
+                        className="relative cursor-pointer group tooltip-action-table"
                         data-tooltip={`View ${item.client_fname} ${item.client_lname} Info`}
                       >
                         <td
@@ -284,11 +284,11 @@ const ClientList = () => {
 
                         <td
                           colSpan={"100%"}
-                          className="opacity-100 group-hover:opacity-100"
+                          className="sticky opacity-100 group-hover:opacity-100 -right-3"
                         >
-                          <div className="flex items-center justify-end gap-3 ml-4">
+                          <div className="flex items-center gap-3 table-action">
                             {item.client_is_active === 1 ? (
-                              <div className="flex items-center ">
+                              <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                                 <Link
                                   to={`${devNavUrl}/${link}/client/view-info?clientId=${item.client_aid}`}
                                   className="btn-action-table tooltip-action-table"

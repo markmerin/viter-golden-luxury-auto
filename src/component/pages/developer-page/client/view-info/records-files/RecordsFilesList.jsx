@@ -6,14 +6,22 @@ import SearchBarWithFilterStatus from "@/component/partials/SearchBarWithFilterS
 import ServerError from "@/component/partials/ServerError";
 import Status from "@/component/partials/Status";
 import TableLoading from "@/component/partials/TableLoading";
+import ModalArchive from "@/component/partials/modals/ModalArchive";
 import ModalDelete from "@/component/partials/modals/ModalDelete";
+import ModalRestore from "@/component/partials/modals/ModalRestore";
 import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
-import { setIsAdd, setIsDelete, setIsSearch } from "@/store/StoreAction";
+import {
+  setIsAdd,
+  setIsArchive,
+  setIsDelete,
+  setIsRestore,
+  setIsSearch,
+} from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
 
@@ -88,6 +96,16 @@ const RecordsFilesList = ({
     dispatch(setIsDelete(true));
     setId(item.record_files_aid);
     setData(item);
+  };
+
+  const handleArchive = (item) => {
+    dispatch(setIsArchive(true));
+    setId(item.record_files_aid);
+  };
+
+  const handleRestore = (item) => {
+    dispatch(setIsRestore(true));
+    setId(item.record_files_aid);
   };
 
   const handleChangeClientStatus = (e) => {
@@ -228,28 +246,49 @@ const RecordsFilesList = ({
 
                         <td
                           colSpan={"100%"}
-                          className="opacity-100 group-hover:opacity-100"
+                          className="sticky opacity-100 group-hover:opacity-100 -right-3"
                         >
-                          <div className="flex items-center justify-end gap-3 ml-4">
-                            <div className="flex items-center ">
-                              <button
-                                type="button"
-                                className="btn-action-table tooltip-action-table"
-                                data-tooltip="Edit"
-                                onClick={() => handleEdit(item)}
-                              >
-                                <FaEdit className="w-3 h-3" />
-                              </button>
+                          <div className="flex items-center gap-3 table-action">
+                            {item.record_files_is_active === 1 ? (
+                              <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
+                                <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
+                                  data-tooltip="Edit"
+                                  onClick={() => handleEdit(item)}
+                                >
+                                  <FaEdit className="w-3 h-3" />
+                                </button>
 
-                              <button
-                                type="button"
-                                className="btn-action-table tooltip-action-table"
-                                data-tooltip="Delete"
-                                onClick={() => handleDelete(item)}
-                              >
-                                <FaTrash className="w-3 h-3" />
-                              </button>
-                            </div>
+                                <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
+                                  data-tooltip="Archive"
+                                  onClick={() => handleArchive(item)}
+                                >
+                                  <FaArchive className="w-3 h-3" />
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="flex items-center ">
+                                <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
+                                  data-tooltip="Restore"
+                                  onClick={() => handleRestore(item)}
+                                >
+                                  <FaHistory className="w-3 h-3" />
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
+                                  data-tooltip="Delete"
+                                  onClick={() => handleDelete(item)}
+                                >
+                                  <FaTrash className="w-3 h-3" />
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </td>
                       </tr>
@@ -273,6 +312,23 @@ const RecordsFilesList = ({
           </div>
         </div>
       </div>
+
+      {store.isArchive && (
+        <ModalArchive
+          mysqlApiArchive={`${apiVersion}/records-files/active/${id}`}
+          msg={"Are you sure you want to archive this record?"}
+          successMsg={"Archived successfully."}
+          queryKey={"records-files"}
+        />
+      )}
+      {store.isRestore && (
+        <ModalRestore
+          mysqlApiRestore={`${apiVersion}/records-files/active/${id}`}
+          msg={"Are you sure you want to restore this record?"}
+          successMsg={"Restored successfully."}
+          queryKey={"records-files"}
+        />
+      )}
 
       {store.isDelete && (
         <ModalDelete
