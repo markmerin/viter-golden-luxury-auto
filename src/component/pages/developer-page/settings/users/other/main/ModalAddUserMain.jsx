@@ -25,9 +25,7 @@ const ModalAddUserMain = ({ itemEdit, roles }) => {
   const [emailMessage, setEmailMessage] = React.useState("");
   const [animate, setAnimate] = React.useState("translate-x-full");
 
-  const getNonDeveloperRole = roles?.data.filter(
-    (item) => item.role_is_developer !== 1 && item.role_is_active === 1
-  );
+  const getAdminRole = roles?.data.filter((item) => item.role_is_admin === 1);
 
   const queryClient = useQueryClient();
 
@@ -80,7 +78,7 @@ const ModalAddUserMain = ({ itemEdit, roles }) => {
     user_other_fname: itemEdit ? itemEdit.user_other_fname : "",
     user_other_lname: itemEdit ? itemEdit.user_other_lname : "",
     user_other_email: itemEdit ? itemEdit.user_other_email : "",
-    user_other_role_id: getNonDeveloperRole[0].role_aid,
+    user_other_role_id: getAdminRole[0].role_aid,
     user_other_email_old: itemEdit ? itemEdit.user_other_email : "",
   };
 
@@ -125,7 +123,7 @@ const ModalAddUserMain = ({ itemEdit, roles }) => {
           </button>
         </div>
 
-        <div className="modal_body overflow-y-auto overflow-x-hidden max-h-[85vh]">
+        <div className="modal_body">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}
@@ -174,7 +172,7 @@ const ModalAddUserMain = ({ itemEdit, roles }) => {
                     {/* <div className="relative mb-6">
                       <p className="flex gap-1">
                         <span className="w-8 text-primary">Role:</span>
-                        <span>{getNonDeveloperRole[0].role_name}</span>
+                        <span>{getAdminRole[0].role_name}</span>
                       </p>
                     </div> */}
 

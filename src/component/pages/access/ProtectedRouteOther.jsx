@@ -41,8 +41,7 @@ const ProtectedRouteOther = ({ children }) => {
 
       if (
         !login.success ||
-        login.data.role_name.toLowerCase() !==
-          login.data.role_name.toLowerCase()
+        login.data.role.toLowerCase() !== login.data.role_name.toLowerCase()
       ) {
         setPageStatus(true);
       }

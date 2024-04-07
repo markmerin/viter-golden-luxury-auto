@@ -164,8 +164,9 @@ const CreatePasswordOther = () => {
           style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
         >
           <div className="w-96 p-6">
-            <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1">
-              <GlaLogo />
+            {/* <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1"> */}
+            <div className="flex justify-center items-center flex-col ">
+              <LogoForAccess />
             </div>
             <p className="mt-8 mb-5 text-lg font-bold">CREATE PASSWORD</p>
             <Formik

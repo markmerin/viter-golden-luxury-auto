@@ -71,12 +71,15 @@ const UserMainList = ({ setItemEdit }) => {
   });
 
   const handleEdit = (item) => {
-    item.role_is_active === 0 && dispatch(setError(true));
-    dispatch(
-      setMessage(
-        `${item.role_name} role is inactive. Please choose another role.`
-      )
-    );
+    if (item.role_is_active === 0) {
+      dispatch(setError(true));
+      dispatch(
+        setMessage(
+          `${item.role_name} role is inactive. Please choose another role.`
+        )
+      );
+      return;
+    }
     dispatch(setIsAdd(true));
     setItemEdit(item);
   };

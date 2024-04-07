@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   base: "/gla",
-  //  base: "/", //for development env.
+  // base: "/", //for development env.
   build: {
     chunkSizeWarningLimit: 4000,
   },

@@ -39,6 +39,7 @@ export const devKey =
 
 export const developerPath = "developer";
 export const adminPath = "admin";
+export const clientPath = "client";
 export const isDemoMode = 0;
 export const pesoSign = <span>&#8369;</span>;
 export const dollarSign = <span>&#36;</span>;

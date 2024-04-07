@@ -40,6 +40,7 @@ export const InputTextArea = ({
 export const InputText = ({
   label,
   onChange = null,
+  refVal = null,
   className = "",
   ...props
 }) => {
@@ -63,6 +64,7 @@ export const InputText = ({
           onChange !== null && onChange(e);
           field.onChange(e);
         }}
+        ref={refVal}
       />
       {meta.touched && meta.error ? (
         <span className="error-show">{meta.error}</span>

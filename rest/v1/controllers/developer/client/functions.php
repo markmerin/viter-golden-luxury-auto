@@ -23,3 +23,19 @@ function checkUpdateBankDetails($object)
     checkQuery($query, "There's a problem processing your request. (update bank details)");
     return $query;
 }
+
+// search active client
+function checkReadActiveClient($object)
+{
+    $query = $object->readActiveClient();
+    checkQuery($query, "Empty records. (search active client)");
+    return $query;
+}
+
+// read user client email
+function checkReadUserAccountByEmail($object)
+{
+    $query = $object->readUserAccountByEmail();
+    checkQuery($query, "Empty records. (read user client email)");
+    return $query;
+}

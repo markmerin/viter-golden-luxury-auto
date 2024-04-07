@@ -95,7 +95,7 @@ const ModalAddIncomeCategory = ({ itemEdit }) => {
             <FaTimesCircle className="text-lg text-gray-400" />
           </button>
         </div>
-        <div className="modal_body overflow-y-auto overflow-x-hidden max-h-[85vh]">
+        <div className="modal_body">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}

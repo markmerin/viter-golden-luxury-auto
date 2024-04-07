@@ -31,7 +31,7 @@ import FetchingSpinner from "../../../../../../partials/spinners/FetchingSpinner
 import ModalReset from "../../ModalReset";
 import ModalSuspend from "./ModalSuspend";
 
-const UserMainList = ({ setItemEdit }) => {
+const UserClientList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [dataItem, setData] = React.useState(null);
   const [id, setId] = React.useState(null);
@@ -53,11 +53,11 @@ const UserMainList = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["main", onSearch, store.isSearch],
+    queryKey: ["user-client", onSearch, store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `${apiVersion}/user-main/search`, // search endpoint
-        `${apiVersion}/user-main/page/${pageParam}`, // list endpoint
+        `${apiVersion}/user-client/search`, // search endpoint
+        `${apiVersion}/user-client/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         { searchValue: search.current.value, id: "" } // search value
       ),
@@ -71,12 +71,15 @@ const UserMainList = ({ setItemEdit }) => {
   });
 
   const handleEdit = (item) => {
-    item.role_is_active === 0 && dispatch(setError(true));
-    dispatch(
-      setMessage(
-        `${item.role_name} role is inactive. Please choose another role.`
-      )
-    );
+    if (item.role_is_active === 0) {
+      dispatch(setError(true));
+      dispatch(
+        setMessage(
+          `${item.role_name} role is inactive. Please choose another role.`
+        )
+      );
+      return;
+    }
     dispatch(setIsAdd(true));
     setItemEdit(item);
   };
@@ -209,14 +212,14 @@ const UserMainList = ({ setItemEdit }) => {
                         <div className="flex items-center gap-3">
                           {item.user_other_is_active === 1 ? (
                             <div className="!absolute right-3 flex items-center bg-gray-50 h-full">
-                              <button
+                              {/* <button
                                 type="button"
                                 className="btn-action-table tooltip-action-table"
                                 data-tooltip="Edit"
                                 onClick={() => handleEdit(item)}
                               >
                                 <FaEdit />
-                              </button>
+                              </button> */}
                               <button
                                 type="button"
                                 className="btn-action-table tooltip-action-table"
@@ -276,10 +279,10 @@ const UserMainList = ({ setItemEdit }) => {
 
       {store.isArchive && (
         <ModalSuspend
-          mysqlApiArchive={`${apiVersion}/user-main/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/user-client/active/${id}`}
           msg={"Are you sure you want to suspend this user?"}
           item={dataItem.user_other_email}
-          queryKey={"main"}
+          queryKey={"user-client"}
         />
       )}
 
@@ -289,26 +292,26 @@ const UserMainList = ({ setItemEdit }) => {
           mysqlApiReset={`${apiVersion}/user-other/reset`}
           msg={"Are you sure you want to reset the password of this user?"}
           item={dataItem.user_other_email}
-          queryKey={"main"}
+          queryKey={"user-client"}
         />
       )}
 
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/user-main/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/user-client/active/${id}`}
           msg={"Are you sure you want to restore this user?"}
           item={dataItem.user_other_email}
-          queryKey={"main"}
+          queryKey={"user-client"}
           successMsg={"Successfully restored"}
         />
       )}
 
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/user-main/${id}`}
+          mysqlApiDelete={`${apiVersion}/user-client/${id}`}
           msg={"Are you sure you want to delete this user?"}
           item={dataItem.user_other_email}
-          queryKey={"main"}
+          queryKey={"user-client"}
           successMsg={"Successfully deleted"}
         />
       )}
@@ -316,4 +319,4 @@ const UserMainList = ({ setItemEdit }) => {
   );
 };
 
-export default UserMainList;
+export default UserClientList;
