@@ -23,12 +23,18 @@ import { StoreContext } from "@/store/StoreContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
-import { FaRegImage, FaTimesCircle, FaUpload } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaRegImage,
+  FaTimesCircle,
+  FaUpload,
+} from "react-icons/fa";
 import * as Yup from "yup";
 
 const ModalAddCar = ({ clientId, itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
+  const [withOpacity, setWithOpacity] = React.useState(false);
   const [title, setTitle] = React.useState(
     itemEdit ? itemEdit.car_make_name : ""
   );
@@ -175,7 +181,13 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
               return (
                 <Form>
                   <div className="modal-overflow">
-                    <div className="relative mt-5 mb-6 border border-gray-300 rounded-md">
+                    <div
+                      className={`relative mt-5 mb-6 border border-gray-300 rounded-md ${
+                        withOpacity && ""
+                      }`}
+                      onDragOver={() => setWithOpacity(true)}
+                      onDragLeave={() => setWithOpacity(false)}
+                    >
                       {photo || (itemEdit && itemEdit.car_photo !== "") ? (
                         <img
                           src={
@@ -188,8 +200,15 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                           alt="car photo"
                           className="rounded-tr-md rounded-tl-md h-[200px] max-h-[200px] w-full object-cover object-center m-auto"
                         />
+                      ) : // <FaRegImage className="m-auto h-20 w-20 fill-gray-200" />
+                      withOpacity ? (
+                        <span className="min-h-20 flex flex-col items-center justify-center">
+                          <span className="text-accent ml-1">
+                            <FaArrowDown className="h-5 w-5 animate-bounce" />
+                          </span>
+                          <span className="text-accent mr-1">Drop Now</span>
+                        </span>
                       ) : (
-                        // <FaRegImage className="m-auto h-20 w-20 fill-gray-200" />
                         <span className="min-h-20 flex items-center justify-center">
                           <span className="text-accent mr-1">Drag & Drop</span>{" "}
                           photo here or{" "}
@@ -198,13 +217,23 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                       )}
 
                       {(photo !== null ||
-                        (itemEdit && itemEdit.car_photo !== "")) && (
-                        <span className="min-h-10 flex items-center justify-center">
-                          <span className="text-accent mr-1">Drag & Drop</span>{" "}
-                          photo here or{" "}
-                          <span className="text-accent ml-1">Browse</span>
-                        </span>
-                      )}
+                        (itemEdit && itemEdit.car_photo !== "")) &&
+                        (withOpacity ? (
+                          <span className="min-h-10 flex flex-col items-center justify-center">
+                            <span className="text-accent ml-1">
+                              <FaArrowDown className="h-5 w-5 animate-bounce" />
+                            </span>
+                            <span className="text-accent mr-1">Drop Now</span>
+                          </span>
+                        ) : (
+                          <span className="min-h-10 flex items-center justify-center">
+                            <span className="text-accent mr-1">
+                              Drag & Drop
+                            </span>{" "}
+                            photo here or{" "}
+                            <span className="text-accent ml-1">Browse</span>
+                          </span>
+                        ))}
 
                       {/* <FaUpload className="opacity-100 duration-200 group-hover:opacity-100 fill-dark/70 absolute top-0 right-0 bottom-0 left-0 min-w-[1.2rem] min-h-[1.2rem] max-w-[1.2rem] max-h-[1.2rem] m-auto cursor-pointer" /> */}
                       <InputFileUpload
