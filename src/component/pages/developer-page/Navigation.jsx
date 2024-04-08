@@ -41,6 +41,8 @@ const Navigation = ({ menu, submenu = null }) => {
     dispatch(setScrollPosition(e.target.scrollTop));
   };
 
+  const handleClickOutside = () => dispatch(setIsShow(!store.isShow));
+
   React.useEffect(() => {
     scrollRef.current?.scrollTo(0, store.scrollPosition);
   }, []);
@@ -54,6 +56,7 @@ const Navigation = ({ menu, submenu = null }) => {
           store.isShow ? "sm:ml-0" : "expand "
         }  navigation overflow-visible z-50 bg-dark w-[256px] px-2 h-[calc(100vh)]  transition-all shrink-0 -ml-[256px] `}
       >
+        <div className="nav-backdrop" onClick={handleClickOutside}></div>
         <button
           onClick={handleShow}
           className={`text-dark absolute top-0 -right-[32px] z-50 focus:outline-0 bg-dark  hover:text-secondary size-8 grid place-content-center `}

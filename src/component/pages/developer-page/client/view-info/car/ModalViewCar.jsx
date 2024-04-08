@@ -27,19 +27,19 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
         className={`modal fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center bg-dark z-50 animate-fadeIn ${show}`}
       >
         <div className="relative h-[80vh] w-[50rem] mx-5">
-          <div className="h-full w-full">
+          <div className="w-full h-full">
             {itemEdit.car_photo !== "" ? (
               <>
                 <img
                   src={devBaseImgUrl + "/" + itemEdit.car_photo}
                   alt="car photo"
-                  className="rounded-tr-md rounded-tl-md h-[390px] max-h-[390px] w-full object-cover object-center m-auto"
+                  className="rounded-tr-md rounded-tl-md h-full max-h-[200px] sm:max-h-[390px] w-full object-cover object-center m-auto"
                   onLoadCapture={console.log(123)}
                 />
-                <div className="bg-white p-5 rounded-br-md rounded-bl-md flex flex-wrap flex-col lg:flex-row w-full">
-                  <div className="w-full lg:w-1/2">
-                    <div className="py-2 flex justify-between items-center mb-3">
-                      <h4 className="border-accent text-sm text-accent">
+                <div className="grid grid-cols-1 sm:grid-cols-2  w-full p-5 bg-white rounded-br-md rounded-bl-md lg:flex-row h-[540px] overflow-y-auto sm:h-auto car-info">
+                  <div className="w-full ">
+                    <div className="flex items-center justify-between py-2 mb-3">
+                      <h4 className="text-sm border-accent text-accent">
                         Car Owner Details
                       </h4>
                     </div>
@@ -73,21 +73,20 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                       </div>
                     </div>
                   </div>
-
-                  <div className="w-full lg:w-1/2">
-                    <div className="py-2 flex justify-between items-center mb-3">
-                      <h4 className="border-accent text-sm text-accent">
+                  <div className="w-full ">
+                    <div className="flex items-center justify-between py-2 mb-3">
+                      <h4 className="text-sm border-accent text-accent">
                         Bank Details
                       </h4>
                     </div>
 
                     <div className="md:flex">
                       <div>
-                        <p className="flex mb-1">
+                        <p className="flex w-full mb-1">
                           <span className="w-[10rem] font-bold">
                             Bank Name:
                           </span>
-                          <span className="w-fit">
+                          <span className="">
                             {itemEdit.client_bank_name === ""
                               ? "No Data"
                               : itemEdit.client_bank_name}
@@ -116,10 +115,9 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                       </div>
                     </div>
                   </div>
-
-                  <div className="w-full lg:w-1/2">
-                    <div className="py-2 flex justify-between items-center mb-3">
-                      <h4 className="border-accent text-sm text-accent">
+                  <div className="w-full ">
+                    <div className="flex items-center justify-between py-2 mb-3">
+                      <h4 className="text-sm border-accent text-accent">
                         Current NADA
                       </h4>
                     </div>
@@ -177,9 +175,9 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full lg:w-1/2">
-                    <div className="py-2 flex justify-between items-center mb-3">
-                      <h4 className="border-accent text-sm text-accent">
+                  <div className="w-full ">
+                    <div className="flex items-center justify-between py-2 mb-3">
+                      <h4 className="text-sm border-accent text-accent">
                         Last Oil Change
                       </h4>
                     </div>
@@ -200,7 +198,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                 </div>
               </>
             ) : (
-              <div className="bg-white p-10 text-center rounded-lg">
+              <div className="p-10 text-center bg-white rounded-lg">
                 <span className="flex items-center justify-center">
                   No photo yet
                 </span>
@@ -213,7 +211,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
             data-tooltip="Close"
             onClick={handleClose}
           >
-            <RxCross2 className="h-6 w-6 text-white border rounded-md" />
+            <RxCross2 className="w-6 h-6 text-white border rounded-md" />
           </button>
         </div>
       </div>

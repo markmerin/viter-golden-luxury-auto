@@ -176,3 +176,18 @@ input[type="number"] {
 .table-action > div {
   @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2
 }
+
+.navigation .nav-backdrop {
+  @apply content-[''] w-[600px] h-full bg-black/40 absolute top-0 left-[256px] hidden 
+}
+
+.navigation.expand .nav-backdrop {
+  @apply block sm:hidden
+}
+
+
+@media screen and (max-height:760px){
+  .car-info {
+      @apply max-h-[420px]
+  }  
+}
