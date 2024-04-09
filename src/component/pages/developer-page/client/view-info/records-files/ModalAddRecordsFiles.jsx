@@ -65,6 +65,7 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
     record_files_doc_name: itemEdit ? itemEdit.record_files_doc_name : "",
     record_files_date: itemEdit ? itemEdit.record_files_date : "",
     record_files_remarks: itemEdit ? itemEdit.record_files_remarks : "",
+    record_files_gdrive: itemEdit ? itemEdit.record_files_gdrive : "",
     record_files_client_id: clientId,
     record_files_doc_name_old: itemEdit ? itemEdit.record_files_doc_name : "",
   };
@@ -72,6 +73,7 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
   const yupSchema = Yup.object({
     record_files_doc_name: Yup.string().required("Required"),
     record_files_date: Yup.string().required("Required"),
+    record_files_gdrive: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -146,6 +148,13 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
                       <InputTextArea
                         label="Remarks"
                         name="record_files_remarks"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+                    <div className="relative mb-6">
+                      <InputTextArea
+                        label="GDrive Link"
+                        name="record_files_gdrive"
                         disabled={mutation.isPending}
                       />
                     </div>

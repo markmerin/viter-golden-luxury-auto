@@ -17,6 +17,7 @@ if (array_key_exists("recordsfilesid", $_GET)) {
     $record_files->record_files_date = $data["record_files_date"];
     $record_files->record_files_remarks = $data["record_files_remarks"];
     $record_files->record_files_client_id = $data["record_files_client_id"];
+    $record_files->record_files_gdrive = $data["record_files_gdrive"];
 
     $record_files->record_files_datetime = date("Y-m-d H:i:s");
 

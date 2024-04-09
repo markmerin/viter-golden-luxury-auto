@@ -258,7 +258,7 @@ const ExpensesList = ({ setItemEdit }) => {
                                 </button>
                               </div>
                             ) : (
-                              <div className="flex items-center ">
+                              <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"

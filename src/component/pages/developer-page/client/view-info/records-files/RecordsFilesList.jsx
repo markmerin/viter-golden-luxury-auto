@@ -193,6 +193,7 @@ const RecordsFilesList = ({
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
                 <th>Document Name</th>
                 <th>Date</th>
+                <th>GDrive</th>
                 <th>Remarks</th>
 
                 <th colSpan={"100%"}></th>
@@ -242,6 +243,15 @@ const RecordsFilesList = ({
                         </td>
                         <td>{item.record_files_doc_name}</td>
                         <td>{item.record_files_date}</td>
+                        <td>
+                          <a
+                            href={`${item.record_files_gdrive}`}
+                            target="_blank"
+                            className="hover:underline"
+                          >
+                            View Gdrive
+                          </a>
+                        </td>
                         <td>{item.record_files_remarks}</td>
 
                         <td
@@ -270,7 +280,7 @@ const RecordsFilesList = ({
                                 </button>
                               </div>
                             ) : (
-                              <div className="flex items-center ">
+                              <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
