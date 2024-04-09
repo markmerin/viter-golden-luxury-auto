@@ -244,13 +244,7 @@ const CarList = () => {
                     return (
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
-                        <td className="pl-3 sm:hidden">
-                          {item.car_is_active === 1 ? (
-                            <span className="block w-3 h-3 bg-green-700 rounded-full"></span>
-                          ) : (
-                            <span className="block w-3 h-3 bg-gray-400 rounded-full"></span>
-                          )}
-                        </td>
+
                         <td className="hidden sm:table-cell">
                           {item.car_is_active === 1 ? (
                             <Status text="Active" />
@@ -288,9 +282,9 @@ const CarList = () => {
                           colSpan={"100%"}
                           className="sticky opacity-100 group-hover:opacity-100 -right-3"
                         >
-                          <div className="flex items-center gap-3 table-action">
+                          <div className="flex items-center justify-end gap-3 table-action">
                             {item.car_is_active === 1 ? (
-                              <div className="!absolute  right-3 flex items-center bg-gray-50 h-full">
+                              <div className="flex items-center h-full sm:relative right-3 bg-gray-50">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
@@ -319,7 +313,7 @@ const CarList = () => {
                                 </button>
                               </div>
                             ) : (
-                              <div className="!absolute  right-3 flex items-center bg-gray-50 h-full">
+                              <div className="flex items-center h-full sm:relative right-3 bg-gray-50">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
