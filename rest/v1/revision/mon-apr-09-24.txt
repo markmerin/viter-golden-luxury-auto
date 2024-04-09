@@ -1,0 +1,10 @@
+Table
+rest/v1/db-backup/glav1_record_files.sql
+
+controllers
+rest/v1/controllers/developer/client/records-files/create.php
+rest/v1/controllers/developer/client/records-files/update.php
+
+models
+rest/v1/models/developer/client/record-files/RecordFiles.php
+
