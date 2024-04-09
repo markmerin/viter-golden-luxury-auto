@@ -37,6 +37,11 @@ body {
   table tr:hover {
     @apply bg-gray-100;
   }
+
+
+  table tr:hover .table-action >div {
+    @apply bg-gray-50;
+  }
   table tr {
     @apply relative border-b border-gray-300 border-solid hover:bg-gray-50;
   }
@@ -174,5 +179,20 @@ input[type="number"] {
 }
 
 .table-action > div {
-  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2
+  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2 sm:right-3
+}
+
+.navigation .nav-backdrop {
+  @apply content-[''] w-[600px] h-full bg-black/40 absolute top-0 left-[256px] hidden 
+}
+
+.navigation.expand .nav-backdrop {
+  @apply block sm:hidden
+}
+
+
+@media screen and (max-height:760px){
+  .car-info {
+      @apply max-h-[420px]
+  }  
 }

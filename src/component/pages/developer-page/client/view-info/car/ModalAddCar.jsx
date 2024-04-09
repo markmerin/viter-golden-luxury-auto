@@ -23,7 +23,12 @@ import { StoreContext } from "@/store/StoreContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
-import { FaRegImage, FaTimesCircle, FaUpload } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaRegImage,
+  FaTimesCircle,
+  FaUpload,
+} from "react-icons/fa";
 import * as Yup from "yup";
 
 const ModalAddCar = ({ clientId, itemEdit }) => {
@@ -178,7 +183,6 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                           className="rounded-tr-md rounded-tl-md h-[200px] max-h-[200px] w-full object-cover object-center m-auto"
                         />
                       ) : (
-                        // <FaRegImage className="m-auto h-20 w-20 fill-gray-200" />
                         <span className="min-h-20 flex items-center justify-center">
                           <span className="text-accent mr-1">Drag & Drop</span>{" "}
                           photo here or{" "}

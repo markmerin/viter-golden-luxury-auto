@@ -284,7 +284,7 @@ const ClientCarList = ({
                         >
                           <div className="flex items-center justify-end gap-3 ml-4">
                             {item.car_is_active === 1 ? (
-                              <div className="flex items-center ">
+                              <>
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
@@ -311,9 +311,9 @@ const ClientCarList = ({
                                 >
                                   <FaArchive className="w-3 h-3" />
                                 </button>
-                              </div>
+                              </>
                             ) : (
-                              <div className="flex items-center ">
+                              <>
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
@@ -330,7 +330,7 @@ const ClientCarList = ({
                                 >
                                   <FaTrash className="w-3 h-3" />
                                 </button>
-                              </div>
+                              </>
                             )}
                           </div>
                         </td>

@@ -16,6 +16,7 @@ $record_files->record_files_doc_name = strtolower($data["record_files_doc_name"]
 $record_files->record_files_date = $data["record_files_date"];
 $record_files->record_files_remarks = $data["record_files_remarks"];
 $record_files->record_files_client_id = $data["record_files_client_id"];
+$record_files->record_files_gdrive = $data["record_files_gdrive"];
 
 $record_files->record_files_created = date("Y-m-d H:i:s");
 $record_files->record_files_datetime = date("Y-m-d H:i:s");

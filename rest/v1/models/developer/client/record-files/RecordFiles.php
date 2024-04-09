@@ -7,6 +7,7 @@ class RecordFiles
     public $record_files_client_id;
     public $record_files_date;
     public $record_files_remarks;
+    public $record_files_gdrive;
 
     public $record_files_created;
     public $record_files_datetime;
@@ -36,6 +37,7 @@ class RecordFiles
             $sql .= "record_files_is_active, ";
             $sql .= "record_files_date, ";
             $sql .= "record_files_remarks, ";
+            $sql .= "record_files_gdrive, ";
             $sql .= "record_files_created, ";
             $sql .= "record_files_datetime ) values ( ";
             $sql .= ":record_files_doc_name, ";
@@ -43,6 +45,7 @@ class RecordFiles
             $sql .= ":record_files_is_active, ";
             $sql .= ":record_files_date, ";
             $sql .= ":record_files_remarks, ";
+            $sql .= ":record_files_gdrive, ";
             $sql .= ":record_files_created, ";
             $sql .= ":record_files_datetime ) ";
             $query = $this->connection->prepare($sql);
@@ -52,6 +55,7 @@ class RecordFiles
                 "record_files_is_active" => $this->record_files_is_active,
                 "record_files_date" => $this->record_files_date,
                 "record_files_remarks" => $this->record_files_remarks,
+                "record_files_gdrive" => $this->record_files_gdrive,
                 "record_files_created" => $this->record_files_created,
                 "record_files_datetime" => $this->record_files_datetime,
             ]);
@@ -194,6 +198,7 @@ class RecordFiles
             $sql .= "record_files_doc_name = :record_files_doc_name, ";
             $sql .= "record_files_date = :record_files_date, ";
             $sql .= "record_files_remarks = :record_files_remarks, ";
+            $sql .= "record_files_gdrive = :record_files_gdrive, ";
             $sql .= "record_files_datetime = :record_files_datetime ";
             $sql .= "where record_files_aid  = :record_files_aid ";
             $query = $this->connection->prepare($sql);
@@ -201,6 +206,7 @@ class RecordFiles
                 "record_files_doc_name" => $this->record_files_doc_name,
                 "record_files_date" => $this->record_files_date,
                 "record_files_remarks" => $this->record_files_remarks,
+                "record_files_gdrive" => $this->record_files_gdrive,
                 "record_files_datetime" => $this->record_files_datetime,
                 "record_files_aid" => $this->record_files_aid,
             ]);

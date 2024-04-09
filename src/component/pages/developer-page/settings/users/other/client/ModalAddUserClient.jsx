@@ -46,7 +46,7 @@ const ModalAddUserClient = ({ itemEdit, roles }) => {
     isFetching: clientFetching,
     data: client,
   } = useQueryData(
-    "/v1/client/search-active-client", // endpoint
+    `${apiVersion}/client/search-active-client`, // endpoint
     "post", // method
     "client-search-active-client", // key
     { searchValue: inputVal },

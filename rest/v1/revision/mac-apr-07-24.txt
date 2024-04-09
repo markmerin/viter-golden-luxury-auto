@@ -2,6 +2,7 @@ models
 1. rest/v1/models/developer/settings/user/other/UserMain.php 
 2. rest/v1/models/developer/settings/user/other/UserClient.php 
 3. rest/v1/models/developer/client/Client.php 
+4. rest/v1/models/client
 
 controllers
 1. rest/v1/controllers/developer/settings/user/other/client 
@@ -11,3 +12,5 @@ controllers
 5. rest/v1/controllers/client
 
 rest/v1/.htaccess 
+
+Uploaded april 9 8:37am

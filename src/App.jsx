@@ -44,6 +44,7 @@ function App() {
               element={<VerifyEmailSystemUser />}
             />
             <Route path={`${devNavUrl}/login`} element={<OtherLogin />} />
+            <Route path={`${devNavUrl}`} element={<OtherLogin />} />
             <Route
               path={`${devNavUrl}/forgot-password`}
               element={<ForgotPasswordOther />}

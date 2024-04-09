@@ -319,7 +319,7 @@ const CarList = () => {
                                 </button>
                               </div>
                             ) : (
-                              <div className="flex items-center ">
+                              <div className="!absolute  right-3 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
