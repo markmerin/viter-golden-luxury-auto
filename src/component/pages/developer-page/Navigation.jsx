@@ -64,7 +64,7 @@ const Navigation = ({ menu, submenu = null }) => {
           <FaIndent className={`size-4 duration-200 fill-white `} />
         </button>
 
-        <ul className="relative pt-3 overflow-y-auto text-sm">
+        <ul className="relative pt-3 overflow-x-hidden overflow-y-auto text-sm">
           <li className="mb-6">
             <div className="flex items-center justify-center h-full">
               <GlaLogo />
@@ -75,8 +75,8 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "client"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
@@ -92,13 +92,13 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "car"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
               to={`${devNavUrl}/${link}/car`}
-              className="flex items-center w-full px-2 py-1 -translate-x-2 lg:justify-start"
+              className="flex items-center w-full px-2 py-1 lg:justify-start"
             >
               <FaCarSide className="mr-3 lg:mr-3" />
               <span className="lg:block">Car</span>
@@ -109,8 +109,8 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "earnings"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
@@ -126,21 +126,21 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleDropDownSetting}
             className={`cursor-pointer ${
               menu === "settings"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
               
             `}
           >
             <div className="flex items-center w-full px-2 py-1 lg:justify-start">
               <FaCog className="mr-4 lg:mr-4" />
-              <div className="flex items-center justify-between w-full -translate-x-1">
+              <div className="flex items-center justify-between w-full ">
                 <span className="lg:block">Settings</span>
                 <PiCaretRight
                   className={
                     !store.isSettingsOpen
-                      ? "rotate-90 duration-200"
-                      : "-rotate-90 duration-200"
+                      ? "rotate-90 duration-200 -translate-x-8"
+                      : "-rotate-90 duration-200 -translate-x-8"
                   }
                 />
               </div>
@@ -148,7 +148,7 @@ const Navigation = ({ menu, submenu = null }) => {
           </li>
 
           {store.isSettingsOpen && (
-            <ul className="pb-6 mt-1 ml-7 lg:block">
+            <ul className="pb-6 mt-1 ml-14 lg:block">
               <li>
                 <Link
                   onClick={() => handleLinkClick()}
