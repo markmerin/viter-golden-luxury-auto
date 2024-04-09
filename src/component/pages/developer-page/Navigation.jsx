@@ -76,7 +76,7 @@ const Navigation = ({ menu, submenu = null }) => {
             className={
               menu === "client"
                 ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
             }
           >
             <Link
@@ -93,12 +93,12 @@ const Navigation = ({ menu, submenu = null }) => {
             className={
               menu === "car"
                 ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
             }
           >
             <Link
               to={`${devNavUrl}/${link}/car`}
-              className="flex items-center w-full px-2 py-1 lg:justify-start"
+              className="flex items-center w-full px-2 py-1 -translate-x-2 lg:justify-start"
             >
               <FaCarSide className="mr-3 lg:mr-3" />
               <span className="lg:block">Car</span>
@@ -110,7 +110,7 @@ const Navigation = ({ menu, submenu = null }) => {
             className={
               menu === "earnings"
                 ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
             }
           >
             <Link
@@ -127,14 +127,14 @@ const Navigation = ({ menu, submenu = null }) => {
             className={`cursor-pointer ${
               menu === "settings"
                 ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg -translate-x-2"
             }
               
             `}
           >
             <div className="flex items-center w-full px-2 py-1 lg:justify-start">
               <FaCog className="mr-4 lg:mr-4" />
-              <div className="flex items-center justify-between w-full ">
+              <div className="flex items-center justify-between w-full -translate-x-1">
                 <span className="lg:block">Settings</span>
                 <PiCaretRight
                   className={
