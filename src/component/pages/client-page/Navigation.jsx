@@ -35,6 +35,8 @@ const Navigation = ({ menu, submenu = null }) => {
     }
   };
 
+  const handleClickOutside = () => dispatch(setIsShow(!store.isShow));
+
   const handleScroll = (e) => {
     dispatch(setScrollPosition(e.target.scrollTop));
   };
@@ -52,6 +54,8 @@ const Navigation = ({ menu, submenu = null }) => {
           store.isShow ? "sm:ml-0" : "expand "
         }  navigation overflow-visible z-50 bg-dark w-[256px] px-2 h-[calc(100vh)]  transition-all shrink-0 -ml-[256px] `}
       >
+        <div className="nav-backdrop" onClick={handleClickOutside}></div>
+
         <button
           onClick={handleShow}
           className={`text-dark absolute top-0 -right-[32px] z-50 focus:outline-0 bg-dark  hover:text-secondary size-8 grid place-content-center `}
@@ -59,7 +63,7 @@ const Navigation = ({ menu, submenu = null }) => {
           <FaIndent className={`size-4 duration-200 fill-white `} />
         </button>
 
-        <ul className="relative pt-3 overflow-y-auto text-sm">
+        <ul className="relative pt-3 overflow-x-hidden overflow-y-auto text-sm">
           <li className="mb-6">
             <div className="flex items-center justify-center h-full">
               <GlaLogo />
@@ -70,8 +74,8 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "profile"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
@@ -87,8 +91,8 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "cars"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
@@ -104,8 +108,8 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "earnings"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
@@ -121,8 +125,8 @@ const Navigation = ({ menu, submenu = null }) => {
             onClick={handleLinkClick}
             className={
               menu === "record-and-files"
-                ? "active uppercase"
-                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg"
+                ? "active uppercase translate-x-[18px]"
+                : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
           >
             <Link
