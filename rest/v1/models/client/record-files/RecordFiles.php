@@ -11,6 +11,10 @@ class RecordFiles
     public $record_files_created;
     public $record_files_datetime;
 
+
+    public $client_email;
+
+
     public $connection;
     public $lastInsertedId;
 
@@ -19,11 +23,30 @@ class RecordFiles
     public $record_files_search;
 
     public $tblRecordFiles;
+    public $tblClient;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblRecordFiles = "glav1_record_files";
+        $this->tblClient = "glav1_client";
+    }
+
+
+    // read by id
+    public function readByEmail()
+    {
+        try {
+            $sql = "select client_aid from {$this->tblClient} ";
+            $sql .= "where client_email = :client_email ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "client_email" => $this->client_email,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
     }
 
     // create

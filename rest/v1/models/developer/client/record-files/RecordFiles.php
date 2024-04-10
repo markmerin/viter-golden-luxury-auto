@@ -12,6 +12,9 @@ class RecordFiles
     public $record_files_created;
     public $record_files_datetime;
 
+
+
+
     public $connection;
     public $lastInsertedId;
 
@@ -26,6 +29,9 @@ class RecordFiles
         $this->connection = $db;
         $this->tblRecordFiles = "glav1_record_files";
     }
+
+
+
 
     // create
     public function create()

@@ -1,10 +1,10 @@
 <?php
 // set http header
-require '../../../../core/header.php';
+require '../../../core/header.php';
 // use needed functions
-require '../../../../core/functions.php';
+require '../../../core/functions.php';
 // use needed classes
-require '../../../../models/developer/client/record-files/RecordFiles.php';
+require '../../../models/client/record-files/RecordFiles.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();
@@ -13,11 +13,14 @@ $record_files = new RecordFiles($conn);
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkApiKey();
 
-    if (array_key_exists("start", $_GET) && array_key_exists("clientid", $_GET)) {
+    if (array_key_exists("start", $_GET) && array_key_exists("email", $_GET)) {
         // get data
         $record_files->record_files_start = $_GET['start'];
-        $record_files->record_files_client_id = $_GET['clientid'];
         $record_files->record_files_total = 10;
+
+        $record_files->client_email =  $_GET['email'];
+        $record_files->record_files_client_id = getResultData($record_files->readByEmail())[0]["client_aid"];
+
 
         checkLimitId($record_files->record_files_start, $record_files->record_files_total);
         $query = checkReadLimit($record_files);
