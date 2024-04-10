@@ -23,6 +23,7 @@ import UserMain from "../component/pages/developer-page/settings/users/other/mai
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
 import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
+import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
 
 export const routesDeveloper = [
   {
@@ -118,6 +119,15 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <IncomeItem />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/quick-link`,
+    element: (
+      <ProtectedRouteSystem>
+        <Quicklink />
       </ProtectedRouteSystem>
     ),
   },

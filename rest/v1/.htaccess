@@ -98,6 +98,13 @@ RewriteRule ^income-item/active/([0-9]+)$ controllers/developer/settings/income-
 RewriteRule ^income-item/page/([0-9]+)$ controllers/developer/settings/income-item/page.php?start=$1 [L]
 RewriteRule ^income-item/search$ controllers/developer/settings/income-item/search.php [L]
 
+### INCOME ITEM ###
+RewriteRule ^quick-link$ controllers/developer/settings/quick-link/quick-link.php [L]
+RewriteRule ^quick-link/([0-9]+)$ controllers/developer/settings/quick-link/quick-link.php?quicklinkid=$1 [L]
+RewriteRule ^quick-link/active/([0-9]+)$ controllers/developer/settings/quick-link/active.php?quicklinkid=$1 [L]
+
+
+
 ### CLIENT ###
 RewriteRule ^client$ controllers/developer/client/client.php [L]
 RewriteRule ^client/([0-9]+)$ controllers/developer/client/client.php?clientid=$1 [L]

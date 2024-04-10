@@ -7,3 +7,17 @@ rest/v1/controllers/client/records-files/search.php
 models
 rest/v1/models/client/record-files/RecordFiles.php
 
+
+
+table
+rest/v1/db-backup/glav1_quicklinks.sql
+
+controllers 
+rest/v1/controllers/developer/settings/quick-link
+
+models
+rest/v1/models/developer/settings/quick-link/QuickLink.php
+
+
+htaccess
+rest/v1/.htaccess

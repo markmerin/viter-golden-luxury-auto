@@ -1,42 +1,42 @@
-import React from "react";
-import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
+import useQueryData from "@/component/custom-hooks/useQueryData";
+import { apiVersion } from "@/component/helpers/functions-general";
+import NoData from "@/component/partials/NoData";
+import ServerError from "@/component/partials/ServerError";
+import Status from "@/component/partials/Status";
+import TableLoading from "@/component/partials/TableLoading";
+import ModalArchive from "@/component/partials/modals/ModalArchive";
+import ModalDelete from "@/component/partials/modals/ModalDelete";
+import ModalRestore from "@/component/partials/modals/ModalRestore";
+import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import {
   setIsAdd,
   setIsArchive,
   setIsDelete,
   setIsRestore,
-} from "../../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../../store/StoreContext";
-import useQueryData from "../../../../../custom-hooks/useQueryData";
-import { apiVersion } from "../../../../../helpers/functions-general";
-import NoData from "../../../../../partials/NoData";
-import ServerError from "../../../../../partials/ServerError";
-import Status from "../../../../../partials/Status";
-import TableLoading from "../../../../../partials/TableLoading";
-import ModalArchive from "../../../../../partials/modals/ModalArchive";
-import ModalDelete from "../../../../../partials/modals/ModalDelete";
-import ModalRestore from "../../../../../partials/modals/ModalRestore";
-import FetchingSpinner from "../../../../../partials/spinners/FetchingSpinner";
-import TableSpinner from "../../../../../partials/spinners/TableSpinner";
+} from "@/store/StoreAction";
+import { StoreContext } from "@/store/StoreContext";
+import React from "react";
+import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
 
-const RoleList = ({ setItemEdit }) => {
+const QuicklinkList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
-  const [dataItem, setData] = React.useState(null);
   const [id, setId] = React.useState(null);
-  const [isDel, setDel] = React.useState(false);
+  const [dataItem, setData] = React.useState(null);
+
   const [isTableScroll, setIsTableScroll] = React.useState(false);
-  const scrollRef = React.useRef(null);
+
   let counter = 1;
+  const scrollRef = React.useRef(null);
 
   const {
     isLoading,
     isFetching,
     error,
-    data: roles,
+    data: quicklink,
   } = useQueryData(
-    `${apiVersion}/roles`, // endpoint
+    `${apiVersion}/quick-link`, // endpoint
     "get", // method
-    "roles" // key
+    "quicklink" // key
   );
 
   const handleEdit = (item) => {
@@ -46,23 +46,18 @@ const RoleList = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsArchive(true));
-    setId(item.role_aid);
-    setData(item);
-    setDel(null);
+    setId(item.quicklink_aid);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.role_aid);
-    setData(item);
-    setDel(null);
+    setId(item.quicklink_aid);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsDelete(true));
-    setId(item.role_aid);
+    setId(item.quicklink_aid);
     setData(item);
-    setDel(true);
   };
 
   const handleScroll = (e) => {
@@ -89,13 +84,13 @@ const RoleList = ({ setItemEdit }) => {
               <tr className="stick top-0 !border-0">
                 <th className="w-[3rem] text-center">#</th>
                 <th className="w-[12rem]">Name</th>
-                <th className="w-[25rem]">Description</th>
+                <th className="w-[25rem]">Link</th>
                 <th>Status</th>
                 <th colSpan={"100%"}></th>
               </tr>
             </thead>
             <tbody>
-              {(isLoading || roles?.data.length === 0) && (
+              {(isLoading || quicklink?.data.length === 0) && (
                 <tr className="text-center ">
                   <td colSpan="100%" className="p-10">
                     {isLoading ? (
@@ -115,13 +110,21 @@ const RoleList = ({ setItemEdit }) => {
                 </tr>
               )}
 
-              {roles?.data.map((item, key) => (
+              {quicklink?.data.map((item, key) => (
                 <tr key={key} className="relative group">
                   <td className="text-center">{counter++}.</td>
-                  <td>{item.role_name}</td>
-                  <td title={item.role_description}>{item.role_description}</td>
+                  <td>{item.quicklink_name}</td>
                   <td>
-                    {item.role_is_active === 1 ? (
+                    <a
+                      href={`${item.quicklink_link}`}
+                      className="truncate hover:underline w-[360px] block"
+                      target="_blank"
+                    >
+                      {item.quicklink_link}
+                    </a>
+                  </td>
+                  <td>
+                    {item.quicklink_is_active === 1 ? (
                       <Status text="Active" />
                     ) : (
                       <Status text="Inactive" />
@@ -132,7 +135,7 @@ const RoleList = ({ setItemEdit }) => {
                     className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
                   >
                     <div className="flex items-center gap-3 table-action">
-                      {item.role_is_active === 1 ? (
+                      {item.quicklink_is_active === 1 ? (
                         <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                           <button
                             type="button"
@@ -184,35 +187,32 @@ const RoleList = ({ setItemEdit }) => {
 
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`${apiVersion}/roles/active/${id}`}
-          msg={"Are you sure you want to archive this role?"}
-          item={dataItem.role_name}
-          queryKey={"roles"}
-          successMsg={"Successfully archived"}
+          mysqlApiArchive={`${apiVersion}/quick-link/active/${id}`}
+          msg={"Are you sure you want to archive this record?"}
+          successMsg={"Archived successfully."}
+          queryKey={"quicklink"}
         />
       )}
 
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/roles/active/${id}`}
-          msg={"Are you sure you want to restore this role?"}
-          item={dataItem.role_name}
-          queryKey={"roles"}
-          successMsg={"Successfully restored"}
+          mysqlApiRestore={`${apiVersion}/quick-link/active/${id}`}
+          msg={"Are you sure you want to restore this record?"}
+          successMsg={"Restored successfully."}
+          queryKey={"quicklink"}
         />
       )}
-
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/roles/${id}`}
-          msg={"Are you sure you want to delete this role?"}
-          item={dataItem.role_name}
-          queryKey={"roles"}
-          successMsg={"Successfully deleted"}
+          mysqlApiDelete={`${apiVersion}/quick-link/${id}`}
+          msg={"Are you sure you want to delete this record?"}
+          successMsg={"Deleted successfully."}
+          item={dataItem.quicklink_name}
+          queryKey={"quicklink"}
         />
       )}
     </>
   );
 };
 
-export default RoleList;
+export default QuicklinkList;

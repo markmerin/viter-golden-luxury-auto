@@ -3,6 +3,8 @@ import { FaEdit } from "react-icons/fa";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import ModalUpdateBankDetails from "./ModalUpdateBankDetails";
 import ModalUpdateProfile from "./ModalUpdateProfile";
+import useQueryData from "@/component/custom-hooks/useQueryData";
+import { apiVersion } from "@/component/helpers/functions-general";
 // import ModalUpdateProfile from "./ModalUpdateProfile";
 
 const ClientProfileList = ({ client }) => {
@@ -10,6 +12,17 @@ const ClientProfileList = ({ client }) => {
   const [itemEdit, setItemEdit] = React.useState(null);
   const [updateProfile, setUpdateProfile] = React.useState(false);
   const [updateBankDetails, setUpdateBankDetails] = React.useState(false);
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: quicklink,
+  } = useQueryData(
+    `${apiVersion}/quick-link`, // endpoint
+    "get", // method
+    "quicklink" // key
+  );
 
   const handleEdit = (item) => {
     setUpdateProfile(true);
@@ -26,7 +39,7 @@ const ClientProfileList = ({ client }) => {
       {client?.data.map((item, key) => {
         return (
           <div key={key}>
-            <div className="border-b py-2 flex justify-between items-center mb-3">
+            <div className="flex items-center justify-between py-2 mb-3 border-b">
               <h4 className="text-sm text-accent">Profile</h4>
               {store.credentials.data.role_is_client !== 1 && (
                 <button
@@ -61,7 +74,7 @@ const ClientProfileList = ({ client }) => {
               </div>
             </div>
 
-            <div className="border-b py-2 flex justify-between items-center mb-3 mt-4">
+            <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
               <h4 className="text-sm text-accent">Bank Details</h4>
               {store.credentials.data.role_is_client !== 1 && (
                 <button
@@ -107,6 +120,20 @@ const ClientProfileList = ({ client }) => {
                 </p>
               </div>
             </div>
+
+            <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
+              <h4 className="text-sm text-accent">Quick Links</h4>
+            </div>
+
+            {quicklink?.data.map((item, key) => (
+              <ul key={key}>
+                <li>
+                  <a href={`${item.quicklink_link}`} target="_blank">
+                    {item.quicklink_name}
+                  </a>
+                </li>
+              </ul>
+            ))}
           </div>
         );
       })}

@@ -284,7 +284,7 @@ const ClientList = () => {
 
                         <td
                           colSpan={"100%"}
-                          className="sticky opacity-100 group-hover:opacity-100 -right-3"
+                          className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
                         >
                           <div className="flex items-center gap-3 table-action">
                             {item.client_is_active === 1 ? (
@@ -308,7 +308,7 @@ const ClientList = () => {
                                 </button>
                               </div>
                             ) : (
-                              <div className="flex items-center ">
+                              <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"

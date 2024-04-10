@@ -1,14 +1,6 @@
-import useQueryData from "@/component/custom-hooks/useQueryData";
-import useUploadPhoto from "@/component/custom-hooks/useUploadPhoto";
-import {
-  InputFileUpload,
-  InputSelect,
-  InputText,
-  InputTextArea,
-} from "@/component/helpers/FormInputs";
+import { InputText, InputTextArea } from "@/component/helpers/FormInputs";
 import {
   apiVersion,
-  devBaseImgUrl,
   handleEscape,
 } from "@/component/helpers/functions-general";
 import { queryData } from "@/component/helpers/queryData";
@@ -24,12 +16,23 @@ import { StoreContext } from "@/store/StoreContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
 import React from "react";
-import { FaRegImage, FaTimesCircle, FaUpload } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 import * as Yup from "yup";
 
-const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
+const ModalAddQuicklink = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
+
+  const initVal = {
+    quicklink_aid: itemEdit ? itemEdit.quicklink_aid : "",
+    quicklink_name: itemEdit ? itemEdit.quicklink_name : "",
+    quicklink_link: itemEdit ? itemEdit.quicklink_link : "",
+    quicklink_name_old: itemEdit ? itemEdit.quicklink_name : "",
+  };
+
+  const yupSchema = Yup.object({
+    quicklink_name: Yup.string().required("Required"),
+  });
 
   const queryClient = useQueryClient();
 
@@ -37,14 +40,14 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `${apiVersion}/records-files/${itemEdit.record_files_aid}`
-          : `${apiVersion}/records-files`,
+          ? `${apiVersion}/quick-link/${itemEdit.quicklink_aid}`
+          : `${apiVersion}/quick-link`,
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["records-files"] });
+      queryClient.invalidateQueries({ queryKey: ["quicklink"] });
 
       // show error box
       if (!data.success) {
@@ -53,27 +56,9 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
       } else {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
-        dispatch(
-          setMessage(itemEdit ? "Successfully updated." : "Successfully added.")
-        );
+        dispatch(setMessage(`Successfully ${itemEdit ? `updated` : `added`}.`));
       }
     },
-  });
-
-  const initVal = {
-    record_files_aid: itemEdit ? itemEdit.record_files_aid : "",
-    record_files_doc_name: itemEdit ? itemEdit.record_files_doc_name : "",
-    record_files_date: itemEdit ? itemEdit.record_files_date : "",
-    record_files_remarks: itemEdit ? itemEdit.record_files_remarks : "",
-    record_files_gdrive: itemEdit ? itemEdit.record_files_gdrive : "",
-    record_files_client_id: clientId,
-    record_files_doc_name_old: itemEdit ? itemEdit.record_files_doc_name : "",
-  };
-
-  const yupSchema = Yup.object({
-    record_files_doc_name: Yup.string().required("Required"),
-    record_files_date: Yup.string().required("Required"),
-    record_files_gdrive: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -99,7 +84,7 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
       >
         <div className="relative mb-4 modal_header">
           <h3 className="text-sm text-black">
-            {itemEdit ? "Update" : "Add"} Records and Files
+            {itemEdit ? "Update" : "Add"} Quicklink
           </h3>
           <button
             type="button"
@@ -110,53 +95,35 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
             <FaTimesCircle className="text-lg text-gray-400" />
           </button>
         </div>
-        <div className="modal_body ">
+        <div className="modal_body">
           <Formik
             initialValues={initVal}
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              mutation.mutate({
-                ...values,
-                record_files_client_id: clientId,
-              });
+              mutation.mutate(values);
             }}
           >
             {(props) => {
               return (
                 <Form>
                   <div className="modal-overflow">
-                    <div className="relative mb-6">
+                    <div className="relative mt-5 mb-6">
                       <InputText
-                        label="Document Name"
+                        label="Name"
                         type="text"
-                        name="record_files_doc_name"
+                        name="quicklink_name"
                         disabled={mutation.isPending}
                       />
                     </div>
 
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Date"
-                        type="date"
-                        name="record_files_date"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-
-                    <div className="relative mb-6">
+                    <div className="relative mt-5 mb-6">
                       <InputTextArea
-                        label="Remarks"
-                        name="record_files_remarks"
+                        label="Link"
+                        type="text"
+                        name="quicklink_link"
                         disabled={mutation.isPending}
-                      />
-                    </div>
-                    <div className="relative mb-6">
-                      <InputTextArea
-                        label="GDrive Link"
-                        name="record_files_gdrive"
                         className="resize-y"
-                        disabled={mutation.isPending}
                       />
                     </div>
 
@@ -194,4 +161,4 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
   );
 };
 
-export default ModalAddRecordsFiles;
+export default ModalAddQuicklink;
