@@ -132,3 +132,10 @@ export const setScrollPosition = (val) => {
     payload: val,
   };
 };
+
+export const setIsEarningsOpen = (val) => {
+  return {
+    type: "IS_EARNINGS_OPEN",
+    payload: val,
+  };
+};

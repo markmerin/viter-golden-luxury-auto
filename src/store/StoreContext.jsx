@@ -20,6 +20,7 @@ const initVal = {
   credentials: {},
   isSettingsOpen: false,
   scrollPosition: 0,
+  isEarningsOpen: false,
 };
 
 const StoreContext = React.createContext();

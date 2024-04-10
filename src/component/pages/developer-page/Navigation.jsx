@@ -1,9 +1,9 @@
 import React from "react";
 import { FaCarSide, FaCog, FaIndent, FaUsers } from "react-icons/fa";
-import { FaHandHoldingDollar } from "react-icons/fa6";
 import { PiCaretRight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import {
+  setIsEarningsOpen,
   setIsSearch,
   setIsSettingsOpen,
   setIsShow,
@@ -20,6 +20,10 @@ const Navigation = ({ menu, submenu = null }) => {
 
   const handleDropDownSetting = () => {
     dispatch(setIsSettingsOpen(!store.isSettingsOpen));
+  };
+
+  const handleDropDownEarnings = () => {
+    dispatch(setIsEarningsOpen(!store.isEarningsOpen));
   };
 
   const handleShow = () => {
@@ -106,21 +110,60 @@ const Navigation = ({ menu, submenu = null }) => {
           </li>
 
           <li
-            onClick={handleLinkClick}
-            className={
+            onClick={handleDropDownEarnings}
+            className={`cursor-pointer ${
               menu === "earnings"
                 ? "active uppercase translate-x-[18px]"
                 : "duration-200 uppercase text-white hover:text-primary mb-1 rounded-lg translate-x-[18px]"
             }
+              
+            `}
           >
-            <Link
-              to={`${devNavUrl}/${link}/earnings`}
-              className="flex items-center w-full px-2 py-1 lg:justify-start"
-            >
-              <FaHandHoldingDollar className="mr-3 lg:mr-3" />
-              <span className="lg:block">Earnings</span>
-            </Link>
+            <div className="flex items-center w-full px-2 py-1 lg:justify-start">
+              <FaCog className="mr-4 lg:mr-4" />
+              <div className="flex items-center justify-between w-full ">
+                <span className="lg:block">Earnings</span>
+                <PiCaretRight
+                  className={
+                    !store.isEarningsOpen
+                      ? "rotate-90 duration-200 -translate-x-8"
+                      : "-rotate-90 duration-200 -translate-x-8"
+                  }
+                />
+              </div>
+            </div>
           </li>
+
+          {store.isEarningsOpen && (
+            <ul className="mb-1 mt-1 ml-14 lg:block">
+              <li>
+                <Link
+                  onClick={() => handleLinkClick()}
+                  to={`${devNavUrl}/${link}/earnings/details`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "earning-details"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Details
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleLinkClick()}
+                  to={`${devNavUrl}/${link}/earnings/calculator`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "earnings-calculator"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Calculator
+                </Link>
+              </li>
+            </ul>
+          )}
 
           <li
             onClick={handleDropDownSetting}
