@@ -1,0 +1,9 @@
+
+controllers
+rest/v1/controllers/client/records-files/functions.php
+rest/v1/controllers/client/records-files/page.php
+rest/v1/controllers/client/records-files/search.php
+
+models
+rest/v1/models/client/record-files/RecordFiles.php
+
