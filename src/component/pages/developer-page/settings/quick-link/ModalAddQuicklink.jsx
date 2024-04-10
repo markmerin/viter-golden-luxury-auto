@@ -1,4 +1,9 @@
-import { InputText, InputTextArea } from "@/component/helpers/FormInputs";
+import {
+  InputCheckbox,
+  InputSelect,
+  InputText,
+  InputTextArea,
+} from "@/component/helpers/FormInputs";
 import {
   apiVersion,
   handleEscape,
@@ -22,11 +27,13 @@ import * as Yup from "yup";
 const ModalAddQuicklink = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
-
+  const [isSocial, setIsSocial] = React.useState(false);
   const initVal = {
     quicklink_aid: itemEdit ? itemEdit.quicklink_aid : "",
     quicklink_name: itemEdit ? itemEdit.quicklink_name : "",
     quicklink_link: itemEdit ? itemEdit.quicklink_link : "",
+    quicklink_is_social: itemEdit ? itemEdit.quicklink_is_social : "",
+    quicklink_social_media: itemEdit ? itemEdit.quicklink_social_media : "",
     quicklink_name_old: itemEdit ? itemEdit.quicklink_name : "",
   };
 
@@ -101,7 +108,10 @@ const ModalAddQuicklink = ({ itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              mutation.mutate(values);
+              mutation.mutate({
+                ...values,
+                quicklink_is_social: isSocial ? 1 : 0,
+              });
             }}
           >
             {(props) => {
@@ -126,6 +136,35 @@ const ModalAddQuicklink = ({ itemEdit }) => {
                         className="resize-y"
                       />
                     </div>
+
+                    <div className="relative mt-5 mb-6">
+                      <InputCheckbox
+                        label="Mark check to set as social media link"
+                        type="checkbox"
+                        name="quicklink_is_social"
+                        onChange={() => setIsSocial(!isSocial)}
+                        disabled={mutation.isPending}
+                        checked={isSocial}
+                      />
+                    </div>
+
+                    {isSocial === true ? (
+                      <div className="relative mt-5 mb-6">
+                        <InputSelect
+                          label="Social Media Type"
+                          name="quicklink_social_media"
+                          disabled={mutation.isPending}
+                        >
+                          <option value="facebook">Facebook</option>
+                          <option value="instagram">Instagram</option>
+                          <option value="yelp">Yelp</option>
+                          <option value="pinterest">Pinterest</option>
+                          <option value="linkedin">Linkedin</option>
+                        </InputSelect>
+                      </div>
+                    ) : (
+                      ""
+                    )}
 
                     <div className="absolute bottom-0 left-0 flex justify-end w-full gap-2 px-6 mt-6 mb-4 modal__action">
                       <button

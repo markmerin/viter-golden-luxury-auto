@@ -14,6 +14,8 @@ if (array_key_exists("quicklinkid", $_GET)) {
     $quicklink->quicklink_aid = $_GET['quicklinkid'];
     $quicklink->quicklink_name = checkIndex($data, "quicklink_name");
     $quicklink->quicklink_link = checkIndex($data, "quicklink_link");
+    $quicklink->quicklink_is_social = $data["quicklink_link"];
+    $quicklink->quicklink_social_media = $data["quicklink_social_media"];
     $quicklink_name_old = checkIndex($data, "quicklink_name_old");
     $quicklink->quicklink_datetime = date("Y-m-d H:i:s");
     checkId($quicklink->quicklink_aid);

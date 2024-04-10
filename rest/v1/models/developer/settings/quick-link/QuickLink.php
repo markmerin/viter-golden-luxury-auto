@@ -5,9 +5,10 @@ class Quicklink
     public $quicklink_is_active;
     public $quicklink_name;
     public $quicklink_link;
+    public $quicklink_is_social;
+    public $quicklink_social_media;
     public $quicklink_created;
     public $quicklink_datetime;
-
     public $connection;
     public $lastInsertedId;
     public $tblQuickLink;
@@ -27,11 +28,15 @@ class Quicklink
             $sql = "insert into {$this->tblQuickLink} ";
             $sql .= "( quicklink_name, ";
             $sql .= "quicklink_link, ";
+            $sql .= "quicklink_is_social, ";
+            $sql .= "quicklink_social_media, ";
             $sql .= "quicklink_is_active, ";
             $sql .= "quicklink_created, ";
             $sql .= "quicklink_datetime ) values ( ";
             $sql .= ":quicklink_name, ";
             $sql .= ":quicklink_link, ";
+            $sql .= ":quicklink_is_social, ";
+            $sql .= ":quicklink_social_media, ";
             $sql .= ":quicklink_is_active, ";
             $sql .= ":quicklink_created, ";
             $sql .= ":quicklink_datetime ) ";
@@ -39,6 +44,8 @@ class Quicklink
             $query->execute([
                 "quicklink_name" => $this->quicklink_name,
                 "quicklink_link" => $this->quicklink_link,
+                "quicklink_is_social" => $this->quicklink_is_social,
+                "quicklink_social_media" => $this->quicklink_social_media,
                 "quicklink_is_active" => $this->quicklink_is_active,
                 "quicklink_created" => $this->quicklink_created,
                 "quicklink_datetime" => $this->quicklink_datetime,
@@ -91,12 +98,16 @@ class Quicklink
             $sql = "update {$this->tblQuickLink} set ";
             $sql .= "quicklink_name = :quicklink_name, ";
             $sql .= "quicklink_link = :quicklink_link, ";
+            $sql .= "quicklink_is_social = :quicklink_is_social, ";
+            $sql .= "quicklink_social_media = :quicklink_social_media, ";
             $sql .= "quicklink_datetime = :quicklink_datetime ";
             $sql .= "where quicklink_aid  = :quicklink_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "quicklink_name" => $this->quicklink_name,
                 "quicklink_link" => $this->quicklink_link,
+                "quicklink_is_social" => $this->quicklink_is_social,
+                "quicklink_social_media" => $this->quicklink_social_media,
                 "quicklink_datetime" => $this->quicklink_datetime,
                 "quicklink_aid" => $this->quicklink_aid,
             ]);

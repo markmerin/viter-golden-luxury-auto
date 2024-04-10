@@ -14,6 +14,8 @@ checkPayload($data);
 $quicklink->quicklink_name = checkIndex($data, "quicklink_name");
 $quicklink->quicklink_link = checkIndex($data, "quicklink_link");
 $quicklink->quicklink_is_active = 1;
+$quicklink->quicklink_is_social = $data["quicklink_is_social"];
+$quicklink->quicklink_social_media = $data["quicklink_social_media"];
 $quicklink->quicklink_created = date("Y-m-d H:i:s");
 $quicklink->quicklink_datetime = date("Y-m-d H:i:s");
 // check name

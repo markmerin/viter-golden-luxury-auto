@@ -1,28 +1,25 @@
 import React from "react";
-import { FaEdit } from "react-icons/fa";
+import {
+  FaEdit,
+  FaGoogleDrive,
+  FaInstagramSquare,
+  FaLinkedin,
+  FaPinterest,
+  FaYelp,
+} from "react-icons/fa";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import ModalUpdateBankDetails from "./ModalUpdateBankDetails";
 import ModalUpdateProfile from "./ModalUpdateProfile";
 import useQueryData from "@/component/custom-hooks/useQueryData";
 import { apiVersion } from "@/component/helpers/functions-general";
+import { FaSquareFacebook } from "react-icons/fa6";
 // import ModalUpdateProfile from "./ModalUpdateProfile";
 
-const ClientProfileList = ({ client }) => {
+const ClientProfileList = ({ client, quicklink, qlIsLoading }) => {
   const { store } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
   const [updateProfile, setUpdateProfile] = React.useState(false);
   const [updateBankDetails, setUpdateBankDetails] = React.useState(false);
-
-  const {
-    isLoading,
-    isFetching,
-    error,
-    data: quicklink,
-  } = useQueryData(
-    `${apiVersion}/quick-link`, // endpoint
-    "get", // method
-    "quicklink" // key
-  );
 
   const handleEdit = (item) => {
     setUpdateProfile(true);
@@ -33,6 +30,14 @@ const ClientProfileList = ({ client }) => {
     setUpdateBankDetails(true);
     setItemEdit(item);
   };
+
+  const getSocialLink =
+    !qlIsLoading &&
+    quicklink?.data.filter((item) => item.quicklink_is_social === 1);
+
+  const getOtherLink =
+    !qlIsLoading &&
+    quicklink?.data.filter((item) => item.quicklink_is_social !== 1);
 
   return (
     <>
@@ -52,7 +57,6 @@ const ClientProfileList = ({ client }) => {
                 </button>
               )}
             </div>
-
             <div className="md:flex">
               <div>
                 <p className="flex">
@@ -73,7 +77,6 @@ const ClientProfileList = ({ client }) => {
                 </p>
               </div>
             </div>
-
             <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
               <h4 className="text-sm text-accent">Bank Details</h4>
               {store.credentials.data.role_is_client !== 1 && (
@@ -87,7 +90,6 @@ const ClientProfileList = ({ client }) => {
                 </button>
               )}
             </div>
-
             <div className="md:flex">
               <div>
                 <p className="flex">
@@ -120,20 +122,56 @@ const ClientProfileList = ({ client }) => {
                 </p>
               </div>
             </div>
-
             <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
-              <h4 className="text-sm text-accent">Quick Links</h4>
+              <h4 className="text-sm text-accent">Social Media Links </h4>
             </div>
+            <ul className="flex gap-4 mb-8">
+              {getSocialLink.length > 1 &&
+                getSocialLink.map((item, key) => (
+                  <li key={key}>
+                    <a
+                      href={`${item.quicklink_link}`}
+                      target="_blank"
+                      key={key}
+                      className="text-2xl transition-all hover:text-accent"
+                    >
+                      {item.quicklink_social_media === "facebook" ? (
+                        <FaSquareFacebook />
+                      ) : item.quicklink_social_media === "instagram" ? (
+                        <FaInstagramSquare />
+                      ) : item.quicklink_social_media === "pinterest" ? (
+                        <FaPinterest />
+                      ) : item.quicklink_social_media === "yelp" ? (
+                        <FaYelp />
+                      ) : item.quicklink_social_media === "linkedin" ? (
+                        <FaLinkedin />
+                      ) : (
+                        "No Icon Available"
+                      )}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+            <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
+              <h4 className="text-sm text-accent">Other Links </h4>
+            </div>
+            <ul>
+              {getOtherLink.length > 1 &&
+                getOtherLink.map((item, key) => (
+                  <li key={key} className="flex items-center gap-4 mb-4">
+                    <FaGoogleDrive className="text-xl" />
 
-            {quicklink?.data.map((item, key) => (
-              <ul key={key}>
-                <li>
-                  <a href={`${item.quicklink_link}`} target="_blank">
-                    {item.quicklink_name}
-                  </a>
-                </li>
-              </ul>
-            ))}
+                    <a
+                      href={`${item.quicklink_link}`}
+                      target="_blank"
+                      key={key}
+                      className="hover:underline"
+                    >
+                      {item.quicklink_name}
+                    </a>
+                  </li>
+                ))}
+            </ul>
           </div>
         );
       })}
