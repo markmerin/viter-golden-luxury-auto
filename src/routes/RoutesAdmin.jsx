@@ -1,12 +1,13 @@
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
 import ClientProfile from "@/component/pages/developer-page/client/view-info/profile/ClientProfile";
+import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
+import Details from "@/component/pages/developer-page/earning/details/Details";
 import { adminPath, devNavUrl } from "../component/helpers/functions-general";
 import ProtectedRouteOther from "../component/pages/access/ProtectedRouteOther";
 import Account from "../component/pages/developer-page/account/Account";
 import Car from "../component/pages/developer-page/car/Car";
 import Client from "../component/pages/developer-page/client/Client";
-import Earning from "../component/pages/developer-page/earning/Earning";
 import Maintenance from "../component/pages/developer-page/maintenance/Maintenance";
 import CarMake from "../component/pages/developer-page/settings/car-make/CarMake";
 import Expenses from "../component/pages/developer-page/settings/expenses/Expenses";
@@ -91,10 +92,18 @@ export const routesAdmin = [
     ),
   },
   {
-    path: `${devNavUrl}/${adminPath}/earnings`,
+    path: `${devNavUrl}/${adminPath}/earnings/details`,
     element: (
       <ProtectedRouteOther>
-        <Earning />
+        <Details />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/earnings/calculator`,
+    element: (
+      <ProtectedRouteOther>
+        <Calculator />
       </ProtectedRouteOther>
     ),
   },

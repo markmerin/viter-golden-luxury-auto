@@ -1,6 +1,10 @@
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
 import ClientProfile from "@/component/pages/developer-page/client/view-info/profile/ClientProfile";
+import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
+import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
+import Details from "@/component/pages/developer-page/earning/details/Details";
+import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
 import {
   devNavUrl,
   developerPath,
@@ -9,7 +13,6 @@ import ProtectedRouteSystem from "../component/pages/access/ProtectedRouteSystem
 import Account from "../component/pages/developer-page/account/Account";
 import Car from "../component/pages/developer-page/car/Car";
 import Client from "../component/pages/developer-page/client/Client";
-import Earning from "../component/pages/developer-page/earning/Earning";
 import Maintenance from "../component/pages/developer-page/maintenance/Maintenance";
 import CarMake from "../component/pages/developer-page/settings/car-make/CarMake";
 import Expenses from "../component/pages/developer-page/settings/expenses/Expenses";
@@ -22,8 +25,6 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
-import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
-import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
 
 export const routesDeveloper = [
   {
@@ -181,10 +182,18 @@ export const routesDeveloper = [
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/earnings`,
+    path: `${devNavUrl}/${developerPath}/earnings/details`,
     element: (
       <ProtectedRouteSystem>
-        <Earning />
+        <Details />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/earnings/calculator`,
+    element: (
+      <ProtectedRouteSystem>
+        <Calculator />
       </ProtectedRouteSystem>
     ),
   },
