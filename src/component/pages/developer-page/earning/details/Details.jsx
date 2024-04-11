@@ -47,7 +47,7 @@ const Details = () => {
             </button>
           </div> */}
           </div>
-          <div className="w-full pt-5 pb-4 ">
+          <div className="w-full pt-5 pb-4">
             <DetailsList setItemEdit={setItemEdit} />
           </div>
           <Footer />

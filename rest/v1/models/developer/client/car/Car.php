@@ -20,6 +20,9 @@ class Car
     public $car_nada_rough;
     public $car_miles;
     public $car_last_oil_change;
+    public $car_turo_link;
+    public $car_remarks;
+    public $car_management;
     public $car_created;
     public $car_datetime;
 
@@ -62,6 +65,9 @@ class Car
             $sql .= "car_nada_rough, ";
             $sql .= "car_miles, ";
             $sql .= "car_last_oil_change, ";
+            $sql .= "car_turo_link, ";
+            $sql .= "car_remarks, ";
+            $sql .= "car_management, ";
             $sql .= "car_created, ";
             $sql .= "car_datetime ) values ( ";
             $sql .= ":car_photo, ";
@@ -82,6 +88,9 @@ class Car
             $sql .= ":car_nada_rough, ";
             $sql .= ":car_miles, ";
             $sql .= ":car_last_oil_change, ";
+            $sql .= ":car_turo_link, ";
+            $sql .= ":car_remarks, ";
+            $sql .= ":car_management, ";
             $sql .= ":car_created, ";
             $sql .= ":car_datetime ) ";
             $query = $this->connection->prepare($sql);
@@ -104,6 +113,9 @@ class Car
                 "car_nada_rough" => $this->car_nada_rough,
                 "car_miles" => $this->car_miles,
                 "car_last_oil_change" => $this->car_last_oil_change,
+                "car_turo_link" => $this->car_turo_link,
+                "car_remarks" => $this->car_remarks,
+                "car_management" => $this->car_remarks,
                 "car_created" => $this->car_created,
                 "car_datetime" => $this->car_datetime,
             ]);
@@ -302,6 +314,9 @@ class Car
             $sql .= "car_nada_rough = :car_nada_rough, ";
             $sql .= "car_miles = :car_miles, ";
             $sql .= "car_last_oil_change = :car_last_oil_change, ";
+            $sql .= "car_turo_link = :car_turo_link, ";
+            $sql .= "car_remarks = :car_remarks, ";
+            $sql .= "car_management = :car_management, ";
             $sql .= "car_datetime = :car_datetime ";
             $sql .= "where car_aid  = :car_aid ";
             $query = $this->connection->prepare($sql);
@@ -322,6 +337,9 @@ class Car
                 "car_nada_rough" => $this->car_nada_rough,
                 "car_miles" => $this->car_miles,
                 "car_last_oil_change" => $this->car_last_oil_change,
+                "car_turo_link" => $this->car_turo_link,
+                "car_remarks" => $this->car_remarks,
+                "car_management" => $this->car_management,
                 "car_datetime" => $this->car_datetime,
                 "car_aid" => $this->car_aid,
             ]);

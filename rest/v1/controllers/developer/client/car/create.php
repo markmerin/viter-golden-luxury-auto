@@ -29,6 +29,9 @@ $car->car_nada_average = $data["car_nada_average"];
 $car->car_nada_rough = $data["car_nada_rough"];
 $car->car_miles = $data["car_miles"];
 $car->car_last_oil_change = $data["car_last_oil_change"];
+$car->car_turo_link = $data["car_turo_link"];
+$car->car_remarks = $data["car_remarks"];
+$car->car_management = $data["car_management"];
 $car->car_created = date("Y-m-d H:i:s");
 $car->car_datetime = date("Y-m-d H:i:s");
 

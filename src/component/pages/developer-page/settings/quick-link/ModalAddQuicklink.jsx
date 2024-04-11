@@ -111,11 +111,11 @@ const ModalAddQuicklink = ({ itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              console.log({
-                ...values,
-                quicklink_is_social:
-                  values.quicklink_social_media === "other" ? 0 : 1,
-              });
+              // console.log({
+              //   ...values,
+              //   quicklink_is_social:
+              //     values.quicklink_social_media === "other" ? 0 : 1,
+              // });
               mutation.mutate({
                 ...values,
                 quicklink_is_social:

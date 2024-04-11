@@ -1,6 +1,7 @@
 import {
   apiVersion,
   devBaseImgUrl,
+  formatDate,
   formatMonthAndYear,
 } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
@@ -34,6 +35,7 @@ import {
 } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 import ModalViewCar from "../../developer-page/client/view-info/car/ModalViewCar";
 
 const ClientCarList = ({
@@ -207,18 +209,21 @@ const ClientCarList = ({
         >
           <table className="overflow-auto">
             <thead className={`${isTableScroll && "relative "} z-50 `}>
-              <tr>
+              <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
+                <th>Management</th>
+                <th>Remarks</th>
                 <th>Vehicle Make</th>
                 <th>Vehicle Year</th>
                 <th>Model / Specs</th>
                 <th>VIN #</th>
-                <th>Licence / Plate Number</th>
-                <th>Licence / Registration Date</th>
+                <th>Plate #</th>
+                <th>Lic./Reg. Date</th>
                 <th>Gas</th>
                 <th>Tire Size</th>
                 <th>Oil Type</th>
+                <th>Turo Link</th>
                 <th colSpan={"100%"}></th>
               </tr>
             </thead>
@@ -258,6 +263,12 @@ const ClientCarList = ({
                             <Status text="Inactive" />
                           )}
                         </td>
+                        <td className="capitalize">
+                          {item.car_management.replaceAll("-", " ")}
+                        </td>
+                        <td className="capitalize">
+                          {item.car_remarks.replaceAll("-", " ")}
+                        </td>
                         <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
                         <td>{item.car_specs}</td>
@@ -266,12 +277,20 @@ const ClientCarList = ({
                         <td>
                           {item.car_registration_date === ""
                             ? "Unspecified"
-                            : formatMonthAndYear(item.car_registration_date)}
+                            : formatDate(item.car_registration_date)}
                         </td>
                         <td>{item.car_gas}</td>
                         <td>{item.car_tire_size}</td>
                         <td>{item.car_oil_type}</td>
-
+                        <td>
+                          <Link
+                            to={item.car_turo_link}
+                            target="_blank"
+                            className="whitespace-nowrap hover:text-accent hover:underline"
+                          >
+                            View Car
+                          </Link>
+                        </td>
                         <td
                           colSpan={"100%"}
                           className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"

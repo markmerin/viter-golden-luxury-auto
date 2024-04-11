@@ -178,7 +178,7 @@ const ClientList = () => {
         >
           <table className="overflow-auto">
             <thead className={`${isTableScroll && "relative "} z-50 `}>
-              <tr>
+              <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
                 <th>Name</th>

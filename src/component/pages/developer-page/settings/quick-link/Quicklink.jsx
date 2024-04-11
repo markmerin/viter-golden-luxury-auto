@@ -10,8 +10,8 @@ import ModalSuccess from "@/component/partials/modals/ModalSuccess";
 import { setIsAdd, setIsSettingsOpen } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import Navigation from "../../Navigation";
-import ExpensesList from "./QuicklinkList";
 import ModalAddExpenses from "./ModalAddQuicklink";
+import ExpensesList from "./QuicklinkList";
 
 const Quicklink = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -53,7 +53,7 @@ const Quicklink = () => {
             </button>
           </div>
         </div>
-        <div className="w-full pt-5 pb-4 ">
+        <div className="w-full pt-5 pb-4">
           <ExpensesList setItemEdit={setItemEdit} />
         </div>
         <Footer />

@@ -1,6 +1,7 @@
 import useQueryData from "@/component/custom-hooks/useQueryData";
 import NoData from "@/component/partials/NoData";
 import ServerError from "@/component/partials/ServerError";
+import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 import { setIsAdd } from "@/store/StoreAction";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
@@ -18,7 +19,6 @@ import ModalSuccess from "../../../../../partials/modals/ModalSuccess";
 import Navigation from "../../../Navigation";
 import ModalAddRecordsFiles from "./ModalAddRecordsFiles";
 import RecordsFilesList from "./RecordsFilesList";
-import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 
 const RecordsFiles = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -90,7 +90,7 @@ const RecordsFiles = () => {
         )}
 
         {client?.count > 0 && (
-          <div className="w-full pt-5 pb-4 ">
+          <div className="w-full pt-5 pb-4">
             <RecordsFilesList
               isLoadingClient={isLoading}
               isFetchingClient={isFetching}

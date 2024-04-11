@@ -75,7 +75,7 @@ const QuicklinkList = ({ setItemEdit }) => {
         {(isFetching || isLoading) && <FetchingSpinner />}
 
         <div
-          className="overflow-auto max-h-[70vh] "
+          className="overflow-auto"
           ref={scrollRef}
           onScroll={(e) => handleScroll(e)}
         >
