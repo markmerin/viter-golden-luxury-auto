@@ -36,17 +36,6 @@ const ClientProfile = () => {
     clientId
   );
 
-  const {
-    isLoading: qlIsLoading,
-    isFetching: qlIsFetching,
-    error: qlError,
-    data: quicklink,
-  } = useQueryData(
-    `${apiVersion}/quick-link`, // endpoint
-    "get", // method
-    "quicklink" // key
-  );
-
   const getClientName = isLoading ? (
     <ButtonSpinner />
   ) : client?.count === 0 ? (
@@ -96,11 +85,7 @@ const ClientProfile = () => {
         {client?.count > 0 && (
           <div className="max-w-[40rem] pt-3 pb-32 relative">
             {isFetching && <FetchingSpinner />}
-            <ClientProfileList
-              client={client}
-              quicklink={quicklink}
-              qlIsLoading={qlIsLoading}
-            />
+            <ClientProfileList client={client} />
           </div>
         )}
         <Footer />

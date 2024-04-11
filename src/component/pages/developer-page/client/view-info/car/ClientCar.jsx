@@ -92,7 +92,7 @@ const ClientCar = () => {
         )}
 
         {client?.count > 0 && (
-          <div className="w-full pt-5 pb-4 ">
+          <div className="w-full pt-5 pb-4">
             <ClientCarList
               isLoadingClient={isLoading}
               isFetchingClient={isFetching}

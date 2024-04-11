@@ -1,6 +1,8 @@
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
+import ClientEarnings from "@/component/pages/developer-page/client/view-info/earnings/ClientEarnings";
 import ClientProfile from "@/component/pages/developer-page/client/view-info/profile/ClientProfile";
+import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
 import Details from "@/component/pages/developer-page/earning/details/Details";
 import { adminPath, devNavUrl } from "../component/helpers/functions-general";
@@ -80,6 +82,22 @@ export const routesAdmin = [
     element: (
       <ProtectedRouteOther>
         <ClientCar />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/client/view-info/earnings`,
+    element: (
+      <ProtectedRouteOther>
+        <ClientEarnings />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/client/view-info/records-files`,
+    element: (
+      <ProtectedRouteOther>
+        <RecordsFiles />
       </ProtectedRouteOther>
     ),
   },

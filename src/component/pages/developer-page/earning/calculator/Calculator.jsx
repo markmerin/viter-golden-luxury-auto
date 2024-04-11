@@ -47,7 +47,7 @@ const Calculator = () => {
             </button>
           </div> */}
           </div>
-          <div className="w-full pt-5 pb-4 ">
+          <div className="w-full pt-5 pb-4">
             <CalculatorList setItemEdit={setItemEdit} />
           </div>
           <Footer />

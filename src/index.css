@@ -32,14 +32,13 @@ body {
     @apply leading-relaxed font-[poppinsRegular] text-xs min-h-full text-dark;
   }
   table {
-    @apply w-full p-1 text-left truncate border-collapse table-auto border-spacing-2;
+    @apply border-collapse border-spacing-2 text-left w-full p-1 truncate table-auto;
   }
   table tr:hover {
     @apply bg-gray-100;
   }
 
-
-  table tr:hover .table-action >div {
+  table tr:hover .table-action > div {
     @apply bg-gray-50;
   }
   table tr {
@@ -173,26 +172,24 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-
 .expand {
-  @apply ml-0 sm:ml-[-256px]
+  @apply ml-0 sm:ml-[-256px];
 }
 
 .table-action > div {
-  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2 sm:right-3
+  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2 sm:right-3;
 }
 
 .navigation .nav-backdrop {
-  @apply content-[''] w-[600px] h-full bg-black/40 absolute top-0 left-[256px] hidden 
+  @apply content-[''] w-[600px] h-full bg-black/40 absolute top-0 left-[256px] hidden;
 }
 
 .navigation.expand .nav-backdrop {
-  @apply block sm:hidden
+  @apply block sm:hidden;
 }
 
-
-@media screen and (max-height:760px){
+@media screen and (max-height: 760px) {
   .car-info {
-      @apply max-h-[420px]
-  }  
+    @apply max-h-[420px];
+  }
 }

@@ -44,12 +44,12 @@ const Earning = () => {
           </div> */}
           </div>
           <hr />
-          <div className="w-full pt-5 pb-4 ">
+          <div className="w-full pt-5 pb-4">
             <EarningList setItemEdit={setItemEdit} />
           </div>
           <Footer />
         </div>
-        <div className="w-full pt-5 pb-4 ">
+        <div className="w-full pt-5 pb-4">
           <EarningList setItemEdit={setItemEdit} />
         </div>
         <Footer />

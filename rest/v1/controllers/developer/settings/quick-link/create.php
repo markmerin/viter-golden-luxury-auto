@@ -11,8 +11,8 @@ if (array_key_exists("quicklinkid", $_GET)) {
 // check data
 checkPayload($data);
 // get data
-$quicklink->quicklink_name = checkIndex($data, "quicklink_name");
-$quicklink->quicklink_link = checkIndex($data, "quicklink_link");
+$quicklink->quicklink_name = $data["quicklink_name"];
+$quicklink->quicklink_link = $data["quicklink_link"];
 $quicklink->quicklink_is_active = 1;
 $quicklink->quicklink_is_social = $data["quicklink_is_social"];
 $quicklink->quicklink_social_media = $data["quicklink_social_media"];

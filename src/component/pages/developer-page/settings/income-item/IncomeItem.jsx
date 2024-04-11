@@ -53,7 +53,7 @@ const IncomeItem = () => {
             </button>
           </div>
         </div>
-        <div className="w-full pt-5 pb-4 ">
+        <div className="w-full pt-5 pb-4">
           <IncomeItemList setItemEdit={setItemEdit} />
         </div>
         <Footer />

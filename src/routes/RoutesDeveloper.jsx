@@ -1,5 +1,6 @@
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
+import ClientEarnings from "@/component/pages/developer-page/client/view-info/earnings/ClientEarnings";
 import ClientProfile from "@/component/pages/developer-page/client/view-info/profile/ClientProfile";
 import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
@@ -164,7 +165,14 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
-
+  {
+    path: `${devNavUrl}/${developerPath}/client/view-info/earnings`,
+    element: (
+      <ProtectedRouteSystem>
+        <ClientEarnings />
+      </ProtectedRouteSystem>
+    ),
+  },
   {
     path: `${devNavUrl}/${developerPath}/client/view-info/records-files`,
     element: (

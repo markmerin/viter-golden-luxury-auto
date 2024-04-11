@@ -29,7 +29,7 @@ const Car = () => {
             </h4>
           </div>
         </div>
-        <div className="w-full pt-5 pb-4 ">
+        <div className="w-full pt-5 pb-4">
           <CarList />
         </div>
         <Footer />

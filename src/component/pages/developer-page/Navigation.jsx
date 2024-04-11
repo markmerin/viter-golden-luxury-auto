@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCarSide, FaCog, FaIndent, FaUsers } from "react-icons/fa";
+import { FaHandHoldingDollar } from "react-icons/fa6";
 import { PiCaretRight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import {
@@ -120,7 +121,7 @@ const Navigation = ({ menu, submenu = null }) => {
             `}
           >
             <div className="flex items-center w-full px-2 py-1 lg:justify-start">
-              <FaCog className="mr-4 lg:mr-4" />
+              <FaHandHoldingDollar className="mr-4 lg:mr-4" />
               <div className="flex items-center justify-between w-full ">
                 <span className="lg:block">Earnings</span>
                 <PiCaretRight
