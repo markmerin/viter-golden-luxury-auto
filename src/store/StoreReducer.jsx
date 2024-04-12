@@ -108,6 +108,12 @@ export const StoreReducer = (state, action) => {
         isSettingsOpen: action.payload,
       };
 
+    case "IS_EARNINGS_OPEN":
+      return {
+        ...state,
+        isEarningsOpen: action.payload,
+      };
+
     case "SCROLL_POSITION":
       return {
         ...state,

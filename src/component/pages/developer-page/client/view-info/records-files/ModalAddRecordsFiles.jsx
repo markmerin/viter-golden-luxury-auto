@@ -155,6 +155,7 @@ const ModalAddRecordsFiles = ({ clientId, itemEdit }) => {
                       <InputTextArea
                         label="GDrive Link"
                         name="record_files_gdrive"
+                        className="resize-y"
                         disabled={mutation.isPending}
                       />
                     </div>

@@ -207,7 +207,7 @@ const UserMainList = ({ setItemEdit }) => {
                       </td>
                       <td
                         colSpan={"100%"}
-                        className="sticky opacity-100 group-hover:opacity-100 -right-3 "
+                        className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
                       >
                         <div className="flex items-center gap-3 table-action">
                           {item.user_other_is_active === 1 ? (

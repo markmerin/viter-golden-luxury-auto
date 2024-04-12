@@ -1,6 +1,7 @@
 import {
   apiVersion,
   devNavUrl,
+  formatDate,
   formatMonthAndYear,
   getUserType,
 } from "@/component/helpers/functions-general";
@@ -202,19 +203,25 @@ const CarList = () => {
         >
           <table className="overflow-auto">
             <thead className={`${isTableScroll && "relative "} z-50 `}>
-              <tr>
+              <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
-                <th>Vehicle Make</th>
-                <th>Vehicle Owner</th>
-                <th>Vehicle Year</th>
+                <th>Management</th>
+                <th>Remarks</th>
+                <th>Owner</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Make</th>
+                <th>Year</th>
                 <th>Model / Specs</th>
                 <th>VIN #</th>
-                <th>Licence / Plate Number</th>
-                <th>Licence / Registration Date</th>
+                <th>Plate #</th>
+                <th>Lic./Reg. Date</th>
                 <th>Gas</th>
                 <th>Tire Size</th>
                 <th>Oil Type</th>
+                <th>Turo Link</th>
+                <th>Admin Turo Link</th>
                 <th colSpan={"100%"}></th>
               </tr>
             </thead>
@@ -252,8 +259,12 @@ const CarList = () => {
                             <Status text="Inactive" />
                           )}
                         </td>
-
-                        <td>{item.car_make_name}</td>
+                        <td className="capitalize">
+                          {item.car_management.replaceAll("-", " ")}
+                        </td>
+                        <td className="capitalize">
+                          {item.car_remarks.replaceAll("-", " ")}
+                        </td>
                         <td
                           onClick={() =>
                             navigate(
@@ -263,24 +274,71 @@ const CarList = () => {
                           className="relative overflow-visible underline cursor-pointer tooltip-action-table text-accent"
                           data-tooltip={`View ${item.client_fname} ${item.client_lname} Cars`}
                         >
-                          {item.client_fname} {item.client_lname}
+                          <span className="whitespace-nowrap">
+                            {item.client_fname} {item.client_lname}
+                          </span>
                         </td>
+                        <td>{item.client_email}</td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.client_contact}
+                          </span>
+                        </td>
+                        <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
-                        <td>{item.car_specs}</td>
-                        <td>{item.car_vin_number}</td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.car_specs}
+                          </span>
+                        </td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.car_vin_number}
+                          </span>
+                        </td>
                         <td>{item.car_plate_number}</td>
                         <td>
                           {item.car_registration_date === ""
                             ? "Unspecified"
-                            : formatMonthAndYear(item.car_registration_date)}
+                            : formatDate(item.car_registration_date)}
                         </td>
                         <td>{item.car_gas}</td>
                         <td>{item.car_tire_size}</td>
                         <td>{item.car_oil_type}</td>
+                        <td>
+                          {item.car_turo_link === "" ? (
+                            <span className="text-[#e41e3f] whitespace-nowrap">
+                              No Turo Link
+                            </span>
+                          ) : (
+                            <Link
+                              to={item.car_turo_link}
+                              target="_blank"
+                              className="whitespace-nowrap  hover:text-accent hover:underline"
+                            >
+                              View Car
+                            </Link>
+                          )}
+                        </td>
+                        <td>
+                          {item.car_admin_turo_link === "" ? (
+                            <span className="text-[#e41e3f] whitespace-nowrap">
+                              No Admin Turo Link
+                            </span>
+                          ) : (
+                            <Link
+                              to={item.car_admin_turo_link}
+                              target="_blank"
+                              className="whitespace-nowrap  hover:text-accent hover:underline"
+                            >
+                              View Car
+                            </Link>
+                          )}
+                        </td>
 
                         <td
                           colSpan={"100%"}
-                          className="sticky opacity-100 group-hover:opacity-100 -right-3"
+                          className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
                         >
                           <div className="flex items-center justify-end gap-3 table-action">
                             {item.car_is_active === 1 ? (

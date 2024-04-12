@@ -1,12 +1,12 @@
 <?php
 // set http header
-require '../../../../core/header.php';
+require '../../../core/header.php';
 // use needed functions
-require '../../../../core/functions.php';
+require '../../../core/functions.php';
 // use needed classes
 
 require 'functions.php';
-require '../../../../models/developer/client/record-files/RecordFiles.php';
+require '../../../models/client/record-files/RecordFiles.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();
@@ -21,7 +21,9 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkPayload($data);
     // get data
     $record_files->record_files_search = $data["searchValue"];
-    $record_files->record_files_client_id = $data["record_files_client_id"];
+    $record_files->client_email = $data["client_email"];
+
+    $record_files->record_files_client_id = getResultData($record_files->readByEmail())[0]["client_aid"];
 
     // only if filtering
     if ($data["isFilter"]) {

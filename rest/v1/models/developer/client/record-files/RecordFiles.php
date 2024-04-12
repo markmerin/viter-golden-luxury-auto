@@ -108,8 +108,6 @@ class RecordFiles
         return $query;
     }
 
-
-
     // search
     public function search()
     {
@@ -258,9 +256,11 @@ class RecordFiles
         try {
             $sql = "select record_files_doc_name from {$this->tblRecordFiles} ";
             $sql .= "where record_files_doc_name = :record_files_doc_name ";
+            $sql .= "and record_files_client_id = :record_files_client_id ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "record_files_doc_name" => "{$this->record_files_doc_name}",
+                "record_files_client_id" => $this->record_files_client_id,
             ]);
         } catch (PDOException $ex) {
             $query = false;

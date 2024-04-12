@@ -4,27 +4,28 @@ require '../../../../core/header.php';
 // use needed functions
 require '../../../../core/functions.php';
 // use needed classes
-require '../../../../models/developer/client/record-files/RecordFiles.php';
+require '../../../../models/developer/settings/quick-link/QuickLink.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$record_files = new RecordFiles($conn);
+$quicklink = new Quicklink($conn);
 // get payload
 $body = file_get_contents("php://input");
 $data = json_decode($body, true);
+// get $_GET data
 // validate api key
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkApiKey();
-    if (array_key_exists("recordfilesid", $_GET)) {
+    if (array_key_exists("quicklinkid", $_GET)) {
         // check data
         checkPayload($data);
-        $record_files->record_files_aid  = $_GET['recordfilesid'];
-        $record_files->record_files_is_active = trim($data["isActive"]);
-        checkId($record_files->record_files_aid);
-        $query = checkActive($record_files);
+        $quicklink->quicklink_aid = $_GET['quicklinkid'];
+        $quicklink->quicklink_is_active = trim($data["isActive"]);
+        checkId($quicklink->quicklink_aid);
+        $query = checkActive($quicklink);
         http_response_code(200);
-        returnSuccess($record_files, "Record Files", $query);
+        returnSuccess($quicklink, "Quicklink", $query);
     }
     // return 404 error if endpoint not available
     checkEndpoint();

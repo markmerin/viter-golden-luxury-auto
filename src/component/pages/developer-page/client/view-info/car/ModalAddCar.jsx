@@ -4,6 +4,7 @@ import {
   InputFileUpload,
   InputSelect,
   InputText,
+  InputTextArea,
 } from "@/component/helpers/FormInputs";
 import {
   apiVersion,
@@ -99,6 +100,10 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     car_nada_rough: itemEdit ? itemEdit.car_nada_rough : "",
     car_miles: itemEdit ? itemEdit.car_miles : "",
     car_last_oil_change: itemEdit ? itemEdit.car_last_oil_change : "",
+    car_turo_link: itemEdit ? itemEdit.car_turo_link : "",
+    car_admin_turo_link: itemEdit ? itemEdit.car_admin_turo_link : "",
+    car_remarks: itemEdit ? itemEdit.car_remarks : "",
+    car_management: itemEdit ? itemEdit.car_management : "",
   };
 
   const yupSchema = Yup.object({
@@ -215,6 +220,41 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputSelect
+                        label="Remarks"
+                        name="car_remarks"
+                        disabled={mutation.isPending}
+                      >
+                        <option value="" hidden></option>
+                        <option value="returned">Returned</option>
+                        <option value="new">New</option>
+                        <option value="mechanic">Mechanic</option>
+                        <option value="recall">Recall</option>
+                        <option value="savage-title">Savage Title</option>
+                        <option value="client-may-remove-the-car">
+                          Client May Remove the Car
+                        </option>
+                        <option value="client-has-the-car">
+                          Client Has the Car
+                        </option>
+                        <option value="turo-unlisted">Turo Unlisted</option>
+                      </InputSelect>
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputSelect
+                        label="Management"
+                        name="car_management"
+                        disabled={mutation.isPending}
+                      >
+                        <option value="" hidden></option>
+                        <option value="own">Own</option>
+                        <option value="manage">Manage</option>
+                        <option value="ride-off">Ride Off</option>
+                      </InputSelect>
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputSelect
                         label="Vehicle Make"
                         name="car_vehicle_make_id"
                         disabled={mutation.isPending || isLoading || error}
@@ -281,7 +321,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputText
-                        label="License / Plate Number"
+                        label="Plate #"
                         type="text"
                         name="car_plate_number"
                         disabled={mutation.isPending}
@@ -290,8 +330,8 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputText
-                        label="License / Registration Date"
-                        type="month"
+                        label="Lic./Reg. Date"
+                        type="date"
                         name="car_registration_date"
                         disabled={mutation.isPending}
                       />
@@ -374,6 +414,22 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         label="Last Change Oil"
                         type="date"
                         name="car_last_oil_change"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputTextArea
+                        label="Turo Link"
+                        name="car_turo_link"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputTextArea
+                        label="Admin Turo Link"
+                        name="car_admin_turo_link"
                         disabled={mutation.isPending}
                       />
                     </div>

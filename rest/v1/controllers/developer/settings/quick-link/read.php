@@ -3,19 +3,21 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$record_files = new RecordFiles($conn);
+$quicklink = new Quicklink($conn);
 // get $_GET data
+$error = [];
+$returnData = [];
 
-if (array_key_exists("recordfilesid", $_GET)) {
-    $record_files->record_files_aid  = $_GET['recordfilesid'];
-    checkId($record_files->record_files_aid);
-    $query = checkReadById($car);
+if (array_key_exists("quicklinkid", $_GET)) {
+    $quicklink->quicklink_aid = $_GET['quicklinkid'];
+    checkId($quicklink->quicklink_aid);
+    $query = checkReadById($quicklink);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($record_files);
+    $query = checkReadAll($quicklink);
     http_response_code(200);
     getQueriedData($query);
 }

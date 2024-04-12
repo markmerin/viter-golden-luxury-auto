@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 09:09 AM
+-- Generation Time: Apr 12, 2024 at 01:16 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -47,6 +47,9 @@ CREATE TABLE `glav1_car` (
   `car_nada_rough` int(11) NOT NULL,
   `car_miles` int(11) NOT NULL,
   `car_last_oil_change` varchar(20) NOT NULL,
+  `car_turo_link` text NOT NULL,
+  `car_remarks` varchar(50) NOT NULL,
+  `car_management` varchar(50) NOT NULL,
   `car_created` datetime NOT NULL,
   `car_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -55,12 +58,12 @@ CREATE TABLE `glav1_car` (
 -- Dumping data for table `glav1_car`
 --
 
-INSERT INTO `glav1_car` (`car_aid`, `car_is_active`, `car_photo`, `car_client_id`, `car_vehicle_make_id`, `car_year`, `car_specs`, `car_vin_number`, `car_plate_number`, `car_registration_date`, `car_gas`, `car_tire_size`, `car_oil_type`, `car_nada_retail`, `car_nada_clean`, `car_nada_average`, `car_nada_rough`, `car_miles`, `car_last_oil_change`, `car_created`, `car_datetime`) VALUES
-(12, 1, 'Acura-MDX-2020.jpg', 2, 1, 2020, 'MDX', '5J8YD4H37LL042022', 'CF90734', '2024-04', 'Premium', 'P265/45R20', '0W-20', 0, 0, 0, 0, 0, '', '2024-04-04 10:05:28', '2024-04-04 10:36:11'),
-(13, 1, 'Cadillac-EscaladeESV-2018.webp', 2, 3, 2018, 'Escalade ESV', '1GYS4JKJ0JR130246', 'G129PE', '2023-10', 'Premium', 'P275/50R21', '0W-20', 30998, 27775, 25850, 23550, 122430, '2023-10-10', '2024-04-04 10:09:58', '0000-00-00 00:00:00'),
-(14, 1, 'BMW-x2-2018.webp', 2, 2, 2018, 'x2', 'WBXYJ5C33JEF73360', 'CG57789', '2023-11', 'Premium', 'P225/50R18', '0W20', 23550, 20700, 19050, 17075, 63835, '2020-03-04', '2024-04-04 10:34:57', '2024-04-04 10:34:57'),
-(15, 1, 'BMW-x6-2019.webp', 3, 2, 2019, 'x6', '5UXKU2C57K0Z63897', 'G108NE', '2023-11', 'Premium', 'P275/50R22', '0W30', 35795, 32750, 30800, 28475, 73115, '2022-03-03', '2024-04-04 13:56:56', '2024-04-04 13:56:56'),
-(16, 1, 'Chevrolet-Tahoe-2020.webp', 3, 4, 2020, 'Tahoe', '5J8YD4H37LL042020', 'CF90734', '2024-04', 'Premium', '', '', 0, 0, 0, 0, 0, '', '2024-04-04 15:01:08', '2024-04-04 15:01:08');
+INSERT INTO `glav1_car` (`car_aid`, `car_is_active`, `car_photo`, `car_client_id`, `car_vehicle_make_id`, `car_year`, `car_specs`, `car_vin_number`, `car_plate_number`, `car_registration_date`, `car_gas`, `car_tire_size`, `car_oil_type`, `car_nada_retail`, `car_nada_clean`, `car_nada_average`, `car_nada_rough`, `car_miles`, `car_last_oil_change`, `car_turo_link`, `car_remarks`, `car_management`, `car_created`, `car_datetime`) VALUES
+(12, 1, '', 2, 1, 2020, 'MDX', '5J8YD4H37LL042022', 'CF90734', '2024-04', 'Premium', 'P265/45R20', '0W-20', 0, 0, 0, 0, 0, '', '', '', '', '2024-04-04 10:05:28', '2024-04-04 15:59:31'),
+(13, 1, 'cadillac-escaladeesv-2018.jpg', 2, 3, 2018, 'Escalade ESV', '1GYS4JKJ0JR130246', 'G129PE', '2023-10', 'Premium', 'P275/50R21', '0W-20', 30998, 27775, 25850, 23550, 122430, '2023-10-10', '', '', '', '2024-04-04 10:09:58', '2024-04-04 16:08:14'),
+(14, 1, '', 2, 2, 2018, 'x2', 'WBXYJ5C33JEF73360', 'CG57789', '2023-11', 'Premium', 'P225/50R18', '0W20', 23550, 20700, 19050, 17075, 63835, '2020-03-04', '', '', '', '2024-04-04 10:34:57', '2024-04-04 10:34:57'),
+(15, 1, '', 3, 2, 2019, 'x6', '5UXKU2C57K0Z63897', 'G108NE', '2023-11', 'Premium', 'P275/50R22', '0W30', 35795, 32750, 30800, 28475, 73115, '2022-03-03', '', '', '', '2024-04-04 13:56:56', '2024-04-04 13:56:56'),
+(16, 1, 'chevrolet-tahoe-2020.jpg', 3, 4, 2020, 'Tahoe', '5J8YD4H37LL042020', 'CF90734', '2024-04', 'Premium', '', '', 0, 0, 0, 0, 0, '', '', '', '', '2024-04-04 15:01:08', '2024-04-04 16:18:31');
 
 --
 -- Indexes for dumped tables

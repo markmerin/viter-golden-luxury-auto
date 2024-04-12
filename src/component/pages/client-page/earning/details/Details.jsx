@@ -1,16 +1,16 @@
+import { setIsEarningsOpen } from "@/store/StoreAction";
 import React from "react";
-import { FaPlus } from "react-icons/fa";
-import { StoreContext } from "../../../../store/StoreContext";
-import { isDemoMode } from "../../../helpers/functions-general";
-import BreadCrumbs from "../../../partials/BreadCrumbs";
-import Footer from "../../../partials/Footer";
-import Header from "../../../partials/Header";
-import ModalError from "../../../partials/modals/ModalError";
-import ModalSuccess from "../../../partials/modals/ModalSuccess";
-import Navigation from "../Navigation";
-import EarningList from "./EarningList";
+import { StoreContext } from "../../../../../store/StoreContext";
+import { isDemoMode } from "../../../../helpers/functions-general";
+import BreadCrumbs from "../../../../partials/BreadCrumbs";
+import Footer from "../../../../partials/Footer";
+import Header from "../../../../partials/Header";
+import ModalError from "../../../../partials/modals/ModalError";
+import ModalSuccess from "../../../../partials/modals/ModalSuccess";
+import Navigation from "../../Navigation";
+import DetailsList from "./DetailsList";
 
-const Earning = () => {
+const Details = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
 
@@ -19,11 +19,15 @@ const Earning = () => {
     // setItemEdit(null);
   };
 
+  React.useEffect(() => {
+    dispatch(setIsEarningsOpen(true));
+  }, []);
+
   return (
     <>
       <Header />
       <div className="flex items-start">
-        <Navigation menu="earnings" />
+        <Navigation menu="earnings" submenu="earning-details" />
         <div
           className={`wrapper  
            ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
@@ -43,16 +47,11 @@ const Earning = () => {
             </button>
           </div> */}
           </div>
-          <hr />
-          <div className="w-full pt-5 pb-4 ">
-            <EarningList setItemEdit={setItemEdit} />
+          <div className="w-full pt-3 pb-4">
+            <DetailsList setItemEdit={setItemEdit} />
           </div>
           <Footer />
         </div>
-        <div className="w-full pt-5 pb-4 ">
-          <EarningList setItemEdit={setItemEdit} />
-        </div>
-        <Footer />
       </div>
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}
@@ -60,4 +59,4 @@ const Earning = () => {
   );
 };
 
-export default Earning;
+export default Details;

@@ -25,14 +25,14 @@ const RecordFiles = () => {
       <div className="flex items-start">
         <Navigation menu="record-and-files" />
         <div
-          className={`wrapper  
-           ${isDemoMode === 1 && "min-h-[calc(100vh-36px)]"} 
-           transition-all ease-in duration-200 w-full ml-0 sm:ml-[256px] `}
+          className={`w-full wrapper ${store.isShow && " sm:ml-[256px]"} ${
+            isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
+          }`}
         >
           <div className="flex items-start justify-between mt-1 md:ml-0 print:hidden">
             <div className="flex flex-col justify-center">
               <BreadCrumbs param={location.search} />
-              <h4 className="my-3 text-base capitalize">
+              <h4 className="flex items-center my-3 text-base capitalize">
                 {location.pathname.split("/").pop().replaceAll("-", " ")}
               </h4>
             </div>
@@ -43,16 +43,11 @@ const RecordFiles = () => {
             </button>
           </div> */}
           </div>
-          <hr />
-          <div className="w-full pt-5 pb-4 ">
+          <div className="w-full pt-3 pb-4">
             <RecordFilesList setItemEdit={setItemEdit} />
           </div>
           <Footer />
         </div>
-        <div className="w-full pt-5 pb-4 ">
-          <RecordFilesList setItemEdit={setItemEdit} />
-        </div>
-        <Footer />
       </div>
       {store.success && <ModalSuccess />}
       {store.error && <ModalError />}

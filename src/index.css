@@ -32,21 +32,20 @@ body {
     @apply leading-relaxed font-[poppinsRegular] text-xs min-h-full text-dark;
   }
   table {
-    @apply w-full p-1 text-left truncate border-collapse table-auto border-spacing-2;
+    @apply border-collapse border-spacing-2 text-left w-full p-1 truncate table-auto;
   }
   table tr:hover {
     @apply bg-gray-100;
   }
 
-
-  table tr:hover .table-action >div {
+  table tr:hover .table-action > div {
     @apply bg-gray-50;
   }
   table tr {
     @apply relative border-b border-gray-300 border-solid hover:bg-gray-50;
   }
   table td {
-    @apply py-1.5 truncate pr-3 whitespace-pre-wrap;
+    @apply py-[10px] truncate pr-3 whitespace-pre-wrap;
   }
   table td:last-child {
     @apply overflow-visible;
@@ -172,27 +171,76 @@ input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
 }
+/********** Range Input Styles **********/
+/*Range Reset*/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  height: 17px;
+}
 
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209 213 219);
+  height: 0.3rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 100%;
+  background-color: #c6a057;
+  height: 1rem;
+  width: 1rem;
+  margin-top: -6px;
+}
+
+/******** Firefox styles ********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid gray;
+  height: 0.3rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 100%;
+  background-color: #c6a057;
+  height: 1rem;
+  width: 1rem;
+  margin-top: -6px;
+}
 
 .expand {
-  @apply ml-0 sm:ml-[-256px]
+  @apply ml-0 sm:ml-[-256px];
 }
 
 .table-action > div {
-  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2 sm:right-3
+  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2 sm:right-3;
 }
 
 .navigation .nav-backdrop {
-  @apply content-[''] w-[600px] h-full bg-black/40 absolute top-0 left-[256px] hidden 
+  @apply content-[''] w-[600px] h-full bg-black/40 absolute top-0 left-[256px] hidden;
 }
 
 .navigation.expand .nav-backdrop {
-  @apply block sm:hidden
+  @apply block sm:hidden;
 }
 
-
-@media screen and (max-height:760px){
+@media screen and (max-height: 760px) {
   .car-info {
-      @apply max-h-[420px]
-  }  
+    @apply max-h-[420px];
+  }
 }
