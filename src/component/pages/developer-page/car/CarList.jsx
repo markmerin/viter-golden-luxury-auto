@@ -287,13 +287,17 @@ const CarList = () => {
                         <td>{item.car_tire_size}</td>
                         <td>{item.car_oil_type}</td>
                         <td>
-                          <Link
-                            to={item.car_turo_link}
-                            target="_blank"
-                            className="whitespace-nowrap  hover:text-accent hover:underline"
-                          >
-                            View Car
-                          </Link>
+                          {item.car_turo_link === "" ? (
+                            "No Link"
+                          ) : (
+                            <Link
+                              to={item.car_turo_link}
+                              target="_blank"
+                              className="whitespace-nowrap  hover:text-accent hover:underline"
+                            >
+                              View Car
+                            </Link>
+                          )}
                         </td>
 
                         <td
