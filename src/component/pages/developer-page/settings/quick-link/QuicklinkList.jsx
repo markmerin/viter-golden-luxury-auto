@@ -113,7 +113,7 @@ const QuicklinkList = ({ setItemEdit }) => {
               {quicklink?.data.map((item, key) => (
                 <tr key={key} className="relative group">
                   <td className="text-center">{counter++}.</td>
-                  <td>{item.quicklink_name}</td>
+                  <td className="whitespace-nowrap">{item.quicklink_name}</td>
                   <td>
                     <a
                       href={`${item.quicklink_link}`}

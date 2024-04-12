@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2024 at 02:23 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Apr 12, 2024 at 03:53 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,12 +43,22 @@ CREATE TABLE `glav1_quicklinks` (
 --
 
 INSERT INTO `glav1_quicklinks` (`quicklink_aid`, `quicklink_is_active`, `quicklink_name`, `quicklink_link`, `quicklink_is_social`, `quicklink_social_media`, `quicklink_created`, `quicklink_datetime`) VALUES
-(2, 1, '3333', 'testt', 0, '', '2024-04-10 13:35:12', '2024-04-10 13:36:53'),
-(3, 1, 'test2', 'asdf', 0, '', '2024-04-10 13:36:43', '2024-04-10 13:36:43'),
-(5, 1, 'testtt', 'https://drive.google.com/drive/folders/1ftPVqL6vCuHWwLJ67Rs-hMXTRmBoRsyC?usp=drive_link', 0, '', '2024-04-10 19:18:30', '2024-04-10 19:19:32'),
-(7, 1, 'dddd', 'asdfasdfasdf', 1, 'facebook', '2024-04-10 21:55:44', '2024-04-10 21:55:44'),
-(8, 1, 'asdfasdfa', 'asdfasdfasdf', 1, 'instagram', '2024-04-10 21:55:44', '2024-04-10 21:55:44'),
-(9, 1, '345235423', 'ssdfgsdfgsdfgsdfgds', 1, 'yelp', '2024-04-10 21:55:44', '2024-04-10 21:55:44');
+(1, 1, 'My Account', 'http://127.0.0.1:5173/admin/account', 0, 'other', '2024-04-12 09:14:00', '2024-04-12 09:14:00'),
+(2, 1, 'Schedule a Zoom Call', 'https://rent.goldenluxuryauto.com/lyc-client-check-in', 0, 'other', '2024-04-12 09:19:48', ''),
+(3, 1, 'List Another Car', 'https://docs.google.com/forms/d/e/1FAIpQLSdJKQCpQEDbhawpyRwZq4ZWCuJXAwJ8Eine5FebIsGeENc6Mg/viewform', 0, 'other', '2024-04-12 09:34:08', '2024-04-12 09:34:08'),
+(4, 1, 'Book Your Car', 'https://rent.goldenluxuryauto.com/start-block', 0, 'other', '2024-04-12 09:34:28', '2024-04-12 09:34:28'),
+(5, 1, 'Parking & Toll Tickets', 'https://forms.gle/X8RCN18vbqRycoUq5', 0, 'other', '2024-04-12 09:35:34', '2024-04-12 09:35:34'),
+(6, 1, 'License & Registration or Insurance Updates', 'https://forms.gle/SPci4zhUX7BMgyfu9', 0, 'other', '2024-04-12 09:35:46', '2024-04-12 09:35:46'),
+(7, 1, 'Refer Somebody', 'https://forms.gle/dku7b49PiKe2tvw16', 0, 'other', '2024-04-12 09:36:05', '2024-04-12 09:36:05'),
+(8, 1, 'Client Experience', 'https://www.goldenluxuryauto.com/my-account/car-details/#', 0, 'other', '2024-04-12 09:36:18', '2024-04-12 09:36:18'),
+(9, 1, 'Turo Apps Tips Video', 'https://www.goldenluxuryauto.com/my-account/car-details/#', 0, 'other', '2024-04-12 09:36:31', '2024-04-12 09:36:31'),
+(10, 1, 'Schedule a Car Detailing', 'https://www.goldenluxuryauto.com/detail-shop', 0, 'other', '2024-04-12 09:36:43', '2024-04-12 09:36:43'),
+(11, 1, 'View My Car', 'https://turo.com/us/en/suv-rental/united-states/salt-lake-city-ut/acura/mdx/1268206', 0, 'other', '2024-04-12 09:36:55', '2024-04-12 09:36:55'),
+(12, 1, 'Facebook', 'https://www.facebook.com/Goldenluxuryauto/', 1, 'facebook', '2024-04-12 09:37:11', '2024-04-12 09:37:11'),
+(13, 1, 'Instagram', 'https://www.instagram.com/goldenluxuryauto/?hl=en', 1, 'instagram', '2024-04-12 09:37:21', '2024-04-12 09:37:21'),
+(14, 1, 'Pinterest', 'https://www.pinterest.com/goldenluxuryauto/', 1, 'pinterest', '2024-04-12 09:37:35', '2024-04-12 09:37:35'),
+(15, 1, 'Yelp', 'https://www.yelp.com/biz/golden-luxury-auto-salt-lake-city', 1, 'yelp', '2024-04-12 09:37:48', '2024-04-12 09:37:48'),
+(16, 1, 'LinkedIn', 'https://www.linkedin.com/company/gla-rentals/', 1, 'linkedin', '2024-04-12 09:38:01', '2024-04-12 09:38:01');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +78,7 @@ ALTER TABLE `glav1_quicklinks`
 -- AUTO_INCREMENT for table `glav1_quicklinks`
 --
 ALTER TABLE `glav1_quicklinks`
-  MODIFY `quicklink_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `quicklink_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
