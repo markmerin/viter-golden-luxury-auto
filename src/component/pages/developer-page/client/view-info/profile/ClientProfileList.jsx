@@ -189,7 +189,11 @@ const ClientProfileList = ({ client }) => {
                   car?.data.map((item, key) => (
                     <li
                       key={key}
-                      className="flex items-center gap-4 mb-4 w-fit group hover:text-accent"
+                      className={`flex items-center gap-4 mb-4 w-fit group ${
+                        item.car_turo_link === ""
+                          ? "pointer-events-none"
+                          : "hover:text-accent"
+                      }`}
                     >
                       <FaCaretRight className="group-hover:translate-x-2 duration-200" />
                       <Link
@@ -198,7 +202,10 @@ const ClientProfileList = ({ client }) => {
                         key={key}
                         className="group-hover:underline"
                       >
-                        {item.car_make_name} {item.car_specs} {item.car_year}
+                        {item.car_make_name} {item.car_specs} {item.car_year}{" "}
+                        <span className="text-[#e41e3f]">
+                          {item.car_turo_link === "" && "(No Turo Link)"}
+                        </span>
                       </Link>
                     </li>
                   ))}
