@@ -117,7 +117,7 @@ const QuicklinkList = ({ setItemEdit }) => {
                   <td>
                     <a
                       href={`${item.quicklink_link}`}
-                      className="truncate hover:underline w-[360px] block"
+                      className="truncate hover:underline hover:text-accent w-[360px] block"
                       target="_blank"
                     >
                       {item.quicklink_link}

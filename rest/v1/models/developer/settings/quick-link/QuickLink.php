@@ -145,7 +145,7 @@ class Quicklink
             $sql .= "where quicklink_aid = :quicklink_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "quicklink_aid" => $this->quicklink_aid,
+                "quicklink_aid" => $this->quicklink_aid
             ]);
         } catch (PDOException $ex) {
             $query = false;
@@ -153,17 +153,17 @@ class Quicklink
         return $query;
     }
 
-
-
     // name
     public function checkName()
     {
         try {
             $sql = "select quicklink_name from {$this->tblQuickLink} ";
             $sql .= "where quicklink_name = :quicklink_name ";
+            $sql .= "and quicklink_social_media = :quicklink_social_media ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "quicklink_name" => "{$this->quicklink_name}",
+                "quicklink_social_media" => "{$this->quicklink_social_media}"
             ]);
         } catch (PDOException $ex) {
             $query = false;

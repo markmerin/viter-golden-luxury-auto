@@ -1,4 +1,4 @@
-import { apiVersion } from "@/component/helpers/functions-general";
+import { apiVersion, formatDate } from "@/component/helpers/functions-general";
 import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import Loadmore from "@/component/partials/Loadmore";
 import NoData from "@/component/partials/NoData";
@@ -242,12 +242,16 @@ const RecordsFilesList = ({
                           )}
                         </td>
                         <td>{item.record_files_doc_name}</td>
-                        <td>{item.record_files_date}</td>
+                        <td>
+                          {item.record_files_date === ""
+                            ? "Unspecified"
+                            : formatDate(item.record_files_date)}
+                        </td>
                         <td>
                           <a
                             href={`${item.record_files_gdrive}`}
                             target="_blank"
-                            className="hover:underline"
+                            className="hover:underline hover:text-accent"
                           >
                             View Gdrive
                           </a>

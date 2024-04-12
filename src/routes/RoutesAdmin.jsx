@@ -5,6 +5,7 @@ import ClientProfile from "@/component/pages/developer-page/client/view-info/pro
 import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
 import Details from "@/component/pages/developer-page/earning/details/Details";
+import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
 import { adminPath, devNavUrl } from "../component/helpers/functions-general";
 import ProtectedRouteOther from "../component/pages/access/ProtectedRouteOther";
 import Account from "../component/pages/developer-page/account/Account";
@@ -162,6 +163,14 @@ export const routesAdmin = [
     element: (
       <ProtectedRouteOther>
         <IncomeItem />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/settings/quick-link`,
+    element: (
+      <ProtectedRouteOther>
+        <Quicklink />
       </ProtectedRouteOther>
     ),
   },
