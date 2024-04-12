@@ -285,7 +285,7 @@ const ClientCarList = ({
                         <td>{item.car_oil_type}</td>
                         <td>
                           {item.car_turo_link === "" ? (
-                            "No Link"
+                            <span className="text-[#e41e3f]">No Turo Link</span>
                           ) : (
                             <Link
                               to={item.car_turo_link}
@@ -298,7 +298,9 @@ const ClientCarList = ({
                         </td>
                         <td>
                           {item.car_admin_turo_link === "" ? (
-                            "No Link"
+                            <span className="text-[#e41e3f]">
+                              No Admin Turo Link
+                            </span>
                           ) : (
                             <Link
                               to={item.car_admin_turo_link}

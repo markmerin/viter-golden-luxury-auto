@@ -121,7 +121,31 @@ const CalculatorList = ({ setItemEdit }) => {
               </div>
 
               <div className="flex items-start justify-between">
-                <div className="w-1/2">
+                <div className="w-1/3">
+                  <div className="flex items-center p-2 pl-0 w-fit">
+                    <span className="relative flex cursor-pointer items-center rounded-full ">
+                      <input
+                        id="id-0"
+                        name="tax-bracket"
+                        value="0"
+                        type="radio"
+                        className="before:content[''] peer relative h-4 w-4 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-accent transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-accent checked:before:bg-accent hover:before:opacity-10"
+                        onChange={(e) => handleChangeTaxBracket(e)}
+                        defaultChecked
+                      />
+                      <div className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-accent opacity-0 transition-opacity peer-checked:opacity-100">
+                        <FaCircleCheck className="h-3.5 w-3.5 fill-current" />
+                      </div>
+                    </span>
+
+                    <label
+                      htmlFor="id-0"
+                      className="relative left-[unset] top-[unset] transform-none cursor-pointer after:bg-transparent ml-3"
+                    >
+                      None
+                    </label>
+                  </div>
+
                   <div className="flex items-center p-2 pl-0 w-fit">
                     <span className="relative flex cursor-pointer items-center rounded-full ">
                       <input
@@ -188,6 +212,9 @@ const CalculatorList = ({ setItemEdit }) => {
                       22%
                     </label>
                   </div>
+                </div>
+
+                <div className="w-full">
                   <div className="flex items-center p-2 pl-0 w-fit">
                     <span className="relative flex cursor-pointer items-center rounded-full ">
                       <input
@@ -210,9 +237,6 @@ const CalculatorList = ({ setItemEdit }) => {
                       24%
                     </label>
                   </div>
-                </div>
-
-                <div className="w-1/2">
                   <div className="flex items-center p-2 pl-0 w-fit">
                     <span className="relative flex cursor-pointer items-center rounded-full ">
                       <input
@@ -277,29 +301,6 @@ const CalculatorList = ({ setItemEdit }) => {
                       className="relative left-[unset] top-[unset] transform-none cursor-pointer after:bg-transparent ml-3"
                     >
                       37%
-                    </label>
-                  </div>
-                  <div className="flex items-center p-2 pl-0 w-fit">
-                    <span className="relative flex cursor-pointer items-center rounded-full ">
-                      <input
-                        id="id-0"
-                        name="tax-bracket"
-                        value="0"
-                        type="radio"
-                        className="before:content[''] peer relative h-4 w-4 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-accent transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-accent checked:before:bg-accent hover:before:opacity-10"
-                        onChange={(e) => handleChangeTaxBracket(e)}
-                        defaultChecked
-                      />
-                      <div className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-accent opacity-0 transition-opacity peer-checked:opacity-100">
-                        <FaCircleCheck className="h-3.5 w-3.5 fill-current" />
-                      </div>
-                    </span>
-
-                    <label
-                      htmlFor="id-0"
-                      className="relative left-[unset] top-[unset] transform-none cursor-pointer after:bg-transparent ml-3"
-                    >
-                      None
                     </label>
                   </div>
                 </div>
