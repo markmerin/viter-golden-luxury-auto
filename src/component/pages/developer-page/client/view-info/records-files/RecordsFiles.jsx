@@ -90,7 +90,7 @@ const RecordsFiles = () => {
         )}
 
         {client?.count > 0 && (
-          <div className="w-full pt-5 pb-4">
+          <div className="w-full pt-3 pb-4">
             <RecordsFilesList
               isLoadingClient={isLoading}
               isFetchingClient={isFetching}

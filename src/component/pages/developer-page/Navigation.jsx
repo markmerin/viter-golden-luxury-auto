@@ -153,14 +153,14 @@ const Navigation = ({ menu, submenu = null }) => {
               <li>
                 <Link
                   onClick={() => handleLinkClick()}
-                  to={`${devNavUrl}/${link}/earnings/calculator`}
+                  to={`${devNavUrl}/${link}/earnings-calculator`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "earnings-calculator"
                       ? "active__submenu"
                       : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                   }`}
                 >
-                  Calculator
+                  Earnings Calculator
                 </Link>
               </li>
             </ul>
@@ -281,7 +281,7 @@ const Navigation = ({ menu, submenu = null }) => {
                       : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                   }`}
                 >
-                  Quick Link
+                  Quick Links
                 </Link>
               </li>
             </ul>

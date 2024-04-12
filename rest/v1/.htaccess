@@ -136,6 +136,7 @@ RewriteRule ^car/search$ controllers/developer/car/search.php [L]
 ######################################### FOR CLIENT #####################################
 RewriteRule ^client/read-by-email$ controllers/client/read-by-email.php [L]
 RewriteRule ^client/car/page/([0-9]+)/(.*)$ controllers/client/car/page.php?start=$1&email=$2 [L]
+RewriteRule ^client/car/read/(.*)$ controllers/client/car/read.php?email=$1 [L]
 RewriteRule ^client/car/search$ controllers/client/car/search.php [L]
 
 

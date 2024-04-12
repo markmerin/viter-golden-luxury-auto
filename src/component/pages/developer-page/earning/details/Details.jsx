@@ -12,7 +12,6 @@ import DetailsList from "./DetailsList";
 
 const Details = () => {
   const { store, dispatch } = React.useContext(StoreContext);
-  const [itemEdit, setItemEdit] = React.useState(null);
 
   const handleAdd = () => {
     // dispatch(setIsAdd(true));
@@ -40,15 +39,9 @@ const Details = () => {
                 {location.pathname.split("/").pop().replaceAll("-", " ")}
               </h4>
             </div>
-            {/* <div className="flex items-center gap-1 print:invisible">
-            <button type="button" className="btn-primary" onClick={handleAdd}>
-              <FaPlus />
-              <span>Add</span>
-            </button>
-          </div> */}
           </div>
-          <div className="w-full pt-5 pb-4">
-            <DetailsList setItemEdit={setItemEdit} />
+          <div className="w-full pt-3 pb-4">
+            <DetailsList />
           </div>
           <Footer />
         </div>

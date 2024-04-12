@@ -1,3 +1,17 @@
 models
 1. rest/v1/models/developer/settings/quick-link/QuickLink.php 
 2. rest/v1/models/developer/client/record-files/RecordFiles.php
+
+
+TO UPLOAD 4:30
+
+models
+1. rest/v1/models/developer/client/car/Car.php 
+
+controllers
+1. rest/v1/controllers/developer/client/car/update.php 
+2. rest/v1/controllers/developer/client/car/create.php 
+3. rest/v1/controllers/client/car/read.php
+
+rest/v1/.htaccess 
+

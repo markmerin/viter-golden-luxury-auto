@@ -21,6 +21,7 @@ class Car
     public $car_miles;
     public $car_last_oil_change;
     public $car_turo_link;
+    public $car_admin_turo_link;
     public $car_remarks;
     public $car_management;
     public $car_created;
@@ -66,6 +67,7 @@ class Car
             $sql .= "car_miles, ";
             $sql .= "car_last_oil_change, ";
             $sql .= "car_turo_link, ";
+            $sql .= "car_admin_turo_link, ";
             $sql .= "car_remarks, ";
             $sql .= "car_management, ";
             $sql .= "car_created, ";
@@ -89,6 +91,7 @@ class Car
             $sql .= ":car_miles, ";
             $sql .= ":car_last_oil_change, ";
             $sql .= ":car_turo_link, ";
+            $sql .= ":car_admin_turo_link, ";
             $sql .= ":car_remarks, ";
             $sql .= ":car_management, ";
             $sql .= ":car_created, ";
@@ -114,6 +117,7 @@ class Car
                 "car_miles" => $this->car_miles,
                 "car_last_oil_change" => $this->car_last_oil_change,
                 "car_turo_link" => $this->car_turo_link,
+                "car_admin_turo_link" => $this->car_admin_turo_link,
                 "car_remarks" => $this->car_remarks,
                 "car_management" => $this->car_remarks,
                 "car_created" => $this->car_created,
@@ -315,6 +319,7 @@ class Car
             $sql .= "car_miles = :car_miles, ";
             $sql .= "car_last_oil_change = :car_last_oil_change, ";
             $sql .= "car_turo_link = :car_turo_link, ";
+            $sql .= "car_admin_turo_link = :car_admin_turo_link, ";
             $sql .= "car_remarks = :car_remarks, ";
             $sql .= "car_management = :car_management, ";
             $sql .= "car_datetime = :car_datetime ";
@@ -338,6 +343,7 @@ class Car
                 "car_miles" => $this->car_miles,
                 "car_last_oil_change" => $this->car_last_oil_change,
                 "car_turo_link" => $this->car_turo_link,
+                "car_admin_turo_link" => $this->car_admin_turo_link,
                 "car_remarks" => $this->car_remarks,
                 "car_management" => $this->car_management,
                 "car_datetime" => $this->car_datetime,
