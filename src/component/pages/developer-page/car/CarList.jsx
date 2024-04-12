@@ -274,14 +274,28 @@ const CarList = () => {
                           className="relative overflow-visible underline cursor-pointer tooltip-action-table text-accent"
                           data-tooltip={`View ${item.client_fname} ${item.client_lname} Cars`}
                         >
-                          {item.client_fname} {item.client_lname}
+                          <span className="whitespace-nowrap">
+                            {item.client_fname} {item.client_lname}
+                          </span>
                         </td>
                         <td>{item.client_email}</td>
-                        <td>{item.client_contact}</td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.client_contact}
+                          </span>
+                        </td>
                         <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
-                        <td>{item.car_specs}</td>
-                        <td>{item.car_vin_number}</td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.car_specs}
+                          </span>
+                        </td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.car_vin_number}
+                          </span>
+                        </td>
                         <td>{item.car_plate_number}</td>
                         <td>
                           {item.car_registration_date === ""
@@ -293,7 +307,9 @@ const CarList = () => {
                         <td>{item.car_oil_type}</td>
                         <td>
                           {item.car_turo_link === "" ? (
-                            <span className="text-[#e41e3f]">No Turo Link</span>
+                            <span className="text-[#e41e3f] whitespace-nowrap">
+                              No Turo Link
+                            </span>
                           ) : (
                             <Link
                               to={item.car_turo_link}
@@ -306,7 +322,7 @@ const CarList = () => {
                         </td>
                         <td>
                           {item.car_admin_turo_link === "" ? (
-                            <span className="text-[#e41e3f]">
+                            <span className="text-[#e41e3f] whitespace-nowrap">
                               No Admin Turo Link
                             </span>
                           ) : (

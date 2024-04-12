@@ -271,8 +271,16 @@ const ClientCarList = ({
                         </td>
                         <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
-                        <td>{item.car_specs}</td>
-                        <td>{item.car_vin_number}</td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.car_specs}
+                          </span>
+                        </td>
+                        <td>
+                          <span className="whitespace-nowrap">
+                            {item.car_vin_number}
+                          </span>
+                        </td>
                         <td>{item.car_plate_number}</td>
                         <td>
                           {item.car_registration_date === ""
@@ -284,7 +292,9 @@ const ClientCarList = ({
                         <td>{item.car_oil_type}</td>
                         <td>
                           {item.car_turo_link === "" ? (
-                            <span className="text-[#e41e3f]">No Turo Link</span>
+                            <span className="text-[#e41e3f] whitespace-nowrap">
+                              No Turo Link
+                            </span>
                           ) : (
                             <Link
                               to={item.car_turo_link}

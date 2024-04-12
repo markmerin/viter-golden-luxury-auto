@@ -20,3 +20,6 @@ DB BACKUP
 1. glav1_car
     -> added new column `car_admin_turo_link` text NOT NULL,
 
+
+Uploaded 4:58pm
+
