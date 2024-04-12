@@ -30,6 +30,7 @@ if (array_key_exists("carid", $_GET)) {
     $car->car_miles = $data["car_miles"];
     $car->car_last_oil_change = $data["car_last_oil_change"];
     $car->car_turo_link = $data["car_turo_link"];
+    $car->car_admin_turo_link = $data["car_admin_turo_link"];
     $car->car_remarks = $data["car_remarks"];
     $car->car_management = $data["car_management"];
     $car->car_datetime = date("Y-m-d H:i:s");

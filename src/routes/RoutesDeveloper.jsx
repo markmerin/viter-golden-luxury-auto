@@ -198,7 +198,7 @@ export const routesDeveloper = [
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/earnings/calculator`,
+    path: `${devNavUrl}/${developerPath}/earnings-calculator`,
     element: (
       <ProtectedRouteSystem>
         <Calculator />

@@ -208,9 +208,11 @@ const CarList = () => {
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
                 <th>Management</th>
                 <th>Remarks</th>
-                <th>Vehicle Owner</th>
-                <th>Vehicle Make</th>
-                <th>Vehicle Year</th>
+                <th>Owner</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Make</th>
+                <th>Year</th>
                 <th>Model / Specs</th>
                 <th>VIN #</th>
                 <th>Plate #</th>
@@ -219,6 +221,7 @@ const CarList = () => {
                 <th>Tire Size</th>
                 <th>Oil Type</th>
                 <th>Turo Link</th>
+                <th>Admin Turo Link</th>
                 <th colSpan={"100%"}></th>
               </tr>
             </thead>
@@ -273,6 +276,8 @@ const CarList = () => {
                         >
                           {item.client_fname} {item.client_lname}
                         </td>
+                        <td>{item.client_email}</td>
+                        <td>{item.client_contact}</td>
                         <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
                         <td>{item.car_specs}</td>
@@ -292,6 +297,19 @@ const CarList = () => {
                           ) : (
                             <Link
                               to={item.car_turo_link}
+                              target="_blank"
+                              className="whitespace-nowrap  hover:text-accent hover:underline"
+                            >
+                              View Car
+                            </Link>
+                          )}
+                        </td>
+                        <td>
+                          {item.car_admin_turo_link === "" ? (
+                            "No Link"
+                          ) : (
+                            <Link
+                              to={item.car_admin_turo_link}
                               target="_blank"
                               className="whitespace-nowrap  hover:text-accent hover:underline"
                             >

@@ -119,7 +119,7 @@ export const routesAdmin = [
     ),
   },
   {
-    path: `${devNavUrl}/${adminPath}/earnings/calculator`,
+    path: `${devNavUrl}/${adminPath}/earnings-calculator`,
     element: (
       <ProtectedRouteOther>
         <Calculator />

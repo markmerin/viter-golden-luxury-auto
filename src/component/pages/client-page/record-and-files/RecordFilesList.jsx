@@ -252,7 +252,7 @@ const RecordsFilesList = ({
                           <a
                             href={`${item.record_files_gdrive}`}
                             target="_blank"
-                            className="hover:underline"
+                            className="hover:underline hover:text-accent"
                           >
                             View Gdrive
                           </a>

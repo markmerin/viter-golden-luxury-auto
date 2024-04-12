@@ -54,7 +54,7 @@ const IncomeCategory = () => {
             </button>
           </div>
         </div>
-        <div className="w-full pt-5 pb-4">
+        <div className="w-full pt-3 pb-4">
           <IncomeCategoryList setItemEdit={setItemEdit} />
         </div>
         <Footer />

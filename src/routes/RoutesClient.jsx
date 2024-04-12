@@ -1,6 +1,7 @@
 import Account from "@/component/pages/client-page/account/Account";
 import ClientCar from "@/component/pages/client-page/cars/ClientCar";
-import Earning from "@/component/pages/client-page/earning/Earning";
+import Calculator from "@/component/pages/client-page/earning/calculator/Calculator";
+import Details from "@/component/pages/client-page/earning/details/Details";
 import ClientProfile from "@/component/pages/client-page/profile/ClientProfile";
 import RecordFiles from "@/component/pages/client-page/record-and-files/RecordFiles";
 import { clientPath, devNavUrl } from "../component/helpers/functions-general";
@@ -32,10 +33,18 @@ export const routesClient = [
     ),
   },
   {
-    path: `${devNavUrl}/${clientPath}/earnings`,
+    path: `${devNavUrl}/${clientPath}/earnings/details`,
     element: (
       <ProtectedRouteOther>
-        <Earning />
+        <Details />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${clientPath}/earnings-calculator`,
+    element: (
+      <ProtectedRouteOther>
+        <Calculator />
       </ProtectedRouteOther>
     ),
   },

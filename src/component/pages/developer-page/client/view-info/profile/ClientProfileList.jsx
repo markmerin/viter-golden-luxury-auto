@@ -24,17 +24,32 @@ const ClientProfileList = ({ client }) => {
   const [itemEdit, setItemEdit] = React.useState(null);
   const [updateProfile, setUpdateProfile] = React.useState(false);
   const [updateBankDetails, setUpdateBankDetails] = React.useState(false);
+  const email =
+    store.credentials.data.role_is_client === 1
+      ? store.credentials.data.user_other_email
+      : client?.data[0].client_email;
 
   const {
     isLoading: qlIsLoading,
     isFetching: qlIsFetching,
-    error: qlError,
     data: quicklink,
   } = useQueryData(
     `${apiVersion}/quick-link`, // endpoint
     "get", // method
     "quicklink" // key
   );
+
+  const {
+    isLoading: carIsLoading,
+    isFetching: carIsFetching,
+    data: car,
+  } = useQueryData(
+    `${apiVersion}/client/car/read/${email}`, // endpoint
+    "get", // method
+    "client/car/read" // key
+  );
+
+  console.log(car);
 
   const handleEdit = (item) => {
     setUpdateProfile(true);
@@ -56,7 +71,7 @@ const ClientProfileList = ({ client }) => {
 
   return (
     <>
-      {qlIsFetching || qlIsLoading ? (
+      {qlIsFetching || qlIsLoading || carIsLoading || carIsFetching ? (
         <FetchingSpinner />
       ) : (
         client?.data.map((item, key) => {
@@ -161,6 +176,29 @@ const ClientProfileList = ({ client }) => {
                         className="group-hover:underline"
                       >
                         {item.quicklink_name}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+
+              <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
+                <h4 className="text-sm text-accent">View My Car </h4>
+              </div>
+              <ul className="relative">
+                {car?.count > 0 &&
+                  car?.data.map((item, key) => (
+                    <li
+                      key={key}
+                      className="flex items-center gap-4 mb-4 w-fit group hover:text-accent"
+                    >
+                      <FaCaretRight className="group-hover:translate-x-2 duration-200" />
+                      <Link
+                        to={item.car_turo_link}
+                        target="_blank"
+                        key={key}
+                        className="group-hover:underline"
+                      >
+                        {item.car_make_name} {item.car_specs} {item.car_year}
                       </Link>
                     </li>
                   ))}
