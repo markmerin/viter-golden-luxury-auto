@@ -169,7 +169,7 @@ const ClientProfileList = ({ client }) => {
                 <h4 className="text-sm text-accent">Quick Links </h4>
               </div>
               <ul className="relative">
-                {getOtherLink.length > 0 &&
+                {getOtherLink.length > 0 ? (
                   getOtherLink.map((item, key) => (
                     <li
                       key={key}
@@ -185,14 +185,29 @@ const ClientProfileList = ({ client }) => {
                         {item.quicklink_name}
                       </Link>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <li
+                    className="flex items-center gap-4 mb-4 w-fit group
+                  pointer-events-none"
+                  >
+                    <FaCaretRight className="group-hover:translate-x-2 duration-200" />
+                    <Link
+                      to={item.car_turo_link}
+                      target="_blank"
+                      className="group-hover:underline"
+                    >
+                      No quick links yet
+                    </Link>
+                  </li>
+                )}
               </ul>
 
               <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b">
                 <h4 className="text-sm text-accent">View My Car </h4>
               </div>
               <ul className="relative">
-                {car?.count > 0 &&
+                {car?.count > 0 ? (
                   car?.data.map((item, key) => (
                     <li
                       key={key}
@@ -215,12 +230,27 @@ const ClientProfileList = ({ client }) => {
                         </span>
                       </Link>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <li
+                    className="flex items-center gap-4 mb-4 w-fit group
+                    pointer-events-none"
+                  >
+                    <FaCaretRight className="group-hover:translate-x-2 duration-200" />
+                    <Link
+                      to={item.car_turo_link}
+                      target="_blank"
+                      className="group-hover:underline"
+                    >
+                      No car listed
+                    </Link>
+                  </li>
+                )}
               </ul>
 
               <div className="flex items-center justify-between py-2 mt-4 mb-3 border-b"></div>
               <ul className="flex gap-4 mb-8">
-                {getSocialLink.length > 1 &&
+                {getSocialLink.length > 0 ? (
                   getSocialLink.map((item, key) => (
                     <li key={key}>
                       <a
@@ -244,7 +274,22 @@ const ClientProfileList = ({ client }) => {
                         )}
                       </a>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <li
+                    className="flex items-center gap-4 mb-4 w-fit group
+                  pointer-events-none"
+                  >
+                    <FaCaretRight className="group-hover:translate-x-2 duration-200" />
+                    <Link
+                      to={item.car_turo_link}
+                      target="_blank"
+                      className="group-hover:underline"
+                    >
+                      No social media links yet
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           );

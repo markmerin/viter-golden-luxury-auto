@@ -272,10 +272,10 @@ const CarList = () => {
                             <Status text="Inactive" />
                           )}
                         </td> */}
-                        <td className="capitalize">
+                        <td className="capitalize whitespace-nowrap">
                           {item.car_remarks.replaceAll("-", " ")}
                         </td>
-                        <td className="capitalize">
+                        <td className="capitalize whitespace-nowrap">
                           {item.car_management.replaceAll("-", " ")}
                         </td>
                         <td

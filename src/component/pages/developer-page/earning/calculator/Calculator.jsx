@@ -41,7 +41,7 @@ const Calculator = () => {
               </h4>
             </div>
           </div>
-          <div className="w-full pt-3 pb-4 mr-5">
+          <div className="w-full pt-3 pb-40 mr-5">
             <CalculatorList setItemEdit={setItemEdit} />
           </div>
           <Footer />

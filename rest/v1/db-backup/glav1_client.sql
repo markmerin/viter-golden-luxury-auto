@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 09:09 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Apr 13, 2024 at 05:45 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,8 +35,8 @@ CREATE TABLE `glav1_client` (
   `client_contact` varchar(20) NOT NULL,
   `client_email` varchar(255) NOT NULL,
   `client_bank_name` varchar(128) NOT NULL,
-  `client_bank_routing_number` int(11) NOT NULL,
-  `client_bank_account_number` int(11) NOT NULL,
+  `client_bank_routing_number` varchar(20) NOT NULL,
+  `client_bank_account_number` varchar(20) NOT NULL,
   `client_created` datetime NOT NULL,
   `client_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -46,8 +46,8 @@ CREATE TABLE `glav1_client` (
 --
 
 INSERT INTO `glav1_client` (`client_aid`, `client_is_active`, `client_fname`, `client_lname`, `client_contact`, `client_email`, `client_bank_name`, `client_bank_routing_number`, `client_bank_account_number`, `client_created`, `client_datetime`) VALUES
-(2, 1, 'Ivan', 'Adao', '09662993797', 'macmerin24@gmail.com', 'China Bank Corp.', 10320013, 2147483647, '2024-04-03 12:58:49', '0000-00-00 00:00:00'),
-(3, 1, 'Ramon', 'Plaza', '09491040057', 'monmonplaza@gmail.com', '', 0, 0, '2024-04-03 12:59:27', '2024-04-03 12:59:27');
+(2, 1, 'Ivan', 'Adao', '09662993797', 'macdet21@gmail.com', 'China Bank Corp.', '010320013', '2147483647', '2024-04-03 12:58:49', '0000-00-00 00:00:00'),
+(3, 1, 'Ramon', 'Plaza', '09491040057', 'monmonplaza@gmail.com', '', '0', '0', '2024-04-03 12:59:27', '2024-04-03 12:59:27');
 
 --
 -- Indexes for dumped tables

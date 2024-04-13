@@ -53,7 +53,7 @@ const Quicklink = () => {
             </button>
           </div>
         </div>
-        <div className="w-full pt-3 pb-4">
+        <div className="w-full pt-3 pb-40">
           <ExpensesList setItemEdit={setItemEdit} />
         </div>
         <Footer />
