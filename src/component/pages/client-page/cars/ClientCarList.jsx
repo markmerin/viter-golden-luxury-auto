@@ -153,7 +153,7 @@ const ClientCarList = ({
   return (
     <>
       <div className="flex flex-col justify-between gap-3 pb-2 md:flex-row">
-        <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
+        {/* <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
               <label>Filter</label>
@@ -183,7 +183,7 @@ const ClientCarList = ({
               )}
             </span>
           </div>
-        </div>
+        </div> */}
 
         <div className="w-full md:max-w-80">
           <SearchBarWithFilterStatus
@@ -211,9 +211,9 @@ const ClientCarList = ({
             <thead className={`${isTableScroll && "relative "} z-50 `}>
               <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
-                <th className="w-[4.5rem] md:w-[6rem]">Status</th>
-                {/* <th>Management</th>
-                <th>Remarks</th> */}
+                {/* <th className="w-[4.5rem] md:w-[6rem]">Status</th> */}
+                <th>Status</th>
+                {/* <th>Remarks</th> */}
                 <th>Vehicle Make</th>
                 <th>Vehicle Year</th>
                 <th>Model / Specs</th>
@@ -256,17 +256,17 @@ const ClientCarList = ({
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
 
-                        <td className="hidden sm:table-cell">
+                        {/* <td className="hidden sm:table-cell">
                           {item.car_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
-                        </td>
-                        {/* <td className="capitalize">
+                        </td> */}
+                        <td className="capitalize">
                           {item.car_management.replaceAll("-", " ")}
                         </td>
-                        <td className="capitalize">
+                        {/* <td className="capitalize">
                           {item.car_remarks.replaceAll("-", " ")}
                         </td> */}
                         <td>{item.car_make_name}</td>

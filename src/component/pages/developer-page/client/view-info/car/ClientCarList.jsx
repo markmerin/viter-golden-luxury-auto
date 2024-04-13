@@ -164,9 +164,22 @@ const ClientCarList = ({
                 disabled={isFetching || status === "pending"}
                 className="h-[35px] py-0"
               >
-                <option value="all">All</option>
+                {/* <option value="all">All</option>
                 <option value="1">Active</option>
-                <option value="0">Inactive</option>
+                <option value="0">Inactive</option> */}
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="client-has-the-car">Client Has the Car</option>
+                <option value="client-may-remove-the-car">
+                  Client May Remove the Car
+                </option>
+                <option value="inactive">Inactive</option>
+                <option value="mechanic">Mechanic</option>
+                <option value="new">New</option>
+                <option value="recall">Recall</option>
+                <option value="returned">Returned</option>
+                <option value="savage-title">Savage Title</option>
+                <option value="turo-unlisted">Turo Unlisted</option>
               </select>
             </div>
           </div>
@@ -211,9 +224,9 @@ const ClientCarList = ({
             <thead className={`${isTableScroll && "relative "} z-50 `}>
               <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
-                <th className="w-[4.5rem] md:w-[6rem]">Status</th>
+                {/* <th className="w-[4.5rem] md:w-[6rem]">Status</th> */}
+                <th>Status</th>
                 <th>Management</th>
-                <th>Remarks</th>
                 <th>Make</th>
                 <th>Year</th>
                 <th>Model / Specs</th>
@@ -257,18 +270,18 @@ const ClientCarList = ({
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
 
-                        <td className="hidden sm:table-cell">
+                        {/* <td className="hidden sm:table-cell">
                           {item.car_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
+                        </td> */}
+                        <td className="capitalize">
+                          {item.car_remarks.replaceAll("-", " ")}
                         </td>
                         <td className="capitalize">
                           {item.car_management.replaceAll("-", " ")}
-                        </td>
-                        <td className="capitalize">
-                          {item.car_remarks.replaceAll("-", " ")}
                         </td>
                         <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
@@ -340,11 +353,20 @@ const ClientCarList = ({
                                 <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
+                                  data-tooltip="Delete"
+                                  onClick={() => handleDelete(item)}
+                                >
+                                  <FaTrash className="w-3 h-3" />
+                                </button>
+
+                                {/* <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
                                   data-tooltip="Archive"
                                   onClick={() => handleArchive(item)}
                                 >
                                   <FaArchive className="w-3 h-3" />
-                                </button>
+                                </button> */}
                               </>
                             ) : (
                               <>

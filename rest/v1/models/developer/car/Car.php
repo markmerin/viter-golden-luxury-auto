@@ -108,7 +108,7 @@ class Car
             $sql .= "and car.car_client_id = client.client_aid ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             // $sql .= "group by car.car_aid ";
-            $sql .= "order by car.car_is_active desc, ";
+            $sql .= "order by car.car_remarks, ";
             $sql .= "carMake.car_make_name ";
             $query = $this->connection->prepare($sql);
             $query->execute([

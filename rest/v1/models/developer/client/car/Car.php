@@ -142,7 +142,7 @@ class Car
             $sql .= "where car.car_client_id = :car_client_id ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "group by car.car_aid ";
-            $sql .= "order by car.car_is_active desc, ";
+            $sql .= "order by car.car_remarks, ";
             $sql .= "carMake.car_make_name ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -166,7 +166,7 @@ class Car
             $sql .= "where car.car_client_id = :car_client_id ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "group by car.car_aid ";
-            $sql .= "order by car.car_is_active desc, ";
+            $sql .= "order by car.car_remarks, ";
             $sql .= "carMake.car_make_name ";
             $sql .= "limit :start, ";
             $sql .= ":total ";
@@ -191,11 +191,11 @@ class Car
             $sql .= "carMake.car_make_name ";
             $sql .= "from {$this->tblCar} as car, ";
             $sql .= "{$this->tblCarMake} as carMake ";
-            $sql .= "where car_is_active = :car_is_active ";
+            $sql .= "where car_remarks = :car_is_active ";
             $sql .= "and car.car_client_id = :car_client_id ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "group by car.car_aid ";
-            $sql .= "order by car.car_is_active desc, ";
+            $sql .= "order by car.car_remarks, ";
             $sql .= "carMake.car_make_name ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -226,7 +226,7 @@ class Car
             $sql .= "or car.car_plate_number like :car_plate_number ";
             $sql .= ") ";
             $sql .= "group by car.car_aid ";
-            $sql .= "order by car.car_is_active desc, ";
+            $sql .= "order by car.car_remarks, ";
             $sql .= "carMake.car_make_name ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -253,7 +253,7 @@ class Car
             $sql .= "from {$this->tblCar} as car, ";
             $sql .= "{$this->tblCarMake} as carMake ";
             $sql .= "where car.car_client_id = :car_client_id ";
-            $sql .= "and car_is_active = :car_is_active ";
+            $sql .= "and car_remarks = :car_is_active ";
             $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
             $sql .= "and ( carMake.car_make_name like :car_make_name ";
             $sql .= "or car.car_year like :car_year ";
@@ -262,7 +262,7 @@ class Car
             $sql .= "or car.car_plate_number like :car_plate_number ";
             $sql .= ") ";
             $sql .= "group by car.car_aid ";
-            $sql .= "order by car.car_is_active desc, ";
+            $sql .= "order by car.car_remarks, ";
             $sql .= "carMake.car_make_name ";
             $query = $this->connection->prepare($sql);
             $query->execute([
