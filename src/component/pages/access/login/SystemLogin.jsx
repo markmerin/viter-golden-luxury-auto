@@ -78,80 +78,84 @@ const SystemLogin = () => {
   return (
     <>
       {loginLoading ? (
-        <TableSpinner />
+        <TableSpinner bg="bg-dark/80" />
       ) : (
-        <div
-          className="flex items-center justify-center "
-          style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
-        >
-          <div className="p-6 w-96">
-            {/* <div className="flex justify-center items-center flex-col bg-dark w-fit mx-auto py-1"> */}
-            <div className="flex justify-center items-center flex-col ">
-              <LogoForAccess />
-            </div>
+        <div className="w-full h-screen bg-dark">
+          <div
+            className="flex items-center justify-center "
+            style={{ transform: "translateY(clamp(5rem,12vw,8rem))" }}
+          >
+            <div className="p-6 w-96">
+              {/* <div className="flex flex-col items-center justify-center py-1 mx-auto bg-dark w-fit"> */}
+              <div className="flex flex-col items-center justify-center ">
+                <LogoForAccess />
+              </div>
 
-            <p className="mt-8 mb-5 text-lg font-bold">DEVELOPER LOGIN</p>
-            <Formik
-              initialValues={initVal}
-              validationSchema={yupSchema}
-              onSubmit={async (values, { setSubmitting, resetForm }) => {
-                // mutate data
-                mutation.mutate(values);
-              }}
-            >
-              {(props) => {
-                return (
-                  <Form>
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Email"
-                        type="text"
-                        name="user_system_email"
-                        disabled={mutation.isPending}
-                      />
-                    </div>
-                    <div className="relative mb-6">
-                      <InputText
-                        label="Password"
-                        type={passwordShown ? "text" : "password"}
-                        name="password"
-                        disabled={mutation.isPending}
-                      />
-                      {props.values.password && (
-                        <span
-                          className="absolute text-base translate-y-1/2 cursor-pointer bottom-1/2 right-2"
-                          onClick={togglePassword}
-                        >
-                          {passwordShown ? (
-                            <FaEyeSlash className="fill-gray-400" />
-                          ) : (
-                            <FaEye className="fill-gray-400" />
-                          )}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1 pt-3">
-                      <button
-                        type="submit"
-                        disabled={mutation.isPending || !props.dirty}
-                        className="relative btn-modal-submit"
-                      >
-                        {mutation.isPending ? <ButtonSpinner /> : "Login"}
-                      </button>
-                    </div>
-                  </Form>
-                );
-              }}
-            </Formik>
-            <p className="mt-5">
-              Did you forget your password?{" "}
-              <a
-                href={`${devNavUrl}/${developerPath}/forgot-password`}
-                className="w-full text-accent"
+              <p className="mt-8 mb-5 text-lg font-bold text-white">
+                DEVELOPER LOGIN
+              </p>
+              <Formik
+                initialValues={initVal}
+                validationSchema={yupSchema}
+                onSubmit={async (values, { setSubmitting, resetForm }) => {
+                  // mutate data
+                  mutation.mutate(values);
+                }}
               >
-                <u> Forgot password</u>
-              </a>
-            </p>
+                {(props) => {
+                  return (
+                    <Form>
+                      <div className="relative mb-6 label-transparent">
+                        <InputText
+                          label="Email"
+                          type="text"
+                          name="user_system_email"
+                          disabled={mutation.isPending}
+                        />
+                      </div>
+                      <div className="relative mb-6 label-transparent">
+                        <InputText
+                          label="Password"
+                          type={passwordShown ? "text" : "password"}
+                          name="password"
+                          disabled={mutation.isPending}
+                        />
+                        {props.values.password && (
+                          <span
+                            className="absolute text-base translate-y-1/2 cursor-pointer bottom-1/2 right-2"
+                            onClick={togglePassword}
+                          >
+                            {passwordShown ? (
+                              <FaEyeSlash className="fill-gray-400" />
+                            ) : (
+                              <FaEye className="fill-gray-400" />
+                            )}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1 pt-3">
+                        <button
+                          type="submit"
+                          disabled={mutation.isPending || !props.dirty}
+                          className="relative btn-modal-submit bg-accent"
+                        >
+                          {mutation.isPending ? <ButtonSpinner /> : "Login"}
+                        </button>
+                      </div>
+                    </Form>
+                  );
+                }}
+              </Formik>
+              <p className="mt-5 text-white">
+                Did you forget your password?{" "}
+                <a
+                  href={`${devNavUrl}/${developerPath}/forgot-password`}
+                  className="w-full text-accent"
+                >
+                  <u> Forgot password</u>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       )}

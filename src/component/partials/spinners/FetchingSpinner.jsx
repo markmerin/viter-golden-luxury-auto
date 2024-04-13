@@ -1,9 +1,11 @@
 import React from "react";
 
-const FetchingSpinner = () => {
+const FetchingSpinner = ({ bg = "bg-white/80" }) => {
   return (
     <>
-      <div className="absolute top-0 right-0 bottom-0 left-0 z-50 justify-center flex items-center flex-col text-center bg-white/50">
+      <div
+        className={`absolute top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center text-center ${bg}`}
+      >
         <svg
           aria-hidden="true"
           className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-300 fill-accent"

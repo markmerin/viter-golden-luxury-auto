@@ -32,7 +32,7 @@ body {
     @apply leading-relaxed font-[poppinsRegular] text-xs min-h-full text-dark;
   }
   table {
-    @apply border-collapse border-spacing-2 text-left w-full p-1 truncate table-auto;
+    @apply w-full p-1 text-left truncate border-collapse table-auto border-spacing-2;
   }
   table tr:hover {
     @apply bg-gray-100;
@@ -78,6 +78,18 @@ body {
 
   label {
     @apply absolute z-10 text-xs transform translate-x-3 -translate-y-6 bg-white text-dark top-4;
+  }
+
+  .label-transparent label {
+    @apply bg-white px-1 
+  }
+
+  .label-transparent input {
+    @apply text-dark
+  }
+
+  .spinner-dark > div {
+    @apply bg-dark/20
   }
 }
 
@@ -228,7 +240,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .table-action > div {
-  @apply bg-gray-50 sm:bg-white gap-4 sm:gap-2 sm:right-3;
+  @apply gap-4 bg-gray-50 sm:bg-white sm:gap-2 sm:right-3;
 }
 
 .navigation .nav-backdrop {
