@@ -86,7 +86,7 @@ const CarList = () => {
       }
       return;
     },
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 
   React.useEffect(() => {
@@ -150,7 +150,7 @@ const CarList = () => {
         <div className="md:flex grid grid-cols-[1fr_3.1rem] items-center gap-2 w-full xl:w-1/2">
           <div className="flex items-center gap-2">
             <div className="relative w-28 ">
-              <label>Filter</label>
+              <label>Status</label>
               <select
                 name="status"
                 value={clientStatus}
@@ -158,9 +158,22 @@ const CarList = () => {
                 disabled={isFetching || status === "pending"}
                 className="h-[35px] py-0"
               >
-                <option value="all">All</option>
+                {/* <option value="all">All</option>
                 <option value="1">Active</option>
-                <option value="0">Inactive</option>
+                <option value="0">Inactive</option> */}
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="client-has-the-car">Client Has the Car</option>
+                <option value="client-may-remove-the-car">
+                  Client May Remove the Car
+                </option>
+                <option value="inactive">Inactive</option>
+                <option value="mechanic">Mechanic</option>
+                <option value="new">New</option>
+                <option value="recall">Recall</option>
+                <option value="returned">Returned</option>
+                <option value="savage-title">Savage Title</option>
+                <option value="turo-unlisted">Turo Unlisted</option>
               </select>
             </div>
           </div>
@@ -205,9 +218,9 @@ const CarList = () => {
             <thead className={`${isTableScroll && "relative "} z-50 `}>
               <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
-                <th className="w-[4.5rem] md:w-[6rem]">Status</th>
+                {/* <th className="w-[4.5rem] md:w-[6rem]">Status</th> */}
+                <th>Status</th>
                 <th>Management</th>
-                <th>Remarks</th>
                 <th>Owner</th>
                 <th>Email</th>
                 <th>Contact</th>
@@ -252,18 +265,18 @@ const CarList = () => {
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
 
-                        <td className="hidden sm:table-cell">
+                        {/* <td className="hidden sm:table-cell">
                           {item.car_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
+                        </td> */}
+                        <td className="capitalize">
+                          {item.car_remarks.replaceAll("-", " ")}
                         </td>
                         <td className="capitalize">
                           {item.car_management.replaceAll("-", " ")}
-                        </td>
-                        <td className="capitalize">
-                          {item.car_remarks.replaceAll("-", " ")}
                         </td>
                         <td
                           onClick={() =>
@@ -338,7 +351,8 @@ const CarList = () => {
 
                         <td
                           colSpan={"100%"}
-                          className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
+                          // className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
+                          // className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
                         >
                           <div className="flex items-center justify-end gap-3 table-action">
                             {item.car_is_active === 1 ? (
@@ -361,13 +375,21 @@ const CarList = () => {
                                   <FaEdit className="w-3 h-3" />
                                 </button>
 
-                                <button
+                                {/* <button
                                   type="button"
                                   className="btn-action-table tooltip-action-table"
                                   data-tooltip="Archive"
                                   onClick={() => handleArchive(item)}
                                 >
                                   <FaArchive className="w-3 h-3" />
+                                </button> */}
+                                <button
+                                  type="button"
+                                  className="btn-action-table tooltip-action-table"
+                                  data-tooltip="Delete"
+                                  onClick={() => handleDelete(item)}
+                                >
+                                  <FaTrash className="w-3 h-3" />
                                 </button>
                               </div>
                             ) : (

@@ -66,7 +66,7 @@ class Quicklink
             $sql .= "from ";
             $sql .= " {$this->tblQuickLink} ";
             $sql .= "order by quicklink_is_active desc, ";
-            $sql .= "quicklink_name asc ";
+            $sql .= "quicklink_order asc ";
             $query = $this->connection->query($sql);
         } catch (PDOException $ex) {
             $query = false;
@@ -80,7 +80,7 @@ class Quicklink
         try {
             $sql = "select * from {$this->tblQuickLink} ";
             $sql .= "where quicklink_aid = :quicklink_aid ";
-            $sql .= "order by quicklink_name asc ";
+            $sql .= "order by quicklink_order asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "quicklink_aid" => $this->quicklink_aid,

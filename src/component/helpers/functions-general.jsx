@@ -210,3 +210,8 @@ export const fetchFormData = (url, fd = {}) => {
 
   return data;
 };
+
+export const getLastCharacters = (val) => {
+  let lastChar = "****" + String(val).slice(-4);
+  return lastChar;
+};

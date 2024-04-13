@@ -225,17 +225,19 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         disabled={mutation.isPending}
                       >
                         <option value="" hidden></option>
-                        <option value="returned">Returned</option>
-                        <option value="new">New</option>
-                        <option value="mechanic">Mechanic</option>
-                        <option value="recall">Recall</option>
-                        <option value="savage-title">Savage Title</option>
-                        <option value="client-may-remove-the-car">
-                          Client May Remove the Car
-                        </option>
+                        <option value="active">Active</option>
                         <option value="client-has-the-car">
                           Client Has the Car
                         </option>
+                        <option value="client-may-remove-the-car">
+                          Client May Remove the Car
+                        </option>
+                        <option value="inactive">Inactive</option>
+                        <option value="mechanic">Mechanic</option>
+                        <option value="new">New</option>
+                        <option value="recall">Recall</option>
+                        <option value="returned">Returned</option>
+                        <option value="savage-title">Savage Title</option>
                         <option value="turo-unlisted">Turo Unlisted</option>
                       </InputSelect>
                     </div>

@@ -212,8 +212,8 @@ const ClientCarList = ({
               <tr className="sticky top-0 !border-0">
                 <th className="w-[2rem] text-center">#</th>
                 <th className="w-[4.5rem] md:w-[6rem]">Status</th>
-                <th>Management</th>
-                <th>Remarks</th>
+                {/* <th>Management</th>
+                <th>Remarks</th> */}
                 <th>Vehicle Make</th>
                 <th>Vehicle Year</th>
                 <th>Model / Specs</th>
@@ -263,12 +263,12 @@ const ClientCarList = ({
                             <Status text="Inactive" />
                           )}
                         </td>
-                        <td className="capitalize">
+                        {/* <td className="capitalize">
                           {item.car_management.replaceAll("-", " ")}
                         </td>
                         <td className="capitalize">
                           {item.car_remarks.replaceAll("-", " ")}
-                        </td>
+                        </td> */}
                         <td>{item.car_make_name}</td>
                         <td>{item.car_year}</td>
                         <td>

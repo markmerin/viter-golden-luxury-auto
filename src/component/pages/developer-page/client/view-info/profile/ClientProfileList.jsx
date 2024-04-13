@@ -1,5 +1,8 @@
 import useQueryData from "@/component/custom-hooks/useQueryData";
-import { apiVersion } from "@/component/helpers/functions-general";
+import {
+  apiVersion,
+  getLastCharacters,
+} from "@/component/helpers/functions-general";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import TableSpinner from "@/component/partials/spinners/TableSpinner";
 import React from "react";
@@ -142,6 +145,8 @@ const ClientProfileList = ({ client }) => {
                     <span className="w-[22rem]">
                       {item.client_bank_routing_number === 0
                         ? "No Data"
+                        : store.credentials.data.role_is_client === 1
+                        ? getLastCharacters(item.client_bank_routing_number)
                         : item.client_bank_routing_number}
                     </span>
                   </p>
@@ -152,6 +157,8 @@ const ClientProfileList = ({ client }) => {
                     <span className="w-[22rem]">
                       {item.client_bank_account_number === 0
                         ? "No Data"
+                        : store.credentials.data.role_is_client === 1
+                        ? getLastCharacters(item.client_bank_account_number)
                         : item.client_bank_account_number}
                     </span>
                   </p>
