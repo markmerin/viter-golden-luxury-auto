@@ -81,11 +81,11 @@ body {
   }
 
   .label-transparent label {
-    @apply bg-white px-1 
+    @apply bg-white px-2 -translate-y-1 translate-x-1
   }
 
   .label-transparent input {
-    @apply text-dark
+    @apply text-dark h-[60px] pb-0 pt-6 px-3
   }
 
   .spinner-dark > div {
