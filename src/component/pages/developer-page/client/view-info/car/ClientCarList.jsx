@@ -298,7 +298,9 @@ const ClientCarList = ({
                         <td>{item.car_oil_type}</td>
                         <td>
                           {item.car_turo_link === "" ? (
-                            <span className="text-[#e41e3f]">No Turo Link</span>
+                            <span className="text-[#e41e3f] whitespace-nowrap">
+                              No Turo Link
+                            </span>
                           ) : (
                             <Link
                               to={item.car_turo_link}
@@ -311,7 +313,7 @@ const ClientCarList = ({
                         </td>
                         <td>
                           {item.car_admin_turo_link === "" ? (
-                            <span className="text-[#e41e3f]">
+                            <span className="text-[#e41e3f] whitespace-nowrap">
                               No Admin Turo Link
                             </span>
                           ) : (
@@ -327,7 +329,7 @@ const ClientCarList = ({
 
                         <td
                           colSpan={"100%"}
-                          className="opacity-100 group-hover:opacity-100"
+                          // className="opacity-100 group-hover:opacity-100"
                         >
                           <div className="flex items-center justify-end gap-3 ml-4">
                             {item.car_is_active === 1 ? (
