@@ -40,7 +40,7 @@ const Details = () => {
               </h4>
             </div>
           </div>
-          <div className="w-full pt-3 pb-4">
+          <div className="w-full pt-3 pb-40">
             <DetailsList />
           </div>
           <Footer />
