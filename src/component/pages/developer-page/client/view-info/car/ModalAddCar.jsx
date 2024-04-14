@@ -220,7 +220,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputSelect
-                        label="Remarks"
+                        label="Status"
                         name="car_remarks"
                         disabled={mutation.isPending}
                       >
