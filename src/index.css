@@ -45,7 +45,7 @@ body {
     @apply relative border-b border-gray-300 border-solid hover:bg-gray-50;
   }
   table td {
-    @apply py-[10px] truncate pr-3 whitespace-pre-wrap;
+    @apply py-[10px] truncate px-3 whitespace-pre-wrap;
   }
   table td:last-child {
     @apply overflow-visible;
@@ -81,15 +81,15 @@ body {
   }
 
   .label-transparent label {
-    @apply bg-white px-2 -translate-y-1 translate-x-1
+    @apply bg-white px-2 -translate-y-1 translate-x-1;
   }
 
   .label-transparent input {
-    @apply text-dark h-[60px] pb-0 pt-6 px-3
+    @apply text-dark h-[60px] pb-0 pt-6 px-3;
   }
 
   .spinner-dark > div {
-    @apply bg-dark/20
+    @apply bg-dark/20;
   }
 }
 
@@ -206,13 +206,14 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 /* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
   border-radius: 100%;
   background-color: #c6a057;
   height: 1rem;
   width: 1rem;
   margin-top: -6px;
+  cursor: ew-resize;
 }
 
 /******** Firefox styles ********/

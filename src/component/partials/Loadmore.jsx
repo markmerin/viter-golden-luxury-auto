@@ -17,7 +17,7 @@ const Loadmore = ({
           <button
             type="button"
             disabled={isFetchingNextPage}
-            className="loadmore h-full relative my-8 text-primary p-1.5 rounded-full w-36 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="loadmore h-full relative my-8 text-primary p-1.5 rounded-full w-36 disabled:opacity-50 disabled:cursor-not-allowed disabled:!bg-transparent"
           >
             <ButtonSpinner />
           </button>
@@ -37,7 +37,7 @@ const Loadmore = ({
           setPage((prev) => prev + 1);
           fetchNextPage();
         }}
-        className="loadmore h-full relative my-8 text-primary p-1.5 rounded-full w-36 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="loadmore h-full relative my-8 text-primary p-1.5 rounded-full w-36 disabled:opacity-50 disabled:cursor-not-allowed disabled:!bg-transparent"
       >
         {isFetchingNextPage ? <ButtonSpinner /> : <span>Load more</span>}
       </button>

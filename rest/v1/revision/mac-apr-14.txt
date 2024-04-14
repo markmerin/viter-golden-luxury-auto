@@ -1,0 +1,12 @@
+db-backup
+
+1. glav1_client table
+    -> change data type
+
+    FROM
+        -> `client_bank_routing_number` int(11) NOT NULL,
+        -> `client_bank_account_number` int(11) NOT NULL,
+
+    TO
+        -> `client_bank_routing_number` varchar(20) NOT NULL,
+        -> `client_bank_account_number` varchar(20) NOT NULL,

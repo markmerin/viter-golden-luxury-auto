@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 04:08 PM
+-- Generation Time: Apr 13, 2024 at 05:45 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -47,6 +47,10 @@ CREATE TABLE `glav1_car` (
   `car_nada_rough` int(11) NOT NULL,
   `car_miles` int(11) NOT NULL,
   `car_last_oil_change` varchar(20) NOT NULL,
+  `car_turo_link` text NOT NULL,
+  `car_admin_turo_link` text NOT NULL,
+  `car_remarks` varchar(64) NOT NULL,
+  `car_management` varchar(64) NOT NULL,
   `car_created` datetime NOT NULL,
   `car_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -55,8 +59,10 @@ CREATE TABLE `glav1_car` (
 -- Dumping data for table `glav1_car`
 --
 
-INSERT INTO `glav1_car` (`car_aid`, `car_is_active`, `car_photo`, `car_client_id`, `car_vehicle_make_id`, `car_year`, `car_specs`, `car_vin_number`, `car_plate_number`, `car_registration_date`, `car_gas`, `car_tire_size`, `car_oil_type`, `car_nada_retail`, `car_nada_clean`, `car_nada_average`, `car_nada_rough`, `car_miles`, `car_last_oil_change`, `car_created`, `car_datetime`) VALUES
-(4, 1, 'bf12lsxdskk8ycx1lhgnrg.2880x1400-768x373.jpg', 2, 1, 2020, 'MDX', '', '', '', '', '', '', 0, 0, 0, 0, 0, '', '2024-04-05 21:00:00', '2024-04-05 21:27:58');
+INSERT INTO `glav1_car` (`car_aid`, `car_is_active`, `car_photo`, `car_client_id`, `car_vehicle_make_id`, `car_year`, `car_specs`, `car_vin_number`, `car_plate_number`, `car_registration_date`, `car_gas`, `car_tire_size`, `car_oil_type`, `car_nada_retail`, `car_nada_clean`, `car_nada_average`, `car_nada_rough`, `car_miles`, `car_last_oil_change`, `car_turo_link`, `car_admin_turo_link`, `car_remarks`, `car_management`, `car_created`, `car_datetime`) VALUES
+(4, 1, 'bf12lsxdskk8ycx1lhgnrg.2880x1400-768x373.jpg', 2, 1, 2020, 'MDX', '', '', '2024-04-11', '', '', '', 0, 0, 0, 0, 0, '2024-04-11', 'https://turo.com/us/en/suv-rental/united-states/salt-lake-city-ut/audi/q8/1945166', '', 'active', 'own', '2024-04-05 21:00:00', '2024-04-13 23:19:40'),
+(5, 1, 'bf12lsxdskk8ycx1lhgnrg.2880x1400-768x373.jpg', 3, 3, 2022, 'Burgman', '', '', '', '', '', '', 0, 0, 0, 0, 0, '', '', '', 'client-has-the-car', 'client-has-the-car', '2024-04-13 23:20:29', '2024-04-13 23:20:29'),
+(6, 1, 'bf12lsxdskk8ycx1lhgnrg.2880x1400-768x373.jpg', 3, 2, 2023, 'PSX', '', '', '', '', '', '', 0, 0, 0, 0, 0, '', '', '', '', '', '2024-04-13 23:20:48', '2024-04-13 23:20:48');
 
 -- --------------------------------------------------------
 
@@ -96,8 +102,8 @@ CREATE TABLE `glav1_client` (
   `client_contact` varchar(20) NOT NULL,
   `client_email` varchar(255) NOT NULL,
   `client_bank_name` varchar(128) NOT NULL,
-  `client_bank_routing_number` int(11) NOT NULL,
-  `client_bank_account_number` int(11) NOT NULL,
+  `client_bank_routing_number` varchar(20) NOT NULL,
+  `client_bank_account_number` varchar(20) NOT NULL,
   `client_created` datetime NOT NULL,
   `client_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -107,8 +113,8 @@ CREATE TABLE `glav1_client` (
 --
 
 INSERT INTO `glav1_client` (`client_aid`, `client_is_active`, `client_fname`, `client_lname`, `client_contact`, `client_email`, `client_bank_name`, `client_bank_routing_number`, `client_bank_account_number`, `client_created`, `client_datetime`) VALUES
-(2, 1, 'Ivan', 'Adao', '09662993797', 'macmerin24@gmail.com', 'China Bank Corp.', 10320013, 2147483647, '2024-04-03 12:58:49', '0000-00-00 00:00:00'),
-(3, 1, 'Ramon', 'Plaza', '09491040057', 'monmonplaza@gmail.com', '', 0, 0, '2024-04-03 12:59:27', '2024-04-03 12:59:27');
+(2, 1, 'Ivan', 'Adao', '09662993797', 'macdet21@gmail.com', 'China Bank Corp.', '010320013', '2147483647', '2024-04-03 12:58:49', '0000-00-00 00:00:00'),
+(3, 1, 'Ramon', 'Plaza', '09491040057', 'monmonplaza@gmail.com', '', '0', '0', '2024-04-03 12:59:27', '2024-04-03 12:59:27');
 
 -- --------------------------------------------------------
 
@@ -205,6 +211,74 @@ INSERT INTO `glav1_maintenance` (`maintenance_aid`, `maintenance_is_for_client`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `glav1_quicklinks`
+--
+
+CREATE TABLE `glav1_quicklinks` (
+  `quicklink_aid` int(11) NOT NULL,
+  `quicklink_is_active` tinyint(1) NOT NULL,
+  `quicklink_name` varchar(50) NOT NULL,
+  `quicklink_link` text NOT NULL,
+  `quicklink_is_social` tinyint(1) NOT NULL,
+  `quicklink_social_media` varchar(50) NOT NULL,
+  `quicklink_order` int(11) NOT NULL,
+  `quicklink_created` varchar(20) NOT NULL,
+  `quicklink_datetime` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `glav1_quicklinks`
+--
+
+INSERT INTO `glav1_quicklinks` (`quicklink_aid`, `quicklink_is_active`, `quicklink_name`, `quicklink_link`, `quicklink_is_social`, `quicklink_social_media`, `quicklink_order`, `quicklink_created`, `quicklink_datetime`) VALUES
+(1, 1, 'Facebook', 'https://www.facebook.com/Goldenluxuryauto/', 1, 'facebook', 0, '2024-04-11 20:17:35', '2024-04-11 20:42:00'),
+(2, 1, 'Instagram', 'https://www.instagram.com/goldenluxuryauto/?hl=en', 1, 'instagram', 0, '2024-04-11 20:19:24', '2024-04-11 20:42:10'),
+(3, 1, 'LinkedIn', 'https://www.linkedin.com/company/gla-rentals/', 1, 'linkedin', 0, '2024-04-11 20:20:13', '2024-04-11 20:43:32'),
+(4, 1, 'My Profile', 'http://localhost:5173/developer/account', 0, 'other', 0, '2024-04-11 20:22:01', '2024-04-11 20:23:04'),
+(5, 1, 'Schedule a Zoom Call', 'https://rent.goldenluxuryauto.com/lyc-client-check-in', 0, 'other', 0, '2024-04-11 20:23:31', '2024-04-11 20:23:31'),
+(6, 1, 'List Another Car', 'https://docs.google.com/forms/d/e/1FAIpQLSdJKQCpQEDbhawpyRwZq4ZWCuJXAwJ8Eine5FebIsGeENc6Mg/viewform', 0, 'other', 0, '2024-04-11 20:23:47', '2024-04-11 20:24:01'),
+(7, 1, 'Book Your Car', 'https://rent.goldenluxuryauto.com/start-block', 0, 'other', 0, '2024-04-11 20:25:00', '2024-04-11 20:25:00'),
+(8, 1, 'Parking & Toll Tickets', 'https://forms.gle/X8RCN18vbqRycoUq5', 0, 'other', 0, '2024-04-11 20:25:20', '2024-04-11 20:25:20'),
+(9, 1, 'License & Registration or Insurance Updates', 'https://forms.gle/SPci4zhUX7BMgyfu9', 0, 'other', 0, '2024-04-11 20:25:55', '2024-04-11 20:25:55'),
+(10, 1, 'Refer Somebody', 'https://forms.gle/dku7b49PiKe2tvw16', 0, 'other', 0, '2024-04-11 20:26:14', '2024-04-11 20:26:14'),
+(11, 1, 'Client Experience', 'https://www.goldenluxuryauto.com/my-account/car-details/#', 0, 'other', 0, '2024-04-11 20:27:32', '2024-04-11 20:27:32'),
+(12, 1, 'Turo Apps Tips Video ', 'https://www.goldenluxuryauto.com/my-account/car-details/#', 0, 'other', 0, '2024-04-11 20:28:51', '2024-04-11 20:28:51'),
+(13, 1, 'Schedule a Car Detailing', 'https://www.goldenluxuryauto.com/detail-shop', 0, 'other', 0, '2024-04-11 20:29:11', '2024-04-11 20:29:11'),
+(14, 1, 'View my Car', 'https://turo.com/us/en/suv-rental/united-states/salt-lake-city-ut/acura/mdx/1268206', 0, 'other', 0, '2024-04-11 20:30:09', '2024-04-11 20:30:09'),
+(15, 1, 'Pinterest', 'https://www.pinterest.com/goldenluxuryauto/', 1, 'pinterest', 0, '2024-04-11 20:42:35', '2024-04-11 20:42:35'),
+(16, 1, 'Yelp', 'https://www.yelp.com/biz/golden-luxury-auto-salt-lake-city', 1, 'yelp', 0, '2024-04-11 20:42:50', '2024-04-11 20:43:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `glav1_record_files`
+--
+
+CREATE TABLE `glav1_record_files` (
+  `record_files_aid` int(11) NOT NULL,
+  `record_files_is_active` tinyint(1) NOT NULL,
+  `record_files_doc_name` varchar(50) NOT NULL,
+  `record_files_date` varchar(20) NOT NULL,
+  `record_files_remarks` text NOT NULL,
+  `record_files_gdrive` text NOT NULL,
+  `record_files_client_id` int(11) NOT NULL,
+  `record_files_datetime` varchar(20) NOT NULL,
+  `record_files_created` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `glav1_record_files`
+--
+
+INSERT INTO `glav1_record_files` (`record_files_aid`, `record_files_is_active`, `record_files_doc_name`, `record_files_date`, `record_files_remarks`, `record_files_gdrive`, `record_files_client_id`, `record_files_datetime`, `record_files_created`) VALUES
+(2, 1, '123ertertert', '2024-04-21', 'zxczxczxczx', '', 2, '2024-04-05 23:53:09', '2024-04-05 23:31:17'),
+(3, 1, 'bbbtyutyut', '2024-04-02', 'bbb', '', 2, '2024-04-06 00:04:31', '2024-04-05 23:32:09'),
+(4, 1, 'bbbx', '2024-04-10', 'asdasd', '', 2, '', '2024-04-05 23:50:02'),
+(5, 1, 'test', '2024-04-11', 'testset', 'https://drive.google.com/file/d/1apmhx10kw52ePQNwISkFwNk_ww-zh-4E/view?usp=sharingxxx', 2, '', '2024-04-09 11:00:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `glav1_representatives`
 --
 
@@ -239,16 +313,18 @@ CREATE TABLE `glav1_roles` (
   `role_created` datetime NOT NULL,
   `role_datetime` datetime NOT NULL,
   `role_is_developer` tinyint(1) NOT NULL,
-  `role_is_admin` tinyint(1) NOT NULL
+  `role_is_admin` tinyint(1) NOT NULL,
+  `role_is_client` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `glav1_roles`
 --
 
-INSERT INTO `glav1_roles` (`role_aid`, `role_is_active`, `role_name`, `role_description`, `role_created`, `role_datetime`, `role_is_developer`, `role_is_admin`) VALUES
-(1, 1, 'Developer', 'Developer', '2024-03-26 00:19:39', '0000-00-00 00:00:00', 1, 0),
-(2, 1, 'Admin', 'Admin', '2024-03-26 00:22:11', '2024-03-26 00:22:11', 0, 1);
+INSERT INTO `glav1_roles` (`role_aid`, `role_is_active`, `role_name`, `role_description`, `role_created`, `role_datetime`, `role_is_developer`, `role_is_admin`, `role_is_client`) VALUES
+(1, 1, 'Developer', 'Developer', '2024-03-26 00:19:39', '0000-00-00 00:00:00', 1, 0, 0),
+(2, 1, 'Admin', 'Admin', '2024-03-26 00:22:11', '2024-03-26 00:22:11', 0, 1, 0),
+(4, 1, 'Client', 'Client', '2024-04-06 21:37:05', '2024-04-06 21:37:05', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -276,7 +352,8 @@ CREATE TABLE `glav1_user_other` (
 
 INSERT INTO `glav1_user_other` (`user_other_aid`, `user_other_is_active`, `user_other_fname`, `user_other_lname`, `user_other_email`, `user_other_new_email`, `user_other_role_id`, `user_other_key`, `user_other_password`, `user_other_created`, `user_other_datetime`) VALUES
 (2, 1, 'Mac', 'Merin', 'macmerin24@gmail.com', '', '2', '', '$2y$10$rafVF0tPZV71HhGPNc.oguaEKDE8Ech/mZ5GYVjPEvH.eIrOpOLxa', '2024-04-05 19:59:14', '2024-04-05 20:01:02'),
-(3, 1, 'Mac', 'Mac', 'merin.ryanmark@gmail.com', '', '2', '', '$2y$10$v9bLuieYO.QXvHzKCX9Ms.g70KwTNXAfeW0eHaQuxxr1CUxZzaT1W', '2024-04-05 21:03:14', '2024-04-05 21:04:15');
+(3, 1, 'Mac', 'Mac', 'merin.ryanmark@gmail.com', '', '2', '', '$2y$10$v9bLuieYO.QXvHzKCX9Ms.g70KwTNXAfeW0eHaQuxxr1CUxZzaT1W', '2024-04-05 21:03:14', '2024-04-05 21:04:15'),
+(5, 1, 'Ivan', 'Adao', 'macdet21@gmail.com', '', '4', '', '$2y$10$R1TsLnOpsITwEBe0ZoC2tOjv24XXLt7dxqfB.dQW6g5kKVJxLcdT6', '2024-04-06 23:11:27', '2024-04-07 11:13:22');
 
 -- --------------------------------------------------------
 
@@ -353,6 +430,18 @@ ALTER TABLE `glav1_maintenance`
   ADD PRIMARY KEY (`maintenance_aid`);
 
 --
+-- Indexes for table `glav1_quicklinks`
+--
+ALTER TABLE `glav1_quicklinks`
+  ADD PRIMARY KEY (`quicklink_aid`);
+
+--
+-- Indexes for table `glav1_record_files`
+--
+ALTER TABLE `glav1_record_files`
+  ADD PRIMARY KEY (`record_files_aid`);
+
+--
 -- Indexes for table `glav1_representatives`
 --
 ALTER TABLE `glav1_representatives`
@@ -384,7 +473,7 @@ ALTER TABLE `glav1_user_system`
 -- AUTO_INCREMENT for table `glav1_car`
 --
 ALTER TABLE `glav1_car`
-  MODIFY `car_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `car_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `glav1_car_make`
@@ -423,6 +512,18 @@ ALTER TABLE `glav1_maintenance`
   MODIFY `maintenance_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `glav1_quicklinks`
+--
+ALTER TABLE `glav1_quicklinks`
+  MODIFY `quicklink_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `glav1_record_files`
+--
+ALTER TABLE `glav1_record_files`
+  MODIFY `record_files_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `glav1_representatives`
 --
 ALTER TABLE `glav1_representatives`
@@ -432,13 +533,13 @@ ALTER TABLE `glav1_representatives`
 -- AUTO_INCREMENT for table `glav1_roles`
 --
 ALTER TABLE `glav1_roles`
-  MODIFY `role_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `role_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `glav1_user_other`
 --
 ALTER TABLE `glav1_user_other`
-  MODIFY `user_other_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_other_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `glav1_user_system`
