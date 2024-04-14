@@ -119,7 +119,7 @@ class Car
                 "car_turo_link" => $this->car_turo_link,
                 "car_admin_turo_link" => $this->car_admin_turo_link,
                 "car_remarks" => $this->car_remarks,
-                "car_management" => $this->car_remarks,
+                "car_management" => $this->car_management,
                 "car_created" => $this->car_created,
                 "car_datetime" => $this->car_datetime,
             ]);
