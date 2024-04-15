@@ -5,12 +5,15 @@ import {
   handleEscape,
   numberWithCommas,
 } from "@/component/helpers/functions-general";
+import { StoreContext } from "@/store/StoreContext";
 import React from "react";
 import { FaCarSide, FaPhotoVideo, FaTimes } from "react-icons/fa";
 import { MdOutlineImageNotSupported } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
 const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
+  const { store } = React.useContext(StoreContext);
   const [show, setShow] = React.useState("show");
 
   const handleClose = () => {
@@ -22,7 +25,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
 
   handleEscape(() => handleClose());
 
-  console.log(devBaseImgUrl + "/" + itemEdit.car_photo);
+  console.log(itemEdit);
 
   return (
     <>
@@ -121,6 +124,115 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                 <div className="w-full ">
                   <div className="flex items-center justify-between py-2 mb-3">
                     <h4 className="text-sm border-accent text-accent">
+                      Car Details
+                    </h4>
+                  </div>
+
+                  <div className="md:flex">
+                    <div>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Make:</span>
+                        <span className="w-fit">{itemEdit.car_make}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Year:</span>
+                        <span className="w-fit">{itemEdit.car_year}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">
+                          Model / Specs:
+                        </span>
+                        <span className="w-fit">{itemEdit.car_specs}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">VIN #:</span>
+                        <span className="w-fit">{itemEdit.car_vin_number}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Plate #:</span>
+                        <span className="w-fit">
+                          {itemEdit.car_plate_number}
+                        </span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">
+                          Lic./Reg. Date:
+                        </span>
+                        <span className="w-fit">
+                          {itemEdit.car_registration_date === ""
+                            ? "Unspecified"
+                            : formatDate(itemEdit.car_registration_date)}
+                        </span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Gas:</span>
+                        <span className="w-fit">{itemEdit.car_gas}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Tire Size:</span>
+                        <span className="w-fit">{itemEdit.car_tire_size}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Oil Type:</span>
+                        <span className="w-fit">{itemEdit.car_oil_type}</span>
+                      </p>
+                      <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">
+                          Last Oil Change:
+                        </span>
+                        <span className="w-fit">
+                          {itemEdit.car_last_oil_change === ""
+                            ? "Unspecified"
+                            : formatDate(itemEdit.car_last_oil_change)}
+                        </span>
+                      </p>
+                      {/* <p className="flex mb-1">
+                        <span className="w-[10rem] font-bold">Turo Link:</span>
+                        <span className="w-fit">
+                          {itemEdit.car_turo_link === "" ? (
+                            <span className="text-[#e41e3f] whitespace-nowrap">
+                              No Turo Link
+                            </span>
+                          ) : (
+                            <Link
+                              to={itemEdit.car_turo_link}
+                              target="_blank"
+                              className="whitespace-nowrap  hover:text-accent hover:underline"
+                            >
+                              View Car
+                            </Link>
+                          )}
+                        </span>
+                      </p>
+                      {store.credentials.data.role_is_client !== 1 && (
+                        <p className="flex mb-1">
+                          <span className="w-[10rem] font-bold">
+                            Admin Turo Link:
+                          </span>
+                          <span className="w-fit">
+                            {itemEdit.car_admin_turo_link === "" ? (
+                              <span className="text-[#e41e3f] whitespace-nowrap">
+                                No Admin Turo Link
+                              </span>
+                            ) : (
+                              <Link
+                                to={itemEdit.car_admin_turo_link}
+                                target="_blank"
+                                className="whitespace-nowrap  hover:text-accent hover:underline"
+                              >
+                                View Car
+                              </Link>
+                            )}
+                          </span>
+                        </p>
+                      )} */}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full ">
+                  <div className="flex items-center justify-between py-2 mb-3">
+                    <h4 className="text-sm border-accent text-accent">
                       Current NADA
                     </h4>
                   </div>
@@ -174,26 +286,6 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                       <p className="flex mb-1">
                         <span className="w-[10rem] font-bold">MILES:</span>
                         <span className="w-fit">{itemEdit.car_miles}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full ">
-                  <div className="flex items-center justify-between py-2 mb-3">
-                    <h4 className="text-sm border-accent text-accent">
-                      Last Oil Change
-                    </h4>
-                  </div>
-
-                  <div className="md:flex">
-                    <div>
-                      <p className="flex mb-1">
-                        <span className="w-[10rem] font-bold">Date:</span>
-                        <span className="w-fit">
-                          {itemEdit.car_last_oil_change === ""
-                            ? "Unspecified"
-                            : formatDate(itemEdit.car_last_oil_change)}
-                        </span>
                       </p>
                     </div>
                   </div>

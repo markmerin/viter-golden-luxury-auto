@@ -216,23 +216,41 @@ const CarList = () => {
         >
           <table className="overflow-auto">
             <thead className={`${isTableScroll && "relative "} z-50 `}>
-              <tr className="sticky top-0 !border-0">
-                <th className="w-[2rem] text-center">#</th>
-                {/* <th className="w-[4.5rem] md:w-[6rem]">Status</th> */}
-                <th>Status</th>
-                <th>Management</th>
-                <th>Owner</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>Make</th>
-                <th>Year</th>
-                <th>Model / Specs</th>
-                <th>VIN #</th>
+              <tr className=" top-0 !border-0">
+                <th className="text-center sticky left-0 min-w-[2rem] w-full">
+                  #
+                </th>
+                <th className="sticky left-[2rem] min-w-[11rem] w-full">
+                  Status
+                </th>
+                <th className="sticky left-[13rem] min-w-[8rem] w-full">
+                  Management
+                </th>
+                <th className="sticky left-[21rem] min-w-[8rem] w-full">
+                  Owner
+                </th>
+                <th className="sticky left-[29rem] min-w-[12rem] w-full">
+                  Email
+                </th>
+                <th className="sticky left-[41rem] min-w-[7rem] w-full">
+                  Contact
+                </th>
+                <th className="sticky left-[48rem] min-w-[4rem] w-full">
+                  Make
+                </th>
+                <th className="sticky left-[52rem] min-w-[4rem] w-full">
+                  Year
+                </th>
+                <th className="sticky left-[56rem] min-w-[7rem] w-full">
+                  Model / Specs
+                </th>
+                <th className="">VIN #</th>
                 <th>Plate #</th>
                 <th>Lic./Reg. Date</th>
                 <th>Gas</th>
                 <th>Tire Size</th>
                 <th>Oil Type</th>
+                <th>Last Oil Change</th>
                 <th>Turo Link</th>
                 <th>Admin Turo Link</th>
                 <th colSpan={"100%"}></th>
@@ -263,19 +281,14 @@ const CarList = () => {
                   {page.data.map((item, key) => {
                     return (
                       <tr key={key} className="relative group">
-                        <td className="text-center">{counter++}.</td>
+                        <td className="text-center sticky left-0">
+                          {counter++}.
+                        </td>
 
-                        {/* <td className="hidden sm:table-cell">
-                          {item.car_is_active === 1 ? (
-                            <Status text="Active" />
-                          ) : (
-                            <Status text="Inactive" />
-                          )}
-                        </td> */}
-                        <td className="capitalize whitespace-nowrap">
+                        <td className="capitalize whitespace-nowrap sticky left-[2rem]">
                           {item.car_remarks.replaceAll("-", " ")}
                         </td>
-                        <td className="capitalize whitespace-nowrap">
+                        <td className="capitalize whitespace-nowrap sticky left-[13rem]">
                           {item.car_management.replaceAll("-", " ")}
                         </td>
                         <td
@@ -284,27 +297,31 @@ const CarList = () => {
                               `${devNavUrl}/${link}/client/view-info/car?clientId=${item.client_aid}`
                             )
                           }
-                          className="relative overflow-visible underline cursor-pointer tooltip-action-table text-accent"
+                          className="!sticky left-[21rem] !bg-white w-full overflow-visible underline cursor-pointer tooltip-action-table text-accent"
                           data-tooltip={`View ${item.client_fname} ${item.client_lname} Cars`}
                         >
-                          <span className="whitespace-nowrap">
+                          <span className="whitespace-nowrap ">
                             {item.client_fname} {item.client_lname}
                           </span>
                         </td>
-                        <td>{item.client_email}</td>
-                        <td>
+                        <td className="sticky left-[29rem]">
+                          {item.client_email}
+                        </td>
+                        <td className="sticky left-[41rem]">
                           <span className="whitespace-nowrap">
                             {item.client_contact}
                           </span>
                         </td>
-                        <td>{item.car_make_name}</td>
-                        <td>{item.car_year}</td>
-                        <td>
+                        <td className="sticky left-[48rem]">
+                          {item.car_make_name}
+                        </td>
+                        <td className="sticky left-[52rem]">{item.car_year}</td>
+                        <td className="sticky left-[56rem]">
                           <span className="whitespace-nowrap">
                             {item.car_specs}
                           </span>
                         </td>
-                        <td>
+                        <td className="">
                           <span className="whitespace-nowrap">
                             {item.car_vin_number}
                           </span>
@@ -312,12 +329,17 @@ const CarList = () => {
                         <td>{item.car_plate_number}</td>
                         <td>
                           {item.car_registration_date === ""
-                            ? "Unspecified"
+                            ? ""
                             : formatDate(item.car_registration_date)}
                         </td>
                         <td>{item.car_gas}</td>
                         <td>{item.car_tire_size}</td>
                         <td>{item.car_oil_type}</td>
+                        <td>
+                          {item.car_last_oil_change === ""
+                            ? ""
+                            : formatDate(item.car_last_oil_change)}
+                        </td>
                         <td>
                           {item.car_turo_link === "" ? (
                             <span className="text-[#e41e3f] whitespace-nowrap">
@@ -421,6 +443,7 @@ const CarList = () => {
               ))}
             </tbody>
           </table>
+
           <div className="flex flex-col items-center justify-center pb-10 loadmore">
             <Loadmore
               fetchNextPage={fetchNextPage}
