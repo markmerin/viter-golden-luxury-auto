@@ -1,0 +1,5 @@
+models
+1. rest/v1/models/developer/client/Client.php 
+
+controllers
+1. rest/v1/controllers/developer/client/delete.php

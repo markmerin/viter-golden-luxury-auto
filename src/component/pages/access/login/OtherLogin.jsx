@@ -91,7 +91,9 @@ const OtherLogin = () => {
                 <LogoForAccess />
               </div>
 
-              <p className="mt-8 mb-5 text-lg font-bold text-white">LOGIN</p>
+              <p className="mt-8 mb-5 text-lg font-bold text-white text-center">
+                LOGIN
+              </p>
               <Formik
                 initialValues={initVal}
                 validationSchema={yupSchema}

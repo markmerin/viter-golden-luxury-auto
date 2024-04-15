@@ -82,7 +82,7 @@ const ForgotPasswordSystem = () => {
               </>
             ) : (
               <>
-                <p className="mt-8 mb-5 text-lg font-bold text-white">
+                <p className="mt-8 mb-5 text-lg font-bold text-white text-center">
                   FORGOT PASSWORD
                 </p>
                 <Formik

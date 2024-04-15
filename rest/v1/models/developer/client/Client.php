@@ -20,6 +20,8 @@ class Client
     public $client_search;
 
     public $tblClient;
+    public $tblCar;
+    public $tblRecordAndFiles;
     public $tblUserOther;
 
 
@@ -27,6 +29,8 @@ class Client
     {
         $this->connection = $db;
         $this->tblClient = "glav1_client";
+        $this->tblCar = "glav1_car";
+        $this->tblRecordAndFiles = "glav1_record_files";
         $this->tblUserOther = "glav1_user_other";
     }
 
@@ -363,6 +367,38 @@ class Client
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "client_email" => "{$this->client_email}",
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    // association
+    public function checkCarAssociation()
+    {
+        try {
+            $sql = "select car_client_id from {$this->tblCar} ";
+            $sql .= "where car_client_id = :car_client_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "car_client_id" => $this->client_aid,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    // association
+    public function checkRecordAndFileAssociation()
+    {
+        try {
+            $sql = "select record_files_client_id from {$this->tblRecordAndFiles} ";
+            $sql .= "where record_files_client_id = :record_files_client_id ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "record_files_client_id" => $this->client_aid,
             ]);
         } catch (PDOException $ex) {
             $query = false;
