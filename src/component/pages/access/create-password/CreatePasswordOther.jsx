@@ -171,7 +171,7 @@ const CreatePasswordOther = () => {
               <div className="flex flex-col items-center justify-center ">
                 <LogoForAccess />
               </div>
-              <p className="mt-8 mb-5 text-lg font-bold text-white">
+              <p className="mt-8 mb-5 text-lg font-bold text-white text-center">
                 CREATE PASSWORD
               </p>
               <Formik

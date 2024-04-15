@@ -91,7 +91,7 @@ const SystemLogin = () => {
                 <LogoForAccess />
               </div>
 
-              <p className="mt-8 mb-5 text-lg font-bold text-white">
+              <p className="mt-8 mb-5 text-lg font-bold text-white text-center">
                 DEVELOPER LOGIN
               </p>
               <Formik
