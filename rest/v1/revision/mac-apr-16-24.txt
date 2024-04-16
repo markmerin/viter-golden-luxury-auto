@@ -12,3 +12,5 @@ db-backup
         `car_last_nada_clean` int(11) NOT NULL,
         `car_last_nada_average` int(11) NOT NULL,
         `car_last_nada_rough` int(11) NOT NULL,
+
+Uploaded 10am
