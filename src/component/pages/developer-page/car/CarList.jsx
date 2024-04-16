@@ -216,7 +216,7 @@ const CarList = () => {
         >
           <table className="overflow-auto">
             <thead className={`${isTableScroll && "relative "} z-50 `}>
-              <tr className=" top-0 !border-0">
+              <tr className="sticky top-0 !border-0">
                 <th className="text-center sticky left-0 min-w-[2rem] w-full">
                   #
                 </th>

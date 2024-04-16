@@ -52,8 +52,6 @@ const ClientProfileList = ({ client }) => {
     "client/car/read" // key
   );
 
-  console.log(car);
-
   const handleEdit = (item) => {
     setUpdateProfile(true);
     setItemEdit(item);
