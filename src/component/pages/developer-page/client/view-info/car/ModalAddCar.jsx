@@ -98,6 +98,10 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     car_nada_clean: itemEdit ? itemEdit.car_nada_clean : "",
     car_nada_average: itemEdit ? itemEdit.car_nada_average : "",
     car_nada_rough: itemEdit ? itemEdit.car_nada_rough : "",
+    car_last_nada_retail: itemEdit ? itemEdit.car_last_nada_retail : "",
+    car_last_nada_clean: itemEdit ? itemEdit.car_last_nada_clean : "",
+    car_last_nada_average: itemEdit ? itemEdit.car_last_nada_average : "",
+    car_last_nada_rough: itemEdit ? itemEdit.car_last_nada_rough : "",
     car_miles: itemEdit ? itemEdit.car_miles : "",
     car_last_oil_change: itemEdit ? itemEdit.car_last_oil_change : "",
     car_turo_link: itemEdit ? itemEdit.car_turo_link : "",
@@ -110,6 +114,8 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
     car_vehicle_make_id: Yup.string().required("Required"),
     car_year: Yup.string().required("Required"),
     car_specs: Yup.string().required("Required"),
+    car_remarks: Yup.string().required("Required"),
+    car_management: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -368,7 +374,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputText
-                        label="NADA - Retail"
+                        label="Current NADA - Retail"
                         type="number"
                         name="car_nada_retail"
                         disabled={mutation.isPending}
@@ -377,7 +383,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputText
-                        label="NADA - Clean"
+                        label="Current NADA - Clean"
                         type="number"
                         name="car_nada_clean"
                         disabled={mutation.isPending}
@@ -386,7 +392,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputText
-                        label="NADA - Average"
+                        label="Current NADA - Average"
                         type="number"
                         name="car_nada_average"
                         disabled={mutation.isPending}
@@ -395,9 +401,45 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
 
                     <div className="relative mb-6">
                       <InputText
-                        label="NADA - Rough"
+                        label="Current NADA - Rough"
                         type="number"
                         name="car_nada_rough"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="Last Year's NADA - Retail"
+                        type="number"
+                        name="car_last_nada_retail"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="Last Year's NADA - Clean"
+                        type="number"
+                        name="car_last_nada_clean"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="Last Year's NADA - Average"
+                        type="number"
+                        name="car_last_nada_average"
+                        disabled={mutation.isPending}
+                      />
+                    </div>
+
+                    <div className="relative mb-6">
+                      <InputText
+                        label="Last Year's NADA - Rough"
+                        type="number"
+                        name="car_last_nada_rough"
                         disabled={mutation.isPending}
                       />
                     </div>
