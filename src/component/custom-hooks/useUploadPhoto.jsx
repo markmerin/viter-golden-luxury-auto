@@ -4,11 +4,11 @@ import { devApiUrl, fetchFormData } from "../helpers/functions-general";
 
 const useUploadPhoto = (url, dispatch) => {
   const [photo, setPhoto] = React.useState(null);
-  const uploadPhoto = async () => {
+  const uploadPhoto = async (clientId) => {
     if (photo) {
       const fd = new FormData();
 
-      fd.append("photo", photo, photo.name.toLowerCase());
+      fd.append("photo", photo, clientId + photo.name.toLowerCase());
 
       const data = await fetchFormData(devApiUrl + url, fd, dispatch);
 

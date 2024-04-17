@@ -31,7 +31,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
         className={`modal fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center bg-dark z-50 animate-fadeIn ${show}`}
       >
         <div className="m-5 absolute w-fit h-fit top-1/2 -translate-y-1/2 rounded-md">
-          <div className="max-w-[750px] max-h-[80vh] overflow-y-auto rounded-md">
+          <div className="w-[750px] max-h-[80vh] overflow-y-auto rounded-md">
             {/* {itemEdit.car_photo !== "" ? ( */}
             <>
               {itemEdit.car_photo !== "" ? (
@@ -195,7 +195,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                   <div className="md:flex">
                     <div>
                       <p className="flex mb-1">
-                        <span className="w-[10rem] font-bold">
+                        <span className="w-[10rem] mr-5 font-bold">
                           Last Year's NADA - Retail:
                         </span>
                         <span className="w-fit break-all">
@@ -206,7 +206,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                         </span>
                       </p>
                       <p className="flex mb-1">
-                        <span className="w-[10rem] font-bold">
+                        <span className="w-[10rem] mr-5 font-bold">
                           Last Year's NADA - Clean:
                         </span>
                         <span className="w-fit break-all">
@@ -216,8 +216,8 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                           )}
                         </span>
                       </p>
-                      <p className="flex mb-1">
-                        <span className="w-[10rem] font-bold">
+                      <p className="flex mb-1 whitespace-nowrap">
+                        <span className="w-[10rem] mr-5 font-bold">
                           Last Year's NADA - Average:
                         </span>
                         <span className="w-fit break-all">
@@ -228,7 +228,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                         </span>
                       </p>
                       <p className="flex mb-1">
-                        <span className="w-[10rem] font-bold">
+                        <span className="w-[10rem] mr-5 font-bold">
                           Last Year's NADA - Rough:
                         </span>
                         <span className="w-fit break-all">
@@ -371,15 +371,37 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                     </div>
                   </div>
                 </div>
+
+                <div className="w-full ">
+                  <div className="flex items-center justify-between py-2">
+                    <h4 className="text-xs border-accent text-accent">
+                      View My Car
+                    </h4>
+                  </div>
+
+                  <div className="md:flex">
+                    <div>
+                      <p className="flex mb-1">
+                        <span className="w-[5rem] font-bold">Turo Link:</span>
+                        <span className="w-fit">
+                          {itemEdit.car_turo_link === "" ? (
+                            <span className="text-[#e41e3f]">No Turo Link</span>
+                          ) : (
+                            <Link
+                              to={itemEdit.car_turo_link}
+                              target="_blank"
+                              className="hover:text-accent hover:underline"
+                            >
+                              {itemEdit.car_turo_link}
+                            </Link>
+                          )}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </>
-            {/* // ) : (
-            //   <div className="p-10 text-center bg-white rounded-lg">
-            //     <span className="flex items-center justify-center">
-            //       No photo yet
-            //     </span>
-            //   </div>
-            // )} */}
           </div>
           <button
             type="button"

@@ -158,7 +158,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               // mutate data
-              uploadPhoto();
+              uploadPhoto(clientId);
               mutation.mutate({
                 ...values,
                 car_photo:

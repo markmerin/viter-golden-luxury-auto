@@ -13,7 +13,8 @@ if (array_key_exists("carid", $_GET)) {
     checkId($car->car_aid);
 
     // get data
-    $car->car_photo = strtolower($data["car_photo"]);
+    $car->car_client_id = $data["car_client_id"];
+    $car->car_photo = $car->car_client_id . strtolower($data["car_photo"]);
     $car->car_vehicle_make_id = $data["car_vehicle_make_id"];
     $car->car_year = $data["car_year"];
     $car->car_specs = $data["car_specs"];
