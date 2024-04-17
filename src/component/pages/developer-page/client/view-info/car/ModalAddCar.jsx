@@ -243,7 +243,7 @@ const ModalAddCar = ({ clientId, itemEdit }) => {
                         <option value="new">New</option>
                         <option value="recall">Recall</option>
                         <option value="returned">Returned</option>
-                        <option value="savage-title">Savage Title</option>
+                        <option value="savage-title">Salvage Title</option>
                         <option value="turo-unlisted">Turo Unlisted</option>
                       </InputSelect>
                     </div>

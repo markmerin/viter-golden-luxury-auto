@@ -172,7 +172,7 @@ const CarList = () => {
                 <option value="new">New</option>
                 <option value="recall">Recall</option>
                 <option value="returned">Returned</option>
-                <option value="savage-title">Savage Title</option>
+                <option value="savage-title">Salvage Title</option>
                 <option value="turo-unlisted">Turo Unlisted</option>
               </select>
             </div>
@@ -226,24 +226,21 @@ const CarList = () => {
                 <th className="sticky left-[13rem] min-w-[8rem] w-full">
                   Management
                 </th>
-                <th className="sticky left-[21rem] min-w-[8rem] w-full">
+                <th className="sticky left-[21rem] min-w-[10rem] w-full">
                   Owner
                 </th>
-                <th className="sticky left-[29rem] min-w-[12rem] w-full">
-                  Email
-                </th>
-                <th className="sticky left-[41rem] min-w-[7rem] w-full">
-                  Contact
-                </th>
-                <th className="sticky left-[48rem] min-w-[4rem] w-full">
+
+                <th className="sticky left-[31rem] min-w-[4rem] w-full">
                   Make
                 </th>
-                <th className="sticky left-[52rem] min-w-[4rem] w-full">
+                <th className="sticky left-[35rem] min-w-[4rem] w-full">
                   Year
                 </th>
-                <th className="sticky left-[56rem] min-w-[7rem] w-full">
+                <th className="sticky left-[39rem] min-w-[7rem] w-full">
                   Model / Specs
                 </th>
+                <th className=" min-w-[12rem] w-full">Email</th>
+                <th className="  min-w-[7rem] w-full">Contact</th>
                 <th className="">VIN #</th>
                 <th>Plate #</th>
                 <th>Lic./Reg. Date</th>
@@ -304,21 +301,20 @@ const CarList = () => {
                             {item.client_fname} {item.client_lname}
                           </span>
                         </td>
-                        <td className="sticky left-[29rem]">
-                          {item.client_email}
-                        </td>
-                        <td className="sticky left-[41rem]">
-                          <span className="whitespace-nowrap">
-                            {item.client_contact}
-                          </span>
-                        </td>
-                        <td className="sticky left-[48rem]">
+
+                        <td className="sticky left-[31rem]">
                           {item.car_make_name}
                         </td>
-                        <td className="sticky left-[52rem]">{item.car_year}</td>
-                        <td className="sticky left-[56rem]">
+                        <td className="sticky left-[35rem]">{item.car_year}</td>
+                        <td className="sticky left-[39rem]">
                           <span className="whitespace-nowrap">
                             {item.car_specs}
+                          </span>
+                        </td>
+                        <td className="">{item.client_email}</td>
+                        <td className="">
+                          <span className="whitespace-nowrap">
+                            {item.client_contact}
                           </span>
                         </td>
                         <td className="">
@@ -332,7 +328,7 @@ const CarList = () => {
                             ? ""
                             : formatDate(item.car_registration_date)}
                         </td>
-                        <td>{item.car_gas}</td>
+                        <td className=" min-w-[8rem] w-full">{item.car_gas}</td>
                         <td>{item.car_tire_size}</td>
                         <td>{item.car_oil_type}</td>
                         <td>
