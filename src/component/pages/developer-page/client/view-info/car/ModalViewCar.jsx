@@ -382,7 +382,7 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                   <div className="md:flex">
                     <div>
                       <p className="flex mb-1">
-                        <span className="w-[5rem] font-bold">Turo Link:</span>
+                        {/* <span className="w-[5rem] font-bold">Turo Link:</span> */}
                         <span className="w-fit">
                           {itemEdit.car_turo_link === "" ? (
                             <span className="text-[#e41e3f]">No Turo Link</span>
@@ -390,9 +390,11 @@ const ModalViewCar = ({ itemEdit, setIsViewImage }) => {
                             <Link
                               to={itemEdit.car_turo_link}
                               target="_blank"
-                              className="hover:text-accent hover:underline"
+                              className="hover:text-accent hover:underline tooltip-action-table !p-0"
+                              data-tooltip="View Link"
                             >
-                              {itemEdit.car_turo_link}
+                              {itemEdit.car_make_name} {itemEdit.car_specs}{" "}
+                              {itemEdit.car_year}
                             </Link>
                           )}
                         </span>
