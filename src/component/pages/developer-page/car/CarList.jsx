@@ -135,6 +135,10 @@ const CarList = () => {
     setPage(1);
   };
 
+  const handleNavigateViewCar = (item) => {
+    navigate(`${devNavUrl}/${link}/car/view-car?carId=${item.car_aid}`);
+  };
+
   const handleScroll = (e) => {
     if (e.target.scrollTop === 0) {
       setIsTableScroll(false);
@@ -277,15 +281,24 @@ const CarList = () => {
                 <React.Fragment key={key}>
                   {page.data.map((item, key) => {
                     return (
-                      <tr key={key} className="relative group">
-                        <td className="text-center sticky left-0">
+                      <tr key={key} className="relative group cursor-pointer">
+                        <td
+                          className="text-center sticky left-0"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           {counter++}.
                         </td>
 
-                        <td className="capitalize whitespace-nowrap sticky left-[2rem]">
+                        <td
+                          className="capitalize whitespace-nowrap sticky left-[2rem]"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           {item.car_remarks.replaceAll("-", " ")}
                         </td>
-                        <td className="capitalize whitespace-nowrap sticky left-[13rem]">
+                        <td
+                          className="capitalize whitespace-nowrap sticky left-[13rem]"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           {item.car_management.replaceAll("-", " ")}
                         </td>
                         <td
@@ -302,36 +315,69 @@ const CarList = () => {
                           </span>
                         </td>
 
-                        <td className="sticky left-[31rem]">
+                        <td
+                          className="sticky left-[31rem]"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           {item.car_make_name}
                         </td>
-                        <td className="sticky left-[35rem]">{item.car_year}</td>
-                        <td className="sticky left-[39rem]">
+                        <td
+                          className="sticky left-[35rem]"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
+                          {item.car_year}
+                        </td>
+                        <td
+                          className="sticky left-[39rem]"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           <span className="whitespace-nowrap">
                             {item.car_specs}
                           </span>
                         </td>
-                        <td className="">{item.client_email}</td>
-                        <td className="">
+                        <td
+                          className=""
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
+                          {item.client_email}
+                        </td>
+                        <td
+                          className=""
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           <span className="whitespace-nowrap">
                             {item.client_contact}
                           </span>
                         </td>
-                        <td className="">
+                        <td
+                          className=""
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
                           <span className="whitespace-nowrap">
                             {item.car_vin_number}
                           </span>
                         </td>
-                        <td>{item.car_plate_number}</td>
-                        <td>
+                        <td onClick={() => handleNavigateViewCar(item)}>
+                          {item.car_plate_number}
+                        </td>
+                        <td onClick={() => handleNavigateViewCar(item)}>
                           {item.car_registration_date === ""
                             ? ""
                             : formatDate(item.car_registration_date)}
                         </td>
-                        <td className=" min-w-[8rem] w-full">{item.car_gas}</td>
-                        <td>{item.car_tire_size}</td>
-                        <td>{item.car_oil_type}</td>
-                        <td>
+                        <td
+                          className=" min-w-[8rem] w-full"
+                          onClick={() => handleNavigateViewCar(item)}
+                        >
+                          {item.car_gas}
+                        </td>
+                        <td onClick={() => handleNavigateViewCar(item)}>
+                          {item.car_tire_size}
+                        </td>
+                        <td onClick={() => handleNavigateViewCar(item)}>
+                          {item.car_oil_type}
+                        </td>
+                        <td onClick={() => handleNavigateViewCar(item)}>
                           {item.car_last_oil_change === ""
                             ? ""
                             : formatDate(item.car_last_oil_change)}

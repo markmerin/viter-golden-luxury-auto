@@ -31,6 +31,11 @@ import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-
 import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
 import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
 import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
+import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
+import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
+import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
+import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
+import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
 
 export const routesDeveloper = [
   {
@@ -86,6 +91,14 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <UserClient />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/car-make`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarMake />
       </ProtectedRouteSystem>
     ),
   },
@@ -231,6 +244,46 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <Car />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car`,
+    element: (
+      <ProtectedRouteSystem>
+        <ViewCar />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/profit-and-loss`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarProfitAndLoss />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/direct-delivery`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarDirectDelivery />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/cogs`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarCogs />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/office-support`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarOfficeSupport />
       </ProtectedRouteSystem>
     ),
   },
