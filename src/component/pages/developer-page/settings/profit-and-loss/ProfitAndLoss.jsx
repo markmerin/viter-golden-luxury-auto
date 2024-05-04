@@ -7,7 +7,7 @@ import BreadCrumbs from "@/component/partials/BreadCrumbs";
 import Footer from "@/component/partials/Footer";
 import { setIsSettingsOpen } from "@/store/StoreAction";
 
-const SettingsIncome = () => {
+const ProfitAndLoss = () => {
   const { store, dispatch } = React.useContext(StoreContext);
 
   React.useEffect(() => {
@@ -17,7 +17,7 @@ const SettingsIncome = () => {
   return (
     <>
       <Header />
-      <Navigation menu="settings" submenu="income" />
+      <Navigation menu="settings" submenu="profit-and-loss" />
       <div
         className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
           isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
@@ -41,4 +41,4 @@ const SettingsIncome = () => {
   );
 };
 
-export default SettingsIncome;
+export default ProfitAndLoss;

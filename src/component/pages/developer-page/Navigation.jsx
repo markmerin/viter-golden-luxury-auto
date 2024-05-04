@@ -235,14 +235,14 @@ const Navigation = ({ menu, submenu = null }) => {
               <li>
                 <Link
                   onClick={() => handleLinkClick()}
-                  to={`${devNavUrl}/${link}/settings/income`}
+                  to={`${devNavUrl}/${link}/settings/profit-and-loss`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                    submenu === "income"
+                    submenu === "profit-and-loss"
                       ? "active__submenu"
                       : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                   }`}
                 >
-                  Income
+                  Profit and Loss
                 </Link>
               </li>
               <li>

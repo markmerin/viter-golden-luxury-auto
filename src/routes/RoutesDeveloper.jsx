@@ -27,7 +27,7 @@ import UserMain from "../component/pages/developer-page/settings/users/other/mai
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
 import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
-import SettingsIncome from "@/component/pages/developer-page/settings/income/SettingsIncome";
+import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
 
 export const routesDeveloper = [
   {
@@ -111,10 +111,10 @@ export const routesDeveloper = [
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/settings/income`,
+    path: `${devNavUrl}/${developerPath}/settings/profit-and-loss`,
     element: (
       <ProtectedRouteSystem>
-        <SettingsIncome />
+        <ProfitAndLoss />
       </ProtectedRouteSystem>
     ),
   },
