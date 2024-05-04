@@ -26,6 +26,8 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
+import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
+import SettingsIncome from "@/component/pages/developer-page/settings/income/SettingsIncome";
 
 export const routesDeveloper = [
   {
@@ -101,29 +103,45 @@ export const routesDeveloper = [
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/settings/expenses`,
+    path: `${devNavUrl}/${developerPath}/settings/expense`,
     element: (
       <ProtectedRouteSystem>
-        <Expenses />
+        <SettingsExpense />
       </ProtectedRouteSystem>
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/settings/income-category`,
+    path: `${devNavUrl}/${developerPath}/settings/income`,
     element: (
       <ProtectedRouteSystem>
-        <IncomeCategory />
+        <SettingsIncome />
       </ProtectedRouteSystem>
     ),
   },
-  {
-    path: `${devNavUrl}/${developerPath}/settings/income-item`,
-    element: (
-      <ProtectedRouteSystem>
-        <IncomeItem />
-      </ProtectedRouteSystem>
-    ),
-  },
+  // {
+  //   path: `${devNavUrl}/${developerPath}/settings/expenses`,
+  //   element: (
+  //     <ProtectedRouteSystem>
+  //       <Expenses />
+  //     </ProtectedRouteSystem>
+  //   ),
+  // },
+  // {
+  //   path: `${devNavUrl}/${developerPath}/settings/income-category`,
+  //   element: (
+  //     <ProtectedRouteSystem>
+  //       <IncomeCategory />
+  //     </ProtectedRouteSystem>
+  //   ),
+  // },
+  // {
+  //   path: `${devNavUrl}/${developerPath}/settings/income-item`,
+  //   element: (
+  //     <ProtectedRouteSystem>
+  //       <IncomeItem />
+  //     </ProtectedRouteSystem>
+  //   ),
+  // },
 
   {
     path: `${devNavUrl}/${developerPath}/settings/quick-link`,
