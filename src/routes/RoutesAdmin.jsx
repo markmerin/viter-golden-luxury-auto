@@ -22,6 +22,9 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
 import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
 
 export const routesAdmin = [
   {
@@ -149,6 +152,30 @@ export const routesAdmin = [
     element: (
       <ProtectedRouteOther>
         <SettingsExpense />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/settings/expense/direct-delivery`,
+    element: (
+      <ProtectedRouteOther>
+        <DirectDelivery />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/settings/expense/cogs`,
+    element: (
+      <ProtectedRouteOther>
+        <Cogs />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/settings/expense/office-support`,
+    element: (
+      <ProtectedRouteOther>
+        <OfficeSupport />
       </ProtectedRouteOther>
     ),
   },

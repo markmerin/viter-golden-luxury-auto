@@ -28,6 +28,9 @@ import Roles from "../component/pages/developer-page/settings/users/roles/Roles"
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
 import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
 import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
 
 export const routesDeveloper = [
   {
@@ -107,6 +110,30 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <SettingsExpense />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/expense/direct-delivery`,
+    element: (
+      <ProtectedRouteSystem>
+        <DirectDelivery />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/expense/cogs`,
+    element: (
+      <ProtectedRouteSystem>
+        <Cogs />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/expense/office-support`,
+    element: (
+      <ProtectedRouteSystem>
+        <OfficeSupport />
       </ProtectedRouteSystem>
     ),
   },

@@ -70,7 +70,7 @@ RewriteRule ^car-make/active/([0-9]+)$ controllers/developer/settings/car-make/a
 RewriteRule ^car-make/page/([0-9]+)$ controllers/developer/settings/car-make/page.php?start=$1 [L]
 RewriteRule ^car-make/search$ controllers/developer/settings/car-make/search.php [L]
 
-### EXPENSE ###
+### PROFIT AND LOSS ###
 RewriteRule ^profit-and-loss$ controllers/developer/settings/profit-and-loss/profit-and-loss.php [L]
 RewriteRule ^profit-and-loss/([0-9]+)$ controllers/developer/settings/profit-and-loss/profit-and-loss.php?profitid=$1 [L]
 RewriteRule ^profit-and-loss/active/([0-9]+)$ controllers/developer/settings/profit-and-loss/active.php?profitid=$1 [L]
