@@ -77,6 +77,27 @@ RewriteRule ^profit-and-loss/active/([0-9]+)$ controllers/developer/settings/pro
 RewriteRule ^profit-and-loss/page/([0-9]+)$ controllers/developer/settings/profit-and-loss/page.php?start=$1 [L]
 RewriteRule ^profit-and-loss/search$ controllers/developer/settings/profit-and-loss/search.php [L]
 
+### EXPENSE DIRECT DELIVERY ###
+RewriteRule ^direct-delivery$ controllers/developer/settings/expense/direct-delivery/direct-delivery.php [L]
+RewriteRule ^direct-delivery/([0-9]+)$ controllers/developer/settings/expense/direct-delivery/direct-delivery.php?directid=$1 [L]
+RewriteRule ^direct-delivery/active/([0-9]+)$ controllers/developer/settings/expense/direct-delivery/active.php?directid=$1 [L]
+RewriteRule ^direct-delivery/page/([0-9]+)$ controllers/developer/settings/expense/direct-delivery/page.php?start=$1 [L]
+RewriteRule ^direct-delivery/search$ controllers/developer/settings/expense/direct-delivery/search.php [L]
+
+### EXPENSE COGS ###
+RewriteRule ^cogs$ controllers/developer/settings/expense/cogs/cogs.php [L]
+RewriteRule ^cogs/([0-9]+)$ controllers/developer/settings/expense/cogs/cogs.php?cogsid=$1 [L]
+RewriteRule ^cogs/active/([0-9]+)$ controllers/developer/settings/expense/cogs/active.php?cogsid=$1 [L]
+RewriteRule ^cogs/page/([0-9]+)$ controllers/developer/settings/expense/cogs/page.php?start=$1 [L]
+RewriteRule ^cogs/search$ controllers/developer/settings/expense/cogs/search.php [L]
+
+### EXPENSE OFFICE SUPPORT ###
+RewriteRule ^office-support$ controllers/developer/settings/expense/office-support/office-support.php [L]
+RewriteRule ^office-support/([0-9]+)$ controllers/developer/settings/expense/office-support/office-support.php?officeid=$1 [L]
+RewriteRule ^office-support/active/([0-9]+)$ controllers/developer/settings/expense/office-support/active.php?officeid=$1 [L]
+RewriteRule ^office-support/page/([0-9]+)$ controllers/developer/settings/expense/office-support/page.php?start=$1 [L]
+RewriteRule ^office-support/search$ controllers/developer/settings/expense/office-support/search.php [L]
+
 ### EXPENSE ###
 RewriteRule ^expenses$ controllers/developer/settings/expenses/expenses.php [L]
 RewriteRule ^expenses/([0-9]+)$ controllers/developer/settings/expenses/expenses.php?expensesid=$1 [L]

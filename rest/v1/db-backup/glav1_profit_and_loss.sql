@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2024 at 03:24 PM
+-- Generation Time: May 04, 2024 at 05:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,7 +33,7 @@ CREATE TABLE `glav1_profit_and_loss` (
   `profit_and_loss_is_active` tinyint(1) NOT NULL,
   `profit_and_loss_created` datetime NOT NULL,
   `profit_and_loss_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `glav1_profit_and_loss`
@@ -46,7 +46,7 @@ INSERT INTO `glav1_profit_and_loss` (`profit_and_loss_aid`, `profit_and_loss_nam
 (4, 'Gas Prepaid Income', 1, '2024-05-04 21:21:33', '2024-05-04 21:21:33'),
 (5, 'Miles Income', 1, '2024-05-04 21:21:42', '2024-05-04 21:21:42'),
 (6, 'Ski Racks Income', 1, '2024-05-04 21:21:54', '2024-05-04 21:21:54'),
-(7, 'Child Seat Income', 1, '2024-05-04 21:22:03', '2024-05-04 21:24:00'),
+(7, 'Child Seat Income', 1, '2024-05-04 21:22:03', '2024-05-04 23:07:28'),
 (8, 'Coolers Income', 1, '2024-05-04 21:22:10', '2024-05-04 21:22:10'),
 (9, 'Insurance Wreck Income', 1, '2024-05-04 21:22:16', '2024-05-04 21:22:16'),
 (10, 'Detail Shop Income', 1, '2024-05-04 21:22:23', '2024-05-04 21:22:23'),
@@ -71,7 +71,7 @@ ALTER TABLE `glav1_profit_and_loss`
 -- AUTO_INCREMENT for table `glav1_profit_and_loss`
 --
 ALTER TABLE `glav1_profit_and_loss`
-  MODIFY `profit_and_loss_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `profit_and_loss_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

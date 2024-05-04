@@ -1,14 +1,16 @@
+import { isDemoMode } from "@/component/helpers/functions-general";
+import BreadCrumbs from "@/component/partials/BreadCrumbs";
+import Footer from "@/component/partials/Footer";
 import Header from "@/component/partials/Header";
+import ModalError from "@/component/partials/modals/ModalError";
+import ModalSuccess from "@/component/partials/modals/ModalSuccess";
 import { setIsAdd, setIsSettingsOpen } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import React from "react";
-import Navigation from "../../../Navigation";
-import BreadCrumbs from "@/component/partials/BreadCrumbs";
-import { isDemoMode } from "@/component/helpers/functions-general";
 import { FaPlus } from "react-icons/fa";
-import Footer from "@/component/partials/Footer";
-import ModalSuccess from "@/component/partials/modals/ModalSuccess";
-import ModalError from "@/component/partials/modals/ModalError";
+import Navigation from "../../../Navigation";
+import OfficeSupportList from "./OfficeSupportList";
+import ModalAddOfficeSupport from "./ModalAddOfficeSupport";
 
 const OfficeSupport = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -40,23 +42,24 @@ const OfficeSupport = () => {
             </h4>
           </div>
           <div className="flex items-center gap-1 print:invisible">
-            {/* <button
+            <button
               type="button"
               className="pr-0 btn-primary"
               onClick={handleAdd}
             >
               <FaPlus />
               <span>Add</span>
-            </button> */}
+            </button>
           </div>
         </div>
         <div className="w-full pt-3 pb-4">
-          <p className="leading-none">We'll be right back.</p>
+          <OfficeSupportList setItemEdit={setItemEdit} />
         </div>
         <Footer />
       </div>
 
-      {store.success && <ModalSuccess />}
+      {store.isAdd && <ModalAddOfficeSupport itemEdit={itemEdit} />}
+      {store.success && <ModalSuccess itemEdit={itemEdit} />}
       {store.error && <ModalError />}
     </>
   );

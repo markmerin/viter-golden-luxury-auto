@@ -24,9 +24,9 @@ import React from "react";
 import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
-import { useNavigate } from "react-router-dom/dist";
+import { useNavigate } from "react-router-dom";
 
-const ProfitAndLossList = ({ setItemEdit }) => {
+const OfficeSupportList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const link = getUserType();
   const [id, setId] = React.useState(null);
@@ -52,21 +52,21 @@ const ProfitAndLossList = ({ setItemEdit }) => {
     status,
   } = useInfiniteQuery({
     queryKey: [
-      "profitAndLoss",
+      "officeSupport",
       search.current.value,
       store.isSearch,
       activeStatus,
     ],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `${apiVersion}/profit-and-loss/search`, // search endpoint
-        `${apiVersion}/profit-and-loss/page/${pageParam}`, // list endpoint
+        `${apiVersion}/office-support/search`, // search endpoint
+        `${apiVersion}/office-support/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
           id: "",
           isFilter,
-          profit_and_loss_is_active: activeStatus,
+          office_support_is_active: activeStatus,
         }
       ),
     getNextPageParam: (lastPage) => {
@@ -85,17 +85,17 @@ const ProfitAndLossList = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsArchive(true));
-    setId(item.profit_and_loss_aid);
+    setId(item.office_support_aid);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.profit_and_loss_aid);
+    setId(item.office_support_aid);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsDelete(true));
-    setId(item.profit_and_loss_aid);
+    setId(item.office_support_aid);
     setData(item);
   };
 
@@ -220,26 +220,26 @@ const ProfitAndLossList = ({ setItemEdit }) => {
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
                         <td className="pl-3 sm:hidden">
-                          {item.profit_and_loss_is_active === 1 ? (
+                          {item.office_support_is_active === 1 ? (
                             <span className="block w-3 h-3 bg-green-700 rounded-full"></span>
                           ) : (
                             <span className="block w-3 h-3 bg-gray-400 rounded-full"></span>
                           )}
                         </td>
                         <td className="hidden sm:table-cell">
-                          {item.profit_and_loss_is_active === 1 ? (
+                          {item.office_support_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
                         </td>
-                        <td>{item.profit_and_loss_name}</td>
+                        <td>{item.office_support_name}</td>
                         <td
                           colSpan={"100%"}
                           className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3"
                         >
                           <div className="flex items-center gap-3 table-action">
-                            {item.profit_and_loss_is_active === 1 ? (
+                            {item.office_support_is_active === 1 ? (
                               <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
@@ -304,31 +304,31 @@ const ProfitAndLossList = ({ setItemEdit }) => {
       </div>
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`${apiVersion}/profit-and-loss/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/office-support/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
-          queryKey={"profitAndLoss"}
+          queryKey={"officeSupport"}
         />
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/profit-and-loss/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/office-support/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
-          queryKey={"profitAndLoss"}
+          queryKey={"officeSupport"}
         />
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/profit-and-loss/${id}`}
+          mysqlApiDelete={`${apiVersion}/office-support/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
-          item={dataItem.profit_and_loss_name}
-          queryKey={"profitAndLoss"}
+          item={dataItem.office_support_name}
+          queryKey={"officeSupport"}
         />
       )}
     </>
   );
 };
 
-export default ProfitAndLossList;
+export default OfficeSupportList;
