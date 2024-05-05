@@ -163,22 +163,36 @@ RewriteRule ^car/search$ controllers/developer/car/search.php [L]
 
 
 ### TOTAL - PURCHASE DOCUMENTS ###
+RewriteRule ^history$ controllers/developer/settings/history/history.php [L]
+RewriteRule ^history/([0-9]+)$ controllers/developer/settings/history/history.php?historyid=$1 [L]
+RewriteRule ^history/active/([0-9]+)$ controllers/developer/settings/history/active.php?historyid=$1 [L]
+RewriteRule ^history/page/([0-9]+)$ controllers/developer/settings/history/page.php?start=$1 [L]
+RewriteRule ^history/search$ controllers/developer/settings/history/search.php [L]
+
+
 RewriteRule ^purchase-documents$ controllers/developer/settings/totals/purchase-documents/purchase-documents.php [L]
 RewriteRule ^purchase-documents/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/purchase-documents.php?purchasedocumentsid=$1 [L]
 RewriteRule ^purchase-documents/active/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/active.php?purchasedocumentsid=$1 [L]
+RewriteRule ^purchase-documents/page/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/page.php?start=$1 [L]
+RewriteRule ^purchase-documents/search$ controllers/developer/settings/totals/purchase-documents/search.php [L]
 
 RewriteRule ^purchase-financed$ controllers/developer/settings/totals/purchase-financed/purchase-financed.php [L]
 RewriteRule ^purchase-financed/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/purchase-financed.php?purchasefinancedid=$1 [L]
 RewriteRule ^purchase-financed/active/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/active.php?purchasefinancedid=$1 [L]
-
+RewriteRule ^purchase-financed/page/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/page.php?start=$1 [L]
+RewriteRule ^purchase-financed/search$ controllers/developer/settings/totals/purchase-financed/search.php [L]
 
 RewriteRule ^total-car-value$ controllers/developer/settings/totals/total-car-value/total-car-value.php [L]
 RewriteRule ^total-car-value/([0-9]+)$ controllers/developer/settings/totals/total-car-value/total-car-value.php?totalcarvalueid=$1 [L]
 RewriteRule ^total-car-value/active/([0-9]+)$ controllers/developer/settings/totals/total-car-value/active.php?totalcarvalueid=$1 [L]
+RewriteRule ^total-car-value/page/([0-9]+)$ controllers/developer/settings/totals/total-car-value/page.php?start=$1 [L]
+RewriteRule ^total-car-value/search$ controllers/developer/settings/totals/total-car-value/search.php [L]
 
 RewriteRule ^total-car-rental-value$ controllers/developer/settings/totals/total-car-rental-value/total-car-rental-value.php [L]
 RewriteRule ^total-car-rental-value/([0-9]+)$ controllers/developer/settings/totals/total-car-rental-value/total-car-rental-value.php?totalcarrentalvalueid=$1 [L]
 RewriteRule ^total-car-rental-value/active/([0-9]+)$ controllers/developer/settings/totals/total-car-rental-value/active.php?totalcarrentalvalueid=$1 [L]
+RewriteRule ^total-car-rental-value/page/([0-9]+)$ controllers/developer/settings/totals/total-car-rental-value/page.php?start=$1 [L]
+RewriteRule ^total-car-rental-value/search$ controllers/developer/settings/totals/total-car-rental-value/search.php [L]
 
 ######################################### FOR CLIENT #####################################
 RewriteRule ^client/read-by-email$ controllers/client/read-by-email.php [L]

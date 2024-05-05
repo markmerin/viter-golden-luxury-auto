@@ -1,7 +1,3 @@
-import Header from "@/component/partials/Header";
-import React from "react";
-import Navigation from "../../Navigation";
-import { StoreContext } from "@/store/StoreContext";
 import {
   getPageLink,
   getUserType,
@@ -9,7 +5,10 @@ import {
 } from "@/component/helpers/functions-general";
 import BreadCrumbs from "@/component/partials/BreadCrumbs";
 import Footer from "@/component/partials/Footer";
-import { FaUser } from "react-icons/fa";
+import Header from "@/component/partials/Header";
+import { StoreContext } from "@/store/StoreContext";
+import React from "react";
+import Navigation from "../../Navigation";
 
 const TotalsLinks = () => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -17,7 +16,7 @@ const TotalsLinks = () => {
   return (
     <>
       <Header />
-      <Navigation menu="client" />
+      <Navigation menu="settings" submenu="totals" />
       <div
         className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
           isDemoMode === 1 && "min-h-[calc(100vh-36px)]"
@@ -35,7 +34,6 @@ const TotalsLinks = () => {
         <ul className="relative pb-40">
           <li>
             <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
-              <FaUser />
               {getPageLink(
                 link,
                 `settings/totals/purchase-documents`,
@@ -45,7 +43,6 @@ const TotalsLinks = () => {
           </li>
           <li>
             <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
-              <FaUser />
               {getPageLink(
                 link,
                 `settings/totals/purchase-financed`,
@@ -55,7 +52,6 @@ const TotalsLinks = () => {
           </li>
           <li>
             <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
-              <FaUser />
               {getPageLink(
                 link,
                 `settings/totals/total-car-value`,
@@ -66,7 +62,6 @@ const TotalsLinks = () => {
 
           <li>
             <div className="flex items-center justify-between gap-2 border-b border-gray-300 border-solid group">
-              <FaUser />
               {getPageLink(
                 link,
                 `settings/totals/total-car-rental-value`,

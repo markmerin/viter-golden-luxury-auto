@@ -65,6 +65,17 @@ const ViewCar = () => {
               )}
             </div>
           </li>
+
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(link, "car/view-car/history", "History")}
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(link, "car/view-car/totals", "Total")}
+            </div>
+          </li>
         </ul>
         <Footer />
       </div>

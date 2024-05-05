@@ -4,11 +4,11 @@ import TableLoading from "@/component/partials/TableLoading";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import React from "react";
 import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
-import ModalEditHistory from "./ModalEditHistory";
+import ModalEditHistory from "./ModalEditCarHistory";
 import { StoreContext } from "@/store/StoreContext";
 import { setIsAdd } from "@/store/StoreAction";
 
-const HistoryTable = () => {
+const CarHistoryTable = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   return (
     <>
@@ -140,4 +140,4 @@ const HistoryTable = () => {
   );
 };
 
-export default HistoryTable;
+export default CarHistoryTable;

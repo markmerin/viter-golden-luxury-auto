@@ -1,0 +1,23 @@
+controllers
+1.rest/v1/controllers/developer/settings/history
+2. rest/v1/controllers/developer/settings/totals/purchase-documents
+2. rest/v1/controllers/developer/settings/totals/purchase-financed
+2. rest/v1/controllers/developer/settings/totals/total-car-rental-value
+2. rest/v1/controllers/developer/settings/totals/total-car-value
+
+models
+1. rest/v1/models/developer/settings/history
+2. rest/v1/models/developer/settings/totals/purchase-documents
+3. rest/v1/models/developer/settings/totals/purchase-financed
+4. rest/v1/models/developer/settings/totals/total-car-rental-value
+5. rest/v1/models/developer/settings/totals/total-car-value
+
+db-backup
+1. rest/v1/db-backup/glav1_history.sql
+2. rest/v1/db-backup/glav1_purchase_document.sql
+3. rest/v1/db-backup/glav1_purchase_financed.sql
+4. rest/v1/db-backup/glav1_total_car_rental_value.sql
+5. rest/v1/db-backup/glav1_total_car_value.sql
+
+rest/v1/.htaccess
+

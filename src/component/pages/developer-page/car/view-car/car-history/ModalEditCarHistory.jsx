@@ -19,7 +19,7 @@ import React from "react";
 import { FaTimesCircle } from "react-icons/fa";
 import * as Yup from "yup";
 
-const ModalEditHistory = () => {
+const ModalEditCarHistory = () => {
   const { dispatch } = React.useContext(StoreContext);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const queryClient = useQueryClient();
@@ -102,29 +102,12 @@ const ModalEditHistory = () => {
                 <Form>
                   <div className="modal-overflow">
                     <div className="relative mb-6">
-                      <InputSelect
-                        label="Category"
-                        name="income_item_category_id"
-                        disabled={mutation.isLoading}
-                      >
-                        <>
-                          <option value="" disabled hidden></option>
-                          <optgroup label="Select Month">
-                            <option value="jan">Jan</option>
-                            <option value="feb">Feb</option>
-                            <option value="mar">Mar</option>
-                            <option value="apr">Apr</option>
-                            <option value="may">May</option>
-                            <option value="jun">Jun</option>
-                            <option value="jul">Jul</option>
-                            <option value="aug">Aug</option>
-                            <option value="sep">Sep</option>
-                            <option value="oct">Oct</option>
-                            <option value="nov">Nov</option>
-                            <option value="dec">Dec</option>
-                          </optgroup>
-                        </>
-                      </InputSelect>
+                      <InputText
+                        label="Amount"
+                        type="date"
+                        name="client_contact"
+                        disabled={mutation.isPending}
+                      />
                     </div>
 
                     <div className="relative mb-6">
@@ -164,4 +147,4 @@ const ModalEditHistory = () => {
   );
 };
 
-export default ModalEditHistory;
+export default ModalEditCarHistory;

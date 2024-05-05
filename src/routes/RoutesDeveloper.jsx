@@ -1,3 +1,9 @@
+import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
+import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
+import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
+import CarHistory from "@/component/pages/developer-page/car/view-car/car-history/CarHistory";
+import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
+import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
 import ClientEarnings from "@/component/pages/developer-page/client/view-info/earnings/ClientEarnings";
@@ -5,7 +11,17 @@ import ClientProfile from "@/component/pages/developer-page/client/view-info/pro
 import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
 import Details from "@/component/pages/developer-page/earning/details/Details";
+import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
+import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
 import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
+import TotalsLinks from "@/component/pages/developer-page/settings/totals/TotalsLinks";
+import PurchaseDocument from "@/component/pages/developer-page/settings/totals/purchase-document/PurchaseDocument";
+import PurchaseFinanced from "@/component/pages/developer-page/settings/totals/purchase-financed/PurchaseFinanced";
+import TotalCarRentalValue from "@/component/pages/developer-page/settings/totals/total-car-rental-value/TotalCarRentalValue";
+import TotalCarValue from "@/component/pages/developer-page/settings/totals/total-car-value/TotalCarValue";
 import {
   devNavUrl,
   developerPath,
@@ -16,9 +32,6 @@ import Car from "../component/pages/developer-page/car/Car";
 import Client from "../component/pages/developer-page/client/Client";
 import Maintenance from "../component/pages/developer-page/maintenance/Maintenance";
 import CarMake from "../component/pages/developer-page/settings/car-make/CarMake";
-import Expenses from "../component/pages/developer-page/settings/expenses/Expenses";
-import IncomeCategory from "../component/pages/developer-page/settings/income-category/IncomeCategory";
-import IncomeItem from "../component/pages/developer-page/settings/income-item/IncomeItem";
 import Representative from "../component/pages/developer-page/settings/representatives/Representative";
 import Users from "../component/pages/developer-page/settings/users/Users";
 import Other from "../component/pages/developer-page/settings/users/other/Other";
@@ -26,22 +39,8 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
-import TotalsLinks from "@/component/pages/developer-page/settings/totals/TotalsLinks";
-import PurchaseDocument from "@/component/pages/developer-page/settings/totals/purchase-document/PurchaseDocument";
-import PurchaseFinanced from "@/component/pages/developer-page/settings/totals/purchase-financed/PurchaseFinanced";
-import TotalCarValue from "@/component/pages/developer-page/settings/totals/total-car-value/TotalCarValue";
-import TotalCarRentalValue from "@/component/pages/developer-page/settings/totals/total-car-rental-value/TotalCarRentalValue";
-import History from "@/component/pages/developer-page/car/history/History";
-import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
-import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
-import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
-import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
-import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
-import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
-import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
-import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
-import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
-import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
+import CarTotals from "@/component/pages/developer-page/car/view-car/car-total/totals/CarTotals";
+import History from "@/component/pages/developer-page/settings/history/History";
 
 export const routesDeveloper = [
   {
@@ -199,6 +198,14 @@ export const routesDeveloper = [
   },
 
   {
+    path: `${devNavUrl}/${developerPath}/settings/history`,
+    element: (
+      <ProtectedRouteSystem>
+        <History />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
     path: `${devNavUrl}/${developerPath}/settings/totals`,
     element: (
       <ProtectedRouteSystem>
@@ -300,15 +307,6 @@ export const routesDeveloper = [
   },
 
   {
-    path: `${devNavUrl}/${developerPath}/car/history`,
-    element: (
-      <ProtectedRouteSystem>
-        <History />
-      </ProtectedRouteSystem>
-    ),
-  },
-
-  {
     path: `${devNavUrl}/${developerPath}/car/view-car`,
     element: (
       <ProtectedRouteSystem>
@@ -348,6 +346,25 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/history`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarHistory />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/totals`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarTotals />
+      </ProtectedRouteSystem>
+    ),
+  },
+
   {
     path: `${devNavUrl}/${developerPath}/earnings/details`,
     element: (

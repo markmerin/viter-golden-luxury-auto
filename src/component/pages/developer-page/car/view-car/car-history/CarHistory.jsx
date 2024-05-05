@@ -1,15 +1,15 @@
 import Header from "@/component/partials/Header";
 import React from "react";
-import Navigation from "../../Navigation";
+import Navigation from "../../../Navigation";
 import { isDemoMode } from "@/component/helpers/functions-general";
 import BreadCrumbs from "@/component/partials/BreadCrumbs";
 import Footer from "@/component/partials/Footer";
 import ModalSuccess from "@/component/partials/modals/ModalSuccess";
 import ModalError from "@/component/partials/modals/ModalError";
 import { StoreContext } from "@/store/StoreContext";
-import HistoryTable from "./HistoryTable";
+import HistoryTable from "./CarHistoryTable";
 
-const History = () => {
+const CarHistory = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   return (
     <div>
@@ -40,4 +40,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default CarHistory;

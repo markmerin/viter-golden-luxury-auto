@@ -26,14 +26,13 @@ import { FaArchive, FaEdit, FaHistory, FaTrash } from "react-icons/fa";
 import { MdOutlineFormatListNumbered } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
 
-const PurchaseDocumentList = ({ setItemEdit }) => {
+const HistoryList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [id, setId] = React.useState(null);
   const [dataItem, setData] = React.useState(null);
   const [onSearch, setOnSearch] = React.useState(false);
   const [isFilter, setIsFilter] = React.useState(false);
-  const [purchseDocumentStatus, setPurchseDocumentStatus] =
-    React.useState("all");
+  const [historyStatus, setHistoryStatus] = React.useState("all");
   const [isTableScroll, setIsTableScroll] = React.useState(false);
   const search = React.useRef({ value: "" });
   const [page, setPage] = React.useState(1);
@@ -50,22 +49,17 @@ const PurchaseDocumentList = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: [
-      "purchasedoc",
-      search.current.value,
-      store.isSearch,
-      purchseDocumentStatus,
-    ],
+    queryKey: ["history", search.current.value, store.isSearch, historyStatus],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `${apiVersion}/purchase-documents/search`, // search endpoint
-        `${apiVersion}/purchase-documents/page/${pageParam}`, // list endpoint
+        `${apiVersion}/history/search`, // search endpoint
+        `${apiVersion}/history/page/${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         {
           searchValue: search?.current?.value,
           id: "",
           isFilter,
-          purchase_document_is_active: purchseDocumentStatus,
+          history_is_active: historyStatus,
         }
       ),
     getNextPageParam: (lastPage) => {
@@ -91,22 +85,22 @@ const PurchaseDocumentList = ({ setItemEdit }) => {
 
   const handleArchive = (item) => {
     dispatch(setIsArchive(true));
-    setId(item.purchase_document_aid);
+    setId(item.history_aid);
   };
 
   const handleRestore = (item) => {
     dispatch(setIsRestore(true));
-    setId(item.purchase_document_aid);
+    setId(item.history_aid);
   };
 
   const handleDelete = (item) => {
     dispatch(setIsDelete(true));
-    setId(item.purchase_document_aid);
+    setId(item.history_aid);
     setData(item);
   };
 
-  const handleChangePurchaseDocumentStatus = (e) => {
-    setPurchseDocumentStatus(e.target.value);
+  const handleChangehistoryumentStatus = (e) => {
+    setHistoryStatus(e.target.value);
     setIsFilter(false);
     dispatch(setIsSearch(false));
     search.current.value = "";
@@ -135,8 +129,8 @@ const PurchaseDocumentList = ({ setItemEdit }) => {
               <label>Filter</label>
               <select
                 name="status"
-                value={purchseDocumentStatus}
-                onChange={(e) => handleChangePurchaseDocumentStatus(e)}
+                value={historyStatus}
+                onChange={(e) => handleChangehistoryumentStatus(e)}
                 disabled={isFetching || status === "pending"}
                 className="h-[35px] py-0"
               >
@@ -220,27 +214,27 @@ const PurchaseDocumentList = ({ setItemEdit }) => {
                       <tr key={key} className="relative group">
                         <td className="text-center">{counter++}.</td>
                         <td className="pl-3 sm:hidden">
-                          {item.purchase_document_is_active === 1 ? (
+                          {item.history_is_active === 1 ? (
                             <span className="block w-3 h-3 bg-green-700 rounded-full"></span>
                           ) : (
                             <span className="block w-3 h-3 bg-gray-400 rounded-full"></span>
                           )}
                         </td>
                         <td className="hidden sm:table-cell">
-                          {item.purchase_document_is_active === 1 ? (
+                          {item.history_is_active === 1 ? (
                             <Status text="Active" />
                           ) : (
                             <Status text="Inactive" />
                           )}
                         </td>
-                        <td>{item.purchase_document_name}</td>
+                        <td>{item.history_name}</td>
 
                         <td
                           colSpan={"100%"}
                           className="sticky right-0 opacity-100 group-hover:opacity-100 sm:-right-3 "
                         >
                           <div className="flex items-center gap-3 table-action">
-                            {item.purchase_document_is_active === 1 ? (
+                            {item.history_is_active === 1 ? (
                               <div className="!absolute right-0 flex items-center bg-gray-50 h-full">
                                 <button
                                   type="button"
@@ -306,32 +300,32 @@ const PurchaseDocumentList = ({ setItemEdit }) => {
 
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`${apiVersion}/purchase-documents/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/history/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
-          queryKey={"purchasedoc"}
+          queryKey={"history"}
         />
       )}
 
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/purchase-documents/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/history/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
-          queryKey={"purchasedoc"}
+          queryKey={"history"}
         />
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/purchase-documents/${id}`}
+          mysqlApiDelete={`${apiVersion}/history/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
-          item={dataItem.purchase_document_name}
-          queryKey={"purchasedoc"}
+          item={dataItem.history_name}
+          queryKey={"history"}
         />
       )}
     </>
   );
 };
 
-export default PurchaseDocumentList;
+export default HistoryList;

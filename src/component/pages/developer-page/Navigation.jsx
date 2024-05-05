@@ -314,6 +314,19 @@ const Navigation = ({ menu, submenu = null }) => {
               <li>
                 <Link
                   onClick={() => handleLinkClick()}
+                  to={`${devNavUrl}/${link}/settings/history`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "history"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  History
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/totals`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
                     submenu === "totals"

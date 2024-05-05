@@ -15,14 +15,10 @@ function checkFilterByStatusAndSearch($object)
     checkQuery($query, "Empty records. (filter by status)");
     return $query;
 }
-
-
-
-
 // check association
-function isTotalCarRentalssociated($object)
+function isHistoryAssociated($object)
 {
-    $query = $object->checkTotalCarRentalssociation();
+    $query = $object->checkHistoryAssociation();
     $count = $query->rowCount();
     checkExistence($count, "You cannot delete this item because it is already associated with other module.");
 }
