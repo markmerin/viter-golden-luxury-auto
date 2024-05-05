@@ -70,6 +70,20 @@ RewriteRule ^car-make/active/([0-9]+)$ controllers/developer/settings/car-make/a
 RewriteRule ^car-make/page/([0-9]+)$ controllers/developer/settings/car-make/page.php?start=$1 [L]
 RewriteRule ^car-make/search$ controllers/developer/settings/car-make/search.php [L]
 
+### CURRENT COST WITH ADD ###
+RewriteRule ^current-cost-with-add$ controllers/developer/settings/current-cost-with-add/current-cost-with-add.php [L]
+RewriteRule ^current-cost-with-add/([0-9]+)$ controllers/developer/settings/current-cost-with-add/current-cost-with-add.php?costid=$1 [L]
+RewriteRule ^current-cost-with-add/active/([0-9]+)$ controllers/developer/settings/current-cost-with-add/active.php?costid=$1 [L]
+RewriteRule ^current-cost-with-add/page/([0-9]+)$ controllers/developer/settings/current-cost-with-add/page.php?start=$1 [L]
+RewriteRule ^current-cost-with-add/search$ controllers/developer/settings/current-cost-with-add/search.php [L]
+
+### CURRENT COST ###
+RewriteRule ^current-cost$ controllers/developer/settings/current-cost/current-cost.php [L]
+RewriteRule ^current-cost/([0-9]+)$ controllers/developer/settings/current-cost/current-cost.php?costid=$1 [L]
+RewriteRule ^current-cost/active/([0-9]+)$ controllers/developer/settings/current-cost/active.php?costid=$1 [L]
+RewriteRule ^current-cost/page/([0-9]+)$ controllers/developer/settings/current-cost/page.php?start=$1 [L]
+RewriteRule ^current-cost/search$ controllers/developer/settings/current-cost/search.php [L]
+
 ### PROFIT AND LOSS ###
 RewriteRule ^profit-and-loss$ controllers/developer/settings/profit-and-loss/profit-and-loss.php [L]
 RewriteRule ^profit-and-loss/([0-9]+)$ controllers/developer/settings/profit-and-loss/profit-and-loss.php?profitid=$1 [L]
@@ -130,8 +144,6 @@ RewriteRule ^income-item/search$ controllers/developer/settings/income-item/sear
 RewriteRule ^quick-link$ controllers/developer/settings/quick-link/quick-link.php [L]
 RewriteRule ^quick-link/([0-9]+)$ controllers/developer/settings/quick-link/quick-link.php?quicklinkid=$1 [L]
 RewriteRule ^quick-link/active/([0-9]+)$ controllers/developer/settings/quick-link/active.php?quicklinkid=$1 [L]
-
-
 
 ### CLIENT ###
 RewriteRule ^client$ controllers/developer/client/client.php [L]

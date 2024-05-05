@@ -43,7 +43,7 @@ const BreadCrumbs = ({ param = "" }) => {
             }
             className="mr-2 font-medium hover:text-accent capitalize text-[10px]"
           >
-            {crumb.replace("-", " ")}
+            {crumb.replaceAll("-", " ")}
           </Link>
         </li>
       );

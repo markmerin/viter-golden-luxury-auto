@@ -1,3 +1,8 @@
+import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
+import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
+import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
+import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
+import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
 import ClientEarnings from "@/component/pages/developer-page/client/view-info/earnings/ClientEarnings";
@@ -5,6 +10,13 @@ import ClientProfile from "@/component/pages/developer-page/client/view-info/pro
 import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
 import Details from "@/component/pages/developer-page/earning/details/Details";
+import CurrentCostWithAdd from "@/component/pages/developer-page/settings/current-cost-with-add/CurrentCostWithAdd";
+import CurrentCost from "@/component/pages/developer-page/settings/current-cost/CurrentCost";
+import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
+import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
 import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
 import {
   devNavUrl,
@@ -26,16 +38,6 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
-import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
-import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
-import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
-import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
-import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
-import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
-import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
-import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
-import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
-import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
 
 export const routesDeveloper = [
   {
@@ -155,6 +157,22 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <ProfitAndLoss />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/current-cost-with-add`,
+    element: (
+      <ProtectedRouteSystem>
+        <CurrentCostWithAdd />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/current-cost`,
+    element: (
+      <ProtectedRouteSystem>
+        <CurrentCost />
       </ProtectedRouteSystem>
     ),
   },
