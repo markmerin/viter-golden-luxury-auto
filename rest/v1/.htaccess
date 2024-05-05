@@ -70,6 +70,27 @@ RewriteRule ^car-make/active/([0-9]+)$ controllers/developer/settings/car-make/a
 RewriteRule ^car-make/page/([0-9]+)$ controllers/developer/settings/car-make/page.php?start=$1 [L]
 RewriteRule ^car-make/search$ controllers/developer/settings/car-make/search.php [L]
 
+### CURRENT COST WITH ADD ###
+RewriteRule ^current-cost-with-add$ controllers/developer/settings/current-cost-with-add/current-cost-with-add.php [L]
+RewriteRule ^current-cost-with-add/([0-9]+)$ controllers/developer/settings/current-cost-with-add/current-cost-with-add.php?costid=$1 [L]
+RewriteRule ^current-cost-with-add/active/([0-9]+)$ controllers/developer/settings/current-cost-with-add/active.php?costid=$1 [L]
+RewriteRule ^current-cost-with-add/page/([0-9]+)$ controllers/developer/settings/current-cost-with-add/page.php?start=$1 [L]
+RewriteRule ^current-cost-with-add/search$ controllers/developer/settings/current-cost-with-add/search.php [L]
+
+### CURRENT COST ###
+RewriteRule ^current-cost$ controllers/developer/settings/current-cost/current-cost.php [L]
+RewriteRule ^current-cost/([0-9]+)$ controllers/developer/settings/current-cost/current-cost.php?costid=$1 [L]
+RewriteRule ^current-cost/active/([0-9]+)$ controllers/developer/settings/current-cost/active.php?costid=$1 [L]
+RewriteRule ^current-cost/page/([0-9]+)$ controllers/developer/settings/current-cost/page.php?start=$1 [L]
+RewriteRule ^current-cost/search$ controllers/developer/settings/current-cost/search.php [L]
+
+### CURRENT COST ###
+RewriteRule ^nada-depreciation-with-add$ controllers/developer/car/view-car/nada-depreciation-with-add/nada-depreciation-with-add.php [L]
+RewriteRule ^nada-depreciation-with-add/([0-9]+)$ controllers/developer/car/view-car/nada-depreciation-with-add/nada-depreciation-with-add.php?nadaid=$1 [L]
+RewriteRule ^nada-depreciation-with-add/active/([0-9]+)$ controllers/developer/car/view-car/nada-depreciation-with-add/active.php?nadaid=$1 [L]
+RewriteRule ^nada-depreciation-with-add/page/([0-9]+)/([0-9]+)$ controllers/developer/car/view-car/nada-depreciation-with-add/page.php?start=$1&carid=$2 [L]
+RewriteRule ^nada-depreciation-with-add/search$ controllers/developer/car/view-car/nada-depreciation-with-add/search.php [L]
+
 ### PROFIT AND LOSS ###
 RewriteRule ^profit-and-loss$ controllers/developer/settings/profit-and-loss/profit-and-loss.php [L]
 RewriteRule ^profit-and-loss/([0-9]+)$ controllers/developer/settings/profit-and-loss/profit-and-loss.php?profitid=$1 [L]
@@ -132,8 +153,6 @@ RewriteRule ^quick-link$ controllers/developer/settings/quick-link/quick-link.ph
 RewriteRule ^quick-link/([0-9]+)$ controllers/developer/settings/quick-link/quick-link.php?quicklinkid=$1 [L]
 RewriteRule ^quick-link/active/([0-9]+)$ controllers/developer/settings/quick-link/active.php?quicklinkid=$1 [L]
 
-
-
 ### CLIENT ###
 RewriteRule ^client$ controllers/developer/client/client.php [L]
 RewriteRule ^client/([0-9]+)$ controllers/developer/client/client.php?clientid=$1 [L]
@@ -166,6 +185,40 @@ RewriteRule ^car-profit-and-loss/read-by-date-and-year$ controllers/developer/ca
 ### CAR ###
 RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
 RewriteRule ^car/search$ controllers/developer/car/search.php [L]
+RewriteRule ^car/read-by-id$ controllers/developer/car/read-by-id.php [L]
+
+
+### TOTAL - PURCHASE DOCUMENTS ###
+RewriteRule ^history$ controllers/developer/settings/history/history.php [L]
+RewriteRule ^history/([0-9]+)$ controllers/developer/settings/history/history.php?historyid=$1 [L]
+RewriteRule ^history/active/([0-9]+)$ controllers/developer/settings/history/active.php?historyid=$1 [L]
+RewriteRule ^history/page/([0-9]+)$ controllers/developer/settings/history/page.php?start=$1 [L]
+RewriteRule ^history/search$ controllers/developer/settings/history/search.php [L]
+
+
+RewriteRule ^purchase-documents$ controllers/developer/settings/totals/purchase-documents/purchase-documents.php [L]
+RewriteRule ^purchase-documents/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/purchase-documents.php?purchasedocumentsid=$1 [L]
+RewriteRule ^purchase-documents/active/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/active.php?purchasedocumentsid=$1 [L]
+RewriteRule ^purchase-documents/page/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/page.php?start=$1 [L]
+RewriteRule ^purchase-documents/search$ controllers/developer/settings/totals/purchase-documents/search.php [L]
+
+RewriteRule ^purchase-financed$ controllers/developer/settings/totals/purchase-financed/purchase-financed.php [L]
+RewriteRule ^purchase-financed/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/purchase-financed.php?purchasefinancedid=$1 [L]
+RewriteRule ^purchase-financed/active/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/active.php?purchasefinancedid=$1 [L]
+RewriteRule ^purchase-financed/page/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/page.php?start=$1 [L]
+RewriteRule ^purchase-financed/search$ controllers/developer/settings/totals/purchase-financed/search.php [L]
+
+RewriteRule ^total-car-value$ controllers/developer/settings/totals/total-car-value/total-car-value.php [L]
+RewriteRule ^total-car-value/([0-9]+)$ controllers/developer/settings/totals/total-car-value/total-car-value.php?totalcarvalueid=$1 [L]
+RewriteRule ^total-car-value/active/([0-9]+)$ controllers/developer/settings/totals/total-car-value/active.php?totalcarvalueid=$1 [L]
+RewriteRule ^total-car-value/page/([0-9]+)$ controllers/developer/settings/totals/total-car-value/page.php?start=$1 [L]
+RewriteRule ^total-car-value/search$ controllers/developer/settings/totals/total-car-value/search.php [L]
+
+RewriteRule ^total-car-rental-value$ controllers/developer/settings/totals/total-car-rental-value/total-car-rental-value.php [L]
+RewriteRule ^total-car-rental-value/([0-9]+)$ controllers/developer/settings/totals/total-car-rental-value/total-car-rental-value.php?totalcarrentalvalueid=$1 [L]
+RewriteRule ^total-car-rental-value/active/([0-9]+)$ controllers/developer/settings/totals/total-car-rental-value/active.php?totalcarrentalvalueid=$1 [L]
+RewriteRule ^total-car-rental-value/page/([0-9]+)$ controllers/developer/settings/totals/total-car-rental-value/page.php?start=$1 [L]
+RewriteRule ^total-car-rental-value/search$ controllers/developer/settings/totals/total-car-rental-value/search.php [L]
 
 ######################################### FOR CLIENT #####################################
 RewriteRule ^client/read-by-email$ controllers/client/read-by-email.php [L]

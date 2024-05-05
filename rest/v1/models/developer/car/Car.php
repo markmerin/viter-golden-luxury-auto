@@ -93,6 +93,33 @@ class Car
         return $query;
     }
 
+    // read by id
+    public function readById()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "carMake.car_make_name, ";
+            $sql .= "car.car_specs, ";
+            $sql .= "car.car_year ";
+            $sql .= "from {$this->tblCar} as car, ";
+            $sql .= "{$this->tblCarMake} as carMake, ";
+            $sql .= "{$this->tblClient} as client ";
+            $sql .= "where car.car_client_id = client.client_aid ";
+            $sql .= "and car.car_vehicle_make_id = carMake.car_make_aid ";
+            $sql .= "and car.car_aid = :car_aid ";
+            $sql .= "group by car.car_aid ";
+            $sql .= "order by car.car_remarks, ";
+            $sql .= "carMake.car_make_name ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "car_aid" => $this->car_aid,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
     // read all
     public function filterByStatus()
     {

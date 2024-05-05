@@ -1,3 +1,11 @@
+import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
+import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
+import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
+import CarHistory from "@/component/pages/developer-page/car/view-car/car-history/CarHistory";
+import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
+import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
+import CarTotals from "@/component/pages/developer-page/car/view-car/car-total/totals/CarTotals";
+import NadaDepreciationWithAdd from "@/component/pages/developer-page/car/view-car/nada-depreciation-with-add/NadaDepreciationWithAdd";
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
 import ClientEarnings from "@/component/pages/developer-page/client/view-info/earnings/ClientEarnings";
@@ -5,7 +13,20 @@ import ClientProfile from "@/component/pages/developer-page/client/view-info/pro
 import RecordsFiles from "@/component/pages/developer-page/client/view-info/records-files/RecordsFiles";
 import Calculator from "@/component/pages/developer-page/earning/calculator/Calculator";
 import Details from "@/component/pages/developer-page/earning/details/Details";
+import CurrentCostWithAdd from "@/component/pages/developer-page/settings/current-cost-with-add/CurrentCostWithAdd";
+import CurrentCost from "@/component/pages/developer-page/settings/current-cost/CurrentCost";
+import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
+import History from "@/component/pages/developer-page/settings/history/History";
+import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
 import Quicklink from "@/component/pages/developer-page/settings/quick-link/Quicklink";
+import TotalsLinks from "@/component/pages/developer-page/settings/totals/TotalsLinks";
+import PurchaseDocument from "@/component/pages/developer-page/settings/totals/purchase-document/PurchaseDocument";
+import PurchaseFinanced from "@/component/pages/developer-page/settings/totals/purchase-financed/PurchaseFinanced";
+import TotalCarRentalValue from "@/component/pages/developer-page/settings/totals/total-car-rental-value/TotalCarRentalValue";
+import TotalCarValue from "@/component/pages/developer-page/settings/totals/total-car-value/TotalCarValue";
 import {
   devNavUrl,
   developerPath,
@@ -16,9 +37,6 @@ import Car from "../component/pages/developer-page/car/Car";
 import Client from "../component/pages/developer-page/client/Client";
 import Maintenance from "../component/pages/developer-page/maintenance/Maintenance";
 import CarMake from "../component/pages/developer-page/settings/car-make/CarMake";
-import Expenses from "../component/pages/developer-page/settings/expenses/Expenses";
-import IncomeCategory from "../component/pages/developer-page/settings/income-category/IncomeCategory";
-import IncomeItem from "../component/pages/developer-page/settings/income-item/IncomeItem";
 import Representative from "../component/pages/developer-page/settings/representatives/Representative";
 import Users from "../component/pages/developer-page/settings/users/Users";
 import Other from "../component/pages/developer-page/settings/users/other/Other";
@@ -26,16 +44,6 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
-import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
-import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
-import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
-import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
-import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
-import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
-import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
-import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
-import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
-import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
 
 export const routesDeveloper = [
   {
@@ -158,6 +166,22 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/current-cost-with-add`,
+    element: (
+      <ProtectedRouteSystem>
+        <CurrentCostWithAdd />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/current-cost`,
+    element: (
+      <ProtectedRouteSystem>
+        <CurrentCost />
+      </ProtectedRouteSystem>
+    ),
+  },
   // {
   //   path: `${devNavUrl}/${developerPath}/settings/expenses`,
   //   element: (
@@ -191,6 +215,59 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/history`,
+    element: (
+      <ProtectedRouteSystem>
+        <History />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals`,
+    element: (
+      <ProtectedRouteSystem>
+        <TotalsLinks />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/purchase-documents`,
+    element: (
+      <ProtectedRouteSystem>
+        <PurchaseDocument />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/purchase-financed`,
+    element: (
+      <ProtectedRouteSystem>
+        <PurchaseFinanced />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/total-car-value`,
+    element: (
+      <ProtectedRouteSystem>
+        <TotalCarValue />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/total-car-rental-value`,
+    element: (
+      <ProtectedRouteSystem>
+        <TotalCarRentalValue />
+      </ProtectedRouteSystem>
+    ),
+  },
+
   {
     path: `${devNavUrl}/${developerPath}/client`,
     element: (
@@ -247,6 +324,7 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
   {
     path: `${devNavUrl}/${developerPath}/car/view-car`,
     element: (
@@ -287,6 +365,31 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/history`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarHistory />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/nada-depreciation-with-add`,
+    element: (
+      <ProtectedRouteSystem>
+        <NadaDepreciationWithAdd />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/totals`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarTotals />
+      </ProtectedRouteSystem>
+    ),
+  },
   {
     path: `${devNavUrl}/${developerPath}/earnings/details`,
     element: (
@@ -303,7 +406,6 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
-
   {
     path: `${devNavUrl}/${developerPath}/maintenance`,
     element: (

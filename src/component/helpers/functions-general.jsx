@@ -228,3 +228,16 @@ export const getLastCharacters = (val) => {
   let lastChar = "****" + String(val).slice(-4);
   return lastChar;
 };
+
+export const getAllmonths = [...Array(12).keys()].map((key) =>
+  new Date(0, key).toLocaleString("en", { month: "long" })
+);
+
+export const getMonthAnYearNow = () => {
+  return new Date(new Date().toString().split("GMT")[0] + " UTC")
+    .toISOString()
+    .split("T")[0]
+    .split("-")
+    .slice(0, -1)
+    .join("-");
+};

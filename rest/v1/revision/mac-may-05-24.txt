@@ -1,0 +1,16 @@
+models
+1. rest/v1/models/developer/car/Car.php 
+2. rest/v1/models/developer/car/view-car/NadaDepreciationWithAdd.php 
+
+controllers
+1. rest/v1/controllers/developer/settings/current-cost-with-add 
+2. rest/v1/controllers/developer/settings/current-cost 
+3. rest/v1/controllers/developer/car/read-by-id.php 
+4. rest/v1/controllers/developer/car/view-car/nada-depreciation-with-add
+
+db-backup
+1. rest/v1/db-backup/glav1_nada_depreciation_with_add.sql 
+2. rest/v1/db-backup/glav1_current_cost.sql 
+3. rest/v1/db-backup/glav1_current_cost_with_add.sql 
+
+rest/v1/.htaccess 
