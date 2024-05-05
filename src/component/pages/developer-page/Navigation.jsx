@@ -136,7 +136,7 @@ const Navigation = ({ menu, submenu = null }) => {
           </li>
 
           {store.isEarningsOpen && (
-            <ul className="mb-1 mt-1 ml-14 lg:block">
+            <ul className="mt-1 mb-1 ml-14 lg:block">
               <li>
                 <Link
                   onClick={() => handleLinkClick()}
@@ -282,6 +282,20 @@ const Navigation = ({ menu, submenu = null }) => {
                   }`}
                 >
                   Quick Links
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  onClick={() => handleLinkClick()}
+                  to={`${devNavUrl}/${link}/settings/totals`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "totals"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Totals
                 </Link>
               </li>
             </ul>

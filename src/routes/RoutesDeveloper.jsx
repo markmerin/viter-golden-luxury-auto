@@ -26,6 +26,12 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
+import TotalsLinks from "@/component/pages/developer-page/settings/totals/TotalsLinks";
+import PurchaseDocument from "@/component/pages/developer-page/settings/totals/purchase-document/PurchaseDocument";
+import PurchaseFinanced from "@/component/pages/developer-page/settings/totals/purchase-financed/PurchaseFinanced";
+import TotalCarValue from "@/component/pages/developer-page/settings/totals/total-car-value/TotalCarValue";
+import TotalCarRentalValue from "@/component/pages/developer-page/settings/totals/total-car-rental-value/TotalCarRentalValue";
+import History from "@/component/pages/developer-page/car/history/History";
 
 export const routesDeveloper = [
   {
@@ -133,6 +139,51 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals`,
+    element: (
+      <ProtectedRouteSystem>
+        <TotalsLinks />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/purchase-documents`,
+    element: (
+      <ProtectedRouteSystem>
+        <PurchaseDocument />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/purchase-financed`,
+    element: (
+      <ProtectedRouteSystem>
+        <PurchaseFinanced />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/total-car-value`,
+    element: (
+      <ProtectedRouteSystem>
+        <TotalCarValue />
+      </ProtectedRouteSystem>
+    ),
+  },
+
+  {
+    path: `${devNavUrl}/${developerPath}/settings/totals/total-car-rental-value`,
+    element: (
+      <ProtectedRouteSystem>
+        <TotalCarRentalValue />
+      </ProtectedRouteSystem>
+    ),
+  },
+
   {
     path: `${devNavUrl}/${developerPath}/client`,
     element: (
@@ -189,6 +240,16 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
+
+  {
+    path: `${devNavUrl}/${developerPath}/car/history`,
+    element: (
+      <ProtectedRouteSystem>
+        <History />
+      </ProtectedRouteSystem>
+    ),
+  },
+
   {
     path: `${devNavUrl}/${developerPath}/earnings/details`,
     element: (
