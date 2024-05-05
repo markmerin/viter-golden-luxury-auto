@@ -242,7 +242,7 @@ const Navigation = ({ menu, submenu = null }) => {
                       : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                   }`}
                 >
-                  Profit and Loss
+                  Income
                 </Link>
               </li>
               <li>

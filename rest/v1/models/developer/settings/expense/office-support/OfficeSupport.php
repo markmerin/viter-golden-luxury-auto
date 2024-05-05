@@ -20,7 +20,7 @@ class OfficeSupport
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblOfficeSupport = "glav1_office_support";
+        $this->tblOfficeSupport = "glav1_settings_office_support";
         $this->tblCarExpense = "glav1_car_expense";
     }
 

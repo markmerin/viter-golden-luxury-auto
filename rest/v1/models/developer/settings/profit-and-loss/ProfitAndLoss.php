@@ -15,13 +15,13 @@ class ProfitAndLoss
     public $profit_and_loss_search;
 
     public $tblProfitAndLoss;
-    public $tblCarIncome;
+    public $tblCarProfitAndLoss;
 
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblProfitAndLoss = "glav1_profit_and_loss";
-        $this->tblCarIncome = "glav1_car_income";
+        $this->tblProfitAndLoss = "glav1_settings_profit_and_loss";
+        $this->tblCarProfitAndLoss = "tblCarProfitAndLoss";
     }
 
     // create
@@ -89,7 +89,6 @@ class ProfitAndLoss
         return $query;
     }
 
-
     public function readLimit()
     {
         try {
@@ -122,6 +121,26 @@ class ProfitAndLoss
             $sql .= "where profit_and_loss_name like :profit_and_loss_name ";
             $sql .= "order by profit_and_loss_is_active desc, ";
             $sql .= "profit_and_loss_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "profit_and_loss_name" => "%{$this->profit_and_loss_search}%"
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function searchByProfitAndLoss()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblProfitAndLoss} ";
+            $sql .= "where profit_and_loss_name like :profit_and_loss_name ";
+            $sql .= "and profit_and_loss_is_active = 1 ";
+            $sql .= "order by profit_and_loss_name asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "profit_and_loss_name" => "%{$this->profit_and_loss_search}%"
@@ -252,8 +271,8 @@ class ProfitAndLoss
     public function checkAssociation()
     {
         try {
-            $sql = "select income_profits_and_loss_id from {$this->tblCarIncome} ";
-            $sql .= "where income_profits_and_loss_id = :profit_and_loss_aid ";
+            $sql = "select car_profit_and_loss_car_id from {$this->tblCarProfitAndLoss} ";
+            $sql .= "where car_profit_and_loss_car_id = :profit_and_loss_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "profit_and_loss_aid" => $this->profit_and_loss_aid

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2024 at 05:30 PM
+-- Generation Time: May 05, 2024 at 06:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `glav1_office_support`
+-- Table structure for table `glav1_settings_office_support`
 --
 
-CREATE TABLE `glav1_office_support` (
+CREATE TABLE `glav1_settings_office_support` (
   `office_support_aid` int(11) NOT NULL,
   `office_support_name` varchar(128) NOT NULL,
   `office_support_is_active` tinyint(1) NOT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE `glav1_office_support` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `glav1_office_support`
+-- Dumping data for table `glav1_settings_office_support`
 --
 
-INSERT INTO `glav1_office_support` (`office_support_aid`, `office_support_name`, `office_support_is_active`, `office_support_created`, `office_support_datetime`) VALUES
+INSERT INTO `glav1_settings_office_support` (`office_support_aid`, `office_support_name`, `office_support_is_active`, `office_support_created`, `office_support_datetime`) VALUES
 (1, 'Accounting & Professional Fees', 1, '2024-05-04 23:18:52', '2024-05-04 23:18:52'),
 (2, 'Advertizing', 1, '2024-05-04 23:18:58', '2024-05-04 23:18:58'),
 (3, 'Bank Charges', 1, '2024-05-04 23:19:02', '2024-05-04 23:19:02'),
@@ -75,9 +75,9 @@ INSERT INTO `glav1_office_support` (`office_support_aid`, `office_support_name`,
 --
 
 --
--- Indexes for table `glav1_office_support`
+-- Indexes for table `glav1_settings_office_support`
 --
-ALTER TABLE `glav1_office_support`
+ALTER TABLE `glav1_settings_office_support`
   ADD PRIMARY KEY (`office_support_aid`);
 
 --
@@ -85,10 +85,10 @@ ALTER TABLE `glav1_office_support`
 --
 
 --
--- AUTO_INCREMENT for table `glav1_office_support`
+-- AUTO_INCREMENT for table `glav1_settings_office_support`
 --
-ALTER TABLE `glav1_office_support`
-  MODIFY `office_support_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+ALTER TABLE `glav1_settings_office_support`
+  MODIFY `office_support_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

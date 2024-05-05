@@ -1,5 +1,6 @@
 import {
   getPageLink,
+  getUrlParam,
   getUserType,
   isDemoMode,
 } from "@/component/helpers/functions-general";
@@ -13,6 +14,7 @@ import Navigation from "../../Navigation";
 const ViewCar = () => {
   const { store } = React.useContext(StoreContext);
   const link = getUserType();
+  const carId = getUrlParam().get("carId");
 
   return (
     <>
@@ -37,7 +39,7 @@ const ViewCar = () => {
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
               {getPageLink(
                 link,
-                "car/view-car/profit-and-loss",
+                `car/view-car/profit-and-loss?carId=${carId}`,
                 "Profit and loss"
               )}
             </div>
@@ -46,21 +48,21 @@ const ViewCar = () => {
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
               {getPageLink(
                 link,
-                "car/view-car/direct-delivery",
+                `car/view-car/direct-delivery?carId=${carId}`,
                 "Direct Delivery"
               )}
             </div>
           </li>
           <li>
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-              {getPageLink(link, "car/view-car/cogs", "Cogs")}
+              {getPageLink(link, `car/view-car/cogs?carId=${carId}`, "Cogs")}
             </div>
           </li>
           <li>
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
               {getPageLink(
                 link,
-                "car/view-car/office-support",
+                `car/view-car/office-support?carId=${carId}`,
                 "Office Support"
               )}
             </div>

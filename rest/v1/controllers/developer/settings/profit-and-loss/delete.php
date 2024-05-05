@@ -11,7 +11,7 @@ if (array_key_exists("profitid", $_GET)) {
 
     // validations
     checkId($profitsAndLoss->profit_and_loss_aid);
-    // isAssociated($profitsAndLoss);
+    isAssociated($profitsAndLoss);
 
     $query = checkDelete($profitsAndLoss);
     returnSuccess($profitsAndLoss, "Profit and loss Delete", $query);

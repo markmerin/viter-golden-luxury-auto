@@ -20,7 +20,7 @@ class DirectDelivery
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblDirectDelivery = "glav1_direct_delivery";
+        $this->tblDirectDelivery = "glav1_settings_direct_delivery";
         $this->tblCarExpense = "glav1_car_expense";
     }
 

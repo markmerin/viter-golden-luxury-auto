@@ -76,6 +76,7 @@ RewriteRule ^profit-and-loss/([0-9]+)$ controllers/developer/settings/profit-and
 RewriteRule ^profit-and-loss/active/([0-9]+)$ controllers/developer/settings/profit-and-loss/active.php?profitid=$1 [L]
 RewriteRule ^profit-and-loss/page/([0-9]+)$ controllers/developer/settings/profit-and-loss/page.php?start=$1 [L]
 RewriteRule ^profit-and-loss/search$ controllers/developer/settings/profit-and-loss/search.php [L]
+RewriteRule ^profit-and-loss/search-by-profit-and-loss$ controllers/developer/settings/profit-and-loss/search-by-profit-and-loss.php [L]
 
 ### EXPENSE DIRECT DELIVERY ###
 RewriteRule ^direct-delivery$ controllers/developer/settings/expense/direct-delivery/direct-delivery.php [L]
@@ -156,6 +157,11 @@ RewriteRule ^records-files/([0-9]+)$ controllers/developer/client/records-files/
 RewriteRule ^records-files/active/([0-9]+)$ controllers/developer/client/records-files/active.php?recordsfilesid=$1 [L]
 RewriteRule ^records-files/page/([0-9]+)/([0-9]+)$ controllers/developer/client/records-files/page.php?start=$1&clientid=$2 [L]
 RewriteRule ^records-files/search$ controllers/developer/client/records-files/search.php [L]
+
+### CAR PROFIT AND LOSS ###
+RewriteRule ^car-profit-and-loss$ controllers/developer/car/car-profit-and-loss/car-profit-and-loss.php [L]
+RewriteRule ^car-profit-and-loss/([0-9]+)$ controllers/developer/car/car-profit-and-loss/car-profit-and-loss.php?carprofitid=$1 [L]
+RewriteRule ^car-profit-and-loss/read-by-date-and-year$ controllers/developer/car/car-profit-and-loss/read-by-date-and-year.php [L]
 
 ### CAR ###
 RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]

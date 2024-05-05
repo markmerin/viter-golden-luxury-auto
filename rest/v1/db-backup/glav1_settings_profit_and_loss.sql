@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2024 at 05:30 PM
+-- Generation Time: May 05, 2024 at 06:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `glav1_profit_and_loss`
+-- Table structure for table `glav1_settings_profit_and_loss`
 --
 
-CREATE TABLE `glav1_profit_and_loss` (
+CREATE TABLE `glav1_settings_profit_and_loss` (
   `profit_and_loss_aid` int(11) NOT NULL,
   `profit_and_loss_name` varchar(128) NOT NULL,
   `profit_and_loss_is_active` tinyint(1) NOT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE `glav1_profit_and_loss` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `glav1_profit_and_loss`
+-- Dumping data for table `glav1_settings_profit_and_loss`
 --
 
-INSERT INTO `glav1_profit_and_loss` (`profit_and_loss_aid`, `profit_and_loss_name`, `profit_and_loss_is_active`, `profit_and_loss_created`, `profit_and_loss_datetime`) VALUES
+INSERT INTO `glav1_settings_profit_and_loss` (`profit_and_loss_aid`, `profit_and_loss_name`, `profit_and_loss_is_active`, `profit_and_loss_created`, `profit_and_loss_datetime`) VALUES
 (1, 'Rental Income', 1, '2024-05-04 21:20:30', '2024-05-04 21:21:04'),
 (2, 'Delivery Income', 1, '2024-05-04 21:21:14', '2024-05-04 21:21:14'),
 (3, 'Electric Prepaid Income', 1, '2024-05-04 21:21:23', '2024-05-04 21:21:23'),
@@ -58,9 +58,9 @@ INSERT INTO `glav1_profit_and_loss` (`profit_and_loss_aid`, `profit_and_loss_nam
 --
 
 --
--- Indexes for table `glav1_profit_and_loss`
+-- Indexes for table `glav1_settings_profit_and_loss`
 --
-ALTER TABLE `glav1_profit_and_loss`
+ALTER TABLE `glav1_settings_profit_and_loss`
   ADD PRIMARY KEY (`profit_and_loss_aid`);
 
 --
@@ -68,10 +68,10 @@ ALTER TABLE `glav1_profit_and_loss`
 --
 
 --
--- AUTO_INCREMENT for table `glav1_profit_and_loss`
+-- AUTO_INCREMENT for table `glav1_settings_profit_and_loss`
 --
-ALTER TABLE `glav1_profit_and_loss`
-  MODIFY `profit_and_loss_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `glav1_settings_profit_and_loss`
+  MODIFY `profit_and_loss_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

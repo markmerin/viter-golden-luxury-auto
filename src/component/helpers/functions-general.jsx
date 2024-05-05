@@ -211,6 +211,19 @@ export const fetchFormData = (url, fd = {}) => {
   return data;
 };
 
+export const getYear = (countVal = 10) => {
+  const d = new Date();
+  let currentYear = d.getFullYear();
+  let yearCount = countVal;
+  let list = [];
+
+  for (let i = 0; i < yearCount; i++) {
+    currentYear--;
+    list.push({ year: `${Number(currentYear) + 1}` });
+  }
+  return list;
+};
+
 export const getLastCharacters = (val) => {
   let lastChar = "****" + String(val).slice(-4);
   return lastChar;

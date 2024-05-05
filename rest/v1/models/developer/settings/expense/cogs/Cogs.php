@@ -20,7 +20,7 @@ class Cogs
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblCogs = "glav1_cogs";
+        $this->tblCogs = "glav1_settings_cogs";
         $this->tblCarExpense = "glav1_car_expense";
     }
 

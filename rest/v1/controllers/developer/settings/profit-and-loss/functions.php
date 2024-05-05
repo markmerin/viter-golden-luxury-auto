@@ -15,3 +15,11 @@ function checkFilterByStatusAndSearch($object)
     checkQuery($query, "Empty records. (filter by status)");
     return $query;
 }
+
+// search by profit and loss
+function checkSearchByProfitAndLoss($object)
+{
+    $query = $object->searchByProfitAndLoss();
+    checkQuery($query, "Empty records. (search by profit and loss)");
+    return $query;
+}
