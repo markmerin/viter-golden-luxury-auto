@@ -32,6 +32,16 @@ import PurchaseFinanced from "@/component/pages/developer-page/settings/totals/p
 import TotalCarValue from "@/component/pages/developer-page/settings/totals/total-car-value/TotalCarValue";
 import TotalCarRentalValue from "@/component/pages/developer-page/settings/totals/total-car-rental-value/TotalCarRentalValue";
 import History from "@/component/pages/developer-page/car/history/History";
+import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
+import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
+import ViewCar from "@/component/pages/developer-page/car/view-car/ViewCar";
+import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
+import CarDirectDelivery from "@/component/pages/developer-page/car/view-car/car-direct-delivery/CarDirectDelivery";
+import CarCogs from "@/component/pages/developer-page/car/view-car/car-cogs/CarCogs";
+import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
 
 export const routesDeveloper = [
   {
@@ -99,6 +109,14 @@ export const routesDeveloper = [
     ),
   },
   {
+    path: `${devNavUrl}/${developerPath}/settings/car-make`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarMake />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
     path: `${devNavUrl}/${developerPath}/settings/representatives`,
     element: (
       <ProtectedRouteSystem>
@@ -107,29 +125,69 @@ export const routesDeveloper = [
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/settings/expenses`,
+    path: `${devNavUrl}/${developerPath}/settings/expense`,
     element: (
       <ProtectedRouteSystem>
-        <Expenses />
+        <SettingsExpense />
       </ProtectedRouteSystem>
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/settings/income-category`,
+    path: `${devNavUrl}/${developerPath}/settings/expense/direct-delivery`,
     element: (
       <ProtectedRouteSystem>
-        <IncomeCategory />
+        <DirectDelivery />
       </ProtectedRouteSystem>
     ),
   },
   {
-    path: `${devNavUrl}/${developerPath}/settings/income-item`,
+    path: `${devNavUrl}/${developerPath}/settings/expense/cogs`,
     element: (
       <ProtectedRouteSystem>
-        <IncomeItem />
+        <Cogs />
       </ProtectedRouteSystem>
     ),
   },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/expense/office-support`,
+    element: (
+      <ProtectedRouteSystem>
+        <OfficeSupport />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/settings/profit-and-loss`,
+    element: (
+      <ProtectedRouteSystem>
+        <ProfitAndLoss />
+      </ProtectedRouteSystem>
+    ),
+  },
+  // {
+  //   path: `${devNavUrl}/${developerPath}/settings/expenses`,
+  //   element: (
+  //     <ProtectedRouteSystem>
+  //       <Expenses />
+  //     </ProtectedRouteSystem>
+  //   ),
+  // },
+  // {
+  //   path: `${devNavUrl}/${developerPath}/settings/income-category`,
+  //   element: (
+  //     <ProtectedRouteSystem>
+  //       <IncomeCategory />
+  //     </ProtectedRouteSystem>
+  //   ),
+  // },
+  // {
+  //   path: `${devNavUrl}/${developerPath}/settings/income-item`,
+  //   element: (
+  //     <ProtectedRouteSystem>
+  //       <IncomeItem />
+  //     </ProtectedRouteSystem>
+  //   ),
+  // },
 
   {
     path: `${devNavUrl}/${developerPath}/settings/quick-link`,
@@ -250,6 +308,46 @@ export const routesDeveloper = [
     ),
   },
 
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car`,
+    element: (
+      <ProtectedRouteSystem>
+        <ViewCar />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/profit-and-loss`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarProfitAndLoss />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/direct-delivery`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarDirectDelivery />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/cogs`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarCogs />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/office-support`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarOfficeSupport />
+      </ProtectedRouteSystem>
+    ),
+  },
   {
     path: `${devNavUrl}/${developerPath}/earnings/details`,
     element: (

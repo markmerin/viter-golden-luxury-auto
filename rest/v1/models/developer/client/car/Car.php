@@ -18,6 +18,10 @@ class Car
     public $car_nada_clean;
     public $car_nada_average;
     public $car_nada_rough;
+    public $car_last_nada_retail;
+    public $car_last_nada_clean;
+    public $car_last_nada_average;
+    public $car_last_nada_rough;
     public $car_miles;
     public $car_last_oil_change;
     public $car_turo_link;
@@ -64,6 +68,10 @@ class Car
             $sql .= "car_nada_clean, ";
             $sql .= "car_nada_average, ";
             $sql .= "car_nada_rough, ";
+            $sql .= "car_last_nada_retail, ";
+            $sql .= "car_last_nada_clean, ";
+            $sql .= "car_last_nada_average, ";
+            $sql .= "car_last_nada_rough, ";
             $sql .= "car_miles, ";
             $sql .= "car_last_oil_change, ";
             $sql .= "car_turo_link, ";
@@ -88,6 +96,10 @@ class Car
             $sql .= ":car_nada_clean, ";
             $sql .= ":car_nada_average, ";
             $sql .= ":car_nada_rough, ";
+            $sql .= ":car_last_nada_retail, ";
+            $sql .= ":car_last_nada_clean, ";
+            $sql .= ":car_last_nada_average, ";
+            $sql .= ":car_last_nada_rough, ";
             $sql .= ":car_miles, ";
             $sql .= ":car_last_oil_change, ";
             $sql .= ":car_turo_link, ";
@@ -114,12 +126,16 @@ class Car
                 "car_nada_clean" => $this->car_nada_clean,
                 "car_nada_average" => $this->car_nada_average,
                 "car_nada_rough" => $this->car_nada_rough,
+                "car_last_nada_retail" => $this->car_last_nada_retail,
+                "car_last_nada_clean" => $this->car_last_nada_clean,
+                "car_last_nada_average" => $this->car_last_nada_average,
+                "car_last_nada_rough" => $this->car_last_nada_rough,
                 "car_miles" => $this->car_miles,
                 "car_last_oil_change" => $this->car_last_oil_change,
                 "car_turo_link" => $this->car_turo_link,
                 "car_admin_turo_link" => $this->car_admin_turo_link,
                 "car_remarks" => $this->car_remarks,
-                "car_management" => $this->car_remarks,
+                "car_management" => $this->car_management,
                 "car_created" => $this->car_created,
                 "car_datetime" => $this->car_datetime,
             ]);
@@ -316,6 +332,10 @@ class Car
             $sql .= "car_nada_clean = :car_nada_clean, ";
             $sql .= "car_nada_average = :car_nada_average, ";
             $sql .= "car_nada_rough = :car_nada_rough, ";
+            $sql .= "car_last_nada_retail = :car_last_nada_retail, ";
+            $sql .= "car_last_nada_clean = :car_last_nada_clean, ";
+            $sql .= "car_last_nada_average = :car_last_nada_average, ";
+            $sql .= "car_last_nada_rough = :car_last_nada_rough, ";
             $sql .= "car_miles = :car_miles, ";
             $sql .= "car_last_oil_change = :car_last_oil_change, ";
             $sql .= "car_turo_link = :car_turo_link, ";
@@ -340,6 +360,10 @@ class Car
                 "car_nada_clean" => $this->car_nada_clean,
                 "car_nada_average" => $this->car_nada_average,
                 "car_nada_rough" => $this->car_nada_rough,
+                "car_last_nada_retail" => $this->car_last_nada_retail,
+                "car_last_nada_clean" => $this->car_last_nada_clean,
+                "car_last_nada_average" => $this->car_last_nada_average,
+                "car_last_nada_rough" => $this->car_last_nada_rough,
                 "car_miles" => $this->car_miles,
                 "car_last_oil_change" => $this->car_last_oil_change,
                 "car_turo_link" => $this->car_turo_link,

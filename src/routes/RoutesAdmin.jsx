@@ -20,6 +20,11 @@ import Representative from "../component/pages/developer-page/settings/represent
 import Other from "../component/pages/developer-page/settings/users/other/Other";
 import UserClient from "../component/pages/developer-page/settings/users/other/client/UserClient";
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
+import SettingsExpense from "@/component/pages/developer-page/settings/expense/SettingsExpense";
+import ProfitAndLoss from "@/component/pages/developer-page/settings/profit-and-loss/ProfitAndLoss";
+import DirectDelivery from "@/component/pages/developer-page/settings/expense/direct-delivery/DirectDelivery";
+import Cogs from "@/component/pages/developer-page/settings/expense/cogs/Cogs";
+import OfficeSupport from "@/component/pages/developer-page/settings/expense/office-support/OfficeSupport";
 
 export const routesAdmin = [
   {
@@ -143,29 +148,69 @@ export const routesAdmin = [
     ),
   },
   {
-    path: `${devNavUrl}/${adminPath}/settings/expenses`,
+    path: `${devNavUrl}/${adminPath}/settings/expense`,
     element: (
       <ProtectedRouteOther>
-        <Expenses />
+        <SettingsExpense />
       </ProtectedRouteOther>
     ),
   },
   {
-    path: `${devNavUrl}/${adminPath}/settings/income-category`,
+    path: `${devNavUrl}/${adminPath}/settings/expense/direct-delivery`,
     element: (
       <ProtectedRouteOther>
-        <IncomeCategory />
+        <DirectDelivery />
       </ProtectedRouteOther>
     ),
   },
   {
-    path: `${devNavUrl}/${adminPath}/settings/income-item`,
+    path: `${devNavUrl}/${adminPath}/settings/expense/cogs`,
     element: (
       <ProtectedRouteOther>
-        <IncomeItem />
+        <Cogs />
       </ProtectedRouteOther>
     ),
   },
+  {
+    path: `${devNavUrl}/${adminPath}/settings/expense/office-support`,
+    element: (
+      <ProtectedRouteOther>
+        <OfficeSupport />
+      </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${adminPath}/settings/profit-and-loss`,
+    element: (
+      <ProtectedRouteOther>
+        <ProfitAndLoss />
+      </ProtectedRouteOther>
+    ),
+  },
+  // {
+  //   path: `${devNavUrl}/${adminPath}/settings/expenses`,
+  //   element: (
+  //     <ProtectedRouteOther>
+  //       <Expenses />
+  //     </ProtectedRouteOther>
+  //   ),
+  // },
+  // {
+  //   path: `${devNavUrl}/${adminPath}/settings/income-category`,
+  //   element: (
+  //     <ProtectedRouteOther>
+  //       <IncomeCategory />
+  //     </ProtectedRouteOther>
+  //   ),
+  // },
+  // {
+  //   path: `${devNavUrl}/${adminPath}/settings/income-item`,
+  //   element: (
+  //     <ProtectedRouteOther>
+  //       <IncomeItem />
+  //     </ProtectedRouteOther>
+  //   ),
+  // },
   {
     path: `${devNavUrl}/${adminPath}/settings/quick-link`,
     element: (

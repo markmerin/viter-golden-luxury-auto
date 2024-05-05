@@ -13,7 +13,8 @@ if (array_key_exists("carid", $_GET)) {
     checkId($car->car_aid);
 
     // get data
-    $car->car_photo = strtolower($data["car_photo"]);
+    $car->car_client_id = $data["car_client_id"];
+    $car->car_photo = $car->car_client_id . strtolower($data["car_photo"]);
     $car->car_vehicle_make_id = $data["car_vehicle_make_id"];
     $car->car_year = $data["car_year"];
     $car->car_specs = $data["car_specs"];
@@ -27,6 +28,10 @@ if (array_key_exists("carid", $_GET)) {
     $car->car_nada_clean = $data["car_nada_clean"];
     $car->car_nada_average = $data["car_nada_average"];
     $car->car_nada_rough = $data["car_nada_rough"];
+    $car->car_last_nada_retail = $data["car_last_nada_retail"];
+    $car->car_last_nada_clean = $data["car_last_nada_clean"];
+    $car->car_last_nada_average = $data["car_last_nada_average"];
+    $car->car_last_nada_rough = $data["car_last_nada_rough"];
     $car->car_miles = $data["car_miles"];
     $car->car_last_oil_change = $data["car_last_oil_change"];
     $car->car_turo_link = $data["car_turo_link"];

@@ -223,6 +223,7 @@ const ClientCarList = ({
                 <th>Gas</th>
                 <th>Tire Size</th>
                 <th>Oil Type</th>
+                <th>Last Oil Change</th>
                 <th>Turo Link</th>
                 <th colSpan={"100%"}></th>
               </tr>
@@ -290,6 +291,11 @@ const ClientCarList = ({
                         <td>{item.car_gas}</td>
                         <td>{item.car_tire_size}</td>
                         <td>{item.car_oil_type}</td>
+                        <td>
+                          {item.car_last_oil_change === ""
+                            ? ""
+                            : formatDate(item.car_last_oil_change)}
+                        </td>
                         <td>
                           {item.car_turo_link === "" ? (
                             <span className="text-[#e41e3f] whitespace-nowrap">

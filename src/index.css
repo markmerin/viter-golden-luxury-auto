@@ -45,10 +45,10 @@ body {
     @apply relative border-b border-gray-300 border-solid hover:bg-gray-50;
   }
   table td {
-    @apply py-[10px] truncate px-3 whitespace-pre-wrap;
+    @apply py-[10px] truncate pr-3 whitespace-pre-wrap bg-white;
   }
   table td:last-child {
-    @apply overflow-visible;
+    @apply overflow-visible pl-3;
   }
   table th {
     @apply py-2 pr-3 font-bold bg-gray-200;

@@ -1,0 +1,16 @@
+models
+1. rest/v1/models/developer/client/car/Car.php 
+
+controllers
+1. rest/v1/controllers/developer/client/car/update.php 
+2. rest/v1/controllers/developer/client/car/create.php
+
+db-backup
+1. rest/v1/db-backup/glav1_car.sql 
+    -> new added columns
+        `car_last_nada_retail` int(11) NOT NULL,
+        `car_last_nada_clean` int(11) NOT NULL,
+        `car_last_nada_average` int(11) NOT NULL,
+        `car_last_nada_rough` int(11) NOT NULL,
+
+Uploaded 10am
