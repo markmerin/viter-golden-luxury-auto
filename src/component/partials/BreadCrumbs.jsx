@@ -60,7 +60,7 @@ const BreadCrumbs = ({ param = "" }) => {
             data-tooltip="Back"
             onClick={() => handleBack()}
           >
-            <FaArrowLeft className="h-6 w-6 lg:h-4 lg:w-4" />
+            <FaArrowLeft className="w-6 h-6 lg:h-4 lg:w-4" />
           </button>
         )}
         <ul className="flex items-center cursor-pointer">
