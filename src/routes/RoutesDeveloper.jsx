@@ -5,6 +5,7 @@ import CarHistory from "@/component/pages/developer-page/car/view-car/car-histor
 import CarOfficeSupport from "@/component/pages/developer-page/car/view-car/car-office-support/CarOfficeSupport";
 import CarProfitAndLoss from "@/component/pages/developer-page/car/view-car/car-profit-and-loss/CarProfitAndLoss";
 import CarTotals from "@/component/pages/developer-page/car/view-car/car-total/totals/CarTotals";
+import NadaDepreciationWithAdd from "@/component/pages/developer-page/car/view-car/nada-depreciation-with-add/NadaDepreciationWithAdd";
 import ClientViewInfo from "@/component/pages/developer-page/client/view-info/ClientViewInfo";
 import ClientCar from "@/component/pages/developer-page/client/view-info/car/ClientCar";
 import ClientEarnings from "@/component/pages/developer-page/client/view-info/earnings/ClientEarnings";
@@ -373,7 +374,14 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
-
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/nada-depreciation-with-add`,
+    element: (
+      <ProtectedRouteSystem>
+        <NadaDepreciationWithAdd />
+      </ProtectedRouteSystem>
+    ),
+  },
   {
     path: `${devNavUrl}/${developerPath}/car/view-car/totals`,
     element: (
@@ -382,7 +390,6 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
-
   {
     path: `${devNavUrl}/${developerPath}/earnings/details`,
     element: (
@@ -399,7 +406,6 @@ export const routesDeveloper = [
       </ProtectedRouteSystem>
     ),
   },
-
   {
     path: `${devNavUrl}/${developerPath}/maintenance`,
     element: (

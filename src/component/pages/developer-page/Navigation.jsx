@@ -263,7 +263,7 @@ const Navigation = ({ menu, submenu = null }) => {
                   onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/current-cost-with-add`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                    submenu === "expense"
+                    submenu === "current-cost-with-add"
                       ? "active__submenu"
                       : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                   }`}
@@ -276,7 +276,7 @@ const Navigation = ({ menu, submenu = null }) => {
                   onClick={() => handleLinkClick()}
                   to={`${devNavUrl}/${link}/settings/current-cost`}
                   className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
-                    submenu === "expense"
+                    submenu === "current-cost"
                       ? "active__submenu"
                       : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
                   }`}

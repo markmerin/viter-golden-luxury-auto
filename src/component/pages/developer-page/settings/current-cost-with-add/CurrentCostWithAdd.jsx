@@ -29,7 +29,7 @@ const CurrentCostWithAdd = () => {
   return (
     <>
       <Header />
-      <Navigation menu="settings" submenu="car-make" />
+      <Navigation menu="settings" submenu="current-cost-with-add" />
       <div
         className={`wrapper ${store.isShow && " sm:ml-[256px]"} ${
           isDemoMode === 1 && "min-h-[calc(100vh-36px)]"

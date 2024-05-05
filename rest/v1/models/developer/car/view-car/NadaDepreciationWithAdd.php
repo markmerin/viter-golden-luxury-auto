@@ -5,6 +5,7 @@ class NadaDepreciationWithAdd
     public $nada_depreciation_with_add_is_active;
     public $nada_depreciation_with_add_car_id;
     public $nada_depreciation_with_add_id;
+    public $nada_depreciation_with_add_amount;
     public $nada_depreciation_with_add_date;
     public $nada_depreciation_with_add_created;
     public $nada_depreciation_with_add_datetime;
@@ -37,12 +38,14 @@ class NadaDepreciationWithAdd
             $sql = "insert into {$this->tblNadaDepreciationWithAdd} ";
             $sql .= "( nada_depreciation_with_add_id, ";
             $sql .= "nada_depreciation_with_add_date, ";
+            $sql .= "nada_depreciation_with_add_amount, ";
             $sql .= "nada_depreciation_with_add_car_id, ";
             $sql .= "nada_depreciation_with_add_is_active, ";
             $sql .= "nada_depreciation_with_add_created, ";
             $sql .= "nada_depreciation_with_add_datetime ) values ( ";
             $sql .= ":nada_depreciation_with_add_id, ";
             $sql .= ":nada_depreciation_with_add_date, ";
+            $sql .= ":nada_depreciation_with_add_amount, ";
             $sql .= ":nada_depreciation_with_add_car_id, ";
             $sql .= ":nada_depreciation_with_add_is_active, ";
             $sql .= ":nada_depreciation_with_add_created, ";
@@ -51,6 +54,7 @@ class NadaDepreciationWithAdd
             $query->execute([
                 "nada_depreciation_with_add_id" => $this->nada_depreciation_with_add_id,
                 "nada_depreciation_with_add_date" => $this->nada_depreciation_with_add_date,
+                "nada_depreciation_with_add_amount" => $this->nada_depreciation_with_add_amount,
                 "nada_depreciation_with_add_car_id" => $this->nada_depreciation_with_add_car_id,
                 "nada_depreciation_with_add_is_active" => $this->nada_depreciation_with_add_is_active,
                 "nada_depreciation_with_add_created" => $this->nada_depreciation_with_add_created,
@@ -152,7 +156,7 @@ class NadaDepreciationWithAdd
             $sql .= "and nada.nada_depreciation_with_add_car_id = car.car_aid ";
             $sql .= "and car.car_vehicle_make_id = make.car_make_aid ";
             $sql .= "and car.car_aid = :nada_depreciation_with_add_car_id ";
-            $sql .= "and car.car_make_name like :car_make_name ";
+            $sql .= "and make.car_make_name like :car_make_name ";
             $sql .= "order by nada_depreciation_with_add_is_active desc, ";
             $sql .= "nada_depreciation_with_add_id asc ";
             $query = $this->connection->prepare($sql);
@@ -173,12 +177,14 @@ class NadaDepreciationWithAdd
             $sql = "update {$this->tblNadaDepreciationWithAdd} set ";
             $sql .= "nada_depreciation_with_add_id = :nada_depreciation_with_add_id, ";
             $sql .= "nada_depreciation_with_add_date = :nada_depreciation_with_add_date, ";
+            $sql .= "nada_depreciation_with_add_amount = :nada_depreciation_with_add_amount, ";
             $sql .= "nada_depreciation_with_add_datetime = :nada_depreciation_with_add_datetime ";
             $sql .= "where nada_depreciation_with_add_aid  = :nada_depreciation_with_add_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "nada_depreciation_with_add_id" => $this->nada_depreciation_with_add_id,
                 "nada_depreciation_with_add_date" => $this->nada_depreciation_with_add_date,
+                "nada_depreciation_with_add_amount" => $this->nada_depreciation_with_add_amount,
                 "nada_depreciation_with_add_datetime" => $this->nada_depreciation_with_add_datetime,
                 "nada_depreciation_with_add_aid" => $this->nada_depreciation_with_add_aid,
             ]);
@@ -254,7 +260,7 @@ class NadaDepreciationWithAdd
             $sql .= "and nada.nada_depreciation_with_add_car_id = car.car_aid ";
             $sql .= "and car.car_vehicle_make_id = make.car_make_aid ";
             $sql .= "and car.car_aid = :nada_depreciation_with_add_car_id ";
-            $sql .= "and car.car_make_name like :car_make_name ";
+            $sql .= "and make.car_make_name like :car_make_name ";
             $sql .= "and nada.nada_depreciation_with_add_is_active = :nada_depreciation_with_add_is_active ";
             $sql .= "order by nada_depreciation_with_add_is_active desc, ";
             $sql .= "nada_depreciation_with_add_id asc ";

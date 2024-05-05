@@ -9,9 +9,9 @@ function checkFilterByStatus($object)
 }
 
 // search by status
-function checkSearchByStatus($object)
+function checkFilterByStatusAndSearch($object)
 {
-    $query = $object->searchByStatus();
+    $query = $object->filterByStatusAndSearch();
     checkQuery($query, "Empty records. (search by status)");
     return $query;
 }

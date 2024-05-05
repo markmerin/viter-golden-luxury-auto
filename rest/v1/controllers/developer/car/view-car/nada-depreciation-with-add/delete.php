@@ -3,20 +3,16 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$car = new Car($conn);
+$nada = new NadaDepreciationWithAdd($conn);
 // get $_GET data
-if (array_key_exists("carid", $_GET)) {
+if (array_key_exists("nadaid", $_GET)) {
     // get data
-    $car->car_aid = $_GET['carid'];
-    checkId($car->car_aid);
+    $nada->nada_depreciation_with_add_aid = $_GET['nadaid'];
+    checkId($nada->nada_depreciation_with_add_aid);
 
-    $fileName = $data['item'];
-
-    // returnError(dirname(__DIR__, 6) . '/img/' . $fileName);
     // delete
-    unlink(dirname(__DIR__, 6) . '/public/img/' . $fileName);
-    $query = checkDelete($car);
-    returnSuccess($car, "Car", $query);
+    $query = checkDelete($nada);
+    returnSuccess($nada, "Nada deprectiation with add delete", $query);
 }
 
 // return 404 error if endpoint not available

@@ -3,19 +3,19 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$car = new Car($conn);
+$nada = new NadaDepreciationWithAdd($conn);
 // get $_GET data
 
-if (array_key_exists("carid", $_GET)) {
-    $car->car_aid = $_GET['carid'];
-    checkId($car->car_aid);
-    $query = checkReadById($car);
+if (array_key_exists("nadaid", $_GET)) {
+    $nada->nada_depreciation_with_add_aid = $_GET['nadaid'];
+    checkId($nada->nada_depreciation_with_add_aid);
+    $query = checkReadById($nada);
     http_response_code(200);
     getQueriedData($query);
 }
 
 if (empty($_GET)) {
-    $query = checkReadAll($car);
+    $query = checkReadAll($nada);
     http_response_code(200);
     getQueriedData($query);
 }

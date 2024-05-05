@@ -84,6 +84,13 @@ RewriteRule ^current-cost/active/([0-9]+)$ controllers/developer/settings/curren
 RewriteRule ^current-cost/page/([0-9]+)$ controllers/developer/settings/current-cost/page.php?start=$1 [L]
 RewriteRule ^current-cost/search$ controllers/developer/settings/current-cost/search.php [L]
 
+### CURRENT COST ###
+RewriteRule ^nada-depreciation-with-add$ controllers/developer/car/view-car/nada-depreciation-with-add/nada-depreciation-with-add.php [L]
+RewriteRule ^nada-depreciation-with-add/([0-9]+)$ controllers/developer/car/view-car/nada-depreciation-with-add/nada-depreciation-with-add.php?nadaid=$1 [L]
+RewriteRule ^nada-depreciation-with-add/active/([0-9]+)$ controllers/developer/car/view-car/nada-depreciation-with-add/active.php?nadaid=$1 [L]
+RewriteRule ^nada-depreciation-with-add/page/([0-9]+)/([0-9]+)$ controllers/developer/car/view-car/nada-depreciation-with-add/page.php?start=$1&carid=$2 [L]
+RewriteRule ^nada-depreciation-with-add/search$ controllers/developer/car/view-car/nada-depreciation-with-add/search.php [L]
+
 ### PROFIT AND LOSS ###
 RewriteRule ^profit-and-loss$ controllers/developer/settings/profit-and-loss/profit-and-loss.php [L]
 RewriteRule ^profit-and-loss/([0-9]+)$ controllers/developer/settings/profit-and-loss/profit-and-loss.php?profitid=$1 [L]
@@ -172,6 +179,7 @@ RewriteRule ^records-files/search$ controllers/developer/client/records-files/se
 ### CAR ###
 RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
 RewriteRule ^car/search$ controllers/developer/car/search.php [L]
+RewriteRule ^car/read-by-id$ controllers/developer/car/read-by-id.php [L]
 
 
 ### TOTAL - PURCHASE DOCUMENTS ###

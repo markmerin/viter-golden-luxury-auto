@@ -1,35 +1,35 @@
 <?php
 
 // set http header
-require '../../../../core/header.php';
+require '../../../../../core/header.php';
 // use needed functions
-require '../../../../core/functions.php';
+require '../../../../../core/functions.php';
 // use needed classes
-require '../../../../models/developer/client/car/Car.php';
+require '../../../../../models/developer/car/view-car/NadaDepreciationWithAdd.php';
 // check database connection
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$car = new Car($conn);
+$nada = new NadaDepreciationWithAdd($conn);
 if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
     checkApiKey();
 
-    if (array_key_exists("start", $_GET) && array_key_exists("clientid", $_GET)) {
+    if (array_key_exists("start", $_GET) && array_key_exists("carid", $_GET)) {
         // get data
-        $car->car_start = $_GET['start'];
-        $car->car_client_id = $_GET['clientid'];
-        $car->car_total = 10;
+        $nada->nada_depreciation_with_add_start = $_GET['start'];
+        $nada->nada_depreciation_with_add_car_id = $_GET['carid'];
+        $nada->nada_depreciation_with_add_total = 10;
 
-        checkLimitId($car->car_start, $car->car_total);
-        $query = checkReadLimit($car);
-        $total_result = checkReadAll($car);
+        checkLimitId($nada->nada_depreciation_with_add_start, $nada->nada_depreciation_with_add_total);
+        $query = checkReadLimit($nada);
+        $total_result = checkReadAll($nada);
         http_response_code(200);
 
         checkReadQuery(
             $query,
             $total_result,
-            $car->car_total,
-            $car->car_start
+            $nada->nada_depreciation_with_add_total,
+            $nada->nada_depreciation_with_add_start
         );
     }
     // return 404 error if endpoint not available
