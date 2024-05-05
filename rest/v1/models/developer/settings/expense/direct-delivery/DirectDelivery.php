@@ -15,13 +15,13 @@ class DirectDelivery
     public $direct_delivery_search;
 
     public $tblDirectDelivery;
-    public $tblCarExpense;
+    public $tblCarDirectDelivery;
 
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblDirectDelivery = "glav1_settings_direct_delivery";
-        $this->tblCarExpense = "glav1_car_expense";
+        $this->tblDirectDelivery = "glav1_car_direct_delivery";
+        $this->tblCarDirectDelivery = "glav1_car_expense";
     }
 
     // create
@@ -252,8 +252,8 @@ class DirectDelivery
     public function checkAssociation()
     {
         try {
-            $sql = "select income_profits_and_loss_id from {$this->tblCarExpense} ";
-            $sql .= "where income_profits_and_loss_id = :direct_delivery_aid ";
+            $sql = "select car_direct_delivery_id from {$this->tblCarDirectDelivery} ";
+            $sql .= "where car_direct_delivery_id = :direct_delivery_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "direct_delivery_aid" => $this->direct_delivery_aid

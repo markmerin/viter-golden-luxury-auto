@@ -182,6 +182,11 @@ RewriteRule ^car-profit-and-loss$ controllers/developer/car/car-profit-and-loss/
 RewriteRule ^car-profit-and-loss/([0-9]+)$ controllers/developer/car/car-profit-and-loss/car-profit-and-loss.php?carprofitid=$1 [L]
 RewriteRule ^car-profit-and-loss/read-by-date-and-year$ controllers/developer/car/car-profit-and-loss/read-by-date-and-year.php [L]
 
+### CAR DIRECT DELIVERY ###
+RewriteRule ^car-direct-delivery$ controllers/developer/car/view-car/car-direct-delivery/car-direct-delivery.php [L]
+RewriteRule ^car-direct-delivery/([0-9]+)$ controllers/developer/car/view-car/car-direct-delivery/car-direct-delivery.php?cardirectid=$1 [L]
+RewriteRule ^car-direct-delivery/read-by-date-and-year$ controllers/developer/car/view-car/car-direct-delivery/read-by-date-and-year.php [L]
+
 ### CAR ###
 RewriteRule ^car/page/([0-9]+)$ controllers/developer/car/page.php?start=$1 [L]
 RewriteRule ^car/search$ controllers/developer/car/search.php [L]

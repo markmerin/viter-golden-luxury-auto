@@ -21,7 +21,6 @@ const ViewCar = () => {
   const carId = getUrlParam().get("carId");
   const { dispatch, store } = React.useContext(StoreContext);
   const link = getUserType();
-  const carId = getUrlParam().get("carId");
 
   React.useEffect(() => {
     dispatch(setIsSettingsOpen(true));
