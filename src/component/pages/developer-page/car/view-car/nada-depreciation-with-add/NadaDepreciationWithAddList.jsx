@@ -1,3 +1,4 @@
+import useQueryData from "@/component/custom-hooks/useQueryData";
 import {
   apiVersion,
   getAllmonths,
@@ -79,6 +80,26 @@ const NadaDepreciationWithAddList = ({ setItemEdit }) => {
     },
     refetchOnWindowFocus: false,
   });
+
+  const {
+    isLoading: isLoadingCurrentCostWithAdd,
+    isFetching: isFetchingCurrentCostWithAdd,
+    data: currentCostWithAdd,
+  } = useQueryData(
+    `${apiVersion}/current-cost-with-add`, // endpoint
+    "get", // method
+    "current-cost-with-add" // key
+  );
+
+  const {
+    isLoading: isLoadingNadaDepreciationWithAdd,
+    isFetching: isFetchingNadaDepreciationWithAdd,
+    data: nadaDepreciationWithAdd,
+  } = useQueryData(
+    `${apiVersion}/nada-depreciation-with-add/${carId}`, // endpoint
+    "get", // method
+    "nada-depreciation-with-add" // key
+  );
 
   React.useEffect(() => {
     if (inView) {
@@ -190,7 +211,6 @@ const NadaDepreciationWithAddList = ({ setItemEdit }) => {
             <thead className={`${isTableScroll && "relative "} z-50 `}>
               <tr>
                 <th className="w-[2rem] text-center">#</th>
-                <th className="w-[4.5rem] md:w-[6rem]">Status</th>
                 <th>Category</th>
                 {getAllmonths?.map((item, key) => {
                   return <th key={key}>{item}</th>;
@@ -218,7 +238,32 @@ const NadaDepreciationWithAddList = ({ setItemEdit }) => {
                 </tr>
               )}
 
-              {result?.pages.map((page, key) => (
+              {currentCostWithAdd?.data.map((itemCost, keyCost) => {
+                return (
+                  <tr key={keyCost}>
+                    <td className="text-center">{counter++}.</td>
+                    <td className="!pl-0">
+                      {itemCost.current_cost_with_add_name}
+                    </td>
+                    {/* {getAllmonths().map((item, key) => {
+                      console.log(item);
+                    })} */}
+                    {/* {result?.pages.map((page, key) => (
+                      <React.Fragment key={key}>
+                        {page.data.map((item, key) => {
+                          return (
+                            <td className="!pl-0" key={key}>
+                              {item.nada_depreciation_with_add_amount}
+                            </td>
+                          );
+                        })}
+                      </React.Fragment>
+                    ))} */}
+                  </tr>
+                );
+              })}
+
+              {/* {result?.pages.map((page, key) => (
                 <React.Fragment key={key}>
                   {page.data.map((item, key) => {
                     return (
@@ -238,7 +283,13 @@ const NadaDepreciationWithAddList = ({ setItemEdit }) => {
                             <Status text="Inactive" />
                           )}
                         </td>
-                        <td>{item.nada_depreciation_with_add_name}</td>
+                        {currentCostWithAdd?.data.map((itemCost, keyCost) => {
+                          return (
+                            <td key={keyCost}>
+                              {itemCost.current_cost_with_add_name}
+                            </td>
+                          );
+                        })}
 
                         <td
                           colSpan={"100%"}
@@ -291,7 +342,7 @@ const NadaDepreciationWithAddList = ({ setItemEdit }) => {
                     );
                   })}
                 </React.Fragment>
-              ))}
+              ))} */}
             </tbody>
           </table>
           <div className="flex flex-col items-center justify-center pb-10 loadmore">
