@@ -15,13 +15,13 @@ class OfficeSupport
     public $office_support_search;
 
     public $tblOfficeSupport;
-    public $tblCarExpense;
+    public $tblCarOfficeSupport;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblOfficeSupport = "glav1_settings_office_support";
-        $this->tblCarExpense = "glav1_car_expense";
+        $this->tblCarOfficeSupport = "glav1_car_office_support";
     }
 
     // create
@@ -122,6 +122,26 @@ class OfficeSupport
             $sql .= "where office_support_name like :office_support_name ";
             $sql .= "order by office_support_is_active desc, ";
             $sql .= "office_support_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "office_support_name" => "%{$this->office_support_search}%"
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function searchByOfficeSupport()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblOfficeSupport} ";
+            $sql .= "where office_support_name like :office_support_name ";
+            $sql .= "and office_support_is_active = 1 ";
+            $sql .= "order by office_support_name asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "office_support_name" => "%{$this->office_support_search}%"
@@ -252,7 +272,7 @@ class OfficeSupport
     public function checkAssociation()
     {
         try {
-            $sql = "select income_profits_and_loss_id from {$this->tblCarExpense} ";
+            $sql = "select income_profits_and_loss_id from {$this->tblCarOfficeSupport} ";
             $sql .= "where income_profits_and_loss_id = :office_support_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([

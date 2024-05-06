@@ -3,6 +3,8 @@ controllers
 2. rest/v1/controllers/developer/settings/expense
 3. rest/v1/controllers/developer/car/car-profit-and-loss
 4. rest/v1/controllers/developer/car/view-car/car-direct-delivery
+5. rest/v1/controllers/developer/car/view-car/car-cogs
+6. rest/v1/controllers/developer/car/view-car/car-office-support
 
 models
 1. rest/v1/models/developer/settings/profit-and-loss/ProfitAndLoss.php
@@ -10,6 +12,8 @@ models
 4. rest/v1/models/developer/car/car-profit-and-loss
 5. rest/v1/models/developer/settings/profit-and-loss 
 6. rest/v1/models/developer/car/view-car/CarDirectDelivery.php
+7. rest/v1/models/developer/car/view-car 
+8. rest/v1/models/developer/car/car-profit-and-loss
 
 db-backup
 1. rest/v1/db-backup/glav1_settings_profit_and_loss.sql
@@ -18,5 +22,7 @@ db-backup
 4. rest/v1/db-backup/glav1_settings_office_support.sql
 5. rest/v1/db-backup/glav1_car_profit_and_loss.sql
 6. rest/v1/db-backup/glav1_car_direct_delivery.sql
+7. rest/v1/db-backup/glav1_car_cogs.sql
+8. rest/v1/db-backup/glav1_car_office_support.sql
 
 rest/v1/.htaccess

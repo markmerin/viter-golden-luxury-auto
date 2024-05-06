@@ -15,3 +15,11 @@ function checkFilterByStatusAndSearch($object)
     checkQuery($query, "Empty records. (filter by status)");
     return $query;
 }
+
+// search cogs
+function checkSearchByCogs($object)
+{
+    $query = $object->searchByCogs();
+    checkQuery($query, "Empty records. (search cogs)");
+    return $query;
+}

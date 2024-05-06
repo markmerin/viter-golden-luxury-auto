@@ -188,10 +188,12 @@ class CarDirectDelivery
         try {
             $sql = "select car_direct_delivery_car_id from {$this->tblCarDirectDelivery} ";
             $sql .= "where car_direct_delivery_car_id = :car_direct_delivery_car_id ";
+            $sql .= "and car_direct_delivery_id = :car_direct_delivery_id ";
             $sql .= "and car_direct_delivery_date = :car_direct_delivery_date ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "car_direct_delivery_car_id" => $this->car_direct_delivery_car_id,
+                "car_direct_delivery_id" => $this->car_direct_delivery_id,
                 "car_direct_delivery_date" => $this->car_direct_delivery_date
             ]);
         } catch (PDOException $ex) {

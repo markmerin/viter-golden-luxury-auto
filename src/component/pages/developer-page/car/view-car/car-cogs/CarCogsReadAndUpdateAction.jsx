@@ -1,25 +1,22 @@
+import React from "react";
+import { getCarCogsAmountByYearMonth } from "./function-car-cogs";
 import { numberWithCommas } from "@/component/helpers/functions-general";
-import { getCarProfitAndLostAmountByYearMonth } from "./function-car-profit-and-loss";
 
-const CarProfitReadAndUpdateAction = ({
-  item,
-  carProfitAndLoss,
-  handleEdit,
-}) => {
+const CarCogsReadAndUpdateAction = ({ item, carCogs, handleEdit }) => {
   let totalRow = 0;
   const perMonthData = {
-    january: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 0),
-    february: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 1),
-    march: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 2),
-    april: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 3),
-    may: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 4),
-    june: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 5),
-    july: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 6),
-    august: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 7),
-    september: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 8),
-    october: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 9),
-    november: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 10),
-    december: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 11),
+    january: getCarCogsAmountByYearMonth(item, carCogs, 0),
+    february: getCarCogsAmountByYearMonth(item, carCogs, 1),
+    march: getCarCogsAmountByYearMonth(item, carCogs, 2),
+    april: getCarCogsAmountByYearMonth(item, carCogs, 3),
+    may: getCarCogsAmountByYearMonth(item, carCogs, 4),
+    june: getCarCogsAmountByYearMonth(item, carCogs, 5),
+    july: getCarCogsAmountByYearMonth(item, carCogs, 6),
+    august: getCarCogsAmountByYearMonth(item, carCogs, 7),
+    september: getCarCogsAmountByYearMonth(item, carCogs, 8),
+    october: getCarCogsAmountByYearMonth(item, carCogs, 9),
+    november: getCarCogsAmountByYearMonth(item, carCogs, 10),
+    december: getCarCogsAmountByYearMonth(item, carCogs, 11),
   };
 
   totalRow =
@@ -40,11 +37,11 @@ const CarProfitReadAndUpdateAction = ({
     <>
       <td
         className={`text-right ${
-          Number(perMonthData.january.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.january.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.january.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.january.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.january)
         }
       >
@@ -52,11 +49,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.february.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.february.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.february.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.february.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.february)
         }
       >
@@ -64,11 +61,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.march.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.march.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.march.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.march.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.march)
         }
       >
@@ -76,11 +73,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.april.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.april.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.april.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.april.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.april)
         }
       >
@@ -88,11 +85,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.may.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.may.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.may.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.may.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.may)
         }
       >
@@ -100,11 +97,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.june.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.june.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.june.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.june.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.june)
         }
       >
@@ -112,11 +109,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.july.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.july.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.july.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.july.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.july)
         }
       >
@@ -124,11 +121,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.august.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.august.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.august.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.august.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.august)
         }
       >
@@ -136,11 +133,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.september.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.september.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.september.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.september.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.september)
         }
       >
@@ -148,11 +145,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.october.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.october.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.october.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.october.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.october)
         }
       >
@@ -160,11 +157,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.november.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.november.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.november.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.november.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.november)
         }
       >
@@ -172,11 +169,11 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.december.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.december.car_cogs_aid) > 0 &&
           "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
-          Number(perMonthData.december.car_profit_and_loss_aid) > 0 &&
+          Number(perMonthData.december.car_cogs_aid) > 0 &&
           handleEdit(perMonthData.december)
         }
       >
@@ -187,4 +184,4 @@ const CarProfitReadAndUpdateAction = ({
   );
 };
 
-export default CarProfitReadAndUpdateAction;
+export default CarCogsReadAndUpdateAction;

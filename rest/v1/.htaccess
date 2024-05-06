@@ -105,6 +105,7 @@ RewriteRule ^direct-delivery/([0-9]+)$ controllers/developer/settings/expense/di
 RewriteRule ^direct-delivery/active/([0-9]+)$ controllers/developer/settings/expense/direct-delivery/active.php?directid=$1 [L]
 RewriteRule ^direct-delivery/page/([0-9]+)$ controllers/developer/settings/expense/direct-delivery/page.php?start=$1 [L]
 RewriteRule ^direct-delivery/search$ controllers/developer/settings/expense/direct-delivery/search.php [L]
+RewriteRule ^direct-delivery/search-by-direct-delivery$ controllers/developer/settings/expense/direct-delivery/search-by-direct-delivery.php [L]
 
 ### EXPENSE COGS ###
 RewriteRule ^cogs$ controllers/developer/settings/expense/cogs/cogs.php [L]
@@ -112,6 +113,7 @@ RewriteRule ^cogs/([0-9]+)$ controllers/developer/settings/expense/cogs/cogs.php
 RewriteRule ^cogs/active/([0-9]+)$ controllers/developer/settings/expense/cogs/active.php?cogsid=$1 [L]
 RewriteRule ^cogs/page/([0-9]+)$ controllers/developer/settings/expense/cogs/page.php?start=$1 [L]
 RewriteRule ^cogs/search$ controllers/developer/settings/expense/cogs/search.php [L]
+RewriteRule ^cogs/search-by-cogs$ controllers/developer/settings/expense/cogs/search-by-cogs.php [L]
 
 ### EXPENSE OFFICE SUPPORT ###
 RewriteRule ^office-support$ controllers/developer/settings/expense/office-support/office-support.php [L]
@@ -119,6 +121,7 @@ RewriteRule ^office-support/([0-9]+)$ controllers/developer/settings/expense/off
 RewriteRule ^office-support/active/([0-9]+)$ controllers/developer/settings/expense/office-support/active.php?officeid=$1 [L]
 RewriteRule ^office-support/page/([0-9]+)$ controllers/developer/settings/expense/office-support/page.php?start=$1 [L]
 RewriteRule ^office-support/search$ controllers/developer/settings/expense/office-support/search.php [L]
+RewriteRule ^office-support/search-by-office-support$ controllers/developer/settings/expense/office-support/search-by-office-support.php [L]
 
 ### EXPENSE ###
 RewriteRule ^expenses$ controllers/developer/settings/expenses/expenses.php [L]
@@ -181,6 +184,16 @@ RewriteRule ^records-files/search$ controllers/developer/client/records-files/se
 RewriteRule ^car-profit-and-loss$ controllers/developer/car/car-profit-and-loss/car-profit-and-loss.php [L]
 RewriteRule ^car-profit-and-loss/([0-9]+)$ controllers/developer/car/car-profit-and-loss/car-profit-and-loss.php?carprofitid=$1 [L]
 RewriteRule ^car-profit-and-loss/read-by-date-and-year$ controllers/developer/car/car-profit-and-loss/read-by-date-and-year.php [L]
+
+### CAR COGS ###
+RewriteRule ^car-cogs$ controllers/developer/car/view-car/car-cogs/car-cogs.php [L]
+RewriteRule ^car-cogs/([0-9]+)$ controllers/developer/car/view-car/car-cogs/car-cogs.php?carcogsid=$1 [L]
+RewriteRule ^car-cogs/read-by-date-and-year$ controllers/developer/car/view-car/car-cogs/read-by-date-and-year.php [L]
+
+### CAR OFFICE SUPPORT ###
+RewriteRule ^car-office-support$ controllers/developer/car/view-car/car-office-support/car-office-support.php [L]
+RewriteRule ^car-office-support/([0-9]+)$ controllers/developer/car/view-car/car-office-support/car-office-support.php?carofficeid=$1 [L]
+RewriteRule ^car-office-support/read-by-date-and-year$ controllers/developer/car/view-car/car-office-support/read-by-date-and-year.php [L]
 
 ### CAR DIRECT DELIVERY ###
 RewriteRule ^car-direct-delivery$ controllers/developer/car/view-car/car-direct-delivery/car-direct-delivery.php [L]

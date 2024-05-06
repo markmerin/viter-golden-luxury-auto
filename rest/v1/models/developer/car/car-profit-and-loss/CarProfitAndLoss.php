@@ -188,10 +188,12 @@ class CarProfitAndLoss
         try {
             $sql = "select car_profit_and_loss_car_id from {$this->tblCarProfitAndLoss} ";
             $sql .= "where car_profit_and_loss_car_id = :car_profit_and_loss_car_id ";
+            $sql .= "and car_profit_and_loss_id = :car_profit_and_loss_id ";
             $sql .= "and car_profit_and_loss_date = :car_profit_and_loss_date ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "car_profit_and_loss_car_id" => $this->car_profit_and_loss_car_id,
+                "car_profit_and_loss_id" => $this->car_profit_and_loss_id,
                 "car_profit_and_loss_date" => $this->car_profit_and_loss_date
             ]);
         } catch (PDOException $ex) {

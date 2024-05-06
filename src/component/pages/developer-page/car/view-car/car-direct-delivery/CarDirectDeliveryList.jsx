@@ -12,9 +12,9 @@ import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import { setIsAdd } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import React from "react";
-import CarProfitReadAndUpdateAction from "./CarProfitReadAndUpdateAction";
+import CarDirecttReadAndUpdateAction from "./CarDirecttReadAndUpdateAction";
 
-const CarProfitAndLossList = ({ setItemEdit }) => {
+const CarDirectDeliveryList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const carId = getUrlParam().get("carId");
   const [year, setYear] = React.useState(new Date().getFullYear());
@@ -25,24 +25,24 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
   let counter = 1;
 
   const {
-    isLoading: profitAndLossSettingsIsLoading,
-    isFetching: profitAndLossSettingsIsFetching,
-    error: profitAndLossSettingsError,
-    data: profitAndLossSettings,
+    isLoading: carDirectDeliverySettingsIsLoading,
+    isFetching: carDirectDeliverySettingsIsFetching,
+    error: carDirectDeliverySettingsError,
+    data: carDirectDeliverySettings,
   } = useQueryData(
-    `${apiVersion}/profit-and-loss`, // api
+    `${apiVersion}/direct-delivery`, // api
     "get", // method
-    "profit-and-loss" // key
+    "direct-delivery" // key
   );
 
-  const { isFetching: carProfitAndLossFetching, data: carProfitAndLoss } =
+  const { isFetching: carDirectDeliveryFetching, data: carDirectDelivery } =
     useQueryData(
-      `${apiVersion}/car-profit-and-loss/read-by-date-and-year`, // api
+      `${apiVersion}/car-direct-delivery/read-by-date-and-year`, // api
       "post", // method
-      "car-profit-and-loss/read-by-date-and-year", // key
+      "car-direct-delivery/read-by-date-and-year", // key
       {
-        car_profit_and_loss_car_id: carId,
-        car_profit_and_loss_date: year,
+        car_direct_delivery_car_id: carId,
+        car_direct_delivery_date: year,
       }, // fetch data
       { year }
     );
@@ -94,7 +94,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
         <div className="w-full md:max-w-80"></div>
       </div>
       <div className="relative z-0 overflow-auto text-center rounded-md">
-        {(profitAndLossSettingsIsFetching || carProfitAndLossFetching) && (
+        {(carDirectDeliverySettingsIsFetching || carDirectDeliveryFetching) && (
           <FetchingSpinner />
         )}
         <div
@@ -127,11 +127,11 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
               </tr>
             </thead>
             <tbody className="relative">
-              {(profitAndLossSettingsIsLoading ||
-                profitAndLossSettings?.count === 0) && (
+              {(carDirectDeliverySettingsIsLoading ||
+                carDirectDeliverySettings?.count === 0) && (
                 <tr>
                   <td colSpan="100%" className="p-10">
-                    {profitAndLossSettingsIsLoading ? (
+                    {carDirectDeliverySettingsIsLoading ? (
                       <TableLoading count={20} cols={3} />
                     ) : (
                       <NoData />
@@ -139,7 +139,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
                   </td>
                 </tr>
               )}
-              {profitAndLossSettingsError && (
+              {carDirectDeliverySettingsError && (
                 <tr>
                   <td colSpan="100%" className="p-10">
                     <ServerError />
@@ -147,9 +147,9 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
                 </tr>
               )}
 
-              {profitAndLossSettings?.count > 0 &&
-                profitAndLossSettings?.data.map((item, key) => {
-                  if (item.profit_and_loss_is_active === 0) {
+              {carDirectDeliverySettings?.count > 0 &&
+                carDirectDeliverySettings?.data.map((item, key) => {
+                  if (item.direct_delivery_is_active === 0) {
                     return;
                   }
                   return (
@@ -158,58 +158,21 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
                         {counter++}.
                       </td>
                       <td className="sticky left-[2rem] !pl-0">
-                        {item.profit_and_loss_name}
+                        {item.direct_delivery_name}
                       </td>
-                      <CarProfitReadAndUpdateAction
+                      <CarDirecttReadAndUpdateAction
                         item={item}
-                        carProfitAndLoss={carProfitAndLoss}
+                        carDirectDelivery={carDirectDelivery}
                         handleEdit={handleEdit}
                       />
                     </tr>
                   );
                 })}
-              <tr className="font-bold">
-                <td className="sticky left-0 bottom-20 text-center z-[2]"></td>
-                <td className="sticky left-[2rem] bottom-20 !pl-0 z-[2]">
-                  Car Payment
-                </td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-                <td className="sticky bottom-20 text-right">0.00</td>
-              </tr>
-              <tr className="font-bold">
-                <td className="sticky left-0 bottom-10 text-center z-[2]"></td>
-                <td className="sticky left-[2rem] bottom-10 !pl-0 z-[2]">
-                  Total Expense
-                </td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-                <td className="sticky bottom-10 text-right">0.00</td>
-              </tr>
+
               <tr className="font-bold">
                 <td className="sticky left-0 bottom-0 text-center z-[2]"></td>
-                <td className="sticky left-[2rem] bottom-0 !pl-0 z-[2]">
-                  Total Profit
+                <td className="sticky left-[2rem] text-xs bottom-0 !pl-0 z-[2]">
+                  Totals OPERATING EXPENSE
                 </td>
                 <td className="sticky bottom-0 text-right">0.00</td>
                 <td className="sticky bottom-0 text-right">0.00</td>
@@ -233,4 +196,4 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
   );
 };
 
-export default CarProfitAndLossList;
+export default CarDirectDeliveryList;

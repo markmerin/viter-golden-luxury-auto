@@ -15,13 +15,13 @@ class Cogs
     public $cogs_search;
 
     public $tblCogs;
-    public $tblCarExpense;
+    public $tblCarCogs;
 
     public function __construct($db)
     {
         $this->connection = $db;
         $this->tblCogs = "glav1_settings_cogs";
-        $this->tblCarExpense = "glav1_car_expense";
+        $this->tblCarCogs = "glav1_car_cogs";
     }
 
     // create
@@ -122,6 +122,26 @@ class Cogs
             $sql .= "where cogs_name like :cogs_name ";
             $sql .= "order by cogs_is_active desc, ";
             $sql .= "cogs_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "cogs_name" => "%{$this->cogs_search}%"
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function searchByCogs()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblCogs} ";
+            $sql .= "where cogs_name like :cogs_name ";
+            $sql .= "and cogs_is_active = 1 ";
+            $sql .= "order by cogs_name asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "cogs_name" => "%{$this->cogs_search}%"
@@ -252,7 +272,7 @@ class Cogs
     public function checkAssociation()
     {
         try {
-            $sql = "select income_profits_and_loss_id from {$this->tblCarExpense} ";
+            $sql = "select income_profits_and_loss_id from {$this->tblCarCogs} ";
             $sql .= "where income_profits_and_loss_id = :cogs_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([

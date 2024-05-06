@@ -23,46 +23,45 @@ import React from "react";
 import { FaTimesCircle } from "react-icons/fa";
 import * as Yup from "yup";
 
-const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
+const ModalAddCarCogs = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const carId = getUrlParam().get("carId");
   const [loading, setLoading] = React.useState(false);
   const [animate, setAnimate] = React.useState("translate-x-full");
   const queryClient = useQueryClient();
 
-  const [profitId, setProfitId] = React.useState(
-    itemEdit ? itemEdit.car_profit_and_loss_id : ""
+  const [carCogsId, setCogsId] = React.useState(
+    itemEdit ? itemEdit.car_cogs_id : ""
   );
-  const [onFocusSubscriber, setOnFocusProfit] = React.useState(false);
-  const [profitValue, setProfitValue] = React.useState("");
-  const [profit, setProfit] = React.useState("");
-  const refProfit = React.useRef({ value: "" });
+  const [onFocusDirect, setOnFocusDirect] = React.useState(false);
+  const [directValue, setDirectValue] = React.useState("");
+  const [direct, setDirect] = React.useState("");
+  const refDirect = React.useRef({ value: "" });
 
   const {
-    isFetching: profitAndLossSettingsIsFetching,
-    data: profitAndLossSettings,
+    isFetching: directDeliverySettingsIsFetching,
+    data: directDeliverySettings,
   } = useQueryData(
-    `${apiVersion}/profit-and-loss/search-by-profit-and-loss`, // api
+    `${apiVersion}/cogs/search-by-cogs`, // api
     "post", // method
-    "profit-and-loss/search-by-profit-and-loss", // key
-    { searchValue: profit },
-    { profit }
+    "cogs/search-by-cogs", // key
+    { searchValue: direct },
+    { direct }
   );
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `${apiVersion}/car-profit-and-loss/${itemEdit.car_profit_and_loss_aid}`
-          : `${apiVersion}/car-profit-and-loss`,
+          ? `${apiVersion}/car-cogs/${itemEdit.car_cogs_aid}`
+          : `${apiVersion}/car-cogs`,
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["carProfitAndLoss"] });
       queryClient.invalidateQueries({
-        queryKey: ["car-profit-and-loss/read-by-date-and-year"],
+        queryKey: ["car-cogs/read-by-date-and-year"],
       });
 
       // show error box
@@ -78,20 +77,16 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
   });
 
   const initVal = {
-    car_profit_and_loss_car_id: carId,
-    car_profit_and_loss_date: itemEdit ? itemEdit.car_profit_and_loss_date : "",
-    car_profit_and_loss_amount: itemEdit
-      ? itemEdit.car_profit_and_loss_amount
-      : "",
+    car_cogs_car_id: carId,
+    car_cogs_date: itemEdit ? itemEdit.car_cogs_date : "",
+    car_cogs_amount: itemEdit ? itemEdit.car_cogs_amount : "",
 
-    car_profit_and_loss_date_old: itemEdit
-      ? itemEdit.car_profit_and_loss_date
-      : "",
+    car_cogs_date_old: itemEdit ? itemEdit.car_cogs_date : "",
   };
 
   const yupSchema = Yup.object({
-    car_profit_and_loss_date: Yup.string().required("Required"),
-    car_profit_and_loss_amount: Yup.string()
+    car_cogs_date: Yup.string().required("Required"),
+    car_cogs_amount: Yup.string()
       .required("Required")
       .matches("^[.0-9]*$", "Please enter a valid number."),
   });
@@ -107,10 +102,10 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
 
   handleEscape(() => handleClose());
 
-  const handleSearchProfit = (e) => {
+  const handleSearchCarCogs = (e) => {
     setLoading(true);
-    setProfitValue(e.target.value);
-    setProfitId(null);
+    setDirectValue(e.target.value);
+    setCogsId(null);
 
     if (e.target.value === "") {
       setLoading(false);
@@ -122,31 +117,31 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
       clearTimeout(timeOut);
       let val = e.target.value;
       if (val === "") {
-        setProfit(val);
+        setDirect(val);
         return;
       }
 
-      setProfit(val);
+      setDirect(val);
       setLoading(false);
     }, 500);
   };
 
-  const handleClickProfit = (item) => {
-    refProfit.current.value = item.profit_and_loss_name;
-    setProfitValue(item.profit_and_loss_name);
-    setProfit(item.profit_and_loss_name);
-    setProfitId(item.profit_and_loss_aid);
-    setOnFocusProfit(false);
+  const handleClickCarCogs = (item) => {
+    refDirect.current.value = item.cogs_name;
+    setDirectValue(item.cogs_name);
+    setDirect(item.cogs_name);
+    setCogsId(item.cogs_aid);
+    setOnFocusDirect(false);
   };
 
   const handleClickOutsideSearch = (e) => {
     if (
       !itemEdit &&
-      refProfit.current !== undefined &&
-      refProfit.current !== null &&
-      !refProfit.current.contains(e.target)
+      refDirect.current !== undefined &&
+      refDirect.current !== null &&
+      !refDirect.current.contains(e.target)
     ) {
-      setOnFocusProfit(false);
+      setOnFocusDirect(false);
     }
   };
 
@@ -162,7 +157,7 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
       >
         <div className="relative mb-4 modal_header">
           <h3 className="text-sm text-black">
-            {itemEdit ? "Update" : "Add"} Car Profit and Loss
+            {itemEdit ? "Update" : "Add"} Car Direct Delivery
           </h3>
           <button
             type="button"
@@ -178,14 +173,14 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
             initialValues={initVal}
             validationSchema={yupSchema}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
-              if (profitId === "") {
+              if (carCogsId === "") {
                 dispatch(setError(true));
-                dispatch(setMessage(`Profit and loss is required.`));
+                dispatch(setMessage(`Direct delivery is required.`));
                 return;
               }
               const data = {
                 ...values,
-                car_profit_and_loss_id: profitId,
+                car_cogs_id: carCogsId,
               };
               // console.log(data);
               // mutate data
@@ -203,32 +198,34 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
                       <>
                         <div className="relative mb-6 mt-5">
                           <InputText
-                            label="Profit and Loss"
+                            label="Direct Delivery"
                             type="text"
-                            name="car_profit_and_loss_id"
-                            onChange={handleSearchProfit}
-                            value={profitValue}
+                            name="car_cogs_id"
+                            onChange={handleSearchCarCogs}
+                            value={directValue}
                             onFocus={() => {
-                              setOnFocusProfit(true);
+                              setOnFocusDirect(true);
                             }}
                             disabled={mutation.isLoading}
-                            refVal={refProfit}
+                            refVal={refDirect}
                           />
-                          {onFocusSubscriber && (
+                          {onFocusDirect && (
                             <ul className="absolute z-[51] h-48 overflow-y-auto w-full bg-white border border-gray-200 rounded-md ">
-                              {loading || profitAndLossSettingsIsFetching ? (
+                              {loading || directDeliverySettingsIsFetching ? (
                                 <FetchingSpinner />
-                              ) : profitAndLossSettings?.count > 0 ? (
-                                profitAndLossSettings?.data.map((item, key) => (
-                                  <button
-                                    type="button"
-                                    className={`leading-loose h-fit pl-3 text-xs pr-3 w-full text-left break-all bg-white hover:bg-dark/5 focus:bg-dark/5  duration-200`}
-                                    key={key}
-                                    onClick={() => handleClickProfit(item)}
-                                  >
-                                    {item.profit_and_loss_name}
-                                  </button>
-                                ))
+                              ) : directDeliverySettings?.count > 0 ? (
+                                directDeliverySettings?.data.map(
+                                  (item, key) => (
+                                    <button
+                                      type="button"
+                                      className={`leading-loose h-fit pl-3 text-xs pr-3 w-full text-left break-all bg-white hover:bg-dark/5 focus:bg-dark/5  duration-200`}
+                                      key={key}
+                                      onClick={() => handleClickCarCogs(item)}
+                                    >
+                                      {item.cogs_name}
+                                    </button>
+                                  )
+                                )
                               ) : (
                                 <li className=" p-2 w-full text-center bg-white focus:bg-gray-200 border-b border-white">
                                   <NoData />
@@ -241,7 +238,7 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
                           <InputText
                             label="Month And Year"
                             type="month"
-                            name="car_profit_and_loss_date"
+                            name="car_cogs_date"
                             disabled={mutation.isPending}
                           />
                         </div>
@@ -251,7 +248,7 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
                       <InputText
                         label="Amount"
                         type="text"
-                        name="car_profit_and_loss_amount"
+                        name="car_cogs_amount"
                         disabled={mutation.isPending}
                       />
                     </div>
@@ -290,4 +287,4 @@ const ModalAddCarProfitAndLoss = ({ itemEdit }) => {
   );
 };
 
-export default ModalAddCarProfitAndLoss;
+export default ModalAddCarCogs;

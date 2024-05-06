@@ -20,8 +20,8 @@ class DirectDelivery
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblDirectDelivery = "glav1_car_direct_delivery";
-        $this->tblCarDirectDelivery = "glav1_car_expense";
+        $this->tblDirectDelivery = "glav1_settings_direct_delivery";
+        $this->tblCarDirectDelivery = "glav1_car_direct_delivery";
     }
 
     // create
@@ -122,6 +122,26 @@ class DirectDelivery
             $sql .= "where direct_delivery_name like :direct_delivery_name ";
             $sql .= "order by direct_delivery_is_active desc, ";
             $sql .= "direct_delivery_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "direct_delivery_name" => "%{$this->direct_delivery_search}%"
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function searchByDirectDelivery()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblDirectDelivery} ";
+            $sql .= "where direct_delivery_name like :direct_delivery_name ";
+            $sql .= "and direct_delivery_is_active = 1 ";
+            $sql .= "order by direct_delivery_name asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "direct_delivery_name" => "%{$this->direct_delivery_search}%"

@@ -15,3 +15,11 @@ function checkFilterByStatusAndSearch($object)
     checkQuery($query, "Empty records. (filter by status)");
     return $query;
 }
+
+// search office support
+function checkSearchByOfficeSupport($object)
+{
+    $query = $object->searchByOfficeSupport();
+    checkQuery($query, "Empty records. (search office support)");
+    return $query;
+}
