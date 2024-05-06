@@ -363,6 +363,19 @@ const Navigation = ({ menu, submenu = null }) => {
                   Totals
                 </Link>
               </li>
+              <li>
+                <Link
+                  onClick={() => handleLinkClick()}
+                  to={`${devNavUrl}/${link}/settings/supplemental-information`}
+                  className={`text-xs mb-1.5 text-dark border-l-2 hover:!border-primary duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block ${
+                    submenu === "supplemental-information"
+                      ? "active__submenu"
+                      : "text-white block hover:!border-white duration-150 !border-l-2 border-transparent rounded-r-md pl-2"
+                  }`}
+                >
+                  Supplemental Information
+                </Link>
+              </li>
             </ul>
           )}
         </ul>
