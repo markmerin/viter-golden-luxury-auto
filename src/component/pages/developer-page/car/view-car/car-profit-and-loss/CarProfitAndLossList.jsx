@@ -5,7 +5,6 @@ import {
   getUserType,
   getYear,
 } from "@/component/helpers/functions-general";
-import { queryDataInfinite } from "@/component/helpers/queryDataInfinite";
 import NoData from "@/component/partials/NoData";
 import ServerError from "@/component/partials/ServerError";
 import TableLoading from "@/component/partials/TableLoading";
@@ -13,17 +12,10 @@ import ModalArchive from "@/component/partials/modals/ModalArchive";
 import ModalDelete from "@/component/partials/modals/ModalDelete";
 import ModalRestore from "@/component/partials/modals/ModalRestore";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
-import {
-  setIsAdd,
-  setIsArchive,
-  setIsDelete,
-  setIsRestore,
-} from "@/store/StoreAction";
+import { setIsAdd } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import { useNavigate } from "react-router-dom";
 import CarProfitReadAndUpdateAction from "./CarProfitReadAndUpdateAction";
 
 const CarProfitAndLossList = ({ setItemEdit }) => {

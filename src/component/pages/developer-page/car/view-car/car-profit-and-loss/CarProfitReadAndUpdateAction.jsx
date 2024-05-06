@@ -41,11 +41,11 @@ const CarProfitReadAndUpdateAction = ({
     <>
       <td
         className={`text-right ${
-          Number(perMonthData.january.amount) > 0 &&
+          Number(perMonthData.january.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
         onClick={() =>
-          Number(perMonthData.january.amount) > 0 &&
+          Number(perMonthData.january.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.january)
         }
       >
@@ -53,89 +53,133 @@ const CarProfitReadAndUpdateAction = ({
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.february.amount) > 0 &&
+          Number(perMonthData.february.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.february.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.february)
+        }
       >
         {perMonthData.february.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.march.amount) > 0 &&
+          Number(perMonthData.march.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.march.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.march)
+        }
       >
         {perMonthData.march.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.april.amount) > 0 &&
+          Number(perMonthData.april.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.april.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.april)
+        }
       >
         {perMonthData.april.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.may.amount) > 0 &&
+          Number(perMonthData.may.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.may.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.may)
+        }
       >
         {perMonthData.may.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.june.amount) > 0 &&
+          Number(perMonthData.june.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.june.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.june)
+        }
       >
         {perMonthData.june.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.july.amount) > 0 &&
+          Number(perMonthData.july.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.july.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.july)
+        }
       >
         {perMonthData.july.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.august.amount) > 0 &&
+          Number(perMonthData.august.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.august.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.august)
+        }
       >
         {perMonthData.august.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.september.amount) > 0 &&
+          Number(perMonthData.september.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.september.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.september)
+        }
       >
         {perMonthData.september.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.october.amount) > 0 &&
+          Number(perMonthData.october.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.october.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.october)
+        }
       >
         {perMonthData.october.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.november.amount) > 0 &&
+          Number(perMonthData.november.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.november.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.november)
+        }
       >
         {perMonthData.november.amount}
       </td>
       <td
         className={`text-right ${
-          Number(perMonthData.december.amount) > 0 &&
+          Number(perMonthData.december.car_profit_and_loss_aid) > 0 &&
           "cursor-pointer hover:underline"
         }`}
+        onClick={() =>
+          Number(perMonthData.december.car_profit_and_loss_aid) > 0 &&
+          handleEdit(perMonthData.december)
+        }
       >
         {perMonthData.december.amount}
       </td>
