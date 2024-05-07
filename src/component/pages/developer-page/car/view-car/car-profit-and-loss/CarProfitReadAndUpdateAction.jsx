@@ -1,4 +1,4 @@
-import React from "react";
+import { numberWithCommas } from "@/component/helpers/functions-general";
 import { getCarProfitAndLostAmountByYearMonth } from "./function-car-profit-and-loss";
 
 const CarProfitReadAndUpdateAction = ({
@@ -22,7 +22,7 @@ const CarProfitReadAndUpdateAction = ({
     december: getCarProfitAndLostAmountByYearMonth(item, carProfitAndLoss, 11),
   };
 
-  totalRow = (
+  totalRow =
     Number(perMonthData.january.amount) +
     Number(perMonthData.february.amount) +
     Number(perMonthData.march.amount) +
@@ -34,156 +34,155 @@ const CarProfitReadAndUpdateAction = ({
     Number(perMonthData.september.amount) +
     Number(perMonthData.october.amount) +
     Number(perMonthData.november.amount) +
-    Number(perMonthData.december.amount)
-  ).toFixed(2);
+    Number(perMonthData.december.amount);
 
   return (
     <>
       <td
         className={`text-right ${
           Number(perMonthData.january.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.january.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.january)
         }
       >
-        {perMonthData.january.amount}
+        {numberWithCommas(perMonthData.january.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.february.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.february.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.february)
         }
       >
-        {perMonthData.february.amount}
+        {numberWithCommas(perMonthData.february.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.march.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.march.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.march)
         }
       >
-        {perMonthData.march.amount}
+        {numberWithCommas(perMonthData.march.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.april.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.april.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.april)
         }
       >
-        {perMonthData.april.amount}
+        {numberWithCommas(perMonthData.april.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.may.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.may.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.may)
         }
       >
-        {perMonthData.may.amount}
+        {numberWithCommas(perMonthData.may.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.june.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.june.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.june)
         }
       >
-        {perMonthData.june.amount}
+        {numberWithCommas(perMonthData.june.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.july.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.july.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.july)
         }
       >
-        {perMonthData.july.amount}
+        {numberWithCommas(perMonthData.july.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.august.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.august.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.august)
         }
       >
-        {perMonthData.august.amount}
+        {numberWithCommas(perMonthData.august.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.september.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.september.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.september)
         }
       >
-        {perMonthData.september.amount}
+        {numberWithCommas(perMonthData.september.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.october.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.october.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.october)
         }
       >
-        {perMonthData.october.amount}
+        {numberWithCommas(perMonthData.october.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.november.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.november.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.november)
         }
       >
-        {perMonthData.november.amount}
+        {numberWithCommas(perMonthData.november.amount, 2)}
       </td>
       <td
         className={`text-right ${
           Number(perMonthData.december.car_profit_and_loss_aid) > 0 &&
-          "cursor-pointer hover:underline"
+          "cursor-pointer hover:underline text-accent"
         }`}
         onClick={() =>
           Number(perMonthData.december.car_profit_and_loss_aid) > 0 &&
           handleEdit(perMonthData.december)
         }
       >
-        {perMonthData.december.amount}
+        {numberWithCommas(perMonthData.december.amount, 2)}
       </td>
-      <td className="text-right">{totalRow}</td>
+      <td className="text-right">{numberWithCommas(totalRow.toFixed(2), 2)}</td>
     </>
   );
 };

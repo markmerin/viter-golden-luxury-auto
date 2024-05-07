@@ -44,6 +44,9 @@ import UserClient from "../component/pages/developer-page/settings/users/other/c
 import UserMain from "../component/pages/developer-page/settings/users/other/main/UserMain";
 import Roles from "../component/pages/developer-page/settings/users/roles/Roles";
 import UserSystem from "../component/pages/developer-page/settings/users/system/UserSystem";
+import CarSupplementalInformation from "@/component/pages/developer-page/car/view-car/car-supplemental-information/CarSupplementalInformation";
+import CarManagementAndCarOwnerSplit from "@/component/pages/developer-page/car/view-car/car-expenses/CarManagementAndCarOwnerSplit";
+import SupplementalInformation from "@/component/pages/developer-page/settings/supplemental-information/SupplementalInformation";
 
 export const routesDeveloper = [
   {
@@ -225,6 +228,14 @@ export const routesDeveloper = [
     ),
   },
   {
+    path: `${devNavUrl}/${developerPath}/settings/supplemental-information`,
+    element: (
+      <ProtectedRouteSystem>
+        <SupplementalInformation />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
     path: `${devNavUrl}/${developerPath}/settings/totals`,
     element: (
       <ProtectedRouteSystem>
@@ -387,6 +398,22 @@ export const routesDeveloper = [
     element: (
       <ProtectedRouteSystem>
         <CarTotals />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/expenses`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarManagementAndCarOwnerSplit />
+      </ProtectedRouteSystem>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${developerPath}/car/view-car/supplemental-information`,
+    element: (
+      <ProtectedRouteSystem>
+        <CarSupplementalInformation />
       </ProtectedRouteSystem>
     ),
   },

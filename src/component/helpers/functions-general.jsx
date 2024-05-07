@@ -9,16 +9,16 @@ import {
 } from "../../store/StoreAction";
 import { StoreContext } from "../../store/StoreContext";
 
-// // // Mac // Mon
-const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
-const imgUrlPath =
-  "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
+// Mac // Mon
+// const urlPathLcss = "http://localhost/react-vite/viter-golden-luxury-auto";
+// const imgUrlPath =
+//   "http://localhost/react-vite/viter-golden-luxury-auto/public/img";
 
 // // // // // Patrick
-// const urlPathLcss = `https://devapp.fbasapp.com`;
-// const imgUrlPath = `https://devapp.fbasapp.com/img`;
+const urlPathLcss = `https://devapp.fbasapp.com`;
+const imgUrlPath = `https://devapp.fbasapp.com/img`;
 
-// // // // Local Dev and Online Dev URL
+// // // Local Dev and Online Dev URL
 export const devApiUrl = `${urlPathLcss}/rest`;
 export const devBaseUrl = `${urlPathLcss}`;
 export const devBaseImgUrl = `${imgUrlPath}`;

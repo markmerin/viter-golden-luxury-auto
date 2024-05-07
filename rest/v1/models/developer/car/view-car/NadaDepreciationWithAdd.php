@@ -98,12 +98,22 @@ class NadaDepreciationWithAdd
     public function readById()
     {
         try {
-            $sql = "select * from {$this->tblNadaDepreciationWithAdd} ";
-            $sql .= "where nada_depreciation_with_add_aid = :nada_depreciation_with_add_aid ";
-            $sql .= "order by nada_depreciation_with_add_id asc ";
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblNadaDepreciationWithAdd} as nada, ";
+            $sql .= "{$this->tblCurrentCostWithAdd} as cost, ";
+            $sql .= "{$this->tblCar} as car, ";
+            $sql .= "{$this->tblCarMake} as make ";
+            $sql .= "where nada.nada_depreciation_with_add_id = cost.current_cost_with_add_aid ";
+            $sql .= "and nada.nada_depreciation_with_add_car_id = car.car_aid ";
+            $sql .= "and car.car_vehicle_make_id = make.car_make_aid ";
+            $sql .= "and car.car_aid = :nada_depreciation_with_add_car_id ";
+            $sql .= "order by nada_depreciation_with_add_is_active desc, ";
+            $sql .= "nada_depreciation_with_add_id asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "nada_depreciation_with_add_aid" => $this->nada_depreciation_with_add_aid,
+                "nada_depreciation_with_add_car_id" => $this->nada_depreciation_with_add_car_id,
             ]);
         } catch (PDOException $ex) {
             $query = false;

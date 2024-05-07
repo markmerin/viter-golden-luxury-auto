@@ -76,6 +76,15 @@ const ViewCar = () => {
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
               {getPageLink(
                 link,
+                `car/view-car/expenses?carId=${carId}`,
+                "Expenses"
+              )}
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(
+                link,
                 `car/view-car/profit-and-loss?carId=${carId}`,
                 "Profit and loss"
               )}
@@ -125,6 +134,15 @@ const ViewCar = () => {
           <li>
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
               {getPageLink(link, `car/view-car/totals?carId=${carId}`, "Total")}
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
+              {getPageLink(
+                link,
+                `car/view-car/supplemental-information?carId=${carId}`,
+                "Supplemental Information"
+              )}
             </div>
           </li>
         </ul>

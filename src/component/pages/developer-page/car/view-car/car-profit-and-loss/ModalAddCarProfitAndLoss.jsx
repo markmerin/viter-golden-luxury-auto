@@ -10,7 +10,6 @@ import NoData from "@/component/partials/NoData";
 import ModalWrapperSide from "@/component/partials/modals/ModalWrapperSide";
 import ButtonSpinner from "@/component/partials/spinners/ButtonSpinner";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
-import TableSpinner from "@/component/partials/spinners/TableSpinner";
 import {
   setError,
   setIsAdd,

@@ -15,3 +15,11 @@ function checkFilterByStatusAndSearch($object)
     checkQuery($query, "Empty records. (filter by status)");
     return $query;
 }
+
+// search direct delivery
+function checkSearchByDirectDelivery($object)
+{
+    $query = $object->searchByDirectDelivery();
+    checkQuery($query, "Empty records. (search direct delivery)");
+    return $query;
+}
