@@ -1,5 +1,9 @@
 import useQueryData from "@/component/custom-hooks/useQueryData";
-import { apiVersion, isDemoMode } from "@/component/helpers/functions-general";
+import {
+  apiVersion,
+  getUrlParam,
+  isDemoMode,
+} from "@/component/helpers/functions-general";
 import FetchingSpinner from "@/component/partials/spinners/FetchingSpinner";
 import React from "react";
 
@@ -19,6 +23,34 @@ import CarTotalCarValue from "./car-total-car-value/CarTotalCarValue";
 
 const CarTotals = ({ client }) => {
   const { store } = React.useContext(StoreContext);
+  const carId = getUrlParam().get("carId");
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: carById,
+  } = useQueryData(
+    `${apiVersion}/car/read-by-id`, // endpoint
+    "post", // method
+    "car/read-by-id", // key
+    { car_aid: carId },
+    { car_aid: carId }
+  );
+
+  if (
+    (!isLoading && !isFetching && carById?.count === 0) ||
+    isNaN(carId) ||
+    carId === undefined ||
+    error
+  ) {
+    return <PageNotFound />;
+  }
+
+  const car =
+    isLoading || isFetching
+      ? "Loading..."
+      : `${carById?.data[0].car_make_name} ${carById?.data[0].car_specs} ${carById?.data[0].car_year}`;
 
   return (
     <>
@@ -31,11 +63,18 @@ const CarTotals = ({ client }) => {
           }`}
         >
           <div className="flex items-start justify-between mt-1 md:ml-0 print:hidden">
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center max-w-[40rem] w-full">
               <BreadCrumbs param={location.search} />
-              <h4 className="my-3 text-base capitalize">
-                {location.pathname.split("/").pop().replaceAll("-", " ")}
-              </h4>
+
+              <div className="flex items-end justify-between w-full">
+                <div>
+                  <h4 className="my-3 text-base capitalize">
+                    {location.pathname.split("/").pop().replaceAll("-", " ")}
+                  </h4>
+                  <h5 className="">{car}</h5>
+                </div>
+                <p>dropdown year</p>
+              </div>
             </div>
           </div>
           <div className="max-w-[40rem] pt-3 pb-4 relative">

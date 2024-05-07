@@ -1,46 +1,35 @@
+import useQueryData from "@/component/custom-hooks/useQueryData";
+import NoData from "@/component/partials/NoData";
+import ServerError from "@/component/partials/ServerError";
+import TableLoading from "@/component/partials/TableLoading";
 import { StoreContext } from "@/store/StoreContext";
 import React from "react";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaPlus } from "react-icons/fa";
+import CarPurchaseDocumentsList from "./CarPurchaseDocumentsList";
+import { setIsAdd } from "@/store/StoreAction";
+import ModalAddCarPurchaseDocuments from "./ModalAddCarPurchaseDocuments";
 
 const CarPurchaseDocuments = () => {
   const { store, dispatch } = React.useContext(StoreContext);
+  const [itemEdit, setItemEdit] = React.useState(null);
+
+  const handleAdd = () => {
+    dispatch(setIsAdd(true));
+    setItemEdit(null);
+  };
+
   return (
     <>
       <div className="flex items-center justify-between py-2 mb-3 border-b">
         <h4 className="text-sm text-accent">Purchase Documents</h4>
-        {store.credentials.data.role_is_client !== 1 && (
-          <button
-            type="button"
-            className="tooltip-action-table hover:text-accent"
-            data-tooltip="Edit"
-            onClick={() => handleEdit(item)}
-          >
-            <FaEdit />
-          </button>
-        )}
       </div>
-      <div className="md:flex">
-        <div>
-          <p className="flex">
-            <span className="w-[25em] font-bold mr-3">
-              Trade Inn or Cash Down Payment
-            </span>
-            <span className="w-[22rem]">xxxx</span>
-          </p>
-          <p className="flex">
-            <span className="w-[25em] font-bold mr-3">Purchase Price </span>
-            <span className="w-[22rem]">xxxxx</span>
-          </p>
-          <p className="flex">
-            <span className="w-[25em] font-bold mr-3">Contact:</span>
-            <span className="w-[22rem]"></span>
-          </p>
-          <p className="flex">
-            <span className="w-[25em] font-bold mr-3">Email:</span>
-            <span className="w-[22rem]"></span>
-          </p>
-        </div>
-      </div>
+
+      <button className="flex items-center gap-2 font-bold" onClick={handleAdd}>
+        <FaPlus /> Add
+      </button>
+      <CarPurchaseDocumentsList />
+
+      {store.isAdd && <ModalAddCarPurchaseDocuments itemEdit={itemEdit} />}
     </>
   );
 };

@@ -106,7 +106,11 @@ const ViewCar = () => {
           </li>
           <li>
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-              {getPageLink(link, "car/view-car/history", "History")}
+              {getPageLink(
+                link,
+                `car/view-car/history?carId=${carId}`,
+                "History"
+              )}
             </div>
           </li>
           <li>
@@ -120,7 +124,7 @@ const ViewCar = () => {
           </li>
           <li>
             <div className="flex items-center justify-between border-b border-gray-300 border-solid group">
-              {getPageLink(link, "car/view-car/totals", "Total")}
+              {getPageLink(link, `car/view-car/totals?carId=${carId}`, "Total")}
             </div>
           </li>
         </ul>

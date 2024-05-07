@@ -20,7 +20,7 @@ class PurchaseFinanced
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblPurchasefinanced = "glav1_purchase_financed";
+        $this->tblPurchasefinanced = "glav1_settings_purchase_financed";
     }
 
     // create

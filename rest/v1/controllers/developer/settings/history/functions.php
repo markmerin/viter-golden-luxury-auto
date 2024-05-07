@@ -15,10 +15,13 @@ function checkFilterByStatusAndSearch($object)
     checkQuery($query, "Empty records. (filter by status)");
     return $query;
 }
-// check association
-function isHistoryAssociated($object)
+
+
+
+// search by profit and loss
+function checkSearchByHistory($object)
 {
-    $query = $object->checkHistoryAssociation();
-    $count = $query->rowCount();
-    checkExistence($count, "You cannot delete this item because it is already associated with other module.");
+    $query = $object->searchByHistory();
+    checkQuery($query, "Empty record. (search by history)");
+    return $query;
 }

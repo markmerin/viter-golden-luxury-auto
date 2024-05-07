@@ -16,9 +16,10 @@ import { setIsAdd } from "@/store/StoreAction";
 import { StoreContext } from "@/store/StoreContext";
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import CarProfitReadAndUpdateAction from "./CarProfitReadAndUpdateAction";
+import CarHistoryReadAndUpdateAction from "./CarHistoryReadAndUpdateAction";
+// import CarProfitReadAndUpdateAction from "./CarProfitReadAndUpdateAction";
 
-const CarProfitAndLossList = ({ setItemEdit }) => {
+const CarHistoryList = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const carId = getUrlParam().get("carId");
   const [year, setYear] = React.useState(new Date().getFullYear());
@@ -39,27 +40,26 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
   let counter = 1;
 
   const {
-    isLoading: profitAndLossSettingsIsLoading,
-    isFetching: profitAndLossSettingsIsFetching,
-    error: profitAndLossSettingsError,
-    data: profitAndLossSettings,
+    isLoading: historySettingsIsLoading,
+    isFetching: historySettingsIsFetching,
+    error: historySettingsError,
+    data: historySettings,
   } = useQueryData(
-    `${apiVersion}/profit-and-loss`, // api
+    `${apiVersion}/history`, // api
     "get", // method
-    "profit-and-loss" // key
+    "history" // key
   );
 
-  const { isFetching: carProfitAndLossFetching, data: carProfitAndLoss } =
-    useQueryData(
-      `${apiVersion}/car-profit-and-loss/read-by-date-and-year`, // api
-      "post", // method
-      "car-profit-and-loss/read-by-date-and-year", // key
-      {
-        car_profit_and_loss_car_id: carId,
-        car_profit_and_loss_date: year,
-      }, // fetch data
-      { year }
-    );
+  const { isFetching: carHistoryFetching, data: carHistory } = useQueryData(
+    `${apiVersion}/car-history/read-by-date-and-year`, // api
+    "post", // method
+    "car-history/read-by-date-and-year", // key
+    {
+      car_history_car_id: carId,
+      car_history_date: year,
+    }, // fetch data
+    { year }
+  );
 
   const handleEdit = (item) => {
     setItemEdit(item);
@@ -109,7 +109,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
         <div className="w-full md:max-w-80"></div>
       </div>
       <div className="relative z-0 overflow-auto text-center rounded-md">
-        {(profitAndLossSettingsIsFetching || carProfitAndLossFetching) && (
+        {(historySettingsIsFetching || carHistoryFetching) && (
           <FetchingSpinner />
         )}
         <div
@@ -123,9 +123,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
                 <th className="text-center sticky left-0 min-w-[2rem] max-w-[2rem]">
                   #
                 </th>
-                <th className="sticky left-[2rem] min-w-[11rem]">
-                  Profit and loss
-                </th>
+                <th className="sticky left-[2rem] min-w-[11rem]">History</th>
                 <th className="text-right min-w-[5rem]">Jan</th>
                 <th className="text-right min-w-[5rem]">Feb</th>
                 <th className="text-right min-w-[5rem]">Mar</th>
@@ -143,11 +141,10 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
               </tr>
             </thead>
             <tbody>
-              {(profitAndLossSettingsIsLoading ||
-                profitAndLossSettings?.count === 0) && (
+              {(historySettingsIsLoading || historySettings?.count === 0) && (
                 <tr>
                   <td colSpan="100%" className="p-10">
-                    {profitAndLossSettingsIsLoading ? (
+                    {historySettingsIsLoading ? (
                       <TableLoading count={20} cols={3} />
                     ) : (
                       <NoData />
@@ -155,7 +152,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
                   </td>
                 </tr>
               )}
-              {profitAndLossSettingsError && (
+              {historySettingsError && (
                 <tr>
                   <td colSpan="100%" className="p-10">
                     <ServerError />
@@ -163,53 +160,24 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
                 </tr>
               )}
 
-              {profitAndLossSettings?.count > 0 &&
-                profitAndLossSettings?.data.map((item, key) => {
+              {historySettings?.count > 0 &&
+                historySettings?.data.map((item, key) => {
                   return (
                     <tr key={key}>
-                      <td className="text-center sticky left-0 ">
+                      <td className="sticky left-0 text-center ">
                         {counter++}.
                       </td>
                       <td className="sticky left-[2rem] !pl-0">
-                        {item.profit_and_loss_name}
+                        {item.history_name}
                       </td>
-                      <CarProfitReadAndUpdateAction
+                      <CarHistoryReadAndUpdateAction
                         item={item}
-                        carProfitAndLoss={carProfitAndLoss}
+                        carHistory={carHistory}
                         handleEdit={handleEdit}
                       />
                     </tr>
                   );
                 })}
-
-              {profitAndLossSettings?.count > 0 && (
-                <>
-                  <tr>
-                    <td className="text-center sticky left-0 min-w-[2rem] max-w-[2rem]">
-                      {counter++}.
-                    </td>
-                    <td className="!pl-0 sticky left-[2rem] min-w-[11rem]">
-                      Car Payment
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center sticky left-0 min-w-[2rem] max-w-[2rem]">
-                      {counter++}.
-                    </td>
-                    <td className="!pl-0 sticky left-[2rem] min-w-[11rem]">
-                      Total Expenses
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center sticky left-0 min-w-[2rem] max-w-[2rem]">
-                      {counter++}.
-                    </td>
-                    <td className="!pl-0 sticky left-[2rem] min-w-[11rem]">
-                      Total Profit
-                    </td>
-                  </tr>
-                </>
-              )}
             </tbody>
           </table>
 
@@ -219,7 +187,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
 
       {store.isArchive && (
         <ModalArchive
-          mysqlApiArchive={`${apiVersion}/client-car/active/${id}`}
+          mysqlApiArchive={`${apiVersion}/car-history/active/${id}`}
           msg={"Are you sure you want to archive this record?"}
           successMsg={"Archived successfully."}
           queryKey={"carProfitAndLoss"}
@@ -227,7 +195,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
       )}
       {store.isRestore && (
         <ModalRestore
-          mysqlApiRestore={`${apiVersion}/client-car/active/${id}`}
+          mysqlApiRestore={`${apiVersion}/car-history/active/${id}`}
           msg={"Are you sure you want to restore this record?"}
           successMsg={"Restored successfully."}
           queryKey={"carProfitAndLoss"}
@@ -235,7 +203,7 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
       )}
       {store.isDelete && (
         <ModalDelete
-          mysqlApiDelete={`${apiVersion}/client-car/${id}`}
+          mysqlApiDelete={`${apiVersion}/car-history/${id}`}
           msg={"Are you sure you want to delete this record?"}
           successMsg={"Deleted successfully."}
           item={dataItem.car_name}
@@ -246,4 +214,4 @@ const CarProfitAndLossList = ({ setItemEdit }) => {
   );
 };
 
-export default CarProfitAndLossList;
+export default CarHistoryList;

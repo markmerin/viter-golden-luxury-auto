@@ -20,7 +20,7 @@ class PurchaseDocuments
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblPurchaseDocuments = "glav1_purchase_document";
+        $this->tblPurchaseDocuments = "glav1_settings_purchase_document";
     }
 
     // create
@@ -58,8 +58,8 @@ class PurchaseDocuments
             $sql .= "* ";
             $sql .= "from ";
             $sql .= " {$this->tblPurchaseDocuments} ";
-            $sql .= "order by purchase_document_is_active desc, ";
-            $sql .= "purchase_document_name asc ";
+            $sql .= "order by purchase_document_is_active desc ";
+
             $query = $this->connection->query($sql);
         } catch (PDOException $ex) {
             $query = false;
@@ -92,7 +92,7 @@ class PurchaseDocuments
             $sql .= "* ";
             $sql .= "from {$this->tblPurchaseDocuments} ";
             $sql .= "order by purchase_document_is_active desc, ";
-            $sql .= "purchase_document_name asc ";
+            $sql .= "purchase_document_aid desc ";
             $sql .= "limit :start, ";
             $sql .= ":total ";
             $query = $this->connection->prepare($sql);
@@ -124,6 +124,27 @@ class PurchaseDocuments
         }
         return $query;
     }
+
+    public function searchByPurchaseDocument()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblPurchaseDocuments} ";
+            $sql .= "where purchase_document_name like :purchase_document_name ";
+            $sql .= "and purchase_document_is_active = 1 ";
+            $sql .= "order by purchase_document_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "purchase_document_name" => "%{$this->purchase_document_search}%"
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
 
     // update
     public function update()

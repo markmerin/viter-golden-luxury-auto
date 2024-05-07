@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2024 at 09:46 AM
+-- Generation Time: May 07, 2024 at 06:16 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `glav1_total_car_rental_value`
+-- Table structure for table `glav1_settings_total_car_rental_value`
 --
 
-CREATE TABLE `glav1_total_car_rental_value` (
+CREATE TABLE `glav1_settings_total_car_rental_value` (
   `car_rental_value_aid` int(11) NOT NULL,
   `car_rental_value_is_active` tinyint(1) NOT NULL,
   `car_rental_value_name` varchar(50) NOT NULL,
@@ -36,21 +36,21 @@ CREATE TABLE `glav1_total_car_rental_value` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `glav1_total_car_rental_value`
+-- Dumping data for table `glav1_settings_total_car_rental_value`
 --
 
-INSERT INTO `glav1_total_car_rental_value` (`car_rental_value_aid`, `car_rental_value_is_active`, `car_rental_value_name`, `car_rental_value_datetime`, `car_rental_value_created`) VALUES
-(2, 1, '4444', '2024-05-05 01:52:00', '2024-05-05 01:30:05'),
-(4, 0, 'dddddd', '', '2024-05-05 01:51:00');
+INSERT INTO `glav1_settings_total_car_rental_value` (`car_rental_value_aid`, `car_rental_value_is_active`, `car_rental_value_name`, `car_rental_value_datetime`, `car_rental_value_created`) VALUES
+(2, 1, '444445645645', '2024-05-05 18:17:05', '2024-05-05 01:30:05'),
+(6, 1, 'ttt', '2024-05-05 19:01:46', '2024-05-05 19:01:46');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `glav1_total_car_rental_value`
+-- Indexes for table `glav1_settings_total_car_rental_value`
 --
-ALTER TABLE `glav1_total_car_rental_value`
+ALTER TABLE `glav1_settings_total_car_rental_value`
   ADD PRIMARY KEY (`car_rental_value_aid`);
 
 --
@@ -58,10 +58,10 @@ ALTER TABLE `glav1_total_car_rental_value`
 --
 
 --
--- AUTO_INCREMENT for table `glav1_total_car_rental_value`
+-- AUTO_INCREMENT for table `glav1_settings_total_car_rental_value`
 --
-ALTER TABLE `glav1_total_car_rental_value`
-  MODIFY `car_rental_value_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `glav1_settings_total_car_rental_value`
+  MODIFY `car_rental_value_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

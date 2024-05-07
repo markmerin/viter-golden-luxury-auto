@@ -26,3 +26,13 @@ function isPurchaseDocumentAssociated($object)
     $count = $query->rowCount();
     checkExistence($count, "You cannot delete this item because it is already associated with other module.");
 }
+
+
+
+// search by profit and loss
+function checkSearchByPurchaseDocument($object)
+{
+    $query = $object->searchByPurchaseDocument();
+    checkQuery($query, "Empty record. (search by Purchase Document)");
+    return $query;
+}

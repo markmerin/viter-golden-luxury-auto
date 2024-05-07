@@ -182,6 +182,17 @@ RewriteRule ^car-profit-and-loss$ controllers/developer/car/car-profit-and-loss/
 RewriteRule ^car-profit-and-loss/([0-9]+)$ controllers/developer/car/car-profit-and-loss/car-profit-and-loss.php?carprofitid=$1 [L]
 RewriteRule ^car-profit-and-loss/read-by-date-and-year$ controllers/developer/car/car-profit-and-loss/read-by-date-and-year.php [L]
 
+### CAR HISTORY ###
+RewriteRule ^car-history$ controllers/developer/car/view-car/car-history/car-history.php [L]
+RewriteRule ^car-history/([0-9]+)$ controllers/developer/car/view-car/car-history/car-history.php?carhistoryid=$1 [L]
+RewriteRule ^car-history/read-by-date-and-year$ controllers/developer/car/view-car/car-history/read-by-date-and-year.php [L]
+
+### CAR TOTAL ###
+RewriteRule ^car-purchase-documents$ controllers/developer/car/view-car/car-total/car-purchase-document/car-purchase-document.php [L]
+RewriteRule ^car-purchase-documents/([0-9]+)$ controllers/developer/car/view-car/car-total/car-purchase-document/car-purchase-document.php?carpurchasedocid=$1 [L]
+RewriteRule ^car-purchase-documents/read-by-date-and-year$ controllers/developer/car/view-car/car-total/car-purchase-document/read-by-date-and-year.php [L]
+
+
 ### CAR DIRECT DELIVERY ###
 RewriteRule ^car-direct-delivery$ controllers/developer/car/view-car/car-direct-delivery/car-direct-delivery.php [L]
 RewriteRule ^car-direct-delivery/([0-9]+)$ controllers/developer/car/view-car/car-direct-delivery/car-direct-delivery.php?cardirectid=$1 [L]
@@ -199,6 +210,7 @@ RewriteRule ^history/([0-9]+)$ controllers/developer/settings/history/history.ph
 RewriteRule ^history/active/([0-9]+)$ controllers/developer/settings/history/active.php?historyid=$1 [L]
 RewriteRule ^history/page/([0-9]+)$ controllers/developer/settings/history/page.php?start=$1 [L]
 RewriteRule ^history/search$ controllers/developer/settings/history/search.php [L]
+RewriteRule ^history/search-by-history$ controllers/developer/settings/history/search-by-history.php [L]
 
 
 RewriteRule ^purchase-documents$ controllers/developer/settings/totals/purchase-documents/purchase-documents.php [L]
@@ -206,6 +218,8 @@ RewriteRule ^purchase-documents/([0-9]+)$ controllers/developer/settings/totals/
 RewriteRule ^purchase-documents/active/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/active.php?purchasedocumentsid=$1 [L]
 RewriteRule ^purchase-documents/page/([0-9]+)$ controllers/developer/settings/totals/purchase-documents/page.php?start=$1 [L]
 RewriteRule ^purchase-documents/search$ controllers/developer/settings/totals/purchase-documents/search.php [L]
+RewriteRule ^purchase-documents/search-by-purchase-document$ controllers/developer/settings/totals/purchase-documents/search-by-purchase-document.php [L]
+
 
 RewriteRule ^purchase-financed$ controllers/developer/settings/totals/purchase-financed/purchase-financed.php [L]
 RewriteRule ^purchase-financed/([0-9]+)$ controllers/developer/settings/totals/purchase-financed/purchase-financed.php?purchasefinancedid=$1 [L]

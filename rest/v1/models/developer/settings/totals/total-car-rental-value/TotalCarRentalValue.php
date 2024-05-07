@@ -20,7 +20,7 @@ class TotalCarRentalValue
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblCarRentalValue = "glav1_total_car_rental_value";
+        $this->tblCarRentalValue = "glav1_settings_total_car_rental_value";
     }
 
     // create

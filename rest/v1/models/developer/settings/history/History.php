@@ -19,19 +19,21 @@ class History
     public $history_search;
 
 
+    public $tblSettingsHistory;
     public $tblHistory;
 
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblHistory = "glav1_history";
+        $this->tblSettingsHistory = "glav1_settings_history";
+        $this->tblHistory = "glav1_car_history";
     }
 
     // create
     public function create()
     {
         try {
-            $sql = "insert into {$this->tblHistory} ";
+            $sql = "insert into {$this->tblSettingsHistory} ";
             $sql .= "(history_is_active, ";
             $sql .= "history_name, ";
             $sql .= "history_created, ";
@@ -44,7 +46,6 @@ class History
             $query->execute([
                 "history_is_active" => $this->history_is_active,
                 "history_name" => $this->history_name,
-
                 "history_created" => $this->history_created,
                 "history_datetime" => $this->history_datetime,
             ]);
@@ -62,9 +63,9 @@ class History
             $sql = "select ";
             $sql .= "* ";
             $sql .= "from ";
-            $sql .= " {$this->tblHistory} ";
-            $sql .= "order by history_is_active desc, ";
-            $sql .= "history_name asc ";
+            $sql .= " {$this->tblSettingsHistory} ";
+            $sql .= "order by history_is_active desc ";
+            // $sql .= "history_name asc ";
             $query = $this->connection->query($sql);
         } catch (PDOException $ex) {
             $query = false;
@@ -76,7 +77,7 @@ class History
     public function readById()
     {
         try {
-            $sql = "select * from {$this->tblHistory} ";
+            $sql = "select * from {$this->tblSettingsHistory} ";
             $sql .= "where history_aid = :history_aid ";
             $sql .= "order by history_name asc ";
             $query = $this->connection->prepare($sql);
@@ -95,7 +96,7 @@ class History
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from {$this->tblHistory} ";
+            $sql .= "from {$this->tblSettingsHistory} ";
             $sql .= "order by history_is_active desc ";
             $sql .= "limit :start, ";
             $sql .= ":total ";
@@ -114,7 +115,7 @@ class History
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from {$this->tblHistory} ";
+            $sql .= "from {$this->tblSettingsHistory} ";
             $sql .= "where history_name like :history_name ";
             $sql .= "order by history_is_active desc, ";
             $sql .= "history_name asc ";
@@ -127,11 +128,33 @@ class History
         }
         return $query;
     }
+
+    public function searchByHistory()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= "{$this->tblSettingsHistory} ";
+            $sql .= "where history_name like :history_name ";
+            $sql .= "and history_is_active = 1 ";
+            $sql .= "order by history_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "history_name" => "%{$this->history_search}%"
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+
     // update
     public function update()
     {
         try {
-            $sql = "update {$this->tblHistory} set ";
+            $sql = "update {$this->tblSettingsHistory} set ";
             $sql .= "history_name = :history_name, ";
             $sql .= "history_datetime = :history_datetime ";
             $sql .= "where history_aid  = :history_aid ";
@@ -151,7 +174,7 @@ class History
     public function active()
     {
         try {
-            $sql = "update {$this->tblHistory} set ";
+            $sql = "update {$this->tblSettingsHistory} set ";
             $sql .= "history_is_active = :history_is_active, ";
             $sql .= "history_datetime = :history_datetime ";
             $sql .= "where history_aid = :history_aid ";
@@ -171,7 +194,7 @@ class History
     public function delete()
     {
         try {
-            $sql = "delete from {$this->tblHistory} ";
+            $sql = "delete from {$this->tblSettingsHistory} ";
             $sql .= "where history_aid = :history_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -187,7 +210,7 @@ class History
     {
         try {
             $sql = "select history_name ";
-            $sql .= "from {$this->tblHistory} ";
+            $sql .= "from {$this->tblSettingsHistory} ";
             $sql .= "where history_name = :history_name ";
             $query = $this->connection->prepare($sql);
             $query->execute([
@@ -206,7 +229,7 @@ class History
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from {$this->tblHistory} ";
+            $sql .= "from {$this->tblSettingsHistory} ";
             $sql .= "where history_is_active = :history_is_active ";
             $sql .= "and (history_name like :history_name ";
             $sql .= ") ";
@@ -230,7 +253,7 @@ class History
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from {$this->tblHistory} ";
+            $sql .= "from {$this->tblSettingsHistory} ";
             $sql .= "where history_is_active = :history_is_active ";
             $sql .= "order by history_name asc ";
 
@@ -247,18 +270,18 @@ class History
 
 
     // association
-    // public function checkDesignationAssociation()
-    // {
-    //     try {
-    //         $sql = "select designation_history_id from {$this->tblDesignation} ";
-    //         $sql .= "where designation_history_id = :history_aid ";
-    //         $query = $this->connection->prepare($sql);
-    //         $query->execute([
-    //             "history_aid" => "{$this->history_aid}",
-    //         ]);
-    //     } catch (PDOException $ex) {
-    //         $query = false;
-    //     }
-    //     return $query;
-    // }
+    public function checkAssociation()
+    {
+        try {
+            $sql = "select car_history_id from {$this->tblHistory} ";
+            $sql .= "where car_history_id = :history_aid ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "history_aid" => "{$this->history_aid}",
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
 }
